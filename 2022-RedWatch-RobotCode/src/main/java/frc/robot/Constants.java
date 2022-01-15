@@ -20,4 +20,14 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     public static double kIndexerSpeed = 0.5;
 
+    public static final class VisionConstants {
+        public static final double kLimelightAngle = 0.0; //TODO: Once mounted on the robot measure the angle and from horizontal to camera
+        public static final double kHubHeight = 0.0; //TODO: Check manual for height of the top of the hub to the ground
+        public static final double kLimelightHeight = 0.0; //TODO: Once mounted on the robot measure the height from middle of camera to the ground
+
+        public static final int kDefaultPipeline = 0;
     }
+
+}
+
+
