@@ -18,6 +18,8 @@ public final class Constants {
     public static final int BOTTOM_MOTOR_ID = 9;
     public static final int kBeamBreak = 4;
     public static final int kDriverControllerPort = 0;
+    public static final String kShuffleBoardTab = "Testing";
+    public static final String kSuffleboardTab = "Testing";
     public static double kIndexerSpeed = 0.5;
 
     }
