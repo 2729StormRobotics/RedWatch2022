@@ -15,5 +15,9 @@ package frc.robot;
 public final class Constants {
 
     public static final int TOP_MOTOR_ID = 8;
+    public static final int BOTTOM_MOTOR_ID = 9;
+    public static final int kBeamBreak = 4;
+    public static final int kDriverControllerPort = 0;
+    public static double kIndexerSpeed = 0.5;
 
     }
