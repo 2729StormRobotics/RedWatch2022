@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -20,4 +22,27 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     public static double kIndexerSpeed = 0.5;
 
+    public static final class IntakeConstants {
+        
+        public static final int kIntakeMotorPort = 1;
+        public static final int kIntakeRaiseChannel = 2;
+        public static final int kIntakeLowerChannel = 3;
+        public static final double kIntakeMotorSpeed = 10;
+        public static final double kEjectMotorSpeed = -10;
+        public static final Value kIntakeRaiseValue = Value.kForward;
+        public static final Value kIntakeLowerValue = Value.kReverse;
+
     }
+
+    public static final class HopperConstants{
+        public static final int kHopperMotorPort = 5;
+        public static final double kHopperMotorSpeed = 0.25; 
+
+        public static final String kShuffleboardTab = "Testing";
+    }
+
+    public static final class ColorConstants {
+        public static final int colorPort = 2;
+    }
+
+}
