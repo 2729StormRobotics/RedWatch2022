@@ -22,12 +22,13 @@ public final class Constants {
     public static final double kClimbUpSpeed = 0.5;
     public static final double kClimbDownSpeed = 0;
     public static double kIndexerSpeed = 0.5;
-
+    public static final String kShuffleBoardTab = "Testing";
 
     //change these 
     public static final double kDistancePerPulse = 0;
     public static final double kSpeedPerPulse = 0;
     public static final double kMaxHeight = 10;
+
 
     
 
