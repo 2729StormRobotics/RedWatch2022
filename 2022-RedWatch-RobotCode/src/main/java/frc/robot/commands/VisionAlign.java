@@ -6,16 +6,21 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import static frc.robot.Constants.VisionConstants.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class VisionAlign extends PIDCommand {
+
+  private final Drivetrain m_drivetrain;
+
+
   /** Creates a new VisionAlign. */
-  public VisionAlign() {
+  public VisionAlign(Drivetrain drivetrain) {
     super(
         // The controller that the command will use
-        new PIDController(0, 0, 0),
+        new PIDController(kAutoAlignP, kAutoAlignI, kAutoAlignD),
         // This should return the measurement
         () -> 0,
         // This should return the setpoint (can also be a constant)

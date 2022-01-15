@@ -51,6 +51,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // TODO: Add a joystick button? to be held depending on how the alignment will work
+    //new JoystickButton(m_driver, buttonNumber).whileHeld(command)
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new Load(m_indexer));
     new JoystickButton(m_driver, Button.kB.value).whileHeld(new Shoot(m_shooter));
   }
