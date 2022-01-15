@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Vision;
 import frc.robot.commands.Load;
 import frc.robot.commands.Shoot;
 
@@ -26,6 +27,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Shooter m_shooter;
   private final Indexer m_indexer;
+  private final Vision m_vision;
   private final XboxController m_driver = new XboxController(Constants.kDriverControllerPort);
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -35,6 +37,7 @@ public class RobotContainer {
   public RobotContainer() {
     m_indexer = new Indexer();
     m_shooter = new Shooter();
+    m_vision = new Vision();
 
     // Configure the button bindings
     configureButtonBindings();
@@ -47,6 +50,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    // TODO: Add a joystick button? to be held depending on how the alignment will work
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new Load(m_indexer));
     new JoystickButton(m_driver, Button.kB.value).whileHeld(new Shoot(m_shooter));
   }

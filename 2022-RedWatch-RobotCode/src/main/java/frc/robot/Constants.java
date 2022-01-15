@@ -23,10 +23,10 @@ public final class Constants {
     public static final class VisionConstants {
         public static final double kLimelightHeight = 0.0; //TODO: Once limelight is mounted measure the distance from the center of the camera to the ground
         public static final double kLimelightAngle = 0.0; //TODO: Once limelight is mounted measure angle of limelight from horizontal to limelight
-        public static final double kHubHeight = 0.0; //TODO: Look at manual to find distance from floor to top of the hub
+        public static final double kHubHeight = 104.0;
 
         public static final int kDefaultPipeline = 0;
 
 
     }
-    }
+}

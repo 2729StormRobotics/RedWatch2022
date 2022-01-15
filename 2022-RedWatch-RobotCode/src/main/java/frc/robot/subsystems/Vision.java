@@ -89,7 +89,6 @@ public class Vision extends SubsystemBase {
     return (kLimelightAngle + m_yOffset);
   }
 
-  // TODO: Check the math of this method depending on how we are computing distance and the 1' offset of the hub
   /**
    * Return the distance from the limelight to the target in inches (floor
    * distance)
