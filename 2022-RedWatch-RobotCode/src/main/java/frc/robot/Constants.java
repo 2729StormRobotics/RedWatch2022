@@ -4,7 +4,10 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorMatch;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.util.Color;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -43,6 +46,10 @@ public final class Constants {
 
     public static final class ColorConstants {
         public static final int colorPort = 2;
+        public static final Color kNoColor = ColorMatch.makeColor(0.0, 0.0, 0.0);
+        public static final Color kRedTarget = ColorMatch.makeColor(0.476, 0.376, 0.15);
+        public static final Color kBlueTarget = ColorMatch.makeColor(0.18, 0.568, 0.249);
+        public static final String kShuffleboardTab = "Testing";
     }
 
 }
