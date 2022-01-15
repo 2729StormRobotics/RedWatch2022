@@ -17,7 +17,18 @@ public final class Constants {
     public static final int TOP_MOTOR_ID = 8;
     public static final int BOTTOM_MOTOR_ID = 9;
     public static final int kBeamBreak = 4;
-    public static final int kDriverControllerPort = 0;
+    public static final int kWeaponsControllerPort = 1;
+    public static final int kArm1MotorPort = 15;
+    public static final double kClimbUpSpeed = 0.5;
+    public static final double kClimbDownSpeed = 0;
     public static double kIndexerSpeed = 0.5;
+
+
+    //change these 
+    public static final double kDistancePerPulse = 0;
+    public static final double kSpeedPerPulse = 0;
+    public static final double kMaxHeight = 10;
+
+    
 
     }

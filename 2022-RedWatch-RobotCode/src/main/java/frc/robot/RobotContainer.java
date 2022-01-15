@@ -7,8 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.commands.ClimbManually;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Hanger;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Indexer;
@@ -26,7 +28,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Shooter m_shooter;
   private final Indexer m_indexer;
-  private final XboxController m_driver = new XboxController(Constants.kDriverControllerPort);
+  private final Hanger m_climber;
+  private final XboxController m_weapons = new XboxController(Constants.kWeaponsControllerPort);
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -35,9 +38,12 @@ public class RobotContainer {
   public RobotContainer() {
     m_indexer = new Indexer();
     m_shooter = new Shooter();
+    m_climber = new Hanger(); 
 
     // Configure the button bindings
     configureButtonBindings();
+
+    m_climber.setDefaultCommand(new ClimbManually(() -> m_weapons.getLeftY(), m_climber));
   }
 
   /**
@@ -47,8 +53,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new Load(m_indexer));
-    new JoystickButton(m_driver, Button.kB.value).whileHeld(new Shoot(m_shooter));
+    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new Load(m_indexer));
+    new JoystickButton(m_weapons, Button.kB.value).whileHeld(new Shoot(m_shooter));
   }
 
   /**
