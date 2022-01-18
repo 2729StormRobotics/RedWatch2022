@@ -14,8 +14,6 @@ import static frc.robot.Constants.ColorConstants.*;
 
 import java.util.Map;
 
-import javax.swing.text.JTextComponent.KeyBinding;
-
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -45,14 +43,15 @@ public class ColorDetection extends SubsystemBase {
 
   private int m_colorCheck = 0;
   private Color m_currentColor = kNoColor;
+  private Color m_targetColor = kNoColor;
 
   private final ShuffleboardTab m_controlPanelTab;
   private final ShuffleboardLayout m_controlPanelStatus;
   private SuppliedValueWidget<Boolean> m_targetColorWidget;
   private SuppliedValueWidget<Boolean> m_currentColorWidget;
 
-  // private final NetworkTable m_PartyTable;
-  // private final NetworkTableEntry m_ControllPanelColorStatus;
+  private final NetworkTable m_PartyTable;
+  private final NetworkTableEntry m_ControllPanelColorStatus;
 
   /** Creates a new Color. */
   public ColorDetection() {
@@ -63,6 +62,9 @@ public class ColorDetection extends SubsystemBase {
     m_colorMatch.addColorMatch(kBlueTarget);
 
     shuffleboardInit();
+
+    m_PartyTable = NetworkTableInstance.getDefault().getTable("Party Statuses");
+    m_ControllPanelColorStatus = m_PartyTable.getEntry("Color Detected");
 
     m_controlPanelTab = Shuffleboard.getTab(kShuffleboardTab);
     m_controlPanelStatus = m_controlPanelTab.getLayout("Control Panel Status", BuiltInLayouts.kList)
@@ -95,6 +97,12 @@ public class ColorDetection extends SubsystemBase {
       m_currentColorAvailable = false;
       m_currentColorString = "BLACK";
     }
+  }
+
+  public boolean onTargetColor() {
+    boolean onTargetColor = m_currentColor.equals(m_targetColor);
+    m_ControllPanelColorStatus.setBoolean(onTargetColor);
+    return onTargetColor;
   }
 
   private void shuffleboardInit() {
