@@ -39,7 +39,7 @@ public final class Constants {
 
     }
 
-    public static final class HopperConstants{
+    public static final class HopperConstants{ 
         public static final int kHopperMotorPort = 5;
         public static final double kHopperMotorSpeed = 0.25; 
 
