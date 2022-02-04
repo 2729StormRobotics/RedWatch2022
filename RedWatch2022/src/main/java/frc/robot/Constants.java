@@ -25,5 +25,8 @@ public final class Constants {
     public static final boolean kTopReversedDefault = false;
     public static final int STALL_LIMIT = 45;
     public static final int kCurrentLimit = 60;
+
+	//in percentage 
+    public static final double kIndexerSpeed = .50;
   
 }
