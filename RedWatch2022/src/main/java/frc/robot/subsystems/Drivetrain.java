@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import java.sql.Driver;
 import java.util.Map;
 
 //import com.analog.adis16470.frc.ADIS16470_IMU;
@@ -47,7 +46,6 @@ public class Drivetrain extends SubsystemBase {
   private final ShuffleboardLayout m_drivetrainStatus;
 
   public boolean m_reverseDrive = false;
-  private static AHRS navx;
   AHRS ahrs;
 
 
