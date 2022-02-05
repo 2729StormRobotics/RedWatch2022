@@ -45,7 +45,7 @@ public class VisionAlign extends PIDCommand {
         m_drivetrain = drivetrain;
         m_vision = vision;
     // Use addRequirements() here to declare subsystem dependencies.
-    m_drivetrain, m_vision
+    addRequirements(m_drivetrain, m_vision);
   }
 
   // Returns true when the command should end.
