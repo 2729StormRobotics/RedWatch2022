@@ -20,8 +20,8 @@ public final class Constants {
     public static final boolean kLeftReversedDefault = true;
     public static final boolean kRightReversedDefault = !kLeftReversedDefault;
     public static final String kShuffleboardTab = "Testing";
-    public static final int LEFT_MOTOR2_ID = 0;
-    public static final int RIGHT_MOTOR2_ID = 0;
+    public static final int LEFT_MOTOR2_ID = 3;
+    public static final int RIGHT_MOTOR2_ID = 4;
 
     // since the encoder is build into the motor we need to account for gearing
 	private static final double kWheelDiameterInches = 6.0;
@@ -40,4 +40,5 @@ public final class Constants {
 	public static double kRightAngleTurnArcLength = 7.25 * Math.PI;
     public static final double kHighSpeedPerPulseEncoderRatio = kEncoderDistanceRatio / 60.0;
 
+	public static final int kControllerPort = 0;
 }
