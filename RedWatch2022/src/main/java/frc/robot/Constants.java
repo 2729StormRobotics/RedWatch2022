@@ -14,22 +14,22 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static final int kIndexMotorPort = 0;
+    public static final int kIndexMotorPort = 3;
     public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
     public static final int kCAN_TIMEOUT_SETUP = 500;
     public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
     public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
-    public static final int kBeamBreakPort = 0;
+    public static final int kBeamBreakPort = 1;
 
-    public static final int TOP_MOTOR_ID = 8;
+    public static final int TOP_MOTOR_ID = 1;
     public static final boolean kTopReversedDefault = false;
     public static final int STALL_LIMIT = 45;
     public static final int kCurrentLimit = 60;
 
 	//in percentage 
-    public static final double kIndexerSpeed = .50;
+    public static final double kIndexerSpeed = .250;
     public static final int kDriverController = 1;
-    public static final double kHighShootSpeed = 1;
-    public static final double kLowShootSpeed = 0.5;
+    public static final double kHighShootSpeed = 0.5;
+    public static final double kLowShootSpeed = 0.25;
   
 }
