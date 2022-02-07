@@ -89,15 +89,11 @@ public class Drivetrain extends SubsystemBase {
 
   private void encoderInit(RelativeEncoder encoder) {
     // set conversion factor and velocity factor for high gear
-    if (m_highGear) {
-      encoder.setPositionConversionFactor(Constants.kEncoderDistanceRatio);
-      encoder.setVelocityConversionFactor(Constants.kHighSpeedPerPulseEncoderRatio);
-    } 
-    // set conversion factor and velocity factor for low gear
-    else {
-      encoder.setPositionConversionFactor(Constants.kLowDistancePerPulse);
-      encoder.setVelocityConversionFactor(Constants.kLowSpeedPerPulse);
-    }
+
+      encoder.setPositionConversionFactor(Constants.kDistancePerRevolution);
+      encoder.setVelocityConversionFactor(Constants.kSpeedPerRevolution);
+    
+    
     encoderReset(encoder);
 
   }

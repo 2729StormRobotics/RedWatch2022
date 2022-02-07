@@ -25,12 +25,19 @@ public final class Constants {
     public static final int RIGHT_MOTOR2_ID = 0;
     public static final int STALL_LIMIT = 45;
 
+    public static final double kWheelDiameter = 6.0;
+    public static final double kGearRatio = 1/13;
+    public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio;
+    public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
+
     public static final class ShooterConstants {
         public static final int TOP_MOTOR_ID = 1;
         public static final boolean kTopReversedDefault = false;
         public static final int STALL_LIMIT = 45;
         public static final int kCurrentLimit = 60;
     }
+
+    
     
 	//in percentage 
     public static final double kIndexerSpeed = .50;
