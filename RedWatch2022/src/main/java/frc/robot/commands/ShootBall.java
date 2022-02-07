@@ -30,7 +30,7 @@ public class ShootBall extends PIDCommand {
         });
 
         m_shooter = shooter;
-        getController().setTolerance(Constants.kFlyWheelTolerance, Constants.kFlyWheelVelocityTolerance);
+        getController().setTolerance(Constants.kFlyWheelTolerance);
 
 
     // Use addRequirements() here to declare subsystem dependencies.
