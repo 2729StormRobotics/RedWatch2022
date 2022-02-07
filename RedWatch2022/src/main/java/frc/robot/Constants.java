@@ -27,7 +27,7 @@ public final class Constants {
     public static final double kHighShootSpeed = 1;
     public static final double kLowShootSpeed = 0.5;
     public static final String kShooterTab = "Shooter";
-    public static final double kFlyWheelPID = 0.2;
+    public static final double kFlyWheelPID = 0.0005;
 
     public static final class IndexerConstants {
         public static final String kShuffleboardTab = "Indexer";
@@ -42,5 +42,5 @@ public final class Constants {
 
     public static double kFlyWheelTolerance = 50.0;
     public static double kFlyWheelVelocityTolerance = 250;
-    public static double kLowShootRPM = 2800.0;
+    public static double kLowShootRPM = 5500.0;
 }
