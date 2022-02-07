@@ -61,4 +61,15 @@ public final class Constants {
     public static double kFlyWheelTolerance = 50.0;
     public static double kFlyWheelVelocityTolerance = 250;
     public static double kLowShootRPM = 5500.0;
+
+    public static class LightConstants {
+        public static final int kBlinkinDriverPort = 0; //TODO: Find a port for this
+		public static final double kDisabled = 0.0; //TODO: Find what color we want for this and its value
+		public static final double kLightsOff = 0.99;
+        public static final double kRedBall = 0.61;
+        public static final double kBlueBall = 0.87;
+        public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
+        public static final double kYellowBall = 0.69;
+        public static final double kGreenBall = 0.75;
+    }
 }
