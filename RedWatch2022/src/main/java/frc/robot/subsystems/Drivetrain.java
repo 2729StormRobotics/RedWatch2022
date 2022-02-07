@@ -4,8 +4,6 @@
 
 package frc.robot.subsystems;
 
-import java.util.Map;
-
 //import com.analog.adis16470.frc.ADIS16470_IMU;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -16,10 +14,6 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -41,9 +35,6 @@ public class Drivetrain extends SubsystemBase {
 
 
   private final DifferentialDrive m_drive;
-
-  private final ShuffleboardTab m_drivetrainTab;
-  private final ShuffleboardLayout m_drivetrainStatus;
 
   public boolean m_reverseDrive = false;
   AHRS ahrs;
@@ -78,11 +69,6 @@ public class Drivetrain extends SubsystemBase {
     m_rightEncoder = rightMotor.getEncoder();
 
     m_drive = new DifferentialDrive(leftMotor, rightMotor);
-
-    m_drivetrainTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
-    m_drivetrainStatus = m_drivetrainTab.getLayout("Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
-    shuffleboardInit();
 
     try {
       ahrs = new AHRS(SPI.Port.kMXP);
@@ -133,11 +119,11 @@ public class Drivetrain extends SubsystemBase {
     return -m_rightEncoder.getPosition();
   }
 
-  private double getLeftSpeed() {
+  public double getLeftSpeed() {
     return -m_leftEncoder.getVelocity();
   }
 
-  private double getRightSpeed() {
+  public double getRightSpeed() {
     return -m_rightEncoder.getVelocity();
   }
 
@@ -155,17 +141,6 @@ public class Drivetrain extends SubsystemBase {
 
   public void resetGyroAngle(){
     ahrs.reset();
-  }
-
-  private void shuffleboardInit() {
-    m_drivetrainStatus.addNumber("Left Speed", () -> getLeftSpeed());
-    m_drivetrainStatus.addNumber("Right Speed", () -> getRightSpeed());
-    m_drivetrainStatus.addNumber("Left Position", () -> getLeftDistance());
-    m_drivetrainStatus.addNumber("Right Position", () -> getRightDistance());
-    m_drivetrainStatus.addNumber("Angle", () -> getGyroAngle());
-    m_drivetrainStatus.addBoolean("Reversed?", () -> m_reverseDrive);
-    m_drivetrainStatus.addNumber("Average Distance", () -> getAverageDistance());
-
   }
 
   public void tankDrive(double leftPower, double rightPower, boolean squareInputs) {
