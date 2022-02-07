@@ -14,6 +14,17 @@ package frc.robot;
  */
 public final class Constants {
 
+    // Drivetrain
+    public static final int kCurrentLimit = 60;
+    public static final int LEFT_MOTOR_ID = 2;
+    public static final int RIGHT_MOTOR_ID = 1;
+    public static final boolean kLeftReversedDefault = true;
+    public static final boolean kRightReversedDefault = !kLeftReversedDefault;
+    public static final String kShuffleboardTab = "Testing";
+    public static final int LEFT_MOTOR2_ID = 0;
+    public static final int RIGHT_MOTOR2_ID = 0;
+    public static final int STALL_LIMIT = 45;
+
     public static final class ShooterConstants {
         public static final int TOP_MOTOR_ID = 1;
         public static final boolean kTopReversedDefault = false;
