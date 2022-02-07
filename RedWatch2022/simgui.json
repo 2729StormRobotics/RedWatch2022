@@ -1,0 +1,24 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Drivetrain": "Subsystem",
+      "/LiveWindow/ExampleSubsystem": "Subsystem",
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro"
+    },
+    "windows": {
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/LiveWindow/Ungrouped/navX-Sensor[4]": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  }
+}
