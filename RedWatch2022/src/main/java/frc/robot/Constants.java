@@ -47,6 +47,13 @@ public final class Constants {
     public static final String kShooterTab = "Shooter";
     public static final double kFlyWheelPID = 0.0005;
 
+    
+    // Drivetrain
+    public static final double kWheelDiameter = 6.0;
+    public static final double kGearRatio = 1/13;
+    public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio;
+    public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
+
     public static final class IndexerConstants {
         public static final String kShuffleboardTab = "Indexer";
 
