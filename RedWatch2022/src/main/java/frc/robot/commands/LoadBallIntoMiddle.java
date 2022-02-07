@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 
-public class LoadBall extends CommandBase {
+public class LoadBallIntoMiddle extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;
 
-  public LoadBall(Indexer indexer) {
+  public LoadBallIntoMiddle(Indexer indexer) {
     m_indexer = indexer;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_indexer);
