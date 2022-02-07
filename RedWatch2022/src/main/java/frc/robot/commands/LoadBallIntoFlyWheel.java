@@ -7,13 +7,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Lights;
 
 public class LoadBallIntoFlyWheel extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;
+  private final Lights m_lights;
 
-  public LoadBallIntoFlyWheel(Indexer indexer) {
+  public LoadBallIntoFlyWheel(Indexer indexer, Lights lights) {
     m_indexer = indexer;
+    m_lights = lights;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_indexer);
   }
@@ -36,6 +39,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_indexer.load(0.0);
+    m_lights.resetLights();
   }
 
   // Returns true when the command should end.

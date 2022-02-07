@@ -68,6 +68,14 @@ public class Lights extends SubsystemBase {
     m_ledDriver.set(kBlueBall);
   }
 
+  public void RevFlyWheelYellow() {
+    m_ledDriver.set(kYellowBall);
+  }
+
+  public void MaxSpeedFlyWheel() {
+    m_ledDriver.set(kGreenBall);
+  }
+
   public void resetLights() {
     m_ledDriver.set(kDefaultColor);
   }

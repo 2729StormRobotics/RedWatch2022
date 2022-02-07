@@ -7,16 +7,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
+
+/*
+THIS IS NOT A PID COMMAND
+*/
+
+
+
 
 public class ShootCargo extends CommandBase {
   /** Creates a new ShootCargo. */
   private final Shooter m_shooter;
+  private final Lights m_lights;
   private double m_speed;
 
-  public ShootCargo(double speed, Shooter shooter) {
+  public ShootCargo(double speed, Shooter shooter, Lights lights) {
     m_speed = speed;
     m_shooter = shooter; 
+    m_lights = lights;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_shooter);
@@ -28,6 +38,7 @@ public class ShootCargo extends CommandBase {
     //stops shooting and resets encoder
       m_shooter.shoot(0.0);
       m_shooter.encoderReset(m_shooter.m_topEncoder);
+      m_lights.RevFlyWheelYellow();
     
   }
 
@@ -44,6 +55,7 @@ public class ShootCargo extends CommandBase {
   public void end(boolean interrupted) {
     m_shooter.shoot(0.0);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
+    m_lights.MaxSpeedFlyWheel();
   }
 
   // Returns true when the command should end.
