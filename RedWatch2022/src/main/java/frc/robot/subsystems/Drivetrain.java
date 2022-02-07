@@ -135,8 +135,12 @@ public class Drivetrain extends SubsystemBase {
     return (getRightSpeed() + getLeftSpeed())/2;
   }
   
-  public double getGyroAngle(){
+  public double getGyroAngle() {
     return ahrs.getAngle();
+  }
+
+  public double getGyroAltitude() {
+    return ahrs.getAltitude();
   }
 
   public void resetGyroAngle(){
