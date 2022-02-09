@@ -47,13 +47,6 @@ public final class Constants {
     public static final String kShooterTab = "Shooter";
     public static final double kFlyWheelPID = 0.0005;
 
-    
-    // Drivetrain
-    public static final double kWheelDiameter = 6.0;
-    public static final double kGearRatio = 1/13;
-    public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio;
-    public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
-
     public static final class IndexerConstants {
         public static final String kShuffleboardTab = "Indexer";
 
@@ -62,7 +55,7 @@ public final class Constants {
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
         public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
-        public static final int kBeamBreakPort = 1;
+        public static final int kBeamBreakPort = 0;
     }
 
     public static double kFlyWheelTolerance = 50.0;

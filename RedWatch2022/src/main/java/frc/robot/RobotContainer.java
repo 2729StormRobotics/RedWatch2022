@@ -35,7 +35,7 @@ public class RobotContainer {
   private final Indexer m_indexer;
   private final Lights m_lights;
 
-  private final Drivetrain m_drivetrain;
+  // private final Drivetrain m_drivetrain;
 
   private final XboxController m_driver = new XboxController(Constants.kDriverController);
 
@@ -51,12 +51,12 @@ public class RobotContainer {
     m_lights = new Lights();
 
     // Set up drivetrain
-    m_drivetrain = new Drivetrain();
-    m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getRightTriggerAxis(), () -> m_driver.getLeftTriggerAxis(), 
-    () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
+    // m_drivetrain = new Drivetrain();
+    // m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getRightTriggerAxis(), () -> m_driver.getLeftTriggerAxis(), 
+    // () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
 
     // Set up Control Panel
-    new ControlPanel(m_drivetrain, m_indexer);
+    // new ControlPanel(m_drivetrain, m_indexer);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -74,7 +74,7 @@ public class RobotContainer {
     // B shoots ball high
     // Y shoots ball low
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
-    new JoystickButton(m_driver, Button.kX.value).whileHeld(new LoadThenShoot(m_indexer, m_shooter, m_lights, 3000));
+    new JoystickButton(m_driver, Button.kX.value).whenPressed(new LoadThenShoot(m_indexer, m_shooter, m_lights, 3000));
     new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter, m_lights));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new ShootBall(Constants.kLowShootRPM, m_shooter, m_lights));
 
