@@ -12,6 +12,10 @@ public class LoadBall extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;
 
+  /**
+   * Loads the ball.
+   * @param indexer Indexer subsystem
+   */
   public LoadBall(Indexer indexer) {
     m_indexer = indexer;
     // Use addRequirements() here to declare subsystem dependencies.

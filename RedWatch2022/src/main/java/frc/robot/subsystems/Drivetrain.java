@@ -147,6 +147,12 @@ public class Drivetrain extends SubsystemBase {
     ahrs.reset();
   }
 
+  /** The Tank Drive mode is used to control each side of the drivetrain
+   *  independently (usually with an individual joystick axis controlling each).
+   * @param leftPower Speed of the robot's left side
+   * @param rightPower Speed of the robot's right side
+   * @param squareInputs Decreases the input sensitivity at low speeds
+   */
   public void tankDrive(double leftPower, double rightPower, boolean squareInputs) {
     if (m_reverseDrive) {
       m_drive.tankDrive(leftPower/2, rightPower/2, squareInputs);

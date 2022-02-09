@@ -14,6 +14,11 @@ public class ShootCargo extends CommandBase {
   private final Shooter m_shooter;
   private double m_speed;
 
+  /**
+   * Shoots the current cargo.
+   * @param speed The speed the cargo will shoot at
+   * @param shooter Shooter subsystem
+   */
   public ShootCargo(double speed, Shooter shooter) {
     m_speed = speed;
     m_shooter = shooter; 
