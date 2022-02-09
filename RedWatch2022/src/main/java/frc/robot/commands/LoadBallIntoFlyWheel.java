@@ -25,6 +25,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
   @Override
   public void initialize() {
     m_indexer.load(0.0);
+    m_lights.MaxSpeedFlyWheel();
 
   }
 
