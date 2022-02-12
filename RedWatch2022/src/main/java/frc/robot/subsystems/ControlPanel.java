@@ -19,8 +19,8 @@ public class ControlPanel extends SubsystemBase {
   private final ShuffleboardLayout m_drivetrainStatus;
   private final ShuffleboardLayout m_indexerStatus;
 
-  /** Creates a control panel in Shuffleboard that displays all important information and controls. Contains all shuffleboard related code.
-   * 
+  /** Creates a control panel in Shuffleboard that displays all important information and controls.
+   * Contains all shuffleboard related code.
    * @param m_drivetrain Drivetrain subsystem
    * @param m_iIndexer Indexer subsystem
    */
