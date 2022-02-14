@@ -1,11 +1,6 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-
-/*
-command to drive at a certain power for left and right motors
-*/
-
 package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
@@ -15,6 +10,7 @@ import frc.robot.subsystems.Drivetrain;
 
 public class differentialDrive extends CommandBase {
 
+ 
   private final Drivetrain m_drivetrain;
   private final DoubleSupplier m_leftSpeed;
   private final DoubleSupplier m_rightSpeed;
@@ -22,6 +18,14 @@ public class differentialDrive extends CommandBase {
   private final DoubleSupplier m_reverseSpeed;
   private double m_currentSpeed = 0;
 
+
+  /**
+  * Command to drive at a certain power for left and right motors
+  * @param rightSpeed right speed
+  * @param leftSpeed left speed 
+  * @param subsystem drivetrain subsystem
+  */
+  
   /** Creates a new differentialDrive. */
   public differentialDrive(DoubleSupplier forwardSpeed, DoubleSupplier reverseSpeed, DoubleSupplier leftSpeed, 
   DoubleSupplier rightSpeed, Drivetrain subsystem) {

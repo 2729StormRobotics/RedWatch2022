@@ -8,9 +8,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 
+
+
 public class EjectBall extends CommandBase {
   /** Creates a new EjectBall. */
   private final Indexer m_indexer;
+
+  /**
+  * Indexer ejects ball out of the robot
+  * Command runs while button held
+  * @param indexer indexer subsystem
+  */
+
   public EjectBall(Indexer indexer) {
     m_indexer = indexer;
     // Use addRequirements() here to declare subsystem dependencies.

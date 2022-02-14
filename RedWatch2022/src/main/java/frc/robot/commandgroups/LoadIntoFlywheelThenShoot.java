@@ -15,6 +15,16 @@ import frc.robot.subsystems.Shooter;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class LoadIntoFlywheelThenShoot extends ParallelCommandGroup {
+
+  /**
+   * runs ShootBall and LoadBallIntoFlyWheel command in parallel.
+   * allows flywheel to continiously run while indexer motor pushes up ball
+   * @param indexer indexer subsystem
+   * @param shooter shooter subsystem
+   * @param lights lights subsystem
+   * @param rpm wanted rpm of flywheel
+   */
+
   /** Creates a new LoadIntoFlywheelThenShoot. */
   public LoadIntoFlywheelThenShoot(Indexer indexer, Shooter shooter, Lights lights, double rpm) {
     super(

@@ -10,18 +10,25 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 
-/*
-THIS IS A PID COMMAND
-*/
-
-
-
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class RevFlywheel extends PIDCommand {
   private final Shooter m_shooter;
   private final Lights m_lights;
+
+  /**
+   * PID command that will rev the flywheel to a given RPM.
+   * Meant to be run while ball is in between flywheel and indexer wheels.
+   * Second command in the shooting process.
+   * LEDs will turn yellow while flywheel is reving up.
+   * Command ends when flywheel reaches max RPM and should immediately run ShootBall and 
+   * LoadBallIntoFlyWheel synchronously.
+   * @param rpm desired rpm flywheel will reach
+   * @param shooter shooter subsystem
+   * @param lights lights subsystem
+   */
+
   /** Creates a new ShootBall. */
   public RevFlywheel(double rpm, Shooter shooter, Lights lights) {
     super(

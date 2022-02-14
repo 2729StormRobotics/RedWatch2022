@@ -11,12 +11,6 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 
-/*
-THIS IS A PID COMMAND
-*/
-
-
-
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
@@ -24,6 +18,18 @@ public class ShootBall extends PIDCommand {
   private final Shooter m_shooter;
   private final Lights m_lights;
   private final Indexer m_indexer;
+
+  /**
+   * PID command that keeps flywheel at consistent RPM while the indexer loads the ball into it.
+   * Command ends when beam break is unbroken.
+   * LEDs turn green while this command is run.
+   * Runs parallel with LoadBallIntoFlyWheel as the third command in the shooting process.
+   * @param rpm desired rpm
+   * @param shooter shooter subsystem
+   * @param indexer indexer subsystem (to communicate with beam break)
+   * @param lights lights subsystem
+   */
+
   /** Creates a new ShootBall. */
   public ShootBall(double rpm, Shooter shooter, Indexer indexer, Lights lights) {
     super(

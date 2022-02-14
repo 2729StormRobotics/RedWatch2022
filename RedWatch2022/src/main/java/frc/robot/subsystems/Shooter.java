@@ -26,24 +26,28 @@ public class Shooter extends SubsystemBase {
   private final ShuffleboardTab m_shooterTab;
   private final ShuffleboardLayout m_shooterTabStatus;
 
+  /**
+   * Shooter subsystem controls flywheel
+   */
+
   public Shooter() {
-    //init motor
+    // initialize motor
     topMotor = new com.revrobotics.CANSparkMax(Constants.ShooterConstants.TOP_MOTOR_ID, MotorType.kBrushless);
     motorInit(topMotor, Constants.ShooterConstants.kTopReversedDefault);
     topMotor.setSmartCurrentLimit(Constants.ShooterConstants.STALL_LIMIT);
     topMotor.setIdleMode(IdleMode.kBrake);
 
-
-
+    // initialize encoder
     m_topEncoder = topMotor.getEncoder();
 
+    // initialize shuffleboard
     m_shooterTab = Shuffleboard.getTab(Constants.kShooterTab);
     m_shooterTabStatus = m_shooterTab.getLayout("Status", BuiltInLayouts.kList)
     .withProperties(Map.of("Label position", "TOP"));
     shuffleboardInit();
   }
 
-  //sets defaults for topMotor
+  // sets defaults for topMotor
   public void motorInit(CANSparkMax motor, boolean invert){
     motor.restoreFactoryDefaults();
     motor.setIdleMode(IdleMode.kBrake);
@@ -54,28 +58,33 @@ public class Shooter extends SubsystemBase {
     encoderInit(motor.getEncoder());
   }
 
+  // initialize encoder
   private void encoderInit(RelativeEncoder encoder){
     //might add more stuff here later
     encoderReset(encoder);
   }
 
+  // reset encoder position
   public void encoderReset(RelativeEncoder encoder){
     encoder.setPosition(0);
   }
   
+  // get encoder position
   public double getTopDistance(RelativeEncoder encoder){
     return encoder.getPosition();
   }
 
-  //spinny motor
+  // set motor speed
   public void shoot (double speed){
     topMotor.set(speed);
   }
 
+  // get rpm
   public double getEncoderVelocity(RelativeEncoder encoder) {
     return encoder.getVelocity();
   }
 
+  // adds rpm to shuffleboard
   private void shuffleboardInit() {
     m_shooterTabStatus.addNumber("Encoder Velocity", () -> getEncoderVelocity(m_topEncoder));
   }

@@ -8,9 +8,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 
+
+
 public class LoadBallIntoMiddle extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;
+
+  /**
+   * Spins the indexer wheel such that the ball will be positioned
+   * between the flywheel and the indexer wheel (when the beam break is broken).
+   * This is the first command in the shooting process.
+   * @param indexer indexer subsystem
+   */
 
   public LoadBallIntoMiddle(Indexer indexer) {
     m_indexer = indexer;

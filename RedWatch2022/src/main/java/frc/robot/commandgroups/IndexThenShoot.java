@@ -15,6 +15,18 @@ import frc.robot.subsystems.Shooter;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class IndexThenShoot extends SequentialCommandGroup {
+
+  /**
+   * Runs the whole shooting process, starting with ball after intake
+   * First, ball is loaded in between flywheel and indexer wheels
+   * Next, flywheel is reved up to desired RPM
+   * Lastly, flywheel pushes up ball to flywheel while it continues to run at desired RPM
+   * @param indexer indexer subsystem
+   * @param shooter shooter subsystem
+   * @param lights lights subsystem
+   * @param rpm wanted rpm of flywheel
+   */
+
   /** Creates a new LoadThenShoot. */
   public IndexThenShoot(Indexer indexer, Shooter shooter, Lights lights, double rpm) {
     super(

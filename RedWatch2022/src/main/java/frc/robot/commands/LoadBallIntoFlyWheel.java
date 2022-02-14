@@ -9,10 +9,22 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
 
+
+
+
 public class LoadBallIntoFlyWheel extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;
   private final Lights m_lights;
+
+  /**
+   * Spins indexer motor so that the ball will go into the flywheel and be shot.
+   * Motor spins until beam break is unbroken.
+   * LED resets when this command ends.
+   * This will parallel to ShootBall as the third command in the shooting process.
+   * @param indexer indexer subsystem
+   * @param lights lights subsystem
+   */
 
   public LoadBallIntoFlyWheel(Indexer indexer, Lights lights) {
     m_indexer = indexer;
