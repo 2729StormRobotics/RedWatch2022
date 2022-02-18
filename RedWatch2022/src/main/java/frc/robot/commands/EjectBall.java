@@ -11,6 +11,11 @@ import frc.robot.subsystems.Indexer;
 public class EjectBall extends CommandBase {
   /** Creates a new EjectBall. */
   private final Indexer m_indexer;
+
+  /**
+   * Ejects the ball.
+   * @param indexer Indexer subsystem
+   */
   public EjectBall(Indexer indexer) {
     m_indexer = indexer;
     // Use addRequirements() here to declare subsystem dependencies.

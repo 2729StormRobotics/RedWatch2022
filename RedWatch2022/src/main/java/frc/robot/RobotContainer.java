@@ -8,14 +8,15 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.EjectBall;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.ControlPanel;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.LoadBall;
 import frc.robot.commands.ShootCargo;
+import frc.robot.commands.differentialDrive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,17 +29,23 @@ public class RobotContainer {
   private final Shooter m_shooter;
   private final Indexer m_indexer;
 
+  private final Drivetrain m_drivetrain;
+
   private final XboxController m_driver = new XboxController(Constants.kDriverController);
-
-
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_indexer = new Indexer();
     m_shooter = new Shooter();
+
+    // Set up drivetrain
+    m_drivetrain = new Drivetrain();
+    m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getRightTriggerAxis(), () -> m_driver.getLeftTriggerAxis(), 
+    () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
+
+    // Set up Control Panel
+    new ControlPanel(m_drivetrain, m_indexer);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -67,7 +74,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 }

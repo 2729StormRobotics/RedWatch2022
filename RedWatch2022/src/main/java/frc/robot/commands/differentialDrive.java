@@ -22,7 +22,14 @@ public class differentialDrive extends CommandBase {
   private final DoubleSupplier m_reverseSpeed;
   private double m_currentSpeed = 0;
 
-  /** Creates a new differentialDrive. */
+  /**
+   * 
+   * @param forwardSpeed Right trigger (RT) axis value
+   * @param reverseSpeed Left trigger (LT) axis value
+   * @param leftSpeed Left thumbstick Y axis
+   * @param rightSpeed Right thumbstick Y axis
+   * @param subsystem Drivetrain subsystem
+   */
   public differentialDrive(DoubleSupplier forwardSpeed, DoubleSupplier reverseSpeed, DoubleSupplier leftSpeed, 
   DoubleSupplier rightSpeed, Drivetrain subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
