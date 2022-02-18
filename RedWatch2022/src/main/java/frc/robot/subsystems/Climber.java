@@ -22,10 +22,10 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class Climber extends SubsystemBase {
   
-  public final CANSparkMax m_climbLeft;
-  public final CANSparkMax m_climbRight;
-  public final CANSparkMax m_climbLeftFollower;
-  public final CANSparkMax m_climbRightFollower;
+  public final CANSparkMax m_climbLeftExtend;
+  public final CANSparkMax m_climbRightExtend;
+  public final CANSparkMax m_climbLeftPivot;
+  public final CANSparkMax m_climbRightPivot;
 
   public final RelativeEncoder m_climbLeftEncoder;
   public final RelativeEncoder m_climbRightEncoder;
@@ -46,23 +46,21 @@ public class Climber extends SubsystemBase {
    * @param Map */
   public Climber() {
 
-    m_climbLeft = new CANSparkMax(ClimberConstants.kClimberLeftMotorPort, MotorType.kBrushed);
-    m_climbRight = new CANSparkMax(ClimberConstants.kClimberRightMotorPort, MotorType.kBrushed);
-    m_climbLeftFollower = new CANSparkMax(ClimberConstants.kClimberLeftMotorFollowerPort, MotorType.kBrushed);
-    m_climbRightFollower = new CANSparkMax(ClimberConstants.kClimberRightMotorFollowerPort, MotorType.kBrushed);
+    m_climbLeftExtend = new CANSparkMax(ClimberConstants.kClimberLeftFollowerExtendPort, MotorType.kBrushed);
+    m_climbRightExtend = new CANSparkMax(ClimberConstants.kClimberRightExtendPort, MotorType.kBrushed);
+    m_climbLeftPivot = new CANSparkMax(ClimberConstants.kClimberLeftPivotFollowerPort, MotorType.kBrushed);
+    m_climbRightPivot = new CANSparkMax(ClimberConstants.kClimberRightPivotPort, MotorType.kBrushed);
 
-    setMotor(m_climbLeft);
-    setMotor(m_climbRight);
-    setMotor(m_climbLeftFollower);
-    setMotor(m_climbRightFollower);
+    setMotor(m_climbLeftExtend);
+    setMotor(m_climbRightExtend);
+    setMotor(m_climbLeftPivot);
+    setMotor(m_climbRightPivot);
 
-    m_climbLeftFollower.follow(m_climbLeft);
-    m_climbRightFollower.follow(m_climbRight);
+    m_climbLeftExtend.follow(m_climbRightExtend);
+    m_climbLeftPivot.follow(m_climbRightPivot);
 
-    m_climbLeftEncoder = m_climbLeft.getEncoder();
-    m_climbRightEncoder = m_climbRight.getEncoder();
+    m_climbRightEncoder = m_climbRightExtend.getEncoder();
 
-    encoderInit(m_climbLeftEncoder);
     encoderInit(m_climbRightEncoder);
 
     m_climbTableTab = Shuffleboard.getTab(ClimberConstants.kClimberTab);

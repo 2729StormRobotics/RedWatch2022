@@ -24,7 +24,6 @@ public class reachUp extends CommandBase {
   @Override
   public void initialize() {
 
-    m_climber.encoderReset(m_climber.m_climbLeftEncoder);
     m_climber.encoderReset(m_climber.m_climbRightEncoder);
 
   }
@@ -33,7 +32,7 @@ public class reachUp extends CommandBase {
   @Override
   public void execute() {
 
-    m_climber.turnMotor(m_climber.m_climbRight, false);
+    m_climber.turnMotor(m_climber.m_climbRightExtend, false);
 
   }
 
@@ -41,7 +40,6 @@ public class reachUp extends CommandBase {
   @Override
   public void end(boolean interrupted) {
 
-    m_climber.encoderReset(m_climber.m_climbLeftEncoder);
     m_climber.encoderReset(m_climber.m_climbRightEncoder);
 
   }

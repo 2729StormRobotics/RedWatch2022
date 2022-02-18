@@ -23,7 +23,6 @@ public class pullUp extends CommandBase {
   @Override
   public void initialize() {
 
-    m_climber.encoderReset(m_climber.m_climbLeftEncoder);
     m_climber.encoderReset(m_climber.m_climbRightEncoder);
 
   }
@@ -32,7 +31,7 @@ public class pullUp extends CommandBase {
   @Override
   public void execute() {
 
-    m_climber.turnMotor(m_climber.m_climbRight, true);
+    m_climber.turnMotor(m_climber.m_climbRightExtend, true);
 
   }
 
@@ -40,7 +39,6 @@ public class pullUp extends CommandBase {
   @Override
   public void end(boolean interrupted) {
 
-    m_climber.encoderReset(m_climber.m_climbLeftEncoder);
     m_climber.encoderReset(m_climber.m_climbRightEncoder);
 
   }

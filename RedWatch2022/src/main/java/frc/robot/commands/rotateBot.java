@@ -28,7 +28,7 @@ public class rotateBot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_climber.turnMotor(m_climber.m_climbLeft, false);
+    m_climber.turnMotor(m_climber.m_climbRightPivot, false);
   }
 
   // Called once the command ends or is interrupted.

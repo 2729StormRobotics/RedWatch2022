@@ -76,10 +76,10 @@ public final class Constants {
     }
     
     public static final class ClimberConstants {
-		public static final int kClimberLeftMotorPort = 4;
-		public static final int kClimberRightMotorPort = 5;
-		public static final int kClimberLeftMotorFollowerPort = 6;
-		public static final int kClimberRightMotorFollowerPort = 7;
+		public static final int kClimberLeftFollowerExtendPort = 8;
+		public static final int kClimberRightExtendPort = 7;
+		public static final int kClimberLeftPivotFollowerPort = 6;
+		public static final int kClimberRightPivotPort = 5;
 		public static final String kClimberTab = "Climber Status";
 
 		public static final double kHighDistancePerPulse = kWheelDiameterInches * Math.PI * kHighGear;
