@@ -25,10 +25,9 @@ public class Lights extends SubsystemBase {
   private static final double kDisabled = 0;
   private final Spark m_ledDriver;
   private final NetworkTable m_lightTable;
-  private final Timer m_timeToSpeed = new Timer();
   private final ShuffleboardTab m_ShuffleboardTab;
   private final ShuffleboardLayout m_lightValues;
-
+  private final Timer m_timeToSpeed = new Timer();
 
 
   /** Creates a new Lights. */
