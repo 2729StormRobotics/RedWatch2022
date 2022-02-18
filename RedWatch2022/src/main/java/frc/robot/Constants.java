@@ -74,4 +74,20 @@ public final class Constants {
         public static final double kBlueBall = 0.87;
         public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
     }
+    
+    public static final class ClimberConstants {
+		public static final int kClimberLeftMotorPort = 4;
+		public static final int kClimberRightMotorPort = 5;
+		public static final int kClimberLeftMotorFollowerPort = 6;
+		public static final int kClimberRightMotorFollowerPort = 7;
+		public static final String kClimberTab = "Climber Status";
+
+		public static final double kHighDistancePerPulse = kWheelDiameterInches * Math.PI * kHighGear;
+		public static final double kHighSpeedPerPulse = kHighDistancePerPulse / 60.0;
+		public static final double kLowDistancePerPulse = kWheelDiameterInches * Math.PI * kLowGear;
+		public static final double kLowSpeedPerPulse = kLowDistancePerPulse / 60.0;
+		
+		public static final double kClimberRightSize = 0;
+
+	}
 }
