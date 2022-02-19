@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.commandgroups.traverse;
 import frc.robot.commands.EjectBall;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanel;
@@ -72,9 +73,9 @@ public class RobotContainer {
     new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
     new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new ShootCargo(Constants.kLowShootSpeed, m_shooter));
-    new JoystickButton(m_driver, m_driver.getPOV(0)).whileHeld(new extendUp(m_climber));
-    new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
-    new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
+    new JoystickButton(m_driver, m_driver.getPOV(0)).whileHeld(new traverse(m_climber));
+    // new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
+    // new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
 
   }
 

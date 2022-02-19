@@ -20,8 +20,8 @@ public class traverse extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     super(
       new extendUp(climber),
-      new extendDown(climber),
-      new rotateBot(climber)
+      new extendDown(climber)
+      // new rotateBot(climber)
     );
     
     addCommands();
