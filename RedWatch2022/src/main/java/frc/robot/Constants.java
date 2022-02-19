@@ -45,7 +45,7 @@ public final class Constants {
 
 
     public static final String kShooterTab = "Shooter";
-    public static final double kFlyWheelPID = 0.25;
+    public static final double kFlyWheelPID = 0.013;
     public static final int kDriverController = 1;
 
     public static final class IndexerConstants {
