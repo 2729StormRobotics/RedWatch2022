@@ -31,26 +31,27 @@ public final class Constants {
     public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
 
     public static final class ShooterConstants {
-        public static final int TOP_MOTOR_ID = 1;
+        public static final int TOP_MOTOR_ID = 9;
         public static final boolean kTopReversedDefault = false;
         public static final int STALL_LIMIT = 45;
         public static final int kCurrentLimit = 60;
     }
 
     
-    
 	//in percentage 
     public static final double kIndexerSpeed = .50;
-    public static final int kDriverController = 1;
     public static final double kHighShootSpeed = 1;
     public static final double kLowShootSpeed = 0.5;
+
+
     public static final String kShooterTab = "Shooter";
-    public static final double kFlyWheelPID = 0.0005;
+    public static final double kFlyWheelPID = 0.25;
+    public static final int kDriverController = 1;
 
     public static final class IndexerConstants {
         public static final String kShuffleboardTab = "Indexer";
 
-        public static final int kIndexMotorPort = 3;
+        public static final int kIndexMotorPort = 11;
         public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
@@ -60,7 +61,7 @@ public final class Constants {
 
     public static double kFlyWheelTolerance = 50.0;
     public static double kFlyWheelVelocityTolerance = 250;
-    public static double kLowShootRPM = 5500.0;
+    public static double kLowShootRPM = 1.0;
 
     public static class LightConstants {
         public static final int kBlinkinDriverPort = 0; //TODO: Find a port for this

@@ -11,7 +11,7 @@ import frc.robot.subsystems.Shooter;
 public class ManualRevToSpeed extends CommandBase {
   Shooter m_shooter;
   Lights m_lights;
-  Double m_rpm;
+  double m_rpm;
   /** Creates a new ManualRevToSpeed. */
   public ManualRevToSpeed(double rpm, Shooter shooter, Lights lights) {
     m_shooter = shooter;
@@ -39,6 +39,7 @@ public class ManualRevToSpeed extends CommandBase {
   public void end(boolean interrupted) {
     m_shooter.encoderReset(m_shooter.m_topEncoder);
     m_lights.resetLights();
+    // m_shooter.topMotor.set(0);
   }
 
   // Returns true when the command should end.

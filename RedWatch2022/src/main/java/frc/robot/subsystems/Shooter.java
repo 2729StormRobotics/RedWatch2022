@@ -50,7 +50,7 @@ public class Shooter extends SubsystemBase {
   // sets defaults for topMotor
   public void motorInit(CANSparkMax motor, boolean invert){
     motor.restoreFactoryDefaults();
-    motor.setIdleMode(IdleMode.kBrake);
+    motor.setIdleMode(IdleMode.kCoast);
     motor.setSmartCurrentLimit(Constants.ShooterConstants.kCurrentLimit);
     motor.setInverted(invert);
 
