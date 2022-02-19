@@ -95,10 +95,10 @@ public class Climber extends SubsystemBase {
 
   public void turnMotor(CANSparkMax motor, boolean inverse) {
     if (inverse) {
-      motor.set(-0.5);
+      motor.set(-0.1);
     }
     else {
-      motor.set(0.5);
+      motor.set(0.1);
     }
   }
 
