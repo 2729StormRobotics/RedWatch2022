@@ -7,7 +7,9 @@ package frc.robot.commandgroups;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
+import frc.robot.commands.rotateBackward;
 import frc.robot.commands.rotateBot;
+import frc.robot.commands.rotateForward;
 import frc.robot.subsystems.Climber;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -20,8 +22,9 @@ public class traverse extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     super(
       new extendUp(climber),
-      new extendDown(climber)
-      // new rotateBot(climber)
+      new extendDown(climber),
+      new rotateForward(climber),
+      new rotateBackward(climber)
     );
     
     addCommands();
