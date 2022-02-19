@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import static frc.robot.Constants.VisionConstants.*;
 import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Drivetrain;
 
@@ -35,7 +36,8 @@ public class VisionAlign extends PIDCommand {
            * spin until a target is detected
            */
           if (vision.isTargetDetected()) {
-            drivetrain.tankDrive(output, -output, false);
+            //drivetrain.tankDrive(output, -output, false);
+            drivetrain.arcadeDrive(0, output, false);
           }
           else {
             drivetrain.tankDrive(1, -1, false);
