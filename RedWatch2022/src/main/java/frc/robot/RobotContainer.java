@@ -75,7 +75,11 @@ public class RobotContainer {
     // Y shoots ball low
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     new JoystickButton(m_driver, Button.kX.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 3000));
+<<<<<<< Updated upstream
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new RevToSpeed(Constants.kLowShootSpeed, m_shooter, m_lights));
+=======
+    new JoystickButton(m_driver, Button.kY.value).whileHeld(new ManualRevToSpeed(Constants.kLowShootSpeed, m_shooter, m_lights));
+>>>>>>> Stashed changes
 
   }
 

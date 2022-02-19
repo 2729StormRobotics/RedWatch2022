@@ -29,7 +29,7 @@ public class LoadIntoFlywheelThenShoot extends ParallelCommandGroup {
   /** Creates a new LoadIntoFlywheelThenShoot. */
   public LoadIntoFlywheelThenShoot(Indexer indexer, Shooter shooter, Lights lights, double rpm) {
     super(
-      new ConsistentSpinFlyWheel(shooter, indexer, lights),
+      new ShootBall(shooter, indexer, lights),
       new LoadBallIntoFlyWheel(indexer, lights)
     );
     addCommands();
