@@ -85,7 +85,6 @@ private final NetworkTableEntry m_tv;
     return (m_targetValue > 0.0);
   }
 
-  // TODO: Test different values for offsets and update them
   /**
    * Returns true if the target is within a range of the center crosshair of the camera
    */
