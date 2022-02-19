@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -65,6 +67,20 @@ public final class Constants {
 	public static final double kEncoderDistanceRatio = 1.125753635;
 	public static double kRightAngleTurnArcLength = 7.25 * Math.PI;
     public static final double kHighSpeedPerPulseEncoderRatio = kEncoderDistanceRatio / 60.0;
+
+	public static final class IntakeConstants {
+        public static final int kIntakeMotorPort = 1;
+        public static final int kIntakeRaiseChannel = 2;
+        public static final int kIntakeLowerChannel = 3;
+        public static final double kIntakeMotorSpeed = 10;
+        public static final double kEjectMotorSpeed = -10;
+        public static final Value kIntakeRaiseValue = Value.kForward;
+        public static final Value kIntakeLowerValue = Value.kReverse;
+		public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
+        public static final int kCAN_TIMEOUT_SETUP = 500;
+        public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
+        public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
+    }
 
     public static final class HopperConstants{ 
         public static final int kHopperMotorPort = 5;
