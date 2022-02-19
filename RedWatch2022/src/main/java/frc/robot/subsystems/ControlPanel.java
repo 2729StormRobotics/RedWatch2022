@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
+import frc.robot.commands.rotateBackward;
+import frc.robot.commands.rotateForward;
+import frc.robot.commands.rotateForward;
 
 public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
@@ -52,6 +55,8 @@ public class ControlPanel extends SubsystemBase {
     m_climbStatus.add(new extendDown(m_climber));
 
     m_climbStatus.addNumber("Gyro Angle", () -> m_climber.getGyroAngle());
+    m_climbStatus.add(new rotateForward(m_climber));
+    m_climbStatus.add(new rotateBackward(m_climber));
   }
 
   @Override
