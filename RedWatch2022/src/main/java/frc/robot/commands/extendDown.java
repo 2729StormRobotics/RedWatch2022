@@ -42,11 +42,10 @@ public class extendDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // if (m_climber.getRightDistance() > ClimberConstants.kClimberRightSize) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-    return false;
+    if (m_climber.getRightDistance() > ClimberConstants.kClimberRightSize) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

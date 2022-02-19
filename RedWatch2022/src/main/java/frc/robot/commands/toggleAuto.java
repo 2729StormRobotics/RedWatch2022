@@ -5,15 +5,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.ClimberConstants;
 import frc.robot.subsystems.Climber;
 
-public class extendUp extends CommandBase {
-
+public class toggleAuto extends CommandBase {
   private final Climber m_climber;
 
-  /** Creates a new reachUp. */
-  public extendUp(Climber subsystem) {
+  /** Creates a new toggleAuto. */
+  public toggleAuto(Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
     addRequirements(m_climber);
@@ -22,30 +20,20 @@ public class extendUp extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_climber.encoderReset(m_climber.m_climbLeftEncoder);
-    m_climber.encoderReset(m_climber.m_climbRightEncoder);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    m_climber.turnMotor(m_climber.m_climbRightExtend, false);
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    m_climber.encoderReset(m_climber.m_climbLeftEncoder);
-    m_climber.encoderReset(m_climber.m_climbRightEncoder);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_climber.getRightDistance() > ClimberConstants.kClimberRightSize) {
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 }

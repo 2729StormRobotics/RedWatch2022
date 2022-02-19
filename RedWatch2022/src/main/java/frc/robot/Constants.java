@@ -111,7 +111,7 @@ public final class Constants {
 		public static final double kLowDistancePerPulse = kWheelDiameterInches * Math.PI * kLowGear;
 		public static final double kLowSpeedPerPulse = kLowDistancePerPulse / 60.0;
 		
-		public static final double kClimberRightSize = 0;
+		public static final double kClimberRightSize = 12;
 
 	}
 }

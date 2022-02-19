@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -36,8 +37,6 @@ public class Climber extends SubsystemBase {
   private static final double kDisabled = 0;
   private final Spark m_ledDriver;
   private final Timer m_timeToSpeed = new Timer();
-
-
 
   /**
    * Controls climbing mechanism
@@ -76,6 +75,10 @@ public class Climber extends SubsystemBase {
     } catch (RuntimeException ex){
       DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
     }
+
+  }
+
+  public void changeMode(String mode) {
 
   }
 
