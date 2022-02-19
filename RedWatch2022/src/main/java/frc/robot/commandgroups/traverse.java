@@ -15,9 +15,9 @@ import frc.robot.subsystems.Climber;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class traverse extends SequentialCommandGroup {
+public class Traverse extends SequentialCommandGroup {
   /** Creates a new traverse. */
-  public traverse(Climber climber) {
+  public Traverse(Climber climber) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     super(

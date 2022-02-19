@@ -16,7 +16,7 @@ import frc.robot.subsystems.Drivetrain;
 // import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commandgroups.traverse;
+import frc.robot.commandgroups.Traverse;
 // import frc.robot.commands.LoadBall;
 // import frc.robot.commands.ShootCargo;
 import frc.robot.commands.differentialDrive;
@@ -69,7 +69,7 @@ public class RobotContainer {
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
     // new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));
     // new JoystickButton(m_driver, Button.kY.value).whileHeld(new ShootCargo(Constants.kLowShootSpeed, m_shooter));
-    new JoystickButton(m_driver, m_driver.getPOV(0)).whileHeld(new traverse(m_climber));
+    new JoystickButton(m_driver, m_driver.getPOV(0)).whileHeld(new Traverse(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
 
