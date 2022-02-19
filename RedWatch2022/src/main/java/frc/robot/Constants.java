@@ -95,6 +95,8 @@ public final class Constants {
         public static final double kRedBall = 0.61;
         public static final double kBlueBall = 0.87;
         public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
+        public static final double kCorrect = 0.75; //Defines Dark Green
+        public static final double kBad = 0.61; //Defines Red for bad orrientation
     }
     
     public static final class ClimberConstants {
