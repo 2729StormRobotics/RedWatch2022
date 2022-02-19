@@ -30,7 +30,7 @@ public class ControlPanel extends SubsystemBase {
    * @param m_drivetrain Drivetrain subsystem
    * @param m_iIndexer Indexer subsystem
    */
-  public ControlPanel(Drivetrain m_drivetrain, Indexer m_Indexer, Climber m_climber) {
+  public ControlPanel(Drivetrain m_drivetrain, Climber m_climber) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
     // Creates layouts for each subsystem
@@ -47,7 +47,7 @@ public class ControlPanel extends SubsystemBase {
     m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
     m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch());
 
-    m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
+    // m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
     
     m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance());
     m_climbStatus.addNumber("Right Distance", () -> m_climber.getRightDistance());
