@@ -7,6 +7,7 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 
 public class RevToSpeed extends CommandBase {
@@ -15,11 +16,13 @@ public class RevToSpeed extends CommandBase {
   Shooter m_shooter;
   double m_motorPower;
   double currentRPM;
+  Lights m_lights;
   /** Creates a new RevToSpeed. */
-  public RevToSpeed(double rpm, Shooter shooter) {
+  public RevToSpeed(double rpm, Shooter shooter, Lights lights) {
 
     m_TargetRPM = rpm;
     m_shooter = shooter;
+    m_lights = lights;
     double m_motorPower = 0;
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -29,6 +32,7 @@ public class RevToSpeed extends CommandBase {
   public void initialize() {
     m_shooter.topMotor.set(0);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
+    m_lights.RevFlyWheelYellow();
     
     
   }
@@ -53,6 +57,7 @@ public class RevToSpeed extends CommandBase {
   public void end(boolean interrupted) {
     m_shooter.topMotor.set(0);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
+    m_lights.MaxSpeedFlyWheel();
   }
 
   // Returns true when the command should end.
