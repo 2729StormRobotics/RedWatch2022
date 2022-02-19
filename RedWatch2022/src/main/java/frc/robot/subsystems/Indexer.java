@@ -11,10 +11,6 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-/**
- * Controls indexer wheel and beam break that detects when ball is loaded
- */
-
 public class Indexer extends SubsystemBase {
 
   //talon used for index motor
@@ -23,8 +19,8 @@ public class Indexer extends SubsystemBase {
 
   /** Creates a new Indexer. */
   public Indexer() {
-    m_ballDector = new DigitalInput(Constants.IndexerConstants.kBeamBreakPort); // initialize beam break
-    motorInit(); // initialize indexer motor
+    m_ballDector = new DigitalInput(Constants.IndexerConstants.kBeamBreakPort);
+    motorInit();
   }
 
   private void motorInit(){
@@ -35,16 +31,13 @@ public class Indexer extends SubsystemBase {
 
   }
 
-  // set speed for the indexer motor
   public void load (double speed){
     //speed in percent
     bottomMotor.set(ControlMode.PercentOutput, speed);
   }
 
-  // detects when the ball is loaded
-  // returns true when beam is broken
   public boolean isBallPresent(){
-    // checks for ball
+    //checks for ball
     return !m_ballDector.get();
   }
 
