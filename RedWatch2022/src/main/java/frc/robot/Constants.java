@@ -45,7 +45,7 @@ public final class Constants {
 
 
     public static final String kShooterTab = "Shooter";
-    public static final double kFlyWheelPID = 0.013;
+    public static final double kFlyWheelPID = 0.25;
     public static final int kDriverController = 1;
 
     public static final class IndexerConstants {
@@ -61,7 +61,6 @@ public final class Constants {
 
     public static double kFlyWheelTolerance = 50.0;
     public static double kFlyWheelVelocityTolerance = 250;
-    public static double kLowShootPower = 1.0;
 
     public static class LightConstants {
         public static final int kBlinkinDriverPort = 0; //TODO: Find a port for this
