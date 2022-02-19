@@ -20,7 +20,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.ManualRevToSpeed;
-import frc.robot.commands.RevFlywheel;
 import frc.robot.commands.RevToSpeed;
 import frc.robot.commands.differentialDrive;
 

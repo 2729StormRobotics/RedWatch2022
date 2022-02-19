@@ -5,6 +5,7 @@
 package frc.robot.commandgroups;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.ConsistentSpinFlyWheel;
 import frc.robot.commands.LoadBallIntoFlyWheel;
 import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.Indexer;
@@ -28,7 +29,7 @@ public class LoadIntoFlywheelThenShoot extends ParallelCommandGroup {
   /** Creates a new LoadIntoFlywheelThenShoot. */
   public LoadIntoFlywheelThenShoot(Indexer indexer, Shooter shooter, Lights lights, double rpm) {
     super(
-      new ShootBall(rpm, shooter, indexer, lights),
+      new ConsistentSpinFlyWheel(shooter, indexer, lights),
       new LoadBallIntoFlyWheel(indexer, lights)
     );
     addCommands();

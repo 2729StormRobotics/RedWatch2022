@@ -26,6 +26,8 @@ public class Shooter extends SubsystemBase {
   private final ShuffleboardTab m_shooterTab;
   private final ShuffleboardLayout m_shooterTabStatus;
 
+  public double flyWheelSpeedAfterRev = 0;
+
   /**
    * Shooter subsystem controls flywheel
    */
@@ -87,6 +89,10 @@ public class Shooter extends SubsystemBase {
   // adds rpm to shuffleboard
   private void shuffleboardInit() {
     m_shooterTabStatus.addNumber("Encoder Velocity", () -> getEncoderVelocity(m_topEncoder));
+  }
+
+  public double getFlyWheelSpeedAfterRev() {
+    return flyWheelSpeedAfterRev;
   }
 
   @Override

@@ -6,7 +6,6 @@ package frc.robot.commandgroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.LoadBallIntoMiddle;
-import frc.robot.commands.RevFlywheel;
 import frc.robot.commands.RevToSpeed;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
