@@ -19,19 +19,19 @@ public class ControlPanel extends SubsystemBase {
   private final ShuffleboardLayout m_drivetrainStatus;
   private final ShuffleboardLayout m_indexerStatus;
 
-  public ControlPanel(Indexer m_iIndexer) {
+  public ControlPanel(Drivetrain m_drivetrain, Indexer m_iIndexer) {
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"));
     m_indexerStatus = m_controlpanelTab.getLayout("Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"));
 
-    // m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed());
-    // m_drivetrainStatus.addNumber("Right Speed", () -> m_drivetrain.getRightSpeed());
-    // m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance());
-    // m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
-    // m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
-    // m_drivetrainStatus.addNumber("Altitude", () -> m_drivetrain.getGyroPitch());
+    m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed());
+    m_drivetrainStatus.addNumber("Right Speed", () -> m_drivetrain.getRightSpeed());
+    m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance());
+    m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
+    m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
+    m_drivetrainStatus.addNumber("Altitude", () -> m_drivetrain.getGyroPitch());
 
     m_indexerStatus.addBoolean("Is ball present?", () -> m_iIndexer.isBallPresent());
   }
