@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.Constants;
@@ -30,14 +32,14 @@ public class RevFlywheel extends PIDCommand {
    */
 
   /** Creates a new ShootBall. */
-  public RevFlywheel(double rpm, Shooter shooter, Lights lights) {
+  public RevFlywheel(DoubleSupplier rpm, Shooter shooter, Lights lights) {
     super(
         // The controller that the command will use
         new PIDController(Constants.kFlyWheelPID, 0, 0),
         // This should return the measurement
         () -> shooter.getEncoderVelocity(shooter.m_topEncoder),
         // This should return the setpoint (can also be a constant)
-        () -> rpm,
+        () -> rpm.getAsDouble(),
         // This uses the output
         output -> {
           // Use the output here
