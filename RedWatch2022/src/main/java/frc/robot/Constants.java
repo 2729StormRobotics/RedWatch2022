@@ -66,5 +66,25 @@ public final class Constants {
 	public static double kRightAngleTurnArcLength = 7.25 * Math.PI;
     public static final double kHighSpeedPerPulseEncoderRatio = kEncoderDistanceRatio / 60.0;
 
+    public static final class HopperConstants{ 
+        public static final int kHopperMotorPort = 5;
+        public static final double kHopperMotorSpeed = 0.25; 
+
+        public static final String kShuffleboardTab = "Testing";
+    }
+
+    public static final class ColorConstants {
+        public static final int colorPort = 2;
+        public static final String kShuffleboardTab = "Color";
+    }
+
+    public static class LightConstants {
+        public static final int kBlinkinDriverPort = 0; //TODO: Find a port for this
+		public static final double kDisabled = 0.0; //TODO: Find what color we want for this and its value
+		public static final double kLightsOff = 0.99;
+        public static final double kRedBall = 0.61;
+        public static final double kBlueBall = 0.87;
+        public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
+    }
     
 }
