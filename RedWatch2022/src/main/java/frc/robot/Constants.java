@@ -38,14 +38,15 @@ public final class Constants {
     }
 
     
-    
 	//in percentage 
     public static final double kIndexerSpeed = .50;
-    public static final int kDriverController = 1;
     public static final double kHighShootSpeed = 1;
     public static final double kLowShootSpeed = 0.5;
+
+
     public static final String kShooterTab = "Shooter";
-    public static final double kFlyWheelPID = 0.05;
+    public static final double kFlyWheelPID = 0.25;
+    public static final int kDriverController = 1;
 
     public static final class IndexerConstants {
         public static final String kShuffleboardTab = "Indexer";

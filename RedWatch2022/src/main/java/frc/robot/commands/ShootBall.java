@@ -73,6 +73,7 @@ public class ShootBall extends PIDCommand {
     super.end(interrupted);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
     m_lights.MaxSpeedFlyWheel();
+    m_shooter.topMotor.set(0);
   }
   
 }
