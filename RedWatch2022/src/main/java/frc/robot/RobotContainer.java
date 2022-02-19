@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.EjectBall;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
@@ -28,6 +29,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Shooter m_shooter;
   private final Indexer m_indexer;
+  private final Climber m_climber;
 
   private final Drivetrain m_drivetrain;
 
@@ -37,14 +39,15 @@ public class RobotContainer {
   public RobotContainer() {
     m_indexer = new Indexer();
     m_shooter = new Shooter();
-
+    m_climber = new Climber();
+    
     // Set up drivetrain
     m_drivetrain = new Drivetrain();
     m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getRightTriggerAxis(), () -> m_driver.getLeftTriggerAxis(), 
     () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
 
     // Set up Control Panel
-    new ControlPanel(m_drivetrain, m_indexer);
+    new ControlPanel(m_drivetrain, m_indexer, m_climber);
 
     // Configure the button bindings
     configureButtonBindings();

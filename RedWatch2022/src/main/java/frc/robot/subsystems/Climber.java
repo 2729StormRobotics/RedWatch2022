@@ -12,10 +12,6 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
@@ -30,9 +26,6 @@ public class Climber extends SubsystemBase {
   public final RelativeEncoder m_climbLeftEncoder;
   public final RelativeEncoder m_climbRightEncoder;
 
-  private final ShuffleboardTab m_climbTableTab;
-  private final ShuffleboardLayout m_climbStatus;
-
   private static AHRS navx;
   AHRS ahrs;
 
@@ -46,10 +39,10 @@ public class Climber extends SubsystemBase {
    * @param Map */
   public Climber() {
 
-    m_climbLeftExtend = new CANSparkMax(ClimberConstants.kClimberLeftFollowerExtendPort, MotorType.kBrushed);
-    m_climbRightExtend = new CANSparkMax(ClimberConstants.kClimberRightExtendPort, MotorType.kBrushed);
-    m_climbLeftPivot = new CANSparkMax(ClimberConstants.kClimberLeftPivotFollowerPort, MotorType.kBrushed);
-    m_climbRightPivot = new CANSparkMax(ClimberConstants.kClimberRightPivotPort, MotorType.kBrushed);
+    m_climbLeftExtend = new CANSparkMax(ClimberConstants.kClimberLeftFollowerExtendPort, MotorType.kBrushless);
+    m_climbRightExtend = new CANSparkMax(ClimberConstants.kClimberRightExtendPort, MotorType.kBrushless);
+    m_climbLeftPivot = new CANSparkMax(ClimberConstants.kClimberLeftPivotFollowerPort, MotorType.kBrushless);
+    m_climbRightPivot = new CANSparkMax(ClimberConstants.kClimberRightPivotPort, MotorType.kBrushless);
 
     setMotor(m_climbLeftExtend);
     setMotor(m_climbRightExtend);
@@ -60,11 +53,10 @@ public class Climber extends SubsystemBase {
     m_climbLeftPivot.follow(m_climbRightPivot);
 
     m_climbRightEncoder = m_climbRightExtend.getEncoder();
+    m_climbLeftEncoder = m_climbLeftExtend.getEncoder();
 
     encoderInit(m_climbRightEncoder);
-
-    m_climbTableTab = Shuffleboard.getTab(ClimberConstants.kClimberTab);
-    m_climbStatus = m_climbTableTab.getLayout("Climb Status", BuiltInLayouts.kList);
+    encoderInit(m_climbLeftEncoder);
 
     try {
       ahrs = new AHRS(SPI.Port.kMXP);
