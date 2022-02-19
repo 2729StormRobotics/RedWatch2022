@@ -45,7 +45,8 @@ public class ControlPanel extends SubsystemBase {
     m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch());
 
     m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
-
+    
+    m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance());
     m_climbStatus.addNumber("Right Distance", () -> m_climber.getRightDistance());
     m_climbStatus.add(new extendUp(m_climber));
     m_climbStatus.add(new extendDown(m_climber));
