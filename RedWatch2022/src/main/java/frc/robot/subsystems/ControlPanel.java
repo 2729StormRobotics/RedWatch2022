@@ -77,7 +77,7 @@ public class ControlPanel extends SubsystemBase {
     m_climbStatus.add(new extendUp(m_climber)); // Moves the hanger up
     m_climbStatus.add(new extendDown(m_climber)); // Moves the hanger down
 
-    m_climbStatus.addNumber("Gyro Angle", () -> m_climber.getGyroAngle()); // Should be able to see how the bot is tilted
+    m_climbStatus.addNumber("Gyro Angle", () -> m_climber.getGyroAngle()); // Shows what angle the robot is tilted [To be tested]
     m_climbStatus.add(new rotateForward(m_climber)); // Rotates the bot forward
     m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
 

@@ -11,7 +11,10 @@ import frc.robot.subsystems.Climber;
 public class extendDown extends CommandBase {
   private final Climber m_climber;
 
-  /** Creates a new reachUp. */
+  /**
+   * Decreases the height of the hangers
+   * @param subsystem Hanger subsystem
+   */
   public extendDown(Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;

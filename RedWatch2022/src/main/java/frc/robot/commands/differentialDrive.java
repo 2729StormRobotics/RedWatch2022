@@ -19,7 +19,7 @@ public class differentialDrive extends CommandBase {
   private final DoubleSupplier m_leftSpeed;
   private final DoubleSupplier m_rightSpeed;
 
-  /**
+  /** Controls the robot's drivetrain or movement subsystem
    * @param leftSpeed Left thumbstick Y axis
    * @param rightSpeed Right thumbstick Y axis
    * @param subsystem Drivetrain subsystem

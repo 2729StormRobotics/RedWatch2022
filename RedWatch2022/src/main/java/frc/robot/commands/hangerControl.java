@@ -23,11 +23,12 @@ public class hangerControl extends CommandBase {
   private final CANSparkMax m_leftMotor;
   private final CANSparkMax m_rightMotor;
 
-  /**
-   * 
+  /** Controls specific motors of the Hanger subsystem
    * @param leftSpeed Left thumbstick Y axis
    * @param rightSpeed Right thumbstick Y axis
-   * @param subsystem Drivetrain subsystem
+   * @param leftMotor Left Spark Max motor
+   * @param rightMotor Right Spark Max motor
+   * @param subsystem Hanger subsystem
    */
   public hangerControl(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, CANSparkMax leftMotor, CANSparkMax rightMotor, Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.

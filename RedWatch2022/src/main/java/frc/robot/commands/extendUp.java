@@ -12,7 +12,10 @@ public class extendUp extends CommandBase {
 
   private final Climber m_climber;
 
-  /** Creates a new reachUp. */
+  /**
+   * Increases the height of the hangers
+   * @param subsystem Hanger subsystem
+   */
   public extendUp(Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
