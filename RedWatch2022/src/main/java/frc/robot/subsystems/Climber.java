@@ -61,7 +61,7 @@ public class Climber extends SubsystemBase {
     setMotor(m_climbRightPivot);
 
     m_climbLeftExtend.follow(m_climbRightExtend);
-    m_climbLeftPivot.follow(m_climbRightPivot);
+    m_climbLeftPivot.follow(m_climbRightPivot, true);
 
     m_climbRightEncoder = m_climbRightExtend.getEncoder();
     m_climbLeftEncoder = m_climbLeftExtend.getEncoder();
