@@ -64,23 +64,24 @@ public class ControlPanel extends SubsystemBase {
     // Creates the values that will be contained in each layout
 
     // Drivetrain
-    m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed());
+    m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed()); // How fast the robot is
     m_drivetrainStatus.addNumber("Right Speed", () -> m_drivetrain.getRightSpeed());
-    m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance());
+    m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance()); // How far the robot is
     m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
-    m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
-    m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch());
+    m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle()); // What direction the robot is facing
+    m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch()); // How high the robot is [To be tested]
     
     // Hanger
-    m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance());
+    m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance()); // How far the hangers are
     m_climbStatus.addNumber("Right Distance", () -> m_climber.getRightDistance());
-    m_climbStatus.add(new extendUp(m_climber));
-    m_climbStatus.add(new extendDown(m_climber));
+    m_climbStatus.add(new extendUp(m_climber)); // Moves the hanger up
+    m_climbStatus.add(new extendDown(m_climber)); // Moves the hanger down
 
-    m_climbStatus.addNumber("Gyro Angle", () -> m_climber.getGyroAngle());
-    m_climbStatus.add(new rotateForward(m_climber));
-    m_climbStatus.add(new rotateBackward(m_climber));
+    m_climbStatus.addNumber("Gyro Angle", () -> m_climber.getGyroAngle()); // Should be able to see how the bot is tilted
+    m_climbStatus.add(new rotateForward(m_climber)); // Rotates the bot forward
+    m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
 
+    // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", -1, "max", 1))
@@ -91,6 +92,7 @@ public class ControlPanel extends SubsystemBase {
     .getEntry();
     m_extendstatus.add("Run Extender", new hangerControl(() -> LeftExtendMotor.getDouble(0), () -> RightExtendMotor.getDouble(0), m_climber.m_climbLeftExtend, m_climber.m_climbRightExtend, m_climber));
 
+    // Manula control of the pivots
     LeftPivotMotor = m_pivotstatus.add("Left Pivot Speed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", -1, "max", 1))
