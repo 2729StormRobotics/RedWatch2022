@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
-import frc.robot.commands.hangerDrive;
+import frc.robot.commands.hangerControl;
 import frc.robot.commands.rotateBackward;
 import frc.robot.commands.rotateForward;
 
@@ -34,33 +34,44 @@ public class ControlPanel extends SubsystemBase {
   private final NetworkTableEntry RightPivotMotor;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
-   * Contains all shuffleboard related code.
+   * Contains all shuffleboard related code. Close out of the shuffleboard window and reopen to 
+   * reset all shuffleboard tabs and layouts.
    * @param m_drivetrain Drivetrain subsystem
-   * @param m_iIndexer Indexer subsystem
+   * @param m_climber Hanger subsystem
    */
   public ControlPanel(Drivetrain m_drivetrain, Climber m_climber) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
+
     // Creates layouts for each subsystem
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(0, 0)
+      .withSize(2, 4);
     m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(2, 0)
+      .withSize(2, 4);
     m_extendstatus = m_controlpanelTab.getLayout("Extend Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(4, 0)
+      .withSize(2, 3);
     m_pivotstatus = m_controlpanelTab.getLayout("Pivot Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(6, 0)
+      .withSize(2, 3);
 
     // Creates the values that will be contained in each layout
+
+    // Drivetrain
     m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed());
     m_drivetrainStatus.addNumber("Right Speed", () -> m_drivetrain.getRightSpeed());
     m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance());
     m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
     m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
     m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch());
-
-    // m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
     
+    // Hanger
     m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance());
     m_climbStatus.addNumber("Right Distance", () -> m_climber.getRightDistance());
     m_climbStatus.add(new extendUp(m_climber));
@@ -78,7 +89,7 @@ public class ControlPanel extends SubsystemBase {
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", -1, "max", 1))
     .getEntry();
-    m_extendstatus.add("Run Extender", new hangerDrive(() -> LeftExtendMotor.getDouble(0), () -> RightExtendMotor.getDouble(0), m_climber.m_climbLeftExtend, m_climber.m_climbRightExtend, m_climber));
+    m_extendstatus.add("Run Extender", new hangerControl(() -> LeftExtendMotor.getDouble(0), () -> RightExtendMotor.getDouble(0), m_climber.m_climbLeftExtend, m_climber.m_climbRightExtend, m_climber));
 
     LeftPivotMotor = m_pivotstatus.add("Left Pivot Speed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
@@ -88,8 +99,10 @@ public class ControlPanel extends SubsystemBase {
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", -1, "max", 1))
     .getEntry();
-    m_pivotstatus.add("Run Pivot", new hangerDrive(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
+    m_pivotstatus.add("Run Pivot", new hangerControl(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
 
+    // Automatically sets or changes Shuffleboard's current tab to Control Panel
+    Shuffleboard.selectTab(Constants.kShuffleboardTab);
   }
 
   @Override

@@ -15,7 +15,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
-public class hangerDrive extends CommandBase {
+public class hangerControl extends CommandBase {
 
   private final Climber m_climber;
   private final DoubleSupplier m_leftSpeed;
@@ -29,7 +29,7 @@ public class hangerDrive extends CommandBase {
    * @param rightSpeed Right thumbstick Y axis
    * @param subsystem Drivetrain subsystem
    */
-  public hangerDrive(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, CANSparkMax leftMotor, CANSparkMax rightMotor, Climber subsystem) {
+  public hangerControl(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, CANSparkMax leftMotor, CANSparkMax rightMotor, Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
     m_leftSpeed = leftSpeed;
