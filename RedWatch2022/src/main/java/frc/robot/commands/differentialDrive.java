@@ -18,26 +18,17 @@ public class differentialDrive extends CommandBase {
   private final Drivetrain m_drivetrain;
   private final DoubleSupplier m_leftSpeed;
   private final DoubleSupplier m_rightSpeed;
-  private final DoubleSupplier m_forwardSpeed;
-  private final DoubleSupplier m_reverseSpeed;
-  private double m_currentSpeed = 0;
 
   /**
-   * 
-   * @param forwardSpeed Right trigger (RT) axis value
-   * @param reverseSpeed Left trigger (LT) axis value
    * @param leftSpeed Left thumbstick Y axis
    * @param rightSpeed Right thumbstick Y axis
    * @param subsystem Drivetrain subsystem
    */
-  public differentialDrive(DoubleSupplier forwardSpeed, DoubleSupplier reverseSpeed, DoubleSupplier leftSpeed, 
-  DoubleSupplier rightSpeed, Drivetrain subsystem) {
+  public differentialDrive(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, Drivetrain subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drivetrain = subsystem;
     m_leftSpeed = leftSpeed;
     m_rightSpeed = rightSpeed;
-    m_forwardSpeed = forwardSpeed;
-    m_reverseSpeed = reverseSpeed;
 
     addRequirements(m_drivetrain);
   }
@@ -60,7 +51,6 @@ public class differentialDrive extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // stop drive
-    m_currentSpeed = 0;
     m_drivetrain.stopDrive();
   }
 

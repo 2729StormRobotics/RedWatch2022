@@ -15,7 +15,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -30,12 +29,11 @@ public class Climber extends SubsystemBase {
   public final RelativeEncoder m_climbLeftEncoder;
   public final RelativeEncoder m_climbRightEncoder;
 
-  private static AHRS navx;
-  AHRS ahrs;
+  private static AHRS ahrs;
 
-  private static final double kDisabled = 0;
+  // private static final double kDisabled = 0;
   private final Spark m_ledDriver;
-  private final Timer m_timeToSpeed = new Timer();
+  // private final Timer m_timeToSpeed = new Timer();
 
   /**
    * Controls climbing mechanism

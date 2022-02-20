@@ -34,8 +34,7 @@ public class RobotContainer {
     
     // Set up drivetrain
     m_drivetrain = new Drivetrain();
-    m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getRightTriggerAxis(), () -> m_driver.getLeftTriggerAxis(), 
-    () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
+    m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
 
     // Set up Control Panel
     new ControlPanel(m_drivetrain, m_climber);
