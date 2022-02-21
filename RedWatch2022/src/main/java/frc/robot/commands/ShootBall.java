@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.Constants;
@@ -42,7 +43,7 @@ public class ShootBall extends PIDCommand {
         // This uses the output
         output -> {
           // Use the output here
-          shooter.topMotor.set(MathUtil.clamp(output, -1,1);
+          shooter.topMotor.set(MathUtil.clamp(output, -1,1));
         });
 
         m_shooter = shooter;
