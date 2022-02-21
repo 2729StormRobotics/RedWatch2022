@@ -11,6 +11,7 @@ import frc.robot.commands.EjectBall;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,6 +29,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Shooter m_shooter;
   private final Indexer m_indexer;
+  private final Intake m_intake;
 
   private final Drivetrain m_drivetrain;
 
@@ -37,6 +39,7 @@ public class RobotContainer {
   public RobotContainer() {
     m_indexer = new Indexer();
     m_shooter = new Shooter();
+    m_intake = new Intake();
 
     // Set up drivetrain
     m_drivetrain = new Drivetrain();
