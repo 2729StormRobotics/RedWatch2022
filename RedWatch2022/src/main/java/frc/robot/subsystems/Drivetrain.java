@@ -143,7 +143,7 @@ public class Drivetrain extends SubsystemBase {
     return ahrs.getPitch();
   }
 
-  public double sqaureInput(double input) {
+  public double squareInput(double input) {
     return Math.copySign(input * input, input);
   }
 
