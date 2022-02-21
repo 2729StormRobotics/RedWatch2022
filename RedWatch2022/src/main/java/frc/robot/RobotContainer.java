@@ -32,7 +32,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_climber = new Climber();
-    m_climber.setDefaultCommand(new hangerControl(() -> m_driver.getLeftY() / 2, () -> m_driver.getRightY() / 2, m_climber.m_climbRightExtend, m_climber.m_climbRightPivot, m_climber));
+    m_climber.setDefaultCommand(new hangerControl(() -> m_driver.getLeftY() / 2.0, () -> m_driver.getRightY() / 4.0, m_climber.m_climbRightExtend, m_climber.m_climbRightPivot, m_climber));
     // Math.copySign((m_driver.getLeftY() * m_driver.getLeftY()) / 2, m_driver.getLeftY()) squared inputs
     // Math.copySign((m_driver.getRightY() * m_driver.getRightY()) / 2, m_driver.getRightY())
 
