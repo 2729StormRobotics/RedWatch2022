@@ -143,6 +143,10 @@ public class Drivetrain extends SubsystemBase {
     return ahrs.getPitch();
   }
 
+  public double squareInput(double input) {
+    return Math.copySign(input * input, input);
+  }
+
   public void resetGyroAngle(){
     ahrs.reset();
   }
