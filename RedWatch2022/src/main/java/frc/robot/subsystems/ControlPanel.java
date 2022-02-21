@@ -92,7 +92,7 @@ public class ControlPanel extends SubsystemBase {
     .getEntry();
     m_extendstatus.add("Run Extender", new hangerControl(() -> LeftExtendMotor.getDouble(0), () -> RightExtendMotor.getDouble(0), m_climber.m_climbLeftExtend, m_climber.m_climbRightExtend, m_climber));
 
-    // Manula control of the pivots
+    // Manual control of the pivots
     LeftPivotMotor = m_pivotstatus.add("Left Pivot Speed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", -1, "max", 1))
