@@ -155,6 +155,10 @@ public class Drivetrain extends SubsystemBase {
     }
   }
 
+  public void arcadeDrive(double speed, double turn, boolean squareInputs) {
+    m_drive.arcadeDrive(speed, turn, squareInputs);
+  }
+
     public void stopDrive() {
       m_drive.tankDrive(0, 0);
     }
