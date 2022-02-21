@@ -28,23 +28,29 @@ public class ControlPanel extends SubsystemBase {
   public ControlPanel(Drivetrain m_drivetrain, Indexer m_Indexer, Intake m_intake) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
+
     // Creates layouts for each subsystem
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
-    m_indexerStatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(0, 0)
+      .withSize(2, 4);
     m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
-    .withProperties(Map.of("Label position", "TOP"));
+    .withProperties(Map.of("Label position", "TOP"))
+    .withPosition(2, 0)
+    .withSize(2, 4);
+    m_indexerStatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
+    .withProperties(Map.of("Label position", "TOP"))
+    .withPosition(4, 0)
+    .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
+
     m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed());
     m_drivetrainStatus.addNumber("Right Speed", () -> m_drivetrain.getRightSpeed());
     m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance());
     m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
     m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
     m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch());
-
-    m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
 
     m_intakeStatus.addBoolean("Red", () -> m_intake.m_detectedColor.red > m_intake.m_detectedColor.blue && m_intake.m_detectedColor.red >= 0.3);
     m_intakeStatus.addBoolean("Blue", () -> m_intake.m_detectedColor.blue > m_intake.m_detectedColor.red && m_intake.m_detectedColor.blue >= 0.3);
@@ -56,6 +62,11 @@ public class ControlPanel extends SubsystemBase {
 
     // Proximity to ball
     m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.proximity);
+
+    m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
+    
+    // Automatically sets or changes Shuffleboard's current tab to Control Panel
+    Shuffleboard.selectTab(Constants.kShuffleboardTab);
   }
 
   @Override
