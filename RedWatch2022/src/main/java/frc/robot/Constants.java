@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public final class Constants {
 
     public static final class ShooterConstants {
-        public static final int TOP_MOTOR_ID = 1;
+        public static final int TOP_MOTOR_ID = 0;
         public static final boolean kTopReversedDefault = false;
         public static final int STALL_LIMIT = 45;
         public static final int kCurrentLimit = 60;
@@ -45,9 +45,9 @@ public final class Constants {
     public static final int RIGHT_MOTOR_ID = 1;
     public static final boolean kLeftReversedDefault = true;
     public static final boolean kRightReversedDefault = !kLeftReversedDefault;
-    public static final String kShuffleboardTab = "Testing";
-    public static final int LEFT_MOTOR2_ID = 0;
-    public static final int RIGHT_MOTOR2_ID = 0;
+    public static final String kShuffleboardTab = "Control Panel";
+    public static final int LEFT_MOTOR2_ID = 4;
+    public static final int RIGHT_MOTOR2_ID = 3;
     public static final int STALL_LIMIT = 45;
 
     // since the encoder is build into the motor we need to account for gearing
@@ -102,5 +102,4 @@ public final class Constants {
         public static final double kBlueBall = 0.87;
         public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
     }
-    
 }
