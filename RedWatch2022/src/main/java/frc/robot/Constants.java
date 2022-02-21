@@ -70,8 +70,8 @@ public final class Constants {
 
 	public static final class IntakeConstants {
         public static final int kIntakeMotorPort = 1;
-        public static final int kIntakeRaiseChannel = 2;
-        public static final int kIntakeLowerChannel = 3;
+        public static final int kIntakePiston1 = 4;
+        public static final int kIntakePiston2 = 6;
         public static final double kIntakeMotorSpeed = 10;
         public static final double kEjectMotorSpeed = -10;
         public static final Value kIntakeRaiseValue = Value.kForward;

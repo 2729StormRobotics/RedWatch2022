@@ -26,7 +26,8 @@ import com.revrobotics.ColorSensorV3;
 public class Intake extends SubsystemBase {
 
   private final TalonSRX m_intakeMotor;
-  private final DoubleSolenoid m_intakePistons;
+  private final DoubleSolenoid m_intakePiston1;
+  private final DoubleSolenoid m_intakePiston2;
 
   private final ColorSensorV3 m_colorSensor;
 
@@ -50,7 +51,8 @@ public class Intake extends SubsystemBase {
 
     // Creates motor and piston variables
     m_intakeMotor = new TalonSRX(kIntakeMotorPort);
-    m_intakePistons = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakeRaiseChannel, kIntakeLowerChannel); //The type of hopper (Replace CTREPCM With correct)
+    m_intakePiston1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakePiston1, kIntakePiston1 + 1); //The type of hopper (Replace CTREPCM With correct)
+    m_intakePiston2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakePiston2, kIntakePiston2 + 1);
 
     // Resets to defaults and sets to idle mode and makes inverted
     m_intakeMotor.configPeakCurrentDuration(kDRIVE_AMPERAGE_PEAK_DURATION, kCAN_TIMEOUT_SETUP);
@@ -128,30 +130,28 @@ public class Intake extends SubsystemBase {
 
   // Raises intake back to raised position
   public void raiseIntake() {
-    m_intakePistons.set(kIntakeRaiseValue);
-
+    m_intakePiston1.set(kIntakeRaiseValue);
+    m_intakePiston2.set(kIntakeRaiseValue);
   }
 
   // Lowers intake to lowered position to pick up balls
   public void lowerIntake() {
-    m_intakePistons.set(kIntakeLowerValue);
-
+    m_intakePiston1.set(kIntakeLowerValue);
+    m_intakePiston2.set(kIntakeLowerValue);
   }
 
   // Toggles between lowering and raising intake
   public void toggleIntakePistons() {
     if (isIntakeLowered()) {
       raiseIntake();
-    }
-
-    else {
+    } else {
       lowerIntake();
     }
   }
 
   // Checks if intake is lowered or raised
   public boolean isIntakeLowered() {
-    if (m_intakePistons.get() == kIntakeLowerValue) {
+    if (m_intakePiston1.get() == kIntakeLowerValue) {
       return true;
     }
     else {
