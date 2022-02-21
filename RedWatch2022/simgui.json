@@ -1,4 +1,18 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "SPARK MAX [10]": {
+        "header": {
+          "open": true
+        }
+      },
+      "SPARK MAX [2]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
@@ -18,7 +32,13 @@
       "/Shuffleboard/Control Panel/Climb Status/rotateBackward": "Command",
       "/Shuffleboard/Control Panel/Climb Status/rotateForward": "Command",
       "/Shuffleboard/Control Panel/Extend Status/Run Extender": "Command",
-      "/Shuffleboard/Control Panel/Pivot Status/Run Pivot": "Command"
+      "/Shuffleboard/Control Panel/Pivot Status/Run Pivot": "Command",
+      "/Shuffleboard/Hanger Panel/Climb Status/extendDown": "Command",
+      "/Shuffleboard/Hanger Panel/Climb Status/extendUp": "Command",
+      "/Shuffleboard/Hanger Panel/Climb Status/rotateBackward": "Command",
+      "/Shuffleboard/Hanger Panel/Climb Status/rotateForward": "Command",
+      "/Shuffleboard/Hanger Panel/Extend Status/Run Extender": "Command",
+      "/Shuffleboard/Hanger Panel/Pivot Status/Run Pivot": "Command"
     },
     "windows": {
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": {
@@ -31,6 +51,14 @@
           "visible": true
         }
       }
+    }
+  },
+  "NetworkTables": {
+    "Shuffleboard": {
+      "Hanger Panel": {
+        "open": true
+      },
+      "open": true
     }
   }
 }
