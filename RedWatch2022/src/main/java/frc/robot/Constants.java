@@ -32,7 +32,7 @@ public final class Constants {
     public static final class IndexerConstants {
         public static final String kShuffleboardTab = "Indexer";
 
-        public static final int kIndexMotorPort = 3;
+        public static final int kIndexMotorPort = 6;
         public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
@@ -41,13 +41,13 @@ public final class Constants {
     }
 
     public static final int kCurrentLimit = 60;
-    public static final int LEFT_MOTOR_ID = 2;
-    public static final int RIGHT_MOTOR_ID = 1;
+    public static final int LEFT_MOTOR_ID = 12;
+    public static final int RIGHT_MOTOR_ID = 0;
     public static final boolean kLeftReversedDefault = true;
     public static final boolean kRightReversedDefault = !kLeftReversedDefault;
     public static final String kShuffleboardTab = "Control Panel";
-    public static final int LEFT_MOTOR2_ID = 4;
-    public static final int RIGHT_MOTOR2_ID = 3;
+    public static final int LEFT_MOTOR2_ID = 14;
+    public static final int RIGHT_MOTOR2_ID = 1;
     public static final int STALL_LIMIT = 45;
 
     // since the encoder is build into the motor we need to account for gearing
@@ -70,7 +70,7 @@ public final class Constants {
 
 	public static final class IntakeConstants {
         
-        public static final int kIntakeMotorPort = 1;
+        public static final int kIntakeMotorPort = 8;
         public static final int kIntakeRaiseChannel = 2;
         public static final int kIntakeLowerChannel = 3;
         public static final double kIntakeMotorSpeed = 10;
@@ -84,7 +84,7 @@ public final class Constants {
     }
     
     public static final class ColorConstants {
-        public static final int colorPort = 2;
+        public static final int colorPort = 1;
         public static final String kShuffleboardTab = "Color";
     }
 
@@ -100,10 +100,10 @@ public final class Constants {
     }
     
     public static final class ClimberConstants {
-		public static final int kClimberLeftFollowerExtendPort = 8;
-		public static final int kClimberRightExtendPort = 7;
-		public static final int kClimberLeftPivotFollowerPort = 6;
-		public static final int kClimberRightPivotPort = 5;
+		public static final int kClimberLeftFollowerExtendPort = 13;
+		public static final int kClimberRightExtendPort = 2;
+		public static final int kClimberLeftPivotFollowerPort = 9;
+		public static final int kClimberRightPivotPort = 10;
 		public static final String kClimberTab = "Climber Status";
 
 		public static final double kHighDistancePerPulse = kWheelDiameterInches * Math.PI * kHighGear;
