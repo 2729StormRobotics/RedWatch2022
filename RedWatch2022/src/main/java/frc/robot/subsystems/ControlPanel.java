@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.togglePistons;
 
 public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
@@ -35,13 +36,13 @@ public class ControlPanel extends SubsystemBase {
       .withPosition(0, 0)
       .withSize(2, 4);
     m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
-    .withProperties(Map.of("Label position", "TOP"))
-    .withPosition(2, 0)
-    .withSize(2, 4);
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(2, 0)
+      .withSize(2, 4);
     m_indexerStatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
-    .withProperties(Map.of("Label position", "TOP"))
-    .withPosition(4, 0)
-    .withSize(2, 1);
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(4, 0)
+      .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
@@ -63,7 +64,13 @@ public class ControlPanel extends SubsystemBase {
     // Proximity to ball
     m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.proximity);
 
-    m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
+    m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
+
+    m_indexerStatus.addBoolean("Ball present?", () -> m_Indexer.isBallPresent());
+
+    m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
+      .withPosition(4, 1)
+      .withSize(2, 1);
     
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
