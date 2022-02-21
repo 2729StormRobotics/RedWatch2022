@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -13,18 +12,12 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.I2C;
 
 import static frc.robot.Constants.IntakeConstants.*;
-import static frc.robot.Constants.ColorConstants.*;
 import static frc.robot.Constants.LightConstants.*;
 
-import java.util.Map;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -37,36 +30,27 @@ public class Intake extends SubsystemBase {
 
   private final ColorSensorV3 m_colorSensor;
 
-  private Color m_detectedColor;
-  private int proximity;
-
-  private final ShuffleboardTab m_controlPanelTab;
-  private final ShuffleboardLayout m_controlPanelStatus;
+  public Color m_detectedColor;
+  public int proximity;
 
   private final NetworkTable m_intakeTable;
   private final NetworkTableEntry m_intakeStatus;
-  private final ShuffleboardTab m_shuffleboardTab;
-  private final ShuffleboardLayout m_lightValues;
 
   private final Spark m_ledDriver;
   private final Timer m_timeToSpeed = new Timer();
 
   /**
    * Controls the intake mechanism.
-   * Talon motors are required
+   * Talon motors are required.
    */
-
-  /** Creates a new Intake. */
   public Intake() {
-    m_shuffleboardTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
-    m_lightValues = m_shuffleboardTab.getLayout("Color Values", BuiltInLayouts.kList);
 
     m_ledDriver = new Spark(0);
     resetLights();
 
     // Creates motor and piston variables
     m_intakeMotor = new TalonSRX(kIntakeMotorPort);
-    m_intakePistons = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakeRaiseChannel, kIntakeLowerChannel);//The type of hopper (Replace CTREPCM With correct)
+    m_intakePistons = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakeRaiseChannel, kIntakeLowerChannel); //The type of hopper (Replace CTREPCM With correct)
 
     // Resets to defaults and sets to idle mode and makes inverted
     m_intakeMotor.configPeakCurrentDuration(kDRIVE_AMPERAGE_PEAK_DURATION, kCAN_TIMEOUT_SETUP);
@@ -80,28 +64,6 @@ public class Intake extends SubsystemBase {
     m_intakeStatus = m_intakeTable.getEntry("Intake Running");
 
     m_colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
-    m_controlPanelTab = Shuffleboard.getTab(kShuffleboardTab);
-    m_controlPanelStatus = m_controlPanelTab.getLayout("Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
-
-    shuffleboardInit();
-
-  }
-
-  // Initalizes shuffleboard
-  private void shuffleboardInit() {
-    // Displays color detected as a color box
-    m_controlPanelStatus.addBoolean("Red", () -> m_detectedColor.red > m_detectedColor.blue && m_detectedColor.red >= 0.3);
-    m_controlPanelStatus.addBoolean("Blue", () -> m_detectedColor.blue > m_detectedColor.red && m_detectedColor.blue >= 0.3);
-
-    // Shows color values (RGB)
-    m_controlPanelStatus.addNumber("R", () -> m_detectedColor.red);
-    m_controlPanelStatus.addNumber("G", () -> m_detectedColor.green);
-    m_controlPanelStatus.addNumber("B", () -> m_detectedColor.blue);
-
-    // Proximity to ball
-    m_controlPanelStatus.addNumber("Ball Proximity", () -> proximity);
-
   }
 
   // Sets disabled color 

@@ -47,7 +47,7 @@ public class RobotContainer {
     () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
 
     // Set up Control Panel
-    new ControlPanel(m_drivetrain, m_indexer);
+    new ControlPanel(m_drivetrain, m_indexer, m_intake);
 
     // Configure the button bindings
     configureButtonBindings();
