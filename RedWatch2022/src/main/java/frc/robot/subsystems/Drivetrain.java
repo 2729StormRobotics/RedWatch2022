@@ -14,6 +14,9 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -62,13 +65,16 @@ public class Drivetrain extends SubsystemBase {
     rightMotor.setIdleMode(IdleMode.kBrake);
     rightMotor2.setIdleMode(IdleMode.kBrake);
 
-    leftMotor2.follow(leftMotor);
-    rightMotor2.follow(rightMotor);
+    // leftMotor2.follow(leftMotor);
+    // rightMotor2.follow(rightMotor);
+    final MotorControllerGroup rightControllerGroup = new MotorControllerGroup(rightMotor, rightMotor2);
+    final MotorControllerGroup leftControllerGroup = new MotorControllerGroup(leftMotor, leftMotor2);
+
 
     m_leftEncoder = leftMotor.getEncoder();
     m_rightEncoder = rightMotor.getEncoder();
 
-    m_drive = new DifferentialDrive(leftMotor, rightMotor);
+    m_drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
     try {
       ahrs = new AHRS(SPI.Port.kMXP);
