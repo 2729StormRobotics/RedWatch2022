@@ -7,14 +7,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
-import frc.robot.commands.EjectBall;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.LoadBall;
 import frc.robot.commands.ShootCargo;
 import frc.robot.commands.curvatureDrive;
 import frc.robot.commands.differentialDrive;
@@ -28,7 +25,6 @@ import frc.robot.commands.differentialDrive;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Shooter m_shooter;
-  private final Indexer m_indexer;
 
   private final Drivetrain m_drivetrain;
 
@@ -36,7 +32,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_indexer = new Indexer();
+    // m_indexer = new Indexer();
     m_shooter = new Shooter();
 
     // Set up drivetrain
@@ -45,7 +41,7 @@ public class RobotContainer {
       new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> -m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
 
     // Set up Control Panel
-    new ControlPanel(m_drivetrain, m_indexer);
+    new ControlPanel(m_drivetrain);
 
     // Configure the button bindings
     configureButtonBindings();
