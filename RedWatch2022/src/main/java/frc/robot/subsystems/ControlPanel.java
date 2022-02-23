@@ -17,20 +17,17 @@ public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
   private final ShuffleboardTab m_controlpanelTab;
   private final ShuffleboardLayout m_drivetrainStatus;
-  private final ShuffleboardLayout m_indexerStatus;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
    * Contains all shuffleboard related code.
    * @param m_drivetrain Drivetrain subsystem
    * @param m_iIndexer Indexer subsystem
    */
-  public ControlPanel(Drivetrain m_drivetrain, Indexer m_Indexer) {
+  public ControlPanel(Drivetrain m_drivetrain) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
     // Creates layouts for each subsystem
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
-    m_indexerStatus = m_controlpanelTab.getLayout("Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"));
 
     // Creates the values that will be contained in each layout
@@ -40,8 +37,6 @@ public class ControlPanel extends SubsystemBase {
     m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
     m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
     m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch());
-
-    m_indexerStatus.addBoolean("Is ball present?", () -> m_Indexer.isBallPresent());
   }
 
   @Override
