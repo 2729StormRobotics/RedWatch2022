@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.LightConstants;
+import frc.robot.Constants.Ports;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -50,7 +51,7 @@ public class Climber extends SubsystemBase {
     m_climbLeftPivot = new CANSparkMax(ClimberConstants.kClimberLeftPivotFollowerPort, MotorType.kBrushless);
     m_climbRightPivot = new CANSparkMax(ClimberConstants.kClimberRightPivotPort, MotorType.kBrushless);
 
-    m_ledDriver = new Spark(LightConstants.kBlinkinDriverPort);
+    m_ledDriver = new Spark(Ports.kBlinkinDriverPort);
     resetLights();
 
     // setMotor(motor, INVERSE);

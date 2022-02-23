@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Traverse;
@@ -16,7 +18,6 @@ import frc.robot.commands.hangerControl;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.curvatureDrive;
@@ -31,6 +32,7 @@ import frc.robot.commands.differentialDrive;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Climber m_climber;
+  private final Indexer m_indexer;
   private final Shooter m_shooter;
 
   private final Drivetrain m_drivetrain;

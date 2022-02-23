@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public final class Constants {
 
     public static int kRobotLength = 67; // check later
-    public static final int kDriverController = 1;
     public static final String kShuffleboardTab = "Control Panel";
 
     public static final class ShooterConstants {
@@ -49,7 +48,6 @@ public final class Constants {
     public static final int RIGHT_MOTOR_ID = 15;
     public static final boolean kLeftReversedDefault = true;
     public static final boolean kRightReversedDefault = !kLeftReversedDefault;
-    public static final String kShuffleboardTab = "Hanger Panel";
     public static final int LEFT_MOTOR2_ID = 14;
     public static final int RIGHT_MOTOR2_ID = 1;
     public static final int STALL_LIMIT = 45;
