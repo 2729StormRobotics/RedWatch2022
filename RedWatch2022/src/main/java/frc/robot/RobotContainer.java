@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.differentialDrive;
+import frc.robot.commands.hangerControl;
 import frc.robot.commands.hangerRunMotors;
 
 /**
@@ -36,10 +37,10 @@ public class RobotContainer {
     // m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
 
     m_climber = new Climber();
-    m_climber.setDefaultCommand(new hangerRunMotors(() -> m_driver.getLeftY() / 2, () -> m_driver.getRightY() / 4, m_climber.m_climbRightExtend, m_climber.m_climbRightPivot, m_climber));
+    m_climber.setDefaultCommand(new hangerControl(() -> m_driver.getLeftY() / 2, () -> m_driver.getRightY() / 4, () -> m_driver.getLeftBumper(), () -> m_driver.getRightBumper(), m_climber));
 
     // Set up Control Panel
-    new ControlPanel(m_drivetrain, m_climber);
+    new ControlPanel(m_driver, m_drivetrain, m_climber);
 
     // Configure the button bindings
     configureButtonBindings();

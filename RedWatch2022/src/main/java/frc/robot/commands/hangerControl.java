@@ -8,35 +8,32 @@ command to drive at a certain power for left and right motors
 
 package frc.robot.commands;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
-
-import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
-public class hangerRunMotors extends CommandBase {
+public class hangerControl extends CommandBase {
 
   private final Climber m_climber;
   private final DoubleSupplier m_leftSpeed;
   private final DoubleSupplier m_rightSpeed;
-  private final CANSparkMax m_leftMotor;
-  private final CANSparkMax m_rightMotor;
+  private final BooleanSupplier m_leftBumper;
+  private final BooleanSupplier m_rightBumper;
 
   /** Controls specific motors of the Hanger subsystem
    * @param leftSpeed Left thumbstick Y axis
    * @param rightSpeed Right thumbstick Y axis
-   * @param leftMotor Left Spark Max motor
-   * @param rightMotor Right Spark Max motor
    * @param subsystem Hanger subsystem
    */
-  public hangerRunMotors(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, CANSparkMax leftMotor, CANSparkMax rightMotor, Climber subsystem) {
+  public hangerControl(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, BooleanSupplier leftBumper, BooleanSupplier rightBumper, Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
     m_leftSpeed = leftSpeed;
     m_rightSpeed = rightSpeed;
-    m_leftMotor = leftMotor;
-    m_rightMotor = rightMotor;
+    m_leftBumper = leftBumper;
+    m_rightBumper = rightBumper;
 
     addRequirements(m_climber);
   }
@@ -44,25 +41,35 @@ public class hangerRunMotors extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_leftMotor.stopMotor();
-    m_rightMotor.stopMotor();
+    m_climber.m_climbLeftExtend.stopMotor();
+    m_climber.m_climbRightExtend.stopMotor();
+    m_climber.m_climbRightExtend.stopMotor();
+    m_climber.m_climbRightPivot.stopMotor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // move motors of hanger and pivot
-    m_leftMotor.set(m_leftSpeed.getAsDouble());
-    m_rightMotor.set(m_rightSpeed.getAsDouble());
+    if (m_leftBumper.getAsBoolean()) { // controls each hanger separately
+      m_climber.m_climbLeftExtend.set(m_leftSpeed.getAsDouble());
+      m_climber.m_climbRightExtend.set(m_rightSpeed.getAsDouble());
+    } else if (m_rightBumper.getAsBoolean()) { // controls each pivot separately
+      m_climber.m_climbLeftPivot.set(m_leftSpeed.getAsDouble());
+      m_climber.m_climbRightPivot.set(m_rightSpeed.getAsDouble());
+    } else { // controls hanger and pivot
+      m_climber.m_climbRightExtend.set(m_leftSpeed.getAsDouble());
+      m_climber.m_climbRightPivot.set(m_rightSpeed.getAsDouble());
+    }
   }
 
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // stop hanger and pivot
-    m_leftMotor.stopMotor();
-    m_rightMotor.stopMotor();
+    m_climber.m_climbLeftExtend.stopMotor();
+    m_climber.m_climbRightExtend.stopMotor();
+    m_climber.m_climbRightExtend.stopMotor();
+    m_climber.m_climbRightPivot.stopMotor();
   }
 
   // Returns true when the command should end.
