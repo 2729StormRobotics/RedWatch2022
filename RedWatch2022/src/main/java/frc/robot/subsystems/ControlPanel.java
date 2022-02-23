@@ -82,14 +82,14 @@ public class ControlPanel extends SubsystemBase {
     m_climbStatus.add(new rotateForward(m_climber)); // Rotates the bot forward
     m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
 
-    m_climbStatus.addNumber("right extend get", () -> m_climber.m_climbRightExtend.get());
-    m_climbStatus.addNumber("right pivot get", () -> m_climber.m_climbRightPivot.get());
+    // m_climbStatus.addNumber("right extend get", () -> m_climber.m_climbRightExtend.get());
+    // m_climbStatus.addNumber("right pivot get", () -> m_climber.m_climbRightPivot.get());
 
-    m_climbStatus.addNumber("left extend get", () -> m_climber.m_climbLeftExtend.get());
-    m_climbStatus.addNumber("left pivot get", () -> m_climber.m_climbLeftPivot.get());
+    // m_climbStatus.addNumber("left extend get", () -> m_climber.m_climbLeftExtend.get());
+    // m_climbStatus.addNumber("left pivot get", () -> m_climber.m_climbLeftPivot.get());
 
-    m_climbStatus.addBoolean("left bumper", () -> m_driver.getLeftBumper());
-    m_climbStatus.addBoolean("right bumper", () -> m_driver.getRightBumper());
+    // m_climbStatus.addBoolean("left bumper", () -> m_driver.getLeftBumper());
+    // m_climbStatus.addBoolean("right bumper", () -> m_driver.getRightBumper());
 
     // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
