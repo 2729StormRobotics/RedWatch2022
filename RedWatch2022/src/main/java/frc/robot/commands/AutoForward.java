@@ -26,7 +26,7 @@ public class AutoForward extends PIDCommand {
     super(
         // The controller that the command will use
         // experimentrally determined values
-        new PIDController(Constants.AutoForwardPIDValues.kP, Constants.AutoForwardPIDValues.kI, Constants.AutoForwardPIDValues.kD),
+        new PIDController(Constants.DrivetrainConstants.AutoForwardP, Constants.DrivetrainConstants.AutoForwardI, Constants.DrivetrainConstants.AutoForwardD),
         // This should return the measurement
         () -> drivetrain.getAverageDistance(),
         // This should return the setpoint (can also be a constant)
@@ -43,7 +43,7 @@ public class AutoForward extends PIDCommand {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_drivetrain);
     // Configure additional PID options by calling `getController` here.
-    getController().setTolerance(Constants.AutoForwardPIDValues.kPositionTolerace, Constants.AutoForwardPIDValues.kVelocityTolerance);
+    getController().setTolerance(Constants.DrivetrainConstants.PositionTolerace, Constants.DrivetrainConstants.VelocityTolerance);
 
 
   }

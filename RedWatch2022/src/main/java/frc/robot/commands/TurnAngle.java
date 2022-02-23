@@ -24,7 +24,7 @@ public class TurnAngle extends PIDCommand {
     super(
         // The controller that the command will use
         // PID values experimentally determined
-        new PIDController(Constants.TurnDistanceGyroPID.kP, Constants.TurnDistanceGyroPID.kI, Constants.TurnDistanceGyroPID.kD),
+        new PIDController(Constants.DrivetrainConstants.TurnAngleP, Constants.DrivetrainConstants.TurnAngleI, Constants.DrivetrainConstants.TurnAngleD),
         // This should return the measurement
         () -> drivetrain.getGyroAngle(),
         // This should return the setpoint (can also be a constant)
@@ -41,8 +41,8 @@ public class TurnAngle extends PIDCommand {
         });
         m_drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
-    getController().setTolerance(Constants.TurnDistanceGyroPID.kAngleTolerace, 
-    Constants.TurnDistanceGyroPID.kTurnSpeedTolerance);
+    getController().setTolerance(Constants.DrivetrainConstants.TurnAngleTolerace, 
+    Constants.DrivetrainConstants.TurnSpeedTolerance);
     addRequirements(drivetrain);
       }
     // Configure additional PID options by calling `getController` here.

@@ -32,7 +32,7 @@ public class EjectBall extends CommandBase {
   // Run the indexer motor in reverse while button is held to push out ball
   @Override
   public void execute() {
-    m_indexer.load(-Constants.kIndexerSpeed);
+    m_indexer.load(-Constants.IndexerConstants.kIndexerSpeed);
     
   }
 

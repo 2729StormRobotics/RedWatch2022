@@ -45,20 +45,20 @@ public class Drivetrain extends SubsystemBase {
 
 
   public Drivetrain() {
-    leftMotor = new com.revrobotics.CANSparkMax(Constants.LEFT_MOTOR_ID, MotorType.kBrushless);
-    leftMotor2 = new com.revrobotics.CANSparkMax(Constants.LEFT_MOTOR2_ID, MotorType.kBrushless);
-    rightMotor = new com.revrobotics.CANSparkMax(Constants.RIGHT_MOTOR_ID, MotorType.kBrushless);
-    rightMotor2 = new com.revrobotics.CANSparkMax(Constants.RIGHT_MOTOR2_ID, MotorType.kBrushless);
+    leftMotor = new com.revrobotics.CANSparkMax(Constants.Ports.LEFT_MOTOR_ID, MotorType.kBrushless);
+    leftMotor2 = new com.revrobotics.CANSparkMax(Constants.Ports.LEFT_MOTOR2_ID, MotorType.kBrushless);
+    rightMotor = new com.revrobotics.CANSparkMax(Constants.Ports.RIGHT_MOTOR_ID, MotorType.kBrushless);
+    rightMotor2 = new com.revrobotics.CANSparkMax(Constants.Ports.RIGHT_MOTOR2_ID, MotorType.kBrushless);
 
-    motorInit(leftMotor, Constants.kLeftReversedDefault);
-    motorInit(leftMotor2, Constants.kLeftReversedDefault);
-    motorInit(rightMotor, Constants.kRightReversedDefault);
-    motorInit(rightMotor2, Constants.kRightReversedDefault);
+    motorInit(leftMotor, Constants.DrivetrainConstants.kLeftReversedDefault);
+    motorInit(leftMotor2, Constants.DrivetrainConstants.kLeftReversedDefault);
+    motorInit(rightMotor, Constants.DrivetrainConstants.kRightReversedDefault);
+    motorInit(rightMotor2, Constants.DrivetrainConstants.kRightReversedDefault);
 
-    leftMotor.setSmartCurrentLimit(Constants.STALL_LIMIT);
-    rightMotor.setSmartCurrentLimit(Constants.STALL_LIMIT);
-    leftMotor2.setSmartCurrentLimit(Constants.STALL_LIMIT);
-    rightMotor2.setSmartCurrentLimit(Constants.STALL_LIMIT);
+    leftMotor.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
+    rightMotor.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
+    leftMotor2.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
+    rightMotor2.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
 
     leftMotor.setIdleMode(IdleMode.kBrake);
     leftMotor2.setIdleMode(IdleMode.kBrake);
@@ -87,7 +87,7 @@ public class Drivetrain extends SubsystemBase {
   public void motorInit(CANSparkMax motor, boolean invert) {
     motor.restoreFactoryDefaults();
     motor.setIdleMode(IdleMode.kBrake);
-    motor.setSmartCurrentLimit(Constants.kCurrentLimit);
+    motor.setSmartCurrentLimit(Constants.DrivetrainConstants.kCurrentLimit);
     motor.setInverted(invert);
 
     encoderInit(motor.getEncoder());
@@ -95,8 +95,8 @@ public class Drivetrain extends SubsystemBase {
 
   private void encoderInit(RelativeEncoder encoder) {
     // set conversion factor and velocity factor for high gear
-    encoder.setPositionConversionFactor(Constants.kDistancePerRevolution);
-    encoder.setVelocityConversionFactor(Constants.kSpeedPerRevolution);
+    encoder.setPositionConversionFactor(Constants.DrivetrainConstants.kDistancePerRevolution);
+    encoder.setVelocityConversionFactor(Constants.DrivetrainConstants.kSpeedPerRevolution);
     encoderReset(encoder);
 
   }
