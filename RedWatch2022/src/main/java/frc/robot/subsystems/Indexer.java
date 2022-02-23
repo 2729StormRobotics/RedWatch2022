@@ -14,12 +14,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class Indexer extends SubsystemBase {
 
   //talon used for index motor
-  public static TalonSRX bottomMotor = new TalonSRX(Constants.IndexerConstants.kIndexMotorPort);
+  public static TalonSRX bottomMotor = new TalonSRX(Constants.Ports.kIndexMotorPort);
   private final DigitalInput m_ballDector;
 
   /** Creates a new Indexer. */
   public Indexer() {
-    m_ballDector = new DigitalInput(Constants.IndexerConstants.kBeamBreakPort);
+    m_ballDector = new DigitalInput(Constants.Ports.kBeamBreakPort);
     motorInit();
   }
 
