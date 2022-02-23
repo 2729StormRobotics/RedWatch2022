@@ -64,6 +64,8 @@ public class hangerControl extends CommandBase {
     } else { // controls hanger and pivot
       m_climber.m_climbRightExtend.set(m_leftSpeed.getAsDouble() / 2);
       m_climber.m_climbRightPivot.set(m_rightSpeed.getAsDouble() / 4);
+      m_climber.m_climbLeftExtend.set(m_leftSpeed.getAsDouble() / 2);
+      m_climber.m_climbLeftPivot.set(m_rightSpeed.getAsDouble() / 4);
     }
   }
 
