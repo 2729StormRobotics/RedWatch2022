@@ -14,8 +14,13 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+
+import java.util.Map;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -34,14 +39,14 @@ public class Drivetrain extends SubsystemBase {
   public final RelativeEncoder m_leftEncoder;
   public final RelativeEncoder m_rightEncoder;
 
-  private boolean m_highGear = true;
-
 
   private final DifferentialDrive m_drive;
 
   public boolean m_reverseDrive = false;
   AHRS ahrs;
 
+  private final ShuffleboardTab m_drivetrainTab;
+  private final ShuffleboardLayout m_drivetrainStatus;
 
 
   public Drivetrain() {
@@ -75,6 +80,11 @@ public class Drivetrain extends SubsystemBase {
     m_rightEncoder = rightMotor.getEncoder();
 
     m_drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
+
+    m_drivetrainTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
+    m_drivetrainStatus = m_drivetrainTab.getLayout("Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"));
+    shuffleboardInit();
 
     try {
       ahrs = new AHRS(SPI.Port.kMXP);
@@ -168,6 +178,18 @@ public class Drivetrain extends SubsystemBase {
     public void stopDrive() {
       m_drive.tankDrive(0, 0);
     }
+
+  private void shuffleboardInit() {
+    m_drivetrainStatus.addNumber("Left Speed", () -> getLeftSpeed());
+    m_drivetrainStatus.addNumber("Right Speed", () -> getRightSpeed());
+    m_drivetrainStatus.addNumber("Left Position", () -> getLeftDistance());
+    m_drivetrainStatus.addNumber("Right Position", () -> getRightDistance());
+    m_drivetrainStatus.addNumber("Angle", () -> getGyroAngle());
+    m_drivetrainStatus.addBoolean("Reversed?", () -> m_reverseDrive);
+    m_drivetrainStatus.addNumber("Average Distance", () -> getAverageDistance());
+
+  }
+
 
   @Override
   public void periodic() {
