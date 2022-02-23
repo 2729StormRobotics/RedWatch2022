@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
-import frc.robot.commands.hangerControl;
+import frc.robot.commands.hangerRunMotors;
 import frc.robot.commands.rotateBackward;
 import frc.robot.commands.rotateForward;
 
@@ -96,7 +96,7 @@ public class ControlPanel extends SubsystemBase {
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", -1, "max", 1))
     .getEntry();
-    m_extendstatus.add("Run Extender", new hangerControl(() -> LeftExtendMotor.getDouble(0), () -> RightExtendMotor.getDouble(0), m_climber.m_climbLeftExtend, m_climber.m_climbRightExtend, m_climber));
+    m_extendstatus.add("Run Extender", new hangerRunMotors(() -> LeftExtendMotor.getDouble(0), () -> RightExtendMotor.getDouble(0), m_climber.m_climbLeftExtend, m_climber.m_climbRightExtend, m_climber));
 
     // Manual control of the pivots
     LeftPivotMotor = m_pivotstatus.add("Left Pivot Speed", 0)
@@ -107,7 +107,7 @@ public class ControlPanel extends SubsystemBase {
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", -1, "max", 1))
     .getEntry();
-    m_pivotstatus.add("Run Pivot", new hangerControl(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
+    m_pivotstatus.add("Run Pivot", new hangerRunMotors(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
 
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
