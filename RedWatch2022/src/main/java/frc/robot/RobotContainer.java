@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.subsystems.ControlPanel;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -16,7 +15,6 @@ import frc.robot.commands.IntakeEject;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.IntakeStop;
 import frc.robot.commands.IntakeToggle;
-import frc.robot.commands.differentialDrive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -28,21 +26,14 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Intake m_intake;
 
-  private final Drivetrain m_drivetrain;
-
   private final XboxController m_driver = new XboxController(Constants.kDriverController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_intake = new Intake();
 
-    // Set up drivetrain
-    m_drivetrain = new Drivetrain();
-    m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getRightTriggerAxis(), () -> m_driver.getLeftTriggerAxis(), 
-    () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
-
     // Set up Control Panel
-    new ControlPanel(m_drivetrain, m_intake);
+    new ControlPanel(m_intake);
 
     // Configure the button bindings
     configureButtonBindings();

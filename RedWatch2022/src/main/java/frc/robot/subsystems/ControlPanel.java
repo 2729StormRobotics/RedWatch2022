@@ -17,7 +17,6 @@ import frc.robot.commands.togglePistons;
 public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
   private final ShuffleboardTab m_controlpanelTab;
-  private final ShuffleboardLayout m_drivetrainStatus;
   private final ShuffleboardLayout m_intakeStatus;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
@@ -25,28 +24,17 @@ public class ControlPanel extends SubsystemBase {
    * @param m_drivetrain Drivetrain subsystem
    * @param m_iIndexer Indexer subsystem
    */
-  public ControlPanel(Drivetrain m_drivetrain, Intake m_intake) {
+  public ControlPanel(Intake m_intake) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
 
     // Creates layouts for each subsystem
-    m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(0, 0)
-      .withSize(2, 4);
     m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 0)
       .withSize(2, 4);
 
     // Creates the values that will be contained in each layout
-
-    m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed());
-    m_drivetrainStatus.addNumber("Right Speed", () -> m_drivetrain.getRightSpeed());
-    m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance());
-    m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
-    m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
-    m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch());
 
     m_intakeStatus.addBoolean("Red", () -> m_intake.m_detectedColor.red > m_intake.m_detectedColor.blue && m_intake.m_detectedColor.red >= 0.3);
     m_intakeStatus.addBoolean("Blue", () -> m_intake.m_detectedColor.blue > m_intake.m_detectedColor.red && m_intake.m_detectedColor.blue >= 0.3);
