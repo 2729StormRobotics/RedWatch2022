@@ -13,6 +13,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.hangerControl;
+import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.subsystems.ControlPanel;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.curvatureDrive;
+import frc.robot.commands.differentialDrive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,6 +31,7 @@ import frc.robot.commands.hangerControl;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Climber m_climber;
+  private final Shooter m_shooter;
 
   private final Drivetrain m_drivetrain;
 
@@ -31,12 +40,16 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // Set up drivetrain
-    m_drivetrain = new Drivetrain();
-    // m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
+    m_indexer = new Indexer();
+    m_shooter = new Shooter();
 
     m_climber = new Climber();
     m_climber.setDefaultCommand(new hangerControl(() -> m_weapons.getLeftY() / 2, () -> m_weapons.getRightY() / 4, () -> m_weapons.getLeftBumper(), () -> m_driver.getRightBumper(), m_climber));
+
+    // Set up drivetrain
+    m_drivetrain = new Drivetrain();
+    m_drivetrain.setDefaultCommand(
+      new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> -m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
 
     // Set up Control Panel
     new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber);
@@ -63,7 +76,6 @@ public class RobotContainer {
     new JoystickButton(m_weapons, m_weapons.getPOV(0)).whileHeld(new Traverse(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
-
   }
 
   /**
