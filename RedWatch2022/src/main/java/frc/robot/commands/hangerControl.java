@@ -23,9 +23,9 @@ public class hangerControl extends CommandBase {
   private final BooleanSupplier m_rightBumper;
 
   /**
-   * Controls specific motors of the Hanger subsystem
-   * Pressing left bumper allows separate control of left and right hanger motors
-   * Pressing right bumper allows separate control of left and right pivot motors
+   * Controls specific motors of the Hanger subsystem.
+   * Pressing left bumper allows separate control of left and right hanger motors.
+   * Pressing right bumper allows separate control of left and right pivot motors.
    * @param leftSpeed Left thumbstick Y axis
    * @param rightSpeed Right thumbstick Y axis
    * @param leftBumper Left bumper button
