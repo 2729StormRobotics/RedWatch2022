@@ -10,7 +10,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.I2C;
@@ -38,7 +37,6 @@ public class Intake extends SubsystemBase {
   private final NetworkTableEntry m_intakeStatus;
 
   private final Spark m_ledDriver;
-  private final Timer m_timeToSpeed = new Timer();
 
   /**
    * Controls the intake mechanism.

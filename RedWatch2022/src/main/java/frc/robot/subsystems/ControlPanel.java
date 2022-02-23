@@ -18,7 +18,6 @@ public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
   private final ShuffleboardTab m_controlpanelTab;
   private final ShuffleboardLayout m_drivetrainStatus;
-  private final ShuffleboardLayout m_indexerStatus;
   private final ShuffleboardLayout m_intakeStatus;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
@@ -26,7 +25,7 @@ public class ControlPanel extends SubsystemBase {
    * @param m_drivetrain Drivetrain subsystem
    * @param m_iIndexer Indexer subsystem
    */
-  public ControlPanel(Drivetrain m_drivetrain, Indexer m_Indexer, Intake m_intake) {
+  public ControlPanel(Drivetrain m_drivetrain, Intake m_intake) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
 
@@ -39,10 +38,6 @@ public class ControlPanel extends SubsystemBase {
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 0)
       .withSize(2, 4);
-    m_indexerStatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(4, 0)
-      .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
@@ -65,8 +60,6 @@ public class ControlPanel extends SubsystemBase {
     m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.proximity);
 
     m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
-
-    m_indexerStatus.addBoolean("Ball present?", () -> m_Indexer.isBallPresent());
 
     m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
       .withPosition(4, 1)
