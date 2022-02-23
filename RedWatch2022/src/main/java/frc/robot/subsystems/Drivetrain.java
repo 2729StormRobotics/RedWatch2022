@@ -171,6 +171,10 @@ public class Drivetrain extends SubsystemBase {
     }
   }
 
+  public void curvatureDrive(double stickY, double stickX, boolean stickButton) {
+    m_drive.curvatureDrive(stickY, stickX, stickButton);
+  }
+
   public void arcadeDrive(double speed, double turn, boolean squareInputs) {
     m_drive.arcadeDrive(speed, turn, squareInputs);
   }

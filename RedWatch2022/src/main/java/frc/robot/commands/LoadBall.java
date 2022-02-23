@@ -33,7 +33,7 @@ public class LoadBall extends CommandBase {
   @Override
   public void execute() {
     // Run the motor continuously
-    m_indexer.load(Constants.kIndexerSpeed);
+    m_indexer.load(Constants.IndexerConstants.kIndexerSpeed);
   }
 
   // Called once the command ends or is interrupted.
