@@ -32,6 +32,7 @@ public class rotateBackward extends CommandBase {
   @Override
   public void execute() {
     m_climber.turnMotor(m_climber.m_climbRightPivot, true);
+    m_climber.turnMotor(m_climber.m_climbLeftPivot, true);
   }
 
   // Called once the command ends or is interrupted.

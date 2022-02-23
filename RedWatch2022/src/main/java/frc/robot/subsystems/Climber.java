@@ -53,13 +53,14 @@ public class Climber extends SubsystemBase {
     m_ledDriver = new Spark(LightConstants.kBlinkinDriverPort);
     resetLights();
 
-    setMotor(m_climbLeftExtend);
-    setMotor(m_climbRightExtend);
-    setMotor(m_climbLeftPivot);
-    setMotor(m_climbRightPivot);
+    // setMotor(motor, INVERSE);
+    setMotor(m_climbLeftExtend, false);
+    setMotor(m_climbRightExtend, true);
+    setMotor(m_climbLeftPivot, false);
+    setMotor(m_climbRightPivot, true);
 
-    m_climbLeftExtend.follow(m_climbRightExtend, true); // false for opposite; true for same direction
-    m_climbLeftPivot.follow(m_climbRightPivot, true);
+    // m_climbLeftExtend.follow(m_climbRightExtend, true); // false for opposite; true for same direction
+    // m_climbLeftPivot.follow(m_climbRightPivot, true);
 
     m_climbRightEncoder = m_climbRightExtend.getEncoder();
     m_climbLeftEncoder = m_climbLeftExtend.getEncoder();
@@ -120,10 +121,10 @@ public class Climber extends SubsystemBase {
     return -m_climbRightEncoder.getPosition();
   }
 
-  public void setMotor(CANSparkMax motor) {
+  public void setMotor(CANSparkMax motor, boolean inverse) {
     motor.restoreFactoryDefaults();
     motor.setIdleMode(IdleMode.kBrake);
-    motor.setInverted(true);
+    motor.setInverted(inverse);
   }
 
   public double getGyroAngle(){

@@ -29,6 +29,7 @@ public class rotateBot extends CommandBase {
   @Override
   public void execute() {
     m_climber.turnMotor(m_climber.m_climbRightPivot, false);
+    m_climber.turnMotor(m_climber.m_climbLeftPivot, false);
   }
 
   // Called once the command ends or is interrupted.

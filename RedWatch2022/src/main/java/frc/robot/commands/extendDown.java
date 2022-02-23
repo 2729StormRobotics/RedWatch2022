@@ -33,6 +33,7 @@ public class extendDown extends CommandBase {
   @Override
   public void execute() {
     m_climber.turnMotor(m_climber.m_climbRightExtend, true);
+    m_climber.turnMotor(m_climber.m_climbLeftExtend, true);
   }
 
   // Called once the command ends or is interrupted.
