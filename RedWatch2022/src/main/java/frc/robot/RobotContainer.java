@@ -27,6 +27,7 @@ public class RobotContainer {
   private final Drivetrain m_drivetrain;
 
   private final XboxController m_driver = new XboxController(Constants.kDriverController);
+  private final XboxController m_weapons = new XboxController(Constants.kWeaponsController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -35,10 +36,10 @@ public class RobotContainer {
     // m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
 
     m_climber = new Climber();
-    m_climber.setDefaultCommand(new hangerControl(() -> m_driver.getLeftY() / 2, () -> m_driver.getRightY() / 4, () -> m_driver.getLeftBumper(), () -> m_driver.getRightBumper(), m_climber));
+    m_climber.setDefaultCommand(new hangerControl(() -> m_weapons.getLeftY() / 2, () -> m_weapons.getRightY() / 4, () -> m_weapons.getLeftBumper(), () -> m_driver.getRightBumper(), m_climber));
 
     // Set up Control Panel
-    new ControlPanel(m_driver, m_drivetrain, m_climber);
+    new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -59,7 +60,7 @@ public class RobotContainer {
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
     // new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));
     // new JoystickButton(m_driver, Button.kY.value).whileHeld(new ShootCargo(Constants.kLowShootSpeed, m_shooter));
-    new JoystickButton(m_driver, m_driver.getPOV(0)).whileHeld(new Traverse(m_climber));
+    new JoystickButton(m_weapons, m_weapons.getPOV(0)).whileHeld(new Traverse(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
 

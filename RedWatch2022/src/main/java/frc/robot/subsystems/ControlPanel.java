@@ -40,7 +40,7 @@ public class ControlPanel extends SubsystemBase {
    * @param m_drivetrain Drivetrain subsystem
    * @param m_climber Hanger subsystem
    */
-  public ControlPanel(XboxController m_driver, Drivetrain m_drivetrain, Climber m_climber) {
+  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
 
@@ -89,8 +89,8 @@ public class ControlPanel extends SubsystemBase {
     // m_climbStatus.addNumber("left extend get", () -> m_climber.m_climbLeftExtend.get());
     // m_climbStatus.addNumber("left pivot get", () -> m_climber.m_climbLeftPivot.get());
 
-    // m_climbStatus.addBoolean("left bumper", () -> m_driver.getLeftBumper());
-    // m_climbStatus.addBoolean("right bumper", () -> m_driver.getRightBumper());
+    // m_climbStatus.addBoolean("left bumper", () -> m_weapons.getLeftBumper());
+    // m_climbStatus.addBoolean("right bumper", () -> m_weapons.getRightBumper());
 
     // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
