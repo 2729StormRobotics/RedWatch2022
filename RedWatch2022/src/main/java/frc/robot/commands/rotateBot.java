@@ -5,36 +5,47 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Climber;
 
-public class togglePistons extends CommandBase {
-  private final Intake m_intake;
+public class rotateBot extends CommandBase {
 
-  /** Creates a new togglePistons. */
-  public togglePistons(Intake intake) {
-    m_intake = intake;
+  private final Climber m_climber;
 
+  /** Creates a new rotateBot. */
+  public rotateBot(Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_intake);
+    m_climber = subsystem;
+    addRequirements(m_climber);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_intake.toggleIntakePistons();
+    m_climber.resetGyroAngle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_climber.turnMotor(m_climber.m_climbRightPivot, false);
+    m_climber.turnMotor(m_climber.m_climbLeftPivot, false);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_climber.resetGyroAngle();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    if (m_climber.getGyroAngle() >= 45) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
