@@ -82,7 +82,7 @@ public class ControlPanel extends SubsystemBase {
     m_climbStatus.add(new rotateForward(m_climber)); // Rotates the bot forward
     m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
 
-    // DEBUGGING values
+    // // DEBUGGING values
     // m_climbStatus.addNumber("right extend get", () -> m_climber.m_climbRightExtend.get());
     // m_climbStatus.addNumber("right pivot get", () -> m_climber.m_climbRightPivot.get());
 

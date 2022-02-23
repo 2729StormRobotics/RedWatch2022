@@ -46,7 +46,7 @@ public class RobotContainer {
     m_shooter = new Shooter();
 
     m_climber = new Climber();
-    m_climber.setDefaultCommand(new hangerControl(() -> m_weapons.getLeftY() / 2, () -> m_weapons.getRightY() / 4, () -> m_weapons.getLeftBumper(), () -> m_driver.getRightBumper(), m_climber));
+    m_climber.setDefaultCommand(new hangerControl(() -> m_weapons.getLeftY(), () -> m_weapons.getRightY(), () -> m_weapons.getLeftBumper(), () -> m_weapons.getRightBumper(), m_climber));
 
     // Set up drivetrain
     m_drivetrain = new Drivetrain();
