@@ -69,11 +69,11 @@ public final class Constants {
     public static final double kHighSpeedPerPulseEncoderRatio = kEncoderDistanceRatio / 60.0;
 
 	public static final class IntakeConstants {
-        public static final int kIntakeMotorPort = 1;
+        public static final int kIntakeMotorPort = 8;
         public static final int kIntakePiston1 = 4;
         public static final int kIntakePiston2 = 6;
-        public static final double kIntakeMotorSpeed = 10;
-        public static final double kEjectMotorSpeed = -10;
+        public static final double kIntakeMotorSpeed = 0.35;
+        public static final double kEjectMotorSpeed = -0.45;
         public static final Value kIntakeRaiseValue = Value.kForward;
         public static final Value kIntakeLowerValue = Value.kReverse;
 		public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
