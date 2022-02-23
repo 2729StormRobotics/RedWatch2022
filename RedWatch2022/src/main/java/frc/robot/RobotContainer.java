@@ -12,9 +12,7 @@ import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commandgroups.Traverse;
-import frc.robot.commands.differentialDrive;
 import frc.robot.commands.hangerControl;
-import frc.robot.commands.hangerRunMotors;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
