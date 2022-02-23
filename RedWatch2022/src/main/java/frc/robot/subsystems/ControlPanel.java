@@ -53,23 +53,6 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 4);
 
     // Creates the values that will be contained in each layout
-
-    m_intakeStatus.addBoolean("Red", () -> m_intake.m_detectedColor.red > m_intake.m_detectedColor.blue && m_intake.m_detectedColor.red >= 0.3);
-    m_intakeStatus.addBoolean("Blue", () -> m_intake.m_detectedColor.blue > m_intake.m_detectedColor.red && m_intake.m_detectedColor.blue >= 0.3);
-
-    // Shows color values (RGB)
-    m_intakeStatus.addNumber("R", () -> m_intake.m_detectedColor.red);
-    m_intakeStatus.addNumber("G", () -> m_intake.m_detectedColor.green);
-    m_intakeStatus.addNumber("B", () -> m_intake.m_detectedColor.blue);
-
-    // Proximity to ball
-    m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.proximity);
-
-    m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
-
-    m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
-      .withPosition(4, 1)
-      .withSize(2, 1);
     
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
@@ -139,6 +122,23 @@ public class ControlPanel extends SubsystemBase {
     .withProperties(Map.of("min", -1, "max", 1))
     .getEntry();
     m_pivotstatus.add("Run Pivot", new hangerRunMotors(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
+
+    m_intakeStatus.addBoolean("Red", () -> m_intake.m_detectedColor.red > m_intake.m_detectedColor.blue && m_intake.m_detectedColor.red >= 0.3);
+    m_intakeStatus.addBoolean("Blue", () -> m_intake.m_detectedColor.blue > m_intake.m_detectedColor.red && m_intake.m_detectedColor.blue >= 0.3);
+
+    // Shows color values (RGB)
+    m_intakeStatus.addNumber("R", () -> m_intake.m_detectedColor.red);
+    m_intakeStatus.addNumber("G", () -> m_intake.m_detectedColor.green);
+    m_intakeStatus.addNumber("B", () -> m_intake.m_detectedColor.blue);
+
+    // Proximity to ball
+    m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.proximity);
+
+    m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
+
+    m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
+      .withPosition(4, 1)
+      .withSize(2, 1);
 
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
