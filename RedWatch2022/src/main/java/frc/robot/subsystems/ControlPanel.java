@@ -30,6 +30,7 @@ public class ControlPanel extends SubsystemBase {
   private final ShuffleboardLayout m_climbStatus;
   private final ShuffleboardLayout m_extendstatus;
   private final ShuffleboardLayout m_pivotstatus;
+  private final ShuffleboardLayout m_lightstatus;
 
   private final NetworkTableEntry LeftExtendMotor;
   private final NetworkTableEntry RightExtendMotor;
@@ -42,34 +43,35 @@ public class ControlPanel extends SubsystemBase {
    * @param m_drivetrain Drivetrain subsystem
    * @param m_climber Hanger subsystem
    */
-  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber, Intake m_intake) {
+  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber, Intake m_intake, Lights m_lights) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
 
     // Creates layouts for each subsystem
-    m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(2, 0)
-      .withSize(2, 4);
-
-    // Creates the values that will be contained in each layout
-    
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(0, 0)
       .withSize(2, 4);
-    m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
+    m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 0)
       .withSize(2, 4);
-    m_extendstatus = m_controlpanelTab.getLayout("Extend Status", BuiltInLayouts.kList)
+    m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(4, 0)
-      .withSize(2, 3);
-    m_pivotstatus = m_controlpanelTab.getLayout("Pivot Status", BuiltInLayouts.kList)
+      .withSize(2, 4);
+    m_extendstatus = m_controlpanelTab.getLayout("Extend Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(6, 0)
       .withSize(2, 3);
+    m_pivotstatus = m_controlpanelTab.getLayout("Pivot Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(8, 0)
+      .withSize(2, 3);
+    m_lightstatus = m_controlpanelTab.getLayout("Light Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(8, 3)
+      .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
@@ -137,9 +139,11 @@ public class ControlPanel extends SubsystemBase {
     m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
 
     m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
-      .withPosition(4, 1)
+      .withPosition(6, 3)
       .withSize(2, 1);
-
+    
+    m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
+    
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
   }
