@@ -2,17 +2,26 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Climber": "Subsystem",
       "/LiveWindow/ControlPanel": "Subsystem",
       "/LiveWindow/Drivetrain": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
       "/LiveWindow/Indexer": "Subsystem",
       "/LiveWindow/Intake": "Subsystem",
+      "/LiveWindow/Lights": "Subsystem",
       "/LiveWindow/Shooter": "Subsystem",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/DigitalInput[1]": "Digital Input",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/Ungrouped/Spark[0]": "Motor Controller",
       "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro",
+      "/Shuffleboard/Control Panel/Climb Status/extendDown": "Command",
+      "/Shuffleboard/Control Panel/Climb Status/extendUp": "Command",
+      "/Shuffleboard/Control Panel/Climb Status/rotateBackward": "Command",
+      "/Shuffleboard/Control Panel/Climb Status/rotateForward": "Command",
+      "/Shuffleboard/Control Panel/Extend Status/Run Extender": "Command",
+      "/Shuffleboard/Control Panel/Pivot Status/Run Pivot": "Command",
+      "/Shuffleboard/Control Panel/Toggle Pistons": "Command",
       "/Shuffleboard/Intake Panel/togglePistons": "Command"
     },
     "windows": {

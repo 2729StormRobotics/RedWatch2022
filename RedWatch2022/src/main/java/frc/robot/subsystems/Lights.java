@@ -76,6 +76,16 @@ public class Lights extends SubsystemBase {
     return m_ledDriver.get();
   }
 
+  // Show's green when the bot is orientated correctly under the rung.
+  public void goodOrientation() {
+    m_ledDriver.set(kCorrect);
+  }
+
+  // Show's red when the bot is not orientated correctly under the rung. 
+  public void badOrientation() {
+    m_ledDriver.set(kBad);
+  }
+
   public void setGiven(double color) {
     m_ledDriver.set(color);
   }

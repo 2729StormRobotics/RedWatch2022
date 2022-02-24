@@ -10,12 +10,10 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.I2C;
 
 import static frc.robot.Constants.IntakeConstants.*;
-import static frc.robot.Constants.LightConstants.*;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -36,17 +34,11 @@ public class Intake extends SubsystemBase {
   private final NetworkTable m_intakeTable;
   private final NetworkTableEntry m_intakeStatus;
 
-  private final Spark m_ledDriver;
-
   /**
    * Controls the intake mechanism.
    * Talon motors are required.
    */
   public Intake() {
-
-    m_ledDriver = new Spark(0);
-    resetLights();
-
     // Creates motor and piston variables
     m_intakeMotor = new TalonSRX(kIntakeMotorPort);
     m_intakePiston1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakePiston1, kIntakePiston1 + 1); //The type of hopper (Replace CTREPCM With correct)
@@ -64,40 +56,6 @@ public class Intake extends SubsystemBase {
     m_intakeStatus = m_intakeTable.getEntry("Intake Running");
 
     m_colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
-  }
-
-  // Sets disabled color 
-  public void setDisabledColor() {
-    m_ledDriver.set(kDisabled);
-  }
-
-  // Turns off LEDs
-  public void setOff() {
-    m_ledDriver.set(kLightsOff);
-  }
-
-  // Sets LEDs to red
-  public void intakeRed() {
-    m_ledDriver.set(kRedBall);
-  }
-
-  // Sets LEDs to blue
-  public void intakeBlue() {
-    m_ledDriver.set(kBlueBall);
-  }
-
-  // Sets LEDs to default color
-  public void resetLights() {
-    m_ledDriver.set(kDefaultColor);
-  }
-
-  
-  public double getCurrentLights() {
-    return m_ledDriver.get();
-  }
-
-  public void setGiven(double color) {
-    m_ledDriver.set(color);
   }
 
   // Runs intake
