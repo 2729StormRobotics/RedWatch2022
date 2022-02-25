@@ -20,7 +20,7 @@ public final class Constants {
     public static final int RIGHT_MOTOR_ID = 1;
     public static final boolean kLeftReversedDefault = true;
     public static final boolean kRightReversedDefault = !kLeftReversedDefault;
-    public static final String kShuffleboardTab = "Testing";
+    public static final String kShuffleboardTab = "Shooter Panel";
     public static final int LEFT_MOTOR2_ID = 0;
     public static final int RIGHT_MOTOR2_ID = 0;
     public static final int STALL_LIMIT = 45;

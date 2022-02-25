@@ -6,34 +6,57 @@ package frc.robot.subsystems;
 
 import java.util.Map;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.RevToSpeed;
 
 public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
   private final ShuffleboardTab m_controlpanelTab;
-  private final ShuffleboardLayout m_drivetrainStatus;
   private final ShuffleboardLayout m_indexerStatus;
+  private final ShuffleboardLayout m_shooterStatus;
+  private final ShuffleboardLayout m_lightStatus;
 
-  public ControlPanel(Shooter m_shooter, Indexer m_iIndexer) {
+  private final NetworkTableEntry RevRPM;
+
+  public ControlPanel(Shooter m_shooter, Indexer m_iIndexer, Lights m_lights) {
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
-    m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
-    m_indexerStatus = m_controlpanelTab.getLayout("Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"));
-
-    // m_drivetrainStatus.addNumber("Left Speed", () -> m_drivetrain.getLeftSpeed());
-    // m_drivetrainStatus.addNumber("Right Speed", () -> m_drivetrain.getRightSpeed());
-    // m_drivetrainStatus.addNumber("Left Position", () -> m_drivetrain.getLeftDistance());
-    // m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
-    // m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle());
-    // m_drivetrainStatus.addNumber("Altitude", () -> m_drivetrain.getGyroPitch());
+    m_indexerStatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(1, 1)
+      .withSize(1, 1);
+    m_shooterStatus = m_controlpanelTab.getLayout("Shooter Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(0, 0)
+      .withSize(1, 2);
+    m_lightStatus = m_controlpanelTab.getLayout("Light Jawndess", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(1, 0)
+      .withSize(1, 1);
 
     m_indexerStatus.addBoolean("Is ball present?", () -> m_iIndexer.isBallPresent());
+
+    m_lightStatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
+
+    m_shooterStatus.addNumber("Encoder Velocity", () -> m_shooter.getEncoderVelocity(m_shooter.m_topEncoder));
+    m_shooterStatus.addNumber("Increment", () -> m_shooter.increment);
+    m_shooterStatus.addNumber("Motor Power", () -> m_shooter.motorPower);
+
+    RevRPM = m_controlpanelTab.add("Rev RPM", 2200)
+      .withPosition(2, 0)
+      .withSize(2, 1)
+      .getEntry();
+    m_controlpanelTab.add("Run Rev RPM", new RevToSpeed(RevRPM.getDouble(0), m_shooter, m_lights))
+      .withPosition(2, 1)
+      .withSize(2, 1);
+    
+    // Automatically sets or changes Shuffleboard's current tab to Control Panel
+    Shuffleboard.selectTab(Constants.kShuffleboardTab);
   }
 
   @Override
