@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.Constants.ClimberConstants;
+import static frc.robot.Constants.ClimberConstants.*;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -38,10 +38,10 @@ public class Climber extends SubsystemBase {
   /** Creates a new Climber. 
    * @param Map */
   public Climber() {
-    m_climbLeftExtend = new CANSparkMax(ClimberConstants.kClimberLeftFollowerExtendPort, MotorType.kBrushless);
-    m_climbRightExtend = new CANSparkMax(ClimberConstants.kClimberRightExtendPort, MotorType.kBrushless);
-    m_climbLeftPivot = new CANSparkMax(ClimberConstants.kClimberLeftPivotFollowerPort, MotorType.kBrushless);
-    m_climbRightPivot = new CANSparkMax(ClimberConstants.kClimberRightPivotPort, MotorType.kBrushless);
+    m_climbLeftExtend = new CANSparkMax(kClimberLeftFollowerExtendPort, MotorType.kBrushless);
+    m_climbRightExtend = new CANSparkMax(kClimberRightExtendPort, MotorType.kBrushless);
+    m_climbLeftPivot = new CANSparkMax(kClimberLeftPivotFollowerPort, MotorType.kBrushless);
+    m_climbRightPivot = new CANSparkMax(kClimberRightPivotPort, MotorType.kBrushless);
 
     // setMotor(motor, INVERSE);
     setMotor(m_climbLeftExtend, false);
@@ -81,7 +81,7 @@ public class Climber extends SubsystemBase {
   }
 
   private void encoderInit(RelativeEncoder encoder) {
-    encoder.setVelocityConversionFactor(ClimberConstants.kLowSpeedPerPulse);
+    encoder.setPositionConversionFactor(kDistancePerRevolution);
 
     encoderReset(encoder);
   }
