@@ -42,9 +42,9 @@ public class Intake extends SubsystemBase {
     m_intakePiston2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakePiston2, kIntakePiston2 + 1);
 
     // Resets to defaults and sets to idle mode and makes inverted
-    m_intakeMotor.configPeakCurrentDuration(kDRIVE_AMPERAGE_PEAK_DURATION, kCAN_TIMEOUT_SETUP);
-    m_intakeMotor.configPeakCurrentLimit(kDRIVE_AMPERAGE_LIMIT_PEAK, kCAN_TIMEOUT_SETUP);
-    m_intakeMotor.configContinuousCurrentLimit(kDRIVE_AMPERAGE_LIMIT_CONTINUOUS, kCAN_TIMEOUT_SETUP);
+    m_intakeMotor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
+    m_intakeMotor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
+    m_intakeMotor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
     m_intakeMotor.enableCurrentLimit(true);
     m_intakeMotor.setInverted(true);
 

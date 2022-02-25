@@ -44,10 +44,10 @@ public final class Constants {
         public static final double kEjectMotorSpeed = -0.45;
         public static final Value kIntakeRaiseValue = Value.kForward;
         public static final Value kIntakeLowerValue = Value.kReverse;
-		public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
-        public static final int kCAN_TIMEOUT_SETUP = 500;
-        public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
-        public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
+		public static final int kDriveAmperagePeakDuration = 100;
+        public static final int kCanTimeoutSetup = 500;
+        public static final int kDriveAmperageLimitPeak = 50;
+        public static final int kDriveAmperageLimitContinuous = 35;
     }
 
     public static final class IOPorts {
