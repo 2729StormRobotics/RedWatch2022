@@ -27,7 +27,7 @@ public class Climber extends SubsystemBase {
   public final RelativeEncoder m_climbLeftEncoder;
   public final RelativeEncoder m_climbRightEncoder;
 
-  private static AHRS ahrs;
+  private static AHRS m_ahrs;
 
   /**
    * Controls climbing mechanism
@@ -59,8 +59,9 @@ public class Climber extends SubsystemBase {
     encoderInit(m_climbLeftEncoder);
 
     try {
-      ahrs = new AHRS(SPI.Port.kMXP);
-    } catch (RuntimeException ex){
+      m_ahrs = new AHRS(SPI.Port.kMXP);
+    } 
+    catch (RuntimeException ex){
       DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
     }
 
@@ -104,11 +105,11 @@ public class Climber extends SubsystemBase {
   }
 
   public double getGyroAngle(){
-    return ahrs.getAngle();
+    return m_ahrs.getAngle();
   }
 
   public void resetGyroAngle(){
-    ahrs.reset();
+    m_ahrs.reset();
   }
 
   @Override

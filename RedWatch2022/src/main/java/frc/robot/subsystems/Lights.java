@@ -13,11 +13,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-
 import static frc.robot.Constants.LightConstants.*;
 
 public class Lights extends SubsystemBase {
@@ -26,15 +21,9 @@ public class Lights extends SubsystemBase {
   private final Spark m_ledDriver;
   private final NetworkTable m_lightTable;
   private final Timer m_timeToSpeed = new Timer();
-  // private final ShuffleboardTab m_ShuffleboardTab;
-  // private final ShuffleboardLayout m_lightValues;
-
-
 
   /** Creates a new Lights. */
   public Lights() {
-    // m_ShuffleboardTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
-    // m_lightValues = m_ShuffleboardTab.getLayout("Light Jawndess", BuiltInLayouts.kList);
     m_lightTable = NetworkTableInstance.getDefault().getTable("Light Statuses");
 
 
