@@ -77,7 +77,7 @@ public final class Constants {
     
 	public static final class VisionConstants {
         public static final double kLimelightHeight = 32.0; //TODO: Rough estimate... get more exact distance
-        public static final double kLimelightAngle = 0.0; //TODO: Once limelight is mounted measure angle of limelight from horizontal to limelight
+        public static final double kLimelightAngle = 35.0; //TODO: Rough estimate ... get more exact
         public static final double kHubHeight = 104.0;
 
         public static final int kDefaultPipeline = 0;
