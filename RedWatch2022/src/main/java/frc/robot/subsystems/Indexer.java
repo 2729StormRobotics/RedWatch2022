@@ -23,9 +23,9 @@ public class Indexer extends SubsystemBase {
   }
 
   private void motorInit(){
-    m_bottomMotor.configPeakCurrentDuration(kDRIVE_AMPERAGE_PEAK_DURATION, kCAN_TIMEOUT_SETUP);
-    m_bottomMotor.configPeakCurrentLimit(kDRIVE_AMPERAGE_LIMIT_PEAK, kCAN_TIMEOUT_SETUP);
-    m_bottomMotor.configContinuousCurrentLimit(kDRIVE_AMPERAGE_LIMIT_CONTINUOUS, kCAN_TIMEOUT_SETUP);
+    m_bottomMotor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
+    m_bottomMotor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
+    m_bottomMotor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
     m_bottomMotor.enableCurrentLimit(true);
   }
 

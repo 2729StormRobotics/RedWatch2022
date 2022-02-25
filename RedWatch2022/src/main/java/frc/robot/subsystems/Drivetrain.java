@@ -50,10 +50,10 @@ public class Drivetrain extends SubsystemBase {
     motorInit(rightMotor, kRightReversedDefault);
     motorInit(rightMotor2, kRightReversedDefault);
 
-    leftMotor.setSmartCurrentLimit(STALL_LIMIT);
-    rightMotor.setSmartCurrentLimit(STALL_LIMIT);
-    leftMotor2.setSmartCurrentLimit(STALL_LIMIT);
-    rightMotor2.setSmartCurrentLimit(STALL_LIMIT);
+    leftMotor.setSmartCurrentLimit(kStallLimit);
+    rightMotor.setSmartCurrentLimit(kStallLimit);
+    leftMotor2.setSmartCurrentLimit(kStallLimit);
+    rightMotor2.setSmartCurrentLimit(kStallLimit);
 
     leftMotor.setIdleMode(IdleMode.kBrake);
     leftMotor2.setIdleMode(IdleMode.kBrake);
