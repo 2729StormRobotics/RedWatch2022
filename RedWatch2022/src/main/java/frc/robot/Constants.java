@@ -20,9 +20,9 @@ public final class Constants {
     public static final String kShuffleboardTab = "Control Panel";
 
     public static final class ShooterConstants {
-        public static final int TOP_MOTOR_ID = 3;
+        public static final int kTopMotorPort = 3;
         public static final boolean kTopReversedDefault = false;
-        public static final int STALL_LIMIT = 45;
+        public static final int kStallLimit = 45;
         public static final int kCurrentLimit = 60;
     }
 
@@ -33,7 +33,7 @@ public final class Constants {
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
         public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
-        public static final double kIndexerSpeed = .250;
+        public static final double kIndexerSpeed = 0.250;
     }
 
 	public static final class IntakeConstants {
@@ -72,7 +72,7 @@ public final class Constants {
         public static final boolean kLeftReversedDefault = true;
         public static final boolean kRightReversedDefault = !kLeftReversedDefault;
 
-        public static final int STALL_LIMIT = 45;
+        public static final int kStallLimit = 45;
         public static final double TurnAngleD = 0.0;
         public static final double TurnAngleI = 0.0;
         public static final double TurnAngleP = 0.0;
@@ -92,7 +92,7 @@ public final class Constants {
         public static final double kBad = 0.61; // Used for a bad orientation - color red
         public static final double kBlueBall = 0.87;
         public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
-        public static final double kCorrect = 0.75; //Defines Dark Green
+        public static final double kCorrect = 0.75; // Defines Dark Green
         public static final int kBlinkinDriverPort = 0;
     }
     

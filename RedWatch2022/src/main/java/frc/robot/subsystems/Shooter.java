@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.ShooterConstants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -18,9 +18,9 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     //init motor
-    topMotor = new com.revrobotics.CANSparkMax(Constants.ShooterConstants.TOP_MOTOR_ID, MotorType.kBrushless);
-    motorInit(topMotor, Constants.ShooterConstants.kTopReversedDefault);
-    topMotor.setSmartCurrentLimit(Constants.ShooterConstants.STALL_LIMIT);
+    topMotor = new com.revrobotics.CANSparkMax(kTopMotorPort, MotorType.kBrushless);
+    motorInit(topMotor, kTopReversedDefault);
+    topMotor.setSmartCurrentLimit(kStallLimit);
     topMotor.setIdleMode(IdleMode.kBrake);
 
     m_topEncoder = topMotor.getEncoder();
@@ -30,7 +30,7 @@ public class Shooter extends SubsystemBase {
   public void motorInit(CANSparkMax motor, boolean invert){
     motor.restoreFactoryDefaults();
     motor.setIdleMode(IdleMode.kBrake);
-    motor.setSmartCurrentLimit(Constants.ShooterConstants.kCurrentLimit);
+    motor.setSmartCurrentLimit(kCurrentLimit);
     motor.setInverted(invert);
 
     //resets encoder
