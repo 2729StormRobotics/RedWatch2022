@@ -10,7 +10,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.Constants;
+import static frc.robot.Constants.DrivetrainConstants.*;
 import frc.robot.subsystems.Drivetrain;
 
 
@@ -24,7 +24,7 @@ public class TurnAngle extends PIDCommand {
     super(
         // The controller that the command will use
         // PID values experimentally determined
-        new PIDController(Constants.DrivetrainConstants.TurnAngleP, Constants.DrivetrainConstants.TurnAngleI, Constants.DrivetrainConstants.TurnAngleD),
+        new PIDController(kTurnAngleP, kTurnAngleI, kTurnAngleD),
         // This should return the measurement
         () -> drivetrain.getGyroAngle(),
         // This should return the setpoint (can also be a constant)
@@ -41,8 +41,7 @@ public class TurnAngle extends PIDCommand {
         });
         m_drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
-    getController().setTolerance(Constants.DrivetrainConstants.TurnAngleTolerace, 
-    Constants.DrivetrainConstants.TurnSpeedTolerance);
+    getController().setTolerance(kTurnAngleTolerace, kTurnSpeedTolerance);
     addRequirements(drivetrain);
       }
     // Configure additional PID options by calling `getController` here.

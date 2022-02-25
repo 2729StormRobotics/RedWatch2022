@@ -73,16 +73,16 @@ public final class Constants {
         public static final boolean kRightReversedDefault = !kLeftReversedDefault;
 
         public static final int kStallLimit = 45;
-        public static final double TurnAngleD = 0.0;
-        public static final double TurnAngleI = 0.0;
-        public static final double TurnAngleP = 0.0;
-        public static final double TurnAngleTolerace = 5.0;
-        public static final double TurnSpeedTolerance = 5.0;
-        public static final double AutoForwardI = 0.0;
-        public static final double AutoForwardP = 0.0;
-        public static final double AutoForwardD = 0.0;
-        public static final double VelocityTolerance = 5.0;
-        public static final double PositionTolerace = 5.0;
+        public static final double kTurnAngleD = 0.0;
+        public static final double kTurnAngleI = 0.0;
+        public static final double kTurnAngleP = 0.0;
+        public static final double kTurnAngleTolerace = 5.0;
+        public static final double kTurnSpeedTolerance = 5.0;
+        public static final double kAutoForwardI = 0.0;
+        public static final double kAutoForwardP = 0.0;
+        public static final double kAutoForwardD = 0.0;
+        public static final double kVelocityTolerance = 5.0;
+        public static final double kPositionTolerace = 5.0;
     }
    
     public static class LightConstants {
