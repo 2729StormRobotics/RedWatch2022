@@ -57,10 +57,10 @@ public final class Constants {
 
     public static class DrivetrainConstants {
         // based off PDP ports and the REV Spark Client. 0 is reassigned as 15.
-        public static final int LEFT_MOTOR_ID = 12;
-        public static final int RIGHT_MOTOR_ID = 15;
-        public static final int LEFT_MOTOR2_ID = 14;
-        public static final int RIGHT_MOTOR2_ID = 1;
+        public static final int kLeftMotorPort = 12;
+        public static final int kRightMotorPort = 15;
+        public static final int kLeftMotor2Port = 14;
+        public static final int kRightMotor2Port = 1;
 
         // since the encoder is build into the motor we need to account for gearing
         public static final double kWheelDiameter = 6.0;

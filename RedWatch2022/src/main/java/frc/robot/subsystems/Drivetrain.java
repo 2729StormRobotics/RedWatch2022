@@ -40,10 +40,10 @@ public class Drivetrain extends SubsystemBase {
 
   public Drivetrain() {
     // initialize motors
-    leftMotor = new com.revrobotics.CANSparkMax(LEFT_MOTOR_ID, MotorType.kBrushless);
-    leftMotor2 = new com.revrobotics.CANSparkMax(LEFT_MOTOR2_ID, MotorType.kBrushless);
-    rightMotor = new com.revrobotics.CANSparkMax(RIGHT_MOTOR_ID, MotorType.kBrushless);
-    rightMotor2 = new com.revrobotics.CANSparkMax(RIGHT_MOTOR2_ID, MotorType.kBrushless);
+    leftMotor = new com.revrobotics.CANSparkMax(kLeftMotorPort, MotorType.kBrushless);
+    leftMotor2 = new com.revrobotics.CANSparkMax(kLeftMotor2Port, MotorType.kBrushless);
+    rightMotor = new com.revrobotics.CANSparkMax(kRightMotorPort, MotorType.kBrushless);
+    rightMotor2 = new com.revrobotics.CANSparkMax(kRightMotor2Port, MotorType.kBrushless);
 
     motorInit(leftMotor, kLeftReversedDefault);
     motorInit(leftMotor2, kLeftReversedDefault);
