@@ -77,7 +77,7 @@ public final class Constants {
 
         // since the encoder is build into the motor we need to account for gearing
         public static final double kWheelDiameter = 6.0;
-        public static final double kGearRatio = 1/13;
+        public static final double kGearRatio = 1.0 / 13.0;
         public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio;
         public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
 
@@ -116,6 +116,8 @@ public final class Constants {
 		public static final int kClimberRightPivotPort = 10;
 		public static final String kClimberTab = "Climber Status";
 		
+        public static final double kDistancePerRevolution = 0; //TODO: put in gear ratio for the climbers
+
 		public static final double kClimberRightSize = 12;
 
 	}
