@@ -14,22 +14,6 @@ package frc.robot;
  */
 public final class Constants {
 
-    // Drivetrain
-    public static final int kCurrentLimit = 60;
-    public static final int LEFT_MOTOR_ID = 2;
-    public static final int RIGHT_MOTOR_ID = 1;
-    public static final boolean kLeftReversedDefault = true;
-    public static final boolean kRightReversedDefault = !kLeftReversedDefault;
-    public static final String kShuffleboardTab = "Shooter Panel";
-    public static final int LEFT_MOTOR2_ID = 0;
-    public static final int RIGHT_MOTOR2_ID = 0;
-    public static final int STALL_LIMIT = 45;
-
-    public static final double kWheelDiameter = 6.0;
-    public static final double kGearRatio = 1/13;
-    public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio;
-    public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
-
     public static final class ShooterConstants {
         public static final int TOP_MOTOR_ID = 3;
         public static final boolean kTopReversedDefault = false;
@@ -37,31 +21,19 @@ public final class Constants {
         public static final int kCurrentLimit = 60;
     }
 
-    
-	//in percentage 
-    public static final double kIndexerSpeed = .50;
-    public static final double kHighShootSpeed = 1;
-    public static final double kLowShootSpeed = 0.5;
-
-
-    public static final String kShooterTab = "Shooter";
-    public static final double kFlyWheelPID = 0.25;
     public static final int kDriverController = 1;
+    public static int kWeaponsController = 2;
+    public static String kShuffleboardTab = "Shooter Panel";
 
     public static final class IndexerConstants {
-        public static final String kShuffleboardTab = "Indexer";
-
         public static final int kIndexMotorPort = 6;
         public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
         public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
         public static final int kBeamBreakPort = 2;
+        public static final double kIndexerSpeed = .50;
     }
-
-    public static double kFlyWheelTolerance = 50.0;
-    public static double kFlyWheelVelocityTolerance = 250;
-    public static int kWeaponsController = 2;
 
     public static class LightConstants {
         public static final int kBlinkinDriverPort = 0; //TODO: Find a port for this
