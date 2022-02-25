@@ -50,12 +50,12 @@ public class RobotContainer {
     m_intake = new Intake();
     m_indexer = new Indexer();
     m_shooter = new Shooter();
-
     m_climber = new Climber();
-    m_climber.setDefaultCommand(new hangerControl(() -> m_weapons.getLeftY(), () -> m_weapons.getRightY(), () -> m_weapons.getLeftBumper(), () -> m_weapons.getRightBumper(), m_climber));
-
-    // Set up drivetrain
     m_drivetrain = new Drivetrain();
+
+    m_climber.setDefaultCommand(
+      new hangerControl(() -> m_weapons.getLeftY(), () -> m_weapons.getRightY(), () -> m_weapons.getLeftBumper(), () -> m_weapons.getRightBumper(), m_climber));
+
     m_drivetrain.setDefaultCommand(
       new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
 
@@ -73,20 +73,15 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // A button loads ball in
-    // X ejects ball
-    // B shoots ball high
-    // Y shoots ball low
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
-    new JoystickButton(m_driver, Button.kB.value).whenPressed(new IntakeEject(m_intake));
-    new JoystickButton(m_driver, Button.kX.value).whenPressed(new IntakeRun(m_intake));
-    new JoystickButton(m_driver, Button.kY.value).whenPressed(new IntakeStop(m_intake));
+    new JoystickButton(m_driver, Button.kX.value).whileHeld(new IntakeRun(m_intake));
+
     
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
     // new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));
     // new JoystickButton(m_driver, Button.kY.value).whileHeld(new ShootCargo(Constants.kLowShootSpeed, m_shooter));
-    new JoystickButton(m_weapons, m_weapons.getPOV(0)).whileHeld(new Traverse(m_climber));
+    // new JoystickButton(m_weapons, m_weapons.getPOV(0)).whileHeld(new Traverse(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
   }

@@ -65,7 +65,6 @@ public class Intake extends SubsystemBase {
   // Rotates motors for intake at kIntakeMotorSpeed
   public void intake() {
     runIntake(kIntakeMotorSpeed);
-
   }
 
   // Rotates motors for intake at kEjectMotorSpeed
