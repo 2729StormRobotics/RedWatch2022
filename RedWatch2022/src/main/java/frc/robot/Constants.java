@@ -26,8 +26,7 @@ public final class Constants {
         public static final int kCurrentLimit = 60;
     }
     
-	//in percentage 
-    public static final double kIndexerSpeed = .250;
+
     public static final int kDriverController = 1;
     public static final int kWeaponsController = 2;
     public static final double kHighShootSpeed = 0.5;
@@ -96,24 +95,28 @@ public final class Constants {
     }
 
     public static final class Ports {
-        public static final int LEFT_MOTOR_ID = 12;
-        public static final int RIGHT_MOTOR_ID = 15;
-        public static final int LEFT_MOTOR2_ID = 14;
-        public static final int RIGHT_MOTOR2_ID = 1;
+
         public static final int kIndexMotorPort = 3;
         public static final int kBeamBreakPort = 1;
         public static final int kBlinkinDriverPort = 0;
     }
 
     public static class DrivetrainConstants {
+        public static final int LEFT_MOTOR_ID = 12;
+        public static final int RIGHT_MOTOR_ID = 15;
+        public static final int LEFT_MOTOR2_ID = 14;
+        public static final int RIGHT_MOTOR2_ID = 1;
+
         // since the encoder is build into the motor we need to account for gearing
         public static final double kWheelDiameter = 6.0;
         public static final double kGearRatio = 1/13;
         public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio;
         public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
+
         public static final int kCurrentLimit = 60;
         public static final boolean kLeftReversedDefault = true;
         public static final boolean kRightReversedDefault = !kLeftReversedDefault;
+        
         public static final int STALL_LIMIT = 45;
         public static final double TurnAngleD = 0;
         public static final double TurnAngleI = 0;

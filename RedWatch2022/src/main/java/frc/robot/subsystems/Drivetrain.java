@@ -6,7 +6,7 @@ package frc.robot.subsystems;
 
 //import com.analog.adis16470.frc.ADIS16470_IMU;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.DrivetrainConstants.*;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -36,24 +36,24 @@ public class Drivetrain extends SubsystemBase {
 
   private final DifferentialDrive m_drive;
 
-  public boolean m_reverseDrive = false;
-  AHRS ahrs;
+  AHRS m_ahrs;
 
   public Drivetrain() {
-    leftMotor = new com.revrobotics.CANSparkMax(Constants.Ports.LEFT_MOTOR_ID, MotorType.kBrushless);
-    leftMotor2 = new com.revrobotics.CANSparkMax(Constants.Ports.LEFT_MOTOR2_ID, MotorType.kBrushless);
-    rightMotor = new com.revrobotics.CANSparkMax(Constants.Ports.RIGHT_MOTOR_ID, MotorType.kBrushless);
-    rightMotor2 = new com.revrobotics.CANSparkMax(Constants.Ports.RIGHT_MOTOR2_ID, MotorType.kBrushless);
+    // initialize motors
+    leftMotor = new com.revrobotics.CANSparkMax(LEFT_MOTOR_ID, MotorType.kBrushless);
+    leftMotor2 = new com.revrobotics.CANSparkMax(LEFT_MOTOR2_ID, MotorType.kBrushless);
+    rightMotor = new com.revrobotics.CANSparkMax(RIGHT_MOTOR_ID, MotorType.kBrushless);
+    rightMotor2 = new com.revrobotics.CANSparkMax(RIGHT_MOTOR2_ID, MotorType.kBrushless);
 
-    motorInit(leftMotor, Constants.DrivetrainConstants.kLeftReversedDefault);
-    motorInit(leftMotor2, Constants.DrivetrainConstants.kLeftReversedDefault);
-    motorInit(rightMotor, Constants.DrivetrainConstants.kRightReversedDefault);
-    motorInit(rightMotor2, Constants.DrivetrainConstants.kRightReversedDefault);
+    motorInit(leftMotor, kLeftReversedDefault);
+    motorInit(leftMotor2, kLeftReversedDefault);
+    motorInit(rightMotor, kRightReversedDefault);
+    motorInit(rightMotor2, kRightReversedDefault);
 
-    leftMotor.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
-    rightMotor.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
-    leftMotor2.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
-    rightMotor2.setSmartCurrentLimit(Constants.DrivetrainConstants.STALL_LIMIT);
+    leftMotor.setSmartCurrentLimit(STALL_LIMIT);
+    rightMotor.setSmartCurrentLimit(STALL_LIMIT);
+    leftMotor2.setSmartCurrentLimit(STALL_LIMIT);
+    rightMotor2.setSmartCurrentLimit(STALL_LIMIT);
 
     leftMotor.setIdleMode(IdleMode.kBrake);
     leftMotor2.setIdleMode(IdleMode.kBrake);
@@ -72,28 +72,37 @@ public class Drivetrain extends SubsystemBase {
     m_drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
     try {
-      ahrs = new AHRS(SPI.Port.kMXP);
+      m_ahrs = new AHRS(SPI.Port.kMXP);
     } catch (RuntimeException ex){
       DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
     }
     
   }
 
+  /**
+   * Resets the default motor settings
+   * 
+   * @param motor
+   * @param invert
+   */
   public void motorInit(CANSparkMax motor, boolean invert) {
     motor.restoreFactoryDefaults();
     motor.setIdleMode(IdleMode.kBrake);
-    motor.setSmartCurrentLimit(Constants.DrivetrainConstants.kCurrentLimit);
+    motor.setSmartCurrentLimit(kCurrentLimit);
     motor.setInverted(invert);
 
     encoderInit(motor.getEncoder());
   }
 
+  /**
+   * Set conversion factor and velocity factor based on gear ratio
+   * 
+   * @param encoder
+   */
   private void encoderInit(RelativeEncoder encoder) {
-    // set conversion factor and velocity factor for high gear
-    encoder.setPositionConversionFactor(Constants.DrivetrainConstants.kDistancePerRevolution);
-    encoder.setVelocityConversionFactor(Constants.DrivetrainConstants.kSpeedPerRevolution);
+    encoder.setPositionConversionFactor(kDistancePerRevolution);
+    encoder.setVelocityConversionFactor(kSpeedPerRevolution);
     encoderReset(encoder);
-
   }
 
   public void resetAllEncoders(){
@@ -130,43 +139,48 @@ public class Drivetrain extends SubsystemBase {
   }
   
   public double getGyroAngle() {
-    return ahrs.getAngle();
+    return m_ahrs.getAngle();
   }
 
   public double getGyroPitch() {
-    return ahrs.getPitch();
-  }
-
-  public double squareInput(double input) {
-    return Math.copySign(input * input, input);
+    return m_ahrs.getPitch();
   }
 
   public void resetGyroAngle(){
-    ahrs.reset();
+    m_ahrs.reset();
   }
 
   /** The Tank Drive mode is used to control each side of the drivetrain
    *  independently (usually with an individual joystick axis controlling each).
+   * 
    * @param leftPower Speed of the robot's left side
    * @param rightPower Speed of the robot's right side
    * @param squareInputs Decreases the input sensitivity at low speeds
    */
   public void tankDrive(double leftPower, double rightPower, boolean squareInputs) {
-    if (m_reverseDrive) {
-      m_drive.tankDrive(leftPower/2, rightPower/2, squareInputs);
-    }
-    else {
-      m_drive.tankDrive(leftPower/2, rightPower/2, squareInputs); 
-    }
+      m_drive.tankDrive(-leftPower, -rightPower, squareInputs);
   }
 
-  // Inverted is correct
+  /**
+   * Curvature drive method. The forward/reverse should be inverted to match the robot
+   * 
+   * @param stickY
+   * @param stickX
+   * @param stickButton
+   */
   public void curvatureDrive(double stickY, double stickX, boolean stickButton) {
-    m_drive.curvatureDrive(-stickY, -stickX, stickButton);
+    m_drive.curvatureDrive(-stickY, stickX, stickButton);
   }
 
+  /**
+   * Arcade drive method. The forward/reverse should be inverted to match the robot
+   * 
+   * @param speed
+   * @param turn
+   * @param squareInputs
+   */
   public void arcadeDrive(double speed, double turn, boolean squareInputs) {
-    m_drive.arcadeDrive(speed, turn, squareInputs);
+    m_drive.arcadeDrive(-speed, turn, squareInputs);
   }
 
   public void stopDrive() {
