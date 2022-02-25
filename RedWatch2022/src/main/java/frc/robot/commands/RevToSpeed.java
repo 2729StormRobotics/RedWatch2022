@@ -24,7 +24,7 @@ public class RevToSpeed extends CommandBase {
   /** Creates a new RevToSpeed. */
   public RevToSpeed(double rpm, Shooter shooter, Lights lights) {
 
-    m_TargetRPM = rpm;
+    m_TargetRPM = rpm * 2;
     m_shooter = shooter;
     m_lights = lights;
 
@@ -67,7 +67,6 @@ public class RevToSpeed extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_shooter.flyWheelSpeedAfterRev = m_motorPower;
-    m_shooter.topMotor.set(0);
 
 
   }

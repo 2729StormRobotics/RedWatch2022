@@ -71,6 +71,8 @@ public class RobotContainer {
     // new JoystickButton(m_driver, Button.kY.value).whileHeld(new ShootCargo(Constants.kLowShootSpeed, m_shooter));
     // new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
     // new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
+
+    // RPM is range between 0-2700
     new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 2000));
 
   }

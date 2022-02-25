@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
+import frc.robot.subsystems.Shooter;
 
 
 
@@ -16,6 +17,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;
   private final Lights m_lights;
+  private final Shooter m_shooter;
 
   /**
    * Spins indexer motor so that the ball will go into the flywheel and be shot.
@@ -26,9 +28,10 @@ public class LoadBallIntoFlyWheel extends CommandBase {
    * @param lights lights subsystem
    */
 
-  public LoadBallIntoFlyWheel(Indexer indexer, Lights lights) {
+  public LoadBallIntoFlyWheel(Indexer indexer, Shooter shooter, Lights lights) {
     m_indexer = indexer;
     m_lights = lights;
+    m_shooter = shooter;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_indexer);
   }
@@ -53,6 +56,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
   public void end(boolean interrupted) {
     m_indexer.load(0.0);
     m_lights.resetLights();
+    m_shooter.topMotor.set(0.0);
   }
 
   // Returns true when the command should end.
