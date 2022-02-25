@@ -69,9 +69,29 @@ public final class Constants {
 	public static final double kEncoderDistanceRatio = 1.125753635;
 	public static double kRightAngleTurnArcLength = 7.25 * Math.PI;
     public static final double kHighSpeedPerPulseEncoderRatio = kEncoderDistanceRatio / 60.0;
-    
+
+	public static final class IntakeConstants {
+        public static final int kIntakeMotorPort = 8;
+        public static final int kIntakePiston1 = 4;
+        public static final int kIntakePiston2 = 6;
+        public static final double kIntakeMotorSpeed = 0.35;
+        public static final double kEjectMotorSpeed = -0.45;
+        public static final Value kIntakeRaiseValue = Value.kForward;
+        public static final Value kIntakeLowerValue = Value.kReverse;
+		public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
+        public static final int kCAN_TIMEOUT_SETUP = 500;
+        public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
+        public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
+    }
+
+    public static final class HopperConstants{ 
+        public static final int kHopperMotorPort = 5;
+        public static final double kHopperMotorSpeed = 0.25; 
+
+        public static final String kShuffleboardTab = "Testing";
+    }
+
     public static final class ColorConstants {
-        public static final int colorPort = 1;
         public static final String kShuffleboardTab = "Color";
     }
 

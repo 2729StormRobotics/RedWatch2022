@@ -26,22 +26,22 @@ public class Lights extends SubsystemBase {
   private final Spark m_ledDriver;
   private final NetworkTable m_lightTable;
   private final Timer m_timeToSpeed = new Timer();
-  private final ShuffleboardTab m_ShuffleboardTab;
-  private final ShuffleboardLayout m_lightValues;
+  // private final ShuffleboardTab m_ShuffleboardTab;
+  // private final ShuffleboardLayout m_lightValues;
 
 
 
   /** Creates a new Lights. */
   public Lights() {
-    m_ShuffleboardTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
-    m_lightValues = m_ShuffleboardTab.getLayout("Light Jawndess", BuiltInLayouts.kList);
+    // m_ShuffleboardTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
+    // m_lightValues = m_ShuffleboardTab.getLayout("Light Jawndess", BuiltInLayouts.kList);
     m_lightTable = NetworkTableInstance.getDefault().getTable("Light Statuses");
 
 
     m_ledDriver = new Spark(Constants.Ports.kBlinkinDriverPort);
     resetLights();
 
-    m_lightValues.addNumber("Light Output", () -> getCurrentLights());
+    // m_lightValues.addNumber("Light Output", () -> getCurrentLights());
   }
 
   /* TODO: When robot takes in ball of each color
@@ -74,6 +74,16 @@ public class Lights extends SubsystemBase {
 
   public double getCurrentLights() {
     return m_ledDriver.get();
+  }
+
+  // Show's green when the bot is orientated correctly under the rung.
+  public void goodOrientation() {
+    m_ledDriver.set(kCorrect);
+  }
+
+  // Show's red when the bot is not orientated correctly under the rung. 
+  public void badOrientation() {
+    m_ledDriver.set(kBad);
   }
 
   public void setGiven(double color) {

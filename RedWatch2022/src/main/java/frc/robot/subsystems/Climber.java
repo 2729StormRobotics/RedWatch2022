@@ -5,8 +5,6 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants.ClimberConstants;
-import frc.robot.Constants.LightConstants;
-import frc.robot.Constants.Ports;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -16,7 +14,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -32,10 +29,6 @@ public class Climber extends SubsystemBase {
 
   private static AHRS ahrs;
 
-  // private static final double kDisabled = 0;
-  private final Spark m_ledDriver;
-  // private final Timer m_timeToSpeed = new Timer();
-
   /**
    * Controls climbing mechanism
    * Requires 4 motors (2 leader 2 followers)
@@ -45,14 +38,10 @@ public class Climber extends SubsystemBase {
   /** Creates a new Climber. 
    * @param Map */
   public Climber() {
-
     m_climbLeftExtend = new CANSparkMax(ClimberConstants.kClimberLeftFollowerExtendPort, MotorType.kBrushless);
     m_climbRightExtend = new CANSparkMax(ClimberConstants.kClimberRightExtendPort, MotorType.kBrushless);
     m_climbLeftPivot = new CANSparkMax(ClimberConstants.kClimberLeftPivotFollowerPort, MotorType.kBrushless);
     m_climbRightPivot = new CANSparkMax(ClimberConstants.kClimberRightPivotPort, MotorType.kBrushless);
-
-    m_ledDriver = new Spark(Ports.kBlinkinDriverPort);
-    resetLights();
 
     // setMotor(motor, INVERSE);
     setMotor(m_climbLeftExtend, false);
@@ -79,20 +68,6 @@ public class Climber extends SubsystemBase {
 
   public void changeMode(String mode) {
 
-  }
-
-  //Show's green when the bot is orientated correctly under the rung.
-  public void goodOrientation() {
-    m_ledDriver.set(LightConstants.kCorrect);
-  }
-
-  //Show's red when the bot is not orientated correctly under the run. 
-  public void badOrientation() {
-    m_ledDriver.set(LightConstants.kBad);
-  }
-
-  public void resetLights() {
-    m_ledDriver.set(LightConstants.kDefaultColor);
   }
 
   public void turnMotor(CANSparkMax motor, boolean inverse) {

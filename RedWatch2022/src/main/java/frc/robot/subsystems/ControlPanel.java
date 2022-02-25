@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.togglePistons;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
 import frc.robot.commands.hangerRunMotors;
@@ -24,10 +25,12 @@ import frc.robot.commands.rotateForward;
 public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
   private final ShuffleboardTab m_controlpanelTab;
+  private final ShuffleboardLayout m_intakeStatus;
   private final ShuffleboardLayout m_drivetrainStatus;
   private final ShuffleboardLayout m_climbStatus;
   private final ShuffleboardLayout m_extendstatus;
   private final ShuffleboardLayout m_pivotstatus;
+  private final ShuffleboardLayout m_lightstatus;
 
   private final NetworkTableEntry LeftExtendMotor;
   private final NetworkTableEntry RightExtendMotor;
@@ -40,7 +43,7 @@ public class ControlPanel extends SubsystemBase {
    * @param m_drivetrain Drivetrain subsystem
    * @param m_climber Hanger subsystem
    */
-  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber) {
+  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber, Intake m_intake, Lights m_lights) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
 
@@ -49,18 +52,26 @@ public class ControlPanel extends SubsystemBase {
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(0, 0)
       .withSize(2, 4);
-    m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
+    m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 0)
       .withSize(2, 4);
-    m_extendstatus = m_controlpanelTab.getLayout("Extend Status", BuiltInLayouts.kList)
+    m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(4, 0)
-      .withSize(2, 3);
-    m_pivotstatus = m_controlpanelTab.getLayout("Pivot Status", BuiltInLayouts.kList)
+      .withSize(2, 4);
+    m_extendstatus = m_controlpanelTab.getLayout("Extend Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(6, 0)
       .withSize(2, 3);
+    m_pivotstatus = m_controlpanelTab.getLayout("Pivot Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(8, 0)
+      .withSize(2, 3);
+    m_lightstatus = m_controlpanelTab.getLayout("Light Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(8, 3)
+      .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
@@ -114,6 +125,25 @@ public class ControlPanel extends SubsystemBase {
     .getEntry();
     m_pivotstatus.add("Run Pivot", new hangerRunMotors(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
 
+    m_intakeStatus.addBoolean("Red", () -> m_intake.m_detectedColor.red > m_intake.m_detectedColor.blue && m_intake.m_detectedColor.red >= 0.3);
+    m_intakeStatus.addBoolean("Blue", () -> m_intake.m_detectedColor.blue > m_intake.m_detectedColor.red && m_intake.m_detectedColor.blue >= 0.3);
+
+    // Shows color values (RGB)
+    m_intakeStatus.addNumber("R", () -> m_intake.m_detectedColor.red);
+    m_intakeStatus.addNumber("G", () -> m_intake.m_detectedColor.green);
+    m_intakeStatus.addNumber("B", () -> m_intake.m_detectedColor.blue);
+
+    // Proximity to ball
+    m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.proximity);
+
+    m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
+
+    m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
+      .withPosition(6, 3)
+      .withSize(2, 1);
+    
+    m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
+    
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
   }

@@ -6,22 +6,23 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanel;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.IntakeEject;
+import frc.robot.commands.IntakeRun;
+import frc.robot.commands.IntakeStop;
+import frc.robot.commands.IntakeToggle;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.hangerControl;
-import edu.wpi.first.wpilibj.XboxController.Button;
-import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Drivetrain;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.subsystems.Indexer;
 import frc.robot.commands.curvatureDrive;
-import frc.robot.commands.differentialDrive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -31,9 +32,11 @@ import frc.robot.commands.differentialDrive;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private final Intake m_intake;
   private final Climber m_climber;
   private final Indexer m_indexer;
   private final Shooter m_shooter;
+  private final Lights m_lights;
 
   private final Drivetrain m_drivetrain;
 
@@ -42,6 +45,8 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_lights = new Lights();
+    m_intake = new Intake();
     m_indexer = new Indexer();
     m_shooter = new Shooter();
 
@@ -54,7 +59,7 @@ public class RobotContainer {
       new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> -m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
 
     // Set up Control Panel
-    new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber);
+    new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_lights);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -71,6 +76,11 @@ public class RobotContainer {
     // X ejects ball
     // B shoots ball high
     // Y shoots ball low
+    new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
+    new JoystickButton(m_driver, Button.kB.value).whenPressed(new IntakeEject(m_intake));
+    new JoystickButton(m_driver, Button.kX.value).whenPressed(new IntakeRun(m_intake));
+    new JoystickButton(m_driver, Button.kY.value).whenPressed(new IntakeStop(m_intake));
+    
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
     // new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));

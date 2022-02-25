@@ -1,18 +1,4 @@
 {
-  "HALProvider": {
-    "Other Devices": {
-      "SPARK MAX [10]": {
-        "header": {
-          "open": true
-        }
-      },
-      "SPARK MAX [2]": {
-        "header": {
-          "open": true
-        }
-      }
-    }
-  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
@@ -21,6 +7,8 @@
       "/LiveWindow/Drivetrain": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
       "/LiveWindow/Indexer": "Subsystem",
+      "/LiveWindow/Intake": "Subsystem",
+      "/LiveWindow/Lights": "Subsystem",
       "/LiveWindow/Shooter": "Subsystem",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/DigitalInput[1]": "Digital Input",
@@ -33,12 +21,8 @@
       "/Shuffleboard/Control Panel/Climb Status/rotateForward": "Command",
       "/Shuffleboard/Control Panel/Extend Status/Run Extender": "Command",
       "/Shuffleboard/Control Panel/Pivot Status/Run Pivot": "Command",
-      "/Shuffleboard/Hanger Panel/Climb Status/extendDown": "Command",
-      "/Shuffleboard/Hanger Panel/Climb Status/extendUp": "Command",
-      "/Shuffleboard/Hanger Panel/Climb Status/rotateBackward": "Command",
-      "/Shuffleboard/Hanger Panel/Climb Status/rotateForward": "Command",
-      "/Shuffleboard/Hanger Panel/Extend Status/Run Extender": "Command",
-      "/Shuffleboard/Hanger Panel/Pivot Status/Run Pivot": "Command"
+      "/Shuffleboard/Control Panel/Toggle Pistons": "Command",
+      "/Shuffleboard/Intake Panel/togglePistons": "Command"
     },
     "windows": {
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": {
@@ -51,14 +35,6 @@
           "visible": true
         }
       }
-    }
-  },
-  "NetworkTables": {
-    "Shuffleboard": {
-      "Hanger Panel": {
-        "open": true
-      },
-      "open": true
     }
   }
 }
