@@ -26,9 +26,6 @@ public final class Constants {
         public static final int kCurrentLimit = 60;
     }
 
-    public static final double kHighShootSpeed = 0.5;
-    public static final double kLowShootSpeed = 0.25;
-
     public static final class IndexerConstants {
         public static final int kIndexMotorPort = 6;
         public static final int kBeamBreakPort = 1;
@@ -39,11 +36,6 @@ public final class Constants {
         public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
         public static final double kIndexerSpeed = .250;
     }
-
-    public static final int kCurrentLimit = 60;
-    public static final boolean kLeftReversedDefault = true;
-    public static final boolean kRightReversedDefault = !kLeftReversedDefault;
-    public static final int STALL_LIMIT = 45;
 
 	public static final class IntakeConstants {
         public static final int kIntakeMotorPort = 8;
