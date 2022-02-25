@@ -76,7 +76,6 @@ public class RobotContainer {
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kX.value).whileHeld(new IntakeRun(m_intake));
 
-    
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
     // new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));
