@@ -78,16 +78,16 @@ public final class Constants {
         public static final boolean kRightReversedDefault = !kLeftReversedDefault;
 
         public static final int STALL_LIMIT = 45;
-        public static final double TurnAngleD = 0;
-        public static final double TurnAngleI = 0;
-        public static final double TurnAngleP = 0;
-        public static final double TurnAngleTolerace = 5;
-        public static final double TurnSpeedTolerance = 5;
-        public static final double AutoForwardI = 0;
-        public static final double AutoForwardP = 0;
-        public static final double AutoForwardD = 0;
-        public static final double VelocityTolerance = 5;
-        public static final double PositionTolerace = 5;
+        public static final double TurnAngleD = 0.0;
+        public static final double TurnAngleI = 0.0;
+        public static final double TurnAngleP = 0.0;
+        public static final double TurnAngleTolerace = 5.0;
+        public static final double TurnSpeedTolerance = 5.0;
+        public static final double AutoForwardI = 0.0;
+        public static final double AutoForwardP = 0.0;
+        public static final double AutoForwardD = 0.0;
+        public static final double VelocityTolerance = 5.0;
+        public static final double PositionTolerace = 5.0;
     }
    
     public static class LightConstants {
@@ -110,7 +110,7 @@ public final class Constants {
 		
         public static final double kDistancePerRevolution = 0; //TODO: put in gear ratio for the climbers
 
-		public static final double kClimberRightSize = 12;
+		public static final double kClimberRightSize = 12.0;
 
 	}
 }
