@@ -26,8 +26,7 @@ public class Lights extends SubsystemBase {
   public Lights() {
     m_lightTable = NetworkTableInstance.getDefault().getTable("Light Statuses");
 
-
-    m_ledDriver = new Spark(Constants.Ports.kBlinkinDriverPort);
+    m_ledDriver = new Spark(kBlinkinDriverPort);
     resetLights();
 
     // m_lightValues.addNumber("Light Output", () -> getCurrentLights());
