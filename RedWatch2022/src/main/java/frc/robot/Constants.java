@@ -19,28 +19,10 @@ public final class Constants {
     public static int kRobotLength = 67; //TODO: check later
     public static final String kShuffleboardTab = "Control Panel";
 
-    public static final class ShooterConstants {
-        public static final int TOP_MOTOR_ID = 3;
-        public static final boolean kTopReversedDefault = false;
-        public static final int STALL_LIMIT = 45;
-        public static final int kCurrentLimit = 60;
-    }
-    
-
     public static final int kDriverController = 1;
     public static final int kWeaponsController = 2;
     public static final double kHighShootSpeed = 0.5;
     public static final double kLowShootSpeed = 0.25;
-
-    public static final class IndexerConstants {
-        public static final int kIndexMotorPort = 6;
-        public static final String kShuffleboardTab = "Indexer";
-        public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
-        public static final int kCAN_TIMEOUT_SETUP = 500;
-        public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
-        public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
-        public static final double kIndexerSpeed = .250;
-    }
 
     public static final int kCurrentLimit = 60;
     public static final int LEFT_MOTOR_ID = 12;
@@ -69,6 +51,28 @@ public final class Constants {
 	public static double kRightAngleTurnArcLength = 7.25 * Math.PI;
     public static final double kHighSpeedPerPulseEncoderRatio = kEncoderDistanceRatio / 60.0;
 
+    public static final class Ports {
+        public static final int kIndexMotorPort = 3;
+        public static final int kBeamBreakPort = 1;
+        public static final int kBlinkinDriverPort = 0;
+    }
+
+    public static final class IndexerConstants {
+        public static final int kIndexMotorPort = 6;
+        public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
+        public static final int kCAN_TIMEOUT_SETUP = 500;
+        public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
+        public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
+        public static final double kIndexerSpeed = .250;
+    }
+    
+    public static final class ShooterConstants {
+        public static final int TOP_MOTOR_ID = 3;
+        public static final boolean kTopReversedDefault = false;
+        public static final int STALL_LIMIT = 45;
+        public static final int kCurrentLimit = 60;
+    }
+
 	public static final class IntakeConstants {
         public static final int kIntakeMotorPort = 8;
         public static final int kIntakePiston1 = 4;
@@ -86,19 +90,6 @@ public final class Constants {
     public static final class HopperConstants{ 
         public static final int kHopperMotorPort = 5;
         public static final double kHopperMotorSpeed = 0.25; 
-
-        public static final String kShuffleboardTab = "Testing";
-    }
-
-    public static final class ColorConstants {
-        public static final String kShuffleboardTab = "Color";
-    }
-
-    public static final class Ports {
-
-        public static final int kIndexMotorPort = 3;
-        public static final int kBeamBreakPort = 1;
-        public static final int kBlinkinDriverPort = 0;
     }
 
     public static class DrivetrainConstants {
@@ -145,7 +136,6 @@ public final class Constants {
 		public static final int kClimberRightExtendPort = 2;
 		public static final int kClimberLeftPivotFollowerPort = 9;
 		public static final int kClimberRightPivotPort = 10;
-		public static final String kClimberTab = "Climber Status";
 
 		public static final double kHighDistancePerPulse = kWheelDiameterInches * Math.PI * kHighGear;
 		public static final double kHighSpeedPerPulse = kHighDistancePerPulse / 60.0;
