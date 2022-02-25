@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
  */
 public final class Constants {
 
-    public static int kRobotLength = 67; // check later
+    public static int kRobotLength = 67; //TODO: check later
     public static final String kShuffleboardTab = "Control Panel";
 
     public static final class ShooterConstants {
