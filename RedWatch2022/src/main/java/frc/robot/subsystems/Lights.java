@@ -50,7 +50,7 @@ public class Lights extends SubsystemBase {
   }
 
   public void intakeRed() {
-    m_ledDriver.set(kRed);
+    m_ledDriver.set(kRedBall);
   }
 
   public void intakeBlue() {
@@ -72,7 +72,7 @@ public class Lights extends SubsystemBase {
 
   // Show's red when the bot is not orientated correctly under the rung. 
   public void badOrientation() {
-    m_ledDriver.set(kRed);
+    m_ledDriver.set(kBad);
   }
 
   public void setGiven(double color) {
