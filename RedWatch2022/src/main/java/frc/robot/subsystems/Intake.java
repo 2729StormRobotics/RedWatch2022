@@ -12,13 +12,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.I2C;
-
-import static frc.robot.Constants.IntakeConstants.*;
-
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.ColorSensorV3;
+import static frc.robot.Constants.IntakeConstants.*;
 
 public class Intake extends SubsystemBase {
 
@@ -29,7 +26,7 @@ public class Intake extends SubsystemBase {
   private final ColorSensorV3 m_colorSensor;
 
   public Color m_detectedColor;
-  public int proximity;
+  public int m_proximity;
 
   private final NetworkTable m_intakeTable;
   private final NetworkTableEntry m_intakeStatus;
@@ -120,6 +117,6 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
     // Collects color data and proximity on repeat
     m_detectedColor = m_colorSensor.getColor();
-    proximity = m_colorSensor.getProximity();
+    m_proximity = m_colorSensor.getProximity();
   }
 }

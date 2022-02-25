@@ -134,7 +134,7 @@ public class ControlPanel extends SubsystemBase {
     m_intakeStatus.addNumber("B", () -> m_intake.m_detectedColor.blue);
 
     // Proximity to ball
-    m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.proximity);
+    m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.m_proximity);
 
     m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
 
