@@ -14,9 +14,6 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController.Button;
-import frc.robot.subsystems.ControlPanel;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 /**
@@ -42,13 +39,8 @@ public class RobotContainer {
     m_shooter = new Shooter();
     m_lights = new Lights();
     
-
-    // Set up drivetrain
-    
-
-
     // Set up Control Panel
-    new ControlPanel(m_shooter, m_indexer);
+    new ControlPanel(m_shooter, m_indexer, m_lights);
 
     // Configure the button bindings
     configureButtonBindings();
