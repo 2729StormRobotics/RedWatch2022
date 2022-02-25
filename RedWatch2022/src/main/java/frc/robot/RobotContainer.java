@@ -56,7 +56,7 @@ public class RobotContainer {
     // Set up drivetrain
     m_drivetrain = new Drivetrain();
     m_drivetrain.setDefaultCommand(
-      new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> -m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
+      new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
 
     // Set up Control Panel
     new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_lights);
