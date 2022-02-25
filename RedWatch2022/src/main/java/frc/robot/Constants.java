@@ -29,7 +29,6 @@ public final class Constants {
     public static final class IndexerConstants {
         public static final int kIndexMotorPort = 6;
         public static final int kBeamBreakPort = 1;
-        public static final String kShuffleboardTab = "Indexer";
         public static final int kDRIVE_AMPERAGE_PEAK_DURATION = 100;
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
@@ -49,10 +48,6 @@ public final class Constants {
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
         public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
-    }
-
-    public static final class ColorConstants {
-        public static final String kShuffleboardTab = "Color";
     }
 
     public static final class IOPorts {
@@ -106,7 +101,6 @@ public final class Constants {
 		public static final int kClimberRightExtendPort = 2;
 		public static final int kClimberLeftPivotFollowerPort = 9;
 		public static final int kClimberRightPivotPort = 10;
-		public static final String kClimberTab = "Climber Status";
 		
         public static final double kDistancePerRevolution = 0; //TODO: put in gear ratio for the climbers
 
