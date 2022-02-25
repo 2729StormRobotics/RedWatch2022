@@ -20,7 +20,7 @@
 - Intake:
 - INTAKE_MOTOR = 8
 
-### Indexer:
+### Indexer, Intake & Misc.:
 - INDEX_MOTOR = 6
 - SENSOR PORTS:
 - COLOR SENSOR PORT = I2C/RoboRIO
@@ -31,3 +31,5 @@
 ### CONTROLLER PORTS:
 - DRIVER CONTROLLER PORT = 1
 - WEAPONS CONTROLLER PORT = 2
+
+## **Characterization Values**
