@@ -39,7 +39,7 @@ public final class Constants {
 
     
 	//in percentage 
-    public static final double kIndexerSpeed = .50;
+    public static final double kIndexerSpeed = 0.5;
     public static final double kHighShootSpeed = 1;
     public static final double kLowShootSpeed = 0.5;
 
@@ -56,7 +56,7 @@ public final class Constants {
         public static final int kCAN_TIMEOUT_SETUP = 500;
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
         public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
-        public static final int kBeamBreakPort = 2;
+        public static final int kBeamBreakPort = 0;
     }
 
     public static double kFlyWheelTolerance = 50.0;
