@@ -1,7 +1,5 @@
 ## Official RedWatch 2022 Code
 
-
-
 ## **CONSTANTS AND PORTS**
 
 ### Drivetrain:
