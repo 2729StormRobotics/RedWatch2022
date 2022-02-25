@@ -23,6 +23,7 @@ import frc.robot.commands.hangerControl;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.commands.curvatureDrive;
+import static frc.robot.Constants.IOPorts.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -40,8 +41,8 @@ public class RobotContainer {
 
   private final Drivetrain m_drivetrain;
 
-  private final XboxController m_driver = new XboxController(Constants.kDriverController);
-  private final XboxController m_weapons = new XboxController(Constants.kWeaponsController);
+  private final XboxController m_driver = new XboxController(kDriverController);
+  private final XboxController m_weapons = new XboxController(kWeaponsController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
