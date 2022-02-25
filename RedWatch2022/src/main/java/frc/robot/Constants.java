@@ -61,6 +61,7 @@ public final class Constants {
 
     public static double kFlyWheelTolerance = 50.0;
     public static double kFlyWheelVelocityTolerance = 250;
+    public static int kWeaponsController = 2;
 
     public static class LightConstants {
         public static final int kBlinkinDriverPort = 0; //TODO: Find a port for this

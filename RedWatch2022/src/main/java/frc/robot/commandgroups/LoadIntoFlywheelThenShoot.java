@@ -6,7 +6,7 @@ package frc.robot.commandgroups;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.LoadBallIntoFlyWheel;
-import frc.robot.commands.ShootBall;
+import frc.robot.commands.MaintainRPM;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
@@ -28,7 +28,7 @@ public class LoadIntoFlywheelThenShoot extends ParallelCommandGroup {
   /** Creates a new LoadIntoFlywheelThenShoot. */
   public LoadIntoFlywheelThenShoot(Indexer indexer, Shooter shooter, Lights lights, double rpm) {
     super(
-      new ShootBall(rpm, shooter, indexer, lights),
+      new MaintainRPM(indexer, shooter, lights, rpm),
       new LoadBallIntoFlyWheel(indexer, lights)
     );
     addCommands();

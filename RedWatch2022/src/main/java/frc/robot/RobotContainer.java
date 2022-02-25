@@ -6,22 +6,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commandgroups.IndexThenShoot;
-import frc.robot.commands.EjectBall;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ControlPanel;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.LoadBallIntoMiddle;
+import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.subsystems.ControlPanel;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-import frc.robot.commands.RevToSpeed;
-import frc.robot.commands.differentialDrive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -31,32 +27,28 @@ import frc.robot.commands.differentialDrive;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Shooter m_shooter;
   private final Indexer m_indexer;
+  private final Shooter m_shooter;
   private final Lights m_lights;
 
-  // private final Drivetrain m_drivetrain;
+
 
   private final XboxController m_driver = new XboxController(Constants.kDriverController);
-
-
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final XboxController m_weapons = new XboxController(Constants.kWeaponsController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_indexer = new Indexer();
     m_shooter = new Shooter();
     m_lights = new Lights();
+    
 
     // Set up drivetrain
-    // m_drivetrain = new Drivetrain();
-    // m_drivetrain.setDefaultCommand(new differentialDrive(() -> m_driver.getRightTriggerAxis(), () -> m_driver.getLeftTriggerAxis(), 
-    // () -> m_driver.getLeftY(), () -> m_driver.getRightY(), m_drivetrain));
+    
+
 
     // Set up Control Panel
-    // new ControlPanel(m_drivetrain, m_indexer);
+    new ControlPanel(m_shooter, m_indexer);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -73,23 +65,21 @@ public class RobotContainer {
     // X ejects ball
     // B shoots ball high
     // Y shoots ball low
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
-    new JoystickButton(m_driver, Button.kX.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 3000));
-
-    new JoystickButton(m_driver, Button.kY.value).whileHeld(new RevToSpeed(Constants.kLowShootSpeed, m_shooter, m_lights));
-
-    //new JoystickButton(m_driver, Button.kY.value).whileHeld(new ManualRevToSpeed(Constants.kLowShootSpeed, m_shooter, m_lights));
-
+    // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
+    // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
+    // new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));
+    // new JoystickButton(m_driver, Button.kY.value).whileHeld(new ShootCargo(Constants.kLowShootSpeed, m_shooter));
+    // new JoystickButton(m_driver, m_driver.getPOV(180)).whileHeld(new extendDown(m_climber));
+    // new JoystickButton(m_driver, m_driver.getPOV(270)).whileHeld(new rotateBot(m_climber));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 2000));
 
   }
-
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 }
