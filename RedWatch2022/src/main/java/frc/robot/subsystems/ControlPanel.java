@@ -38,7 +38,7 @@ public class ControlPanel extends SubsystemBase {
   private final NetworkTableEntry RightExtendMotor;
   private final NetworkTableEntry LeftPivotMotor;
   private final NetworkTableEntry RightPivotMotor;
-  // private final NetworkTableEntry setLightColor;
+  private final NetworkTableEntry setLightColor;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
    * Contains all shuffleboard related code. Close out of the shuffleboard window and reopen to 
@@ -148,8 +148,8 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 1);
     
     m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
-    // setLightColor = m_lightstatus.add("Light color code", 0.97).getEntry();
-    // m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(0.97)));
+    setLightColor = m_lightstatus.add("Light color code", kDefaultColor).getEntry();
+    m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(kDefaultColor)));
     
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);

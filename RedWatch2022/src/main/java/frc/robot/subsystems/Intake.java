@@ -53,6 +53,9 @@ public class Intake extends SubsystemBase {
     m_intakeStatus = m_intakeTable.getEntry("Intake Running");
 
     m_colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+
+    m_detectedColor = m_colorSensor.getColor();
+    m_proximity = m_colorSensor.getProximity();
   }
 
   // Runs intake
