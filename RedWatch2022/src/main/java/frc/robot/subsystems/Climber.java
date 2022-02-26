@@ -32,8 +32,7 @@ public class Climber extends SubsystemBase {
    * Controls arms that extend and retract and rotate
    */
 
-  /** Creates a new Climber. 
-   * @param Map */
+  // Creates a new Climber. 
   public Climber() {
     m_climbLeftExtend = new CANSparkMax(kClimberLeftFollowerExtendPort, MotorType.kBrushless);
     m_climbRightExtend = new CANSparkMax(kClimberRightExtendPort, MotorType.kBrushless);
