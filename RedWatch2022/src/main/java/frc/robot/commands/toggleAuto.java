@@ -5,46 +5,31 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Climber;
 
+public class toggleAuto extends CommandBase {
+  private final Climber m_climber;
 
-
-public class EjectBall extends CommandBase {
-  /** Creates a new EjectBall. */
-  private final Indexer m_indexer;
-
-  /**
-  * Indexer ejects ball out of the robot
-  * Command runs while button held
-  * @param indexer indexer subsystem
-  */
-
-  public EjectBall(Indexer indexer) {
-    m_indexer = indexer;
+  /** Creates a new toggleAuto. */
+  public toggleAuto(Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_climber = subsystem;
+    addRequirements(m_climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_indexer.load(0.0);
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  
-  // Run the indexer motor in reverse while button is held to push out ball
-  @Override
-  public void execute() {
-    m_indexer.load(-Constants.IndexerConstants.kIndexerSpeed);
     
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {}
+
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    m_indexer.load(0.0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
