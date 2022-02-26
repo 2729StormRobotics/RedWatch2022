@@ -15,11 +15,14 @@ public class Indexer extends SubsystemBase {
   // Talon used for index motor
   public static TalonSRX m_bottomMotor = new TalonSRX(kIndexMotorPort);
   private final DigitalInput m_ballDector;
+  public static char[] ballPositions = new char[2];
 
   /** Creates a new Indexer. */
   public Indexer() {
     m_ballDector = new DigitalInput(kBeamBreakPort);
     motorInit();
+    ballPositions[0] = ' ';
+    ballPositions[1] = ' ';
   }
 
   private void motorInit(){
