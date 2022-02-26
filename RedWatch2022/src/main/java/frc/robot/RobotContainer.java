@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.IntakeToggle;
+import frc.robot.commandgroups.IndexThenShoot;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.hangerControl;
 import frc.robot.subsystems.Drivetrain;
@@ -73,6 +74,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kX.value).whileHeld(new IntakeRun(m_intake));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 2000));
 
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
