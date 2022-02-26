@@ -10,14 +10,16 @@ import frc.robot.subsystems.Climber;
 public class rotateBackward extends CommandBase {
 
   private final Climber m_climber;
+  private double m_dist;
 
   /**
    * Pivots or rotates the bot backward
    * @param subsystem Hanger subsystem
    */
-  public rotateBackward(Climber subsystem) {
+  public rotateBackward(Climber subsystem, double dist) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
+    m_dist = dist;
     addRequirements(m_climber);
 
   }
@@ -44,12 +46,11 @@ public class rotateBackward extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // if (m_climber.getGyroAngle() >= 45) {
-    //   return true;
-    // }
-    // else {
-    //   return false;
-    // }
-    return false;
+    if (m_climber.getGyroAngle() >= m_dist) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
