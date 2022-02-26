@@ -38,20 +38,11 @@ public class Drivetrain extends SubsystemBase {
     rightMotor = new com.revrobotics.CANSparkMax(kRightMotorPort, MotorType.kBrushless);
     rightMotor2 = new com.revrobotics.CANSparkMax(kRightMotor2Port, MotorType.kBrushless);
 
+    // reset motors to preset settings
     motorInit(leftMotor, kLeftReversedDefault);
     motorInit(leftMotor2, kLeftReversedDefault);
     motorInit(rightMotor, kRightReversedDefault);
     motorInit(rightMotor2, kRightReversedDefault);
-
-    leftMotor.setSmartCurrentLimit(kStallLimit);
-    rightMotor.setSmartCurrentLimit(kStallLimit);
-    leftMotor2.setSmartCurrentLimit(kStallLimit);
-    rightMotor2.setSmartCurrentLimit(kStallLimit);
-
-    leftMotor.setIdleMode(IdleMode.kBrake);
-    leftMotor2.setIdleMode(IdleMode.kBrake);
-    rightMotor.setIdleMode(IdleMode.kBrake);
-    rightMotor2.setIdleMode(IdleMode.kBrake);
 
     // leftMotor2.follow(leftMotor);
     // rightMotor2.follow(rightMotor);
@@ -73,13 +64,14 @@ public class Drivetrain extends SubsystemBase {
   /**
    * Resets the default motor settings
    * 
-   * @param motor
-   * @param invert
+   * @param motor which motor
+   * @param invert whether to invert the motors. Left side is inverted by default
    */
   public void motorInit(CANSparkMax motor, boolean invert) {
     motor.restoreFactoryDefaults();
     motor.setIdleMode(IdleMode.kBrake);
     motor.setSmartCurrentLimit(kCurrentLimit);
+    motor.setSmartCurrentLimit(kStallLimit);
     motor.setInverted(invert);
 
     encoderInit(motor.getEncoder());
