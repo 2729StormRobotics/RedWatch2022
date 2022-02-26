@@ -5,6 +5,7 @@
 package frc.robot.commandgroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.LoadBallIntoFlyWheel;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.RevToSpeed;
 import frc.robot.subsystems.Indexer;
@@ -32,7 +33,7 @@ public class IndexThenShoot extends SequentialCommandGroup {
     super(
       new LoadBallIntoMiddle(indexer),
       new RevToSpeed(rpm, shooter, lights),
-      new LoadIntoFlywheelThenShoot(indexer, shooter, lights, rpm)
+      new LoadBallIntoFlyWheel(indexer, shooter, lights)
       
     );
     // Add your commands in the addCommands() call, e.g.

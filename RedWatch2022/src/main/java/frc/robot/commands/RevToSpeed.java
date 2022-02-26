@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 
 
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
@@ -24,7 +23,7 @@ public class RevToSpeed extends CommandBase {
   /** Creates a new RevToSpeed. */
   public RevToSpeed(double rpm, Shooter shooter, Lights lights) {
 
-    m_TargetRPM = rpm;
+    m_TargetRPM = rpm * 2;
     m_shooter = shooter;
     m_lights = lights;
 
@@ -49,6 +48,8 @@ public class RevToSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // Find the difference between target rpm and current rpm, and increment motor speed based on difference
+    // If difference is lower, increment will be lower. If difference is negative, increment is negative
     currentRPM = m_shooter.getEncoderVelocity(m_shooter.m_topEncoder);
     error = m_TargetRPM - currentRPM;
 
@@ -67,7 +68,6 @@ public class RevToSpeed extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_shooter.flyWheelSpeedAfterRev = m_motorPower;
-    m_shooter.topMotor.set(0);
 
 
   }
@@ -75,6 +75,7 @@ public class RevToSpeed extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    // finishes when rpm is within 20 rpm of target
     return finished;
   }
 }
