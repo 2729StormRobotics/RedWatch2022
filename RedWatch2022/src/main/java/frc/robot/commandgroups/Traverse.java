@@ -22,9 +22,9 @@ public class Traverse extends SequentialCommandGroup {
     super(
       new extendUp(climber),
       new extendDown(climber),
-      new rotateForward(climber, 45),
+      new rotateBackward(climber, 45),
       new extendUp(climber),
-      new rotateBackward(climber, 10)
+      new rotateForward(climber, 10)
     );
     
     addCommands();
