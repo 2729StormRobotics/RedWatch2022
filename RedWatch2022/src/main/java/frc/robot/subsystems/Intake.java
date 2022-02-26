@@ -59,7 +59,6 @@ public class Intake extends SubsystemBase {
   public void runIntake(double speed) {
     m_intakeStatus.setBoolean(true);
     m_intakeMotor.set(ControlMode.PercentOutput, speed);
-
   }
 
   // Rotates motors for intake at kIntakeMotorSpeed
@@ -70,14 +69,12 @@ public class Intake extends SubsystemBase {
   // Rotates motors for intake at kEjectMotorSpeed
   public void eject() {
     runIntake(kEjectMotorSpeed);
-
   }
 
   // Stops intake
   public void stopIntake() {
     m_intakeMotor.set(ControlMode.PercentOutput, 0);
     m_intakeStatus.setBoolean(false);
-
   }
 
   // Raises intake back to raised position
