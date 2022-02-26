@@ -5,16 +5,13 @@
 package frc.robot.subsystems;
 
 import static frc.robot.Constants.ClimberConstants.*;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SPI;
-
 import com.kauailabs.navx.frc.AHRS;
 
 public class Climber extends SubsystemBase {
@@ -64,7 +61,6 @@ public class Climber extends SubsystemBase {
     catch (RuntimeException ex){
       DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
     }
-
   }
 
   public void changeMode(String mode) {
