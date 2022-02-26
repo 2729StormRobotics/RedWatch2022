@@ -31,8 +31,8 @@ public class IndexThenShoot extends SequentialCommandGroup {
   /** Creates a new LoadThenShoot. */
   public IndexThenShoot(Indexer indexer, Shooter shooter, Lights lights, double rpm) {
     super(
-      new LoadBallIntoMiddle(indexer),
       new RevToSpeed(rpm, shooter, lights),
+      new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights)
       
     );

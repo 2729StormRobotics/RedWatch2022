@@ -53,7 +53,7 @@ public class RevToSpeed extends CommandBase {
     currentRPM = m_shooter.getEncoderVelocity(m_shooter.m_topEncoder);
     error = m_TargetRPM - currentRPM;
 
-    increment = error / 120000;
+    increment = error / 190000.0;
     m_shooter.increment = increment;
     m_motorPower += increment;
     m_shooter.motorPower = m_motorPower;

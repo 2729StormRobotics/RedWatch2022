@@ -32,7 +32,7 @@ public final class Constants {
         public static final int kDRIVE_AMPERAGE_LIMIT_PEAK = 50;
         public static final int kDRIVE_AMPERAGE_LIMIT_CONTINUOUS = 35;
         public static final int kBeamBreakPort = 0;
-        public static final double kIndexerSpeed = .50;
+        public static final double kIndexerSpeed = .80;
     }
 
     public static class LightConstants {
