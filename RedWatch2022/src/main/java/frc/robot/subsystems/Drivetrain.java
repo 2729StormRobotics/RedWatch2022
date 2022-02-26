@@ -155,9 +155,9 @@ public class Drivetrain extends SubsystemBase {
   /**
    * Curvature drive method. The forward/reverse should be inverted to match the robot
    * 
-   * @param stickY
-   * @param stickX
-   * @param stickButton
+   * @param stickY The robot's speed along the X axis
+   * @param stickX The curvature; clockwise is positive
+   * @param stickButton Allows turn in place
    */
   public void curvatureDrive(double stickY, double stickX, boolean stickButton) {
     m_drive.curvatureDrive(-stickY, stickX, stickButton);
@@ -166,9 +166,9 @@ public class Drivetrain extends SubsystemBase {
   /**
    * Arcade drive method. The forward/reverse should be inverted to match the robot
    * 
-   * @param speed
-   * @param turn
-   * @param squareInputs
+   * @param speed Speed of the robot
+   * @param turn The turn; clockwise is positive
+   * @param squareInputs Decreases the input sensitivity at low speeds
    */
   public void arcadeDrive(double speed, double turn, boolean squareInputs) {
     m_drive.arcadeDrive(-speed, turn, squareInputs);
