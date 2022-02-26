@@ -102,9 +102,9 @@ public final class Constants {
 		public static final int kClimberLeftPivotFollowerPort = 9;
 		public static final int kClimberRightPivotPort = 10;
 		
-        public static final double kDistancePerRevolution = 0; //TODO: put in gear ratio for the climbers
+        public static final double kDistancePerRevolution = 16.0; //TODO: put in gear ratio for the climbers
 
-		public static final double kClimberRightSize = 12.0;
+		public static final double kClimberRightSize = 25.9375;
 
 	}
 }
