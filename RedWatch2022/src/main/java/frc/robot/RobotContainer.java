@@ -63,7 +63,7 @@ public class RobotContainer {
       new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
 
     // Set up Control Panel
-    new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_lights);
+    new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_indexer, m_shooter, m_lights);
 
     // Configure the button bindings
     configureButtonBindings();

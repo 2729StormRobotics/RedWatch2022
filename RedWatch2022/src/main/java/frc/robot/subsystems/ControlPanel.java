@@ -33,6 +33,8 @@ public class ControlPanel extends SubsystemBase {
   private final ShuffleboardLayout m_extendstatus;
   private final ShuffleboardLayout m_pivotstatus;
   private final ShuffleboardLayout m_lightstatus;
+  private final ShuffleboardLayout m_shooterstatus;
+  private final ShuffleboardLayout m_indexerstatus;
 
   private final NetworkTableEntry LeftExtendMotor;
   private final NetworkTableEntry RightExtendMotor;
@@ -46,7 +48,7 @@ public class ControlPanel extends SubsystemBase {
    * @param m_drivetrain Drivetrain subsystem
    * @param m_climber Hanger subsystem
    */
-  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber, Intake m_intake, Lights m_lights) {
+  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber, Intake m_intake, Indexer m_indexer, Shooter m_shooter, Lights m_lights) {
     // Create Control Panel tab in Shuffleboard
     m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
 
@@ -74,6 +76,14 @@ public class ControlPanel extends SubsystemBase {
     m_lightstatus = m_controlpanelTab.getLayout("Light Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(8, 3)
+      .withSize(2, 1);
+    m_shooterstatus = m_controlpanelTab.getLayout("Shooter Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(0, 4)
+      .withSize(2, 1);
+    m_indexerstatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(2, 4)
       .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
@@ -150,6 +160,10 @@ public class ControlPanel extends SubsystemBase {
     m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
     setLightColor = m_lightstatus.add("Light color code", kDefaultColor).getEntry();
     m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(kDefaultColor)));
+
+    m_shooterstatus.addNumber("Flywheel Speed", () -> m_shooter.getEncoderVelocity(m_shooter.m_topEncoder));
+
+    m_indexerstatus.addNumber("Indexer Set Speed", () -> m_indexer.m_bottomMotor.getMotorOutputPercent());
     
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);

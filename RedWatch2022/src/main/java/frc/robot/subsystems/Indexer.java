@@ -13,29 +13,31 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class Indexer extends SubsystemBase {
 
   // Talon used for index motor
-  public static TalonSRX m_bottomMotor = new TalonSRX(kIndexMotorPort);
+  public final TalonSRX m_bottomMotor;
   private final DigitalInput m_ballDector;
 
   /** Creates a new Indexer. */
   public Indexer() {
     m_ballDector = new DigitalInput(kBeamBreakPort);
-    motorInit();
+    m_bottomMotor = new TalonSRX(kIndexMotorPort);
+
+    motorInit(m_bottomMotor);
   }
 
-  private void motorInit(){
-    m_bottomMotor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
-    m_bottomMotor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
-    m_bottomMotor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
-    m_bottomMotor.enableCurrentLimit(true);
+  private void motorInit(TalonSRX m_motor){
+    m_motor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
+    m_motor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
+    m_motor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
+    m_motor.enableCurrentLimit(true);
   }
 
-  public void load (double speed){
-    //speed in percent
+  public void load(double speed){
+    // speed in percent
     m_bottomMotor.set(ControlMode.PercentOutput, speed);
   }
 
   public boolean isBallPresent(){
-    //checks for ball
+    // checks for ball
     return !m_ballDector.get();
   }
 
