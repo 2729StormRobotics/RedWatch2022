@@ -7,32 +7,25 @@ package frc.robot.subsystems;
 //import com.analog.adis16470.frc.ADIS16470_IMU;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.DrivetrainConstants.*;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
-
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   public final com.revrobotics.CANSparkMax leftMotor;
   public final com.revrobotics.CANSparkMax leftMotor2;
-
   public final com.revrobotics.CANSparkMax rightMotor;
   public final com.revrobotics.CANSparkMax rightMotor2;
 
   public final RelativeEncoder m_leftEncoder;
   public final RelativeEncoder m_rightEncoder;
-
 
   private final DifferentialDrive m_drive;
 
@@ -65,7 +58,6 @@ public class Drivetrain extends SubsystemBase {
     final MotorControllerGroup rightControllerGroup = new MotorControllerGroup(rightMotor, rightMotor2);
     final MotorControllerGroup leftControllerGroup = new MotorControllerGroup(leftMotor, leftMotor2);
 
-
     m_leftEncoder = leftMotor.getEncoder();
     m_rightEncoder = rightMotor.getEncoder();
 
@@ -76,7 +68,6 @@ public class Drivetrain extends SubsystemBase {
     } catch (RuntimeException ex){
       DriverStation.reportError("Error instantiating navX MXP: " + ex.getMessage(), true);
     }
-    
   }
 
   /**
