@@ -5,7 +5,7 @@
 package frc.robot.autoroutes;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
+import static frc.robot.Constants.AutoRouteConstants.*;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.TurnAngle;
 import frc.robot.subsystems.Drivetrain;
@@ -20,7 +20,7 @@ public class AutoRoute3 extends SequentialCommandGroup {
 
     super(
       new TurnAngle(-48.786, drivetrain),
-      new AutoForward(79.190 + Constants.kRobotLength/2, drivetrain),
+      new AutoForward(79.190 + kRobotLength/2.0, drivetrain),
       //intake
       //vision align
       //shoot

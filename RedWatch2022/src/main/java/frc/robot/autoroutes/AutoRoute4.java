@@ -5,7 +5,7 @@
 package frc.robot.autoroutes;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
+import static frc.robot.Constants.AutoRouteConstants.*;
 import frc.robot.commands.AutoForward;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
@@ -18,7 +18,7 @@ public class AutoRoute4 extends SequentialCommandGroup {
   public AutoRoute4(Drivetrain drivetrain, Shooter shooter) {
 
     super(
-      new AutoForward(40.695 + Constants.kRobotLength/2, drivetrain)
+      new AutoForward(40.695 + kRobotLength/2.0, drivetrain)
       //intake
       //vision align
       //shoot

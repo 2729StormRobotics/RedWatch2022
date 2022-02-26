@@ -5,7 +5,7 @@
 package frc.robot.autoroutes;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants;
+import static frc.robot.Constants.AutoRouteConstants.*;
 import frc.robot.commands.AutoForward;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
@@ -18,7 +18,7 @@ public class AutoRoute5 extends SequentialCommandGroup {
   public AutoRoute5(Drivetrain drivetrain, Shooter shooter) {
 
     super(
-      new AutoForward(Constants.kRobotLength + 10, drivetrain)
+      new AutoForward(kRobotLength + 10, drivetrain)
     );
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
