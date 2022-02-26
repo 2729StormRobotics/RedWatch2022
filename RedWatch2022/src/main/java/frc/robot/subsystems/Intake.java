@@ -108,6 +108,22 @@ public class Intake extends SubsystemBase {
     }
   }
 
+  public boolean isRedBall() {
+    boolean yes = false;
+    if (m_detectedColor.red > m_detectedColor.blue && m_detectedColor.red >= 0.3) {
+      yes = true;
+    }
+    return yes;
+  }
+
+  public boolean isBlueBall() {
+    boolean yes = false;
+    if (m_detectedColor.blue > m_detectedColor.red && m_detectedColor.blue >= 0.3) {
+      yes = true;
+    }
+    return yes;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
