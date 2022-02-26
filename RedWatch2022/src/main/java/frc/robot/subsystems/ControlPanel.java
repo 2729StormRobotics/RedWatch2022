@@ -128,8 +128,10 @@ public class ControlPanel extends SubsystemBase {
     .getEntry();
     m_pivotstatus.add("Run Pivot", new hangerRunMotors(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
 
-    m_intakeStatus.addBoolean("Red", () -> m_intake.m_detectedColor.red > m_intake.m_detectedColor.blue && m_intake.m_detectedColor.red >= 0.3);
-    m_intakeStatus.addBoolean("Blue", () -> m_intake.m_detectedColor.blue > m_intake.m_detectedColor.red && m_intake.m_detectedColor.blue >= 0.3);
+    m_intakeStatus.addBoolean("Red", () -> m_intake.m_detectedColor.red > m_intake.m_detectedColor.blue && m_intake.m_detectedColor.red >= 0.3)
+      .withProperties(Map.of("Color when true", "Red", "Color when false", "Black"));
+    m_intakeStatus.addBoolean("Blue", () -> m_intake.m_detectedColor.blue > m_intake.m_detectedColor.red && m_intake.m_detectedColor.blue >= 0.3)
+      .withProperties(Map.of("Color when true", "Blue", "Color when false", "Black"));;
 
     // Shows color values (RGB)
     m_intakeStatus.addNumber("R", () -> m_intake.m_detectedColor.red);
@@ -146,8 +148,8 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 1);
     
     m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
-    // setLightColor = m_lightstatus.add("Light color code", kDefaultColor).getEntry();
-    // m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(kDefaultColor)));
+    // setLightColor = m_lightstatus.add("Light color code", 0.97).getEntry();
+    // m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(0.97)));
     
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);

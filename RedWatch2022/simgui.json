@@ -20,6 +20,7 @@
       "/Shuffleboard/Control Panel/Climb Status/rotateBackward": "Command",
       "/Shuffleboard/Control Panel/Climb Status/rotateForward": "Command",
       "/Shuffleboard/Control Panel/Extend Status/Run Extender": "Command",
+      "/Shuffleboard/Control Panel/Light Status/Change light color": "Command",
       "/Shuffleboard/Control Panel/Pivot Status/Run Pivot": "Command",
       "/Shuffleboard/Control Panel/Toggle Pistons": "Command",
       "/Shuffleboard/Intake Panel/togglePistons": "Command"
