@@ -4,15 +4,15 @@
 
 package frc.robot.subsystems;
 
+import static frc.robot.Constants.IndexerConstants.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import static frc.robot.Constants.IndexerConstants.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Indexer extends SubsystemBase {
 
-  //talon used for index motor
+  // Talon used for index motor
   public static TalonSRX m_bottomMotor = new TalonSRX(kIndexMotorPort);
   private final DigitalInput m_ballDector;
 
