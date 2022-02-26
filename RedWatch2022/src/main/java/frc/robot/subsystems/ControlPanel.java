@@ -15,12 +15,14 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
 import frc.robot.commands.hangerRunMotors;
 import frc.robot.commands.rotateBackward;
 import frc.robot.commands.rotateForward;
+import frc.robot.commands.setLights;
 
 public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
@@ -36,6 +38,7 @@ public class ControlPanel extends SubsystemBase {
   private final NetworkTableEntry RightExtendMotor;
   private final NetworkTableEntry LeftPivotMotor;
   private final NetworkTableEntry RightPivotMotor;
+  // private final NetworkTableEntry setLightColor;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
    * Contains all shuffleboard related code. Close out of the shuffleboard window and reopen to 
@@ -143,6 +146,8 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 1);
     
     m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
+    // setLightColor = m_lightstatus.add("Light color code", kDefaultColor).getEntry();
+    // m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(kDefaultColor)));
     
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
