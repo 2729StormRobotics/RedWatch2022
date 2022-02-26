@@ -77,6 +77,10 @@ public class Lights extends SubsystemBase {
     m_ledDriver.set(color);
   }
 
+  public void MaxSpeedFlyWheel() {
+    m_ledDriver.set(kCorrect); // LEDs turn green while shooting
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
