@@ -28,10 +28,9 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     // initialize motor
-    topMotor = new com.revrobotics.CANSparkMax(Constants.ShooterConstants.TOP_MOTOR_ID, MotorType.kBrushless);
+    topMotor = new com.revrobotics.CANSparkMax(Constants.ShooterConstants.kTopMotorPort, MotorType.kBrushless);
     motorInit(topMotor, Constants.ShooterConstants.kTopReversedDefault);
-    topMotor.setSmartCurrentLimit(Constants.ShooterConstants.STALL_LIMIT);
-    topMotor.setIdleMode(IdleMode.kCoast);
+    
 
     // initialize encoder
     m_topEncoder = topMotor.getEncoder();
@@ -43,6 +42,7 @@ public class Shooter extends SubsystemBase {
     motor.setIdleMode(IdleMode.kCoast);
     motor.setSmartCurrentLimit(Constants.ShooterConstants.kCurrentLimit);
     motor.setInverted(invert);
+    motor.setSmartCurrentLimit(Constants.ShooterConstants.kStallLimit);
 
     //resets encoder
     encoderInit(motor.getEncoder());
