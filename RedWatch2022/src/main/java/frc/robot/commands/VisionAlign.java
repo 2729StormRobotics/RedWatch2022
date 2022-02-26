@@ -37,7 +37,7 @@ public class VisionAlign extends PIDCommand {
            */
           if (vision.isTargetDetected()) {
             //drivetrain.tankDrive(output, -output, false);
-            drivetrain.arcadeDrive(0, output, false);
+            drivetrain.arcadeDrive(0, -output, false);
           }
           else {
             drivetrain.tankDrive(1, -1, false);
