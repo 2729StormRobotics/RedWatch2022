@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.PIDCommand;
 import static frc.robot.Constants.DrivetrainConstants.*;
 import frc.robot.subsystems.Drivetrain;
 
-
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
@@ -36,8 +35,6 @@ public class TurnAngle extends PIDCommand {
           // turns counterclockwise if targetvalue is negative
         
           drivetrain.tankDrive(-output, output, false);
-          
-          
         });
         m_drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -55,7 +52,6 @@ public class TurnAngle extends PIDCommand {
      m_drivetrain.resetGyroAngle();
   }
 
-
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
@@ -69,7 +65,4 @@ public class TurnAngle extends PIDCommand {
     super.end(interrupted);
      m_drivetrain.resetGyroAngle();
   }
-
 }
-
-

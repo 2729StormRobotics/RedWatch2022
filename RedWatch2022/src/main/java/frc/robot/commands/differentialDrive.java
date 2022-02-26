@@ -9,7 +9,6 @@ command to drive at a certain power for left and right motors
 package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
@@ -45,7 +44,6 @@ public class differentialDrive extends CommandBase {
     // drive with speeds of the parameter
     m_drivetrain.tankDrive(m_leftSpeed.getAsDouble(), m_rightSpeed.getAsDouble(), true);
   }
-
 
   // Called once the command ends or is interrupted.
   @Override
