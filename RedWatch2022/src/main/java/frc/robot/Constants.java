@@ -88,9 +88,9 @@ public final class Constants {
     public static class LightConstants {
 		public static final double kDisabled = 0.0; //TODO: Find what color we want for this and its value
 		public static final double kLightsOff = 0.99;
-        public static final double kRedBall = 0.61; // Intake red ball //TODO Do we want flashing?
+        public static final double kRedBall = -0.11; // Strobe red -- intake red ball //0.61 is solid red
+        public static final double kBlueBall = -.09; // Strobe blue -- intake blue ball //0.87 is solid blue
         public static final double kBad = 0.61; // Used for a bad orientation - color red
-        public static final double kBlueBall = 0.87;
         public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
         public static final double kCorrect = 0.75; // Defines Dark Green
         public static final int kBlinkinDriverPort = 0;
