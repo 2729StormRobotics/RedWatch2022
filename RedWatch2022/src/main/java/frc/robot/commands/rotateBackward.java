@@ -13,11 +13,11 @@ public class rotateBackward extends CommandBase {
 
   /**
    * Pivots or rotates the bot backward
-   * @param subsystem Hanger subsystem
+   * @param climber Hanger subsystem
    */
-  public rotateBackward(Climber subsystem) {
+  public rotateBackward(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_climber = subsystem;
+    m_climber = climber;
     addRequirements(m_climber);
 
   }
