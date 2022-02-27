@@ -14,9 +14,9 @@ public class RevToSpeed extends CommandBase {
   double m_motorPower = 0;
   double currentRPM = 0;
   double m_TargetRPM;
-  double increment = 0;
-  double error = 0;
-  boolean finished = false;
+  double m_increment = 0;
+  double m_error = 0;
+  boolean m_finished = false;
 
   /** Creates a new RevToSpeed. */
   public RevToSpeed(double rpm, Shooter shooter, Lights lights) {
@@ -37,9 +37,9 @@ public class RevToSpeed extends CommandBase {
     m_shooter.encoderReset(m_shooter.m_topEncoder);
     m_motorPower = 0;
     currentRPM = 0;
-    increment = 0;
-    error = 0;
-    finished = false;
+    m_increment = 0;
+    m_error = 0;
+    m_finished = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -48,16 +48,16 @@ public class RevToSpeed extends CommandBase {
     // Find the difference between target rpm and current rpm, and increment motor speed based on difference
     // If difference is lower, increment will be lower. If difference is negative, increment is negative
     currentRPM = m_shooter.getEncoderVelocity(m_shooter.m_topEncoder);
-    error = m_TargetRPM - currentRPM;
+    m_error = m_TargetRPM - currentRPM;
 
-    increment = error / 190000.0;
-    m_shooter.increment = increment;
-    m_motorPower += increment;
+    m_increment = m_error / 190000.0;
+    m_shooter.increment = m_increment;
+    m_motorPower += m_increment;
     m_shooter.motorPower = m_motorPower;
 
     m_shooter.topMotor.set(m_motorPower);
 
-    finished = Math.abs(error) <= 20;
+    m_finished = Math.abs(m_error) <= 20;
     
   }
 
@@ -71,6 +71,6 @@ public class RevToSpeed extends CommandBase {
   @Override
   public boolean isFinished() {
     // finishes when rpm is within 20 rpm of target
-    return finished;
+    return m_finished;
   }
 }
