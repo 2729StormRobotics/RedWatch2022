@@ -29,6 +29,7 @@ public class RevToSpeed extends CommandBase {
 
     double m_motorPower = 0;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_shooter, m_lights);
   }
 
   // Called when the command is initially scheduled.
@@ -41,8 +42,6 @@ public class RevToSpeed extends CommandBase {
     increment = 0;
     error = 0;
     finished = false;
-    
-    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -68,8 +67,6 @@ public class RevToSpeed extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_shooter.flyWheelSpeedAfterRev = m_motorPower;
-
-
   }
 
   // Returns true when the command should end.
