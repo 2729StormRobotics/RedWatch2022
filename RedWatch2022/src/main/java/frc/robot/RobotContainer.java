@@ -44,7 +44,7 @@ public class RobotContainer {
   private final Drivetrain m_drivetrain;
 
   private final XboxController m_driver = new XboxController(kDriverController);
-  private final XboxController m_weapons = new XboxController(kWeaponsController);
+  public static final XboxController m_weapons = new XboxController(kWeaponsController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
