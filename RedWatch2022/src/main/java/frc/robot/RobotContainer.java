@@ -15,6 +15,7 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.IntakeRun;
+import frc.robot.commands.IntakeStop;
 import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commandgroups.IndexThenShoot;
@@ -60,7 +61,7 @@ public class RobotContainer {
       new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
 
     // Set up Control Panel
-    new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_lights);
+    // new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_lights);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -73,8 +74,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IntakeToggle(m_intake));
-    new JoystickButton(m_weapons, Button.kA.value).whileHeld(new IntakeRun(m_intake));
+    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new IntakeStop(m_intake));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IntakeRun(m_intake));
     new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 2000));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
