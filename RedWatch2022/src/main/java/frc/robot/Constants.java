@@ -110,18 +110,7 @@ public final class Constants {
     public static final double kClimbSuccess = 0.97; // Rainbow party
     public static final int kBlinkinDriverPort = 0;
   }
-    
-	public static final class VisionConstants {
-        public static final double kLimelightHeight = 32.0; //TODO: Rough estimate... get more exact distance
-        public static final double kLimelightAngle = 35.0; //TODO: Rough estimate ... get more exact
-        public static final double kHubHeight = 104.0;
 
-        public static final int kDefaultPipeline = 0;
-
-		public static final double kAutoAlignP = 0.03; //TODO: Testing to find this value
-		public static final double kAutoAlignI = 0.09; //TODO: Testing to find this value
-		public static final double kAutoAlignD = 0.0; //TODO: Testing to find this value
-    }
   public static final class ClimberConstants {
 		public static final int kClimberLeftFollowerExtendPort = 13;
 		public static final int kClimberRightExtendPort = 2;
