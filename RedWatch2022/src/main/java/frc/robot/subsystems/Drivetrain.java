@@ -69,7 +69,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void motorInit(CANSparkMax motor, boolean invert) {
     motor.restoreFactoryDefaults();
-    motor.setIdleMode(IdleMode.kBrake);
+    motor.setIdleMode(IdleMode.kCoast);
     motor.setSmartCurrentLimit(kCurrentLimit);
     motor.setSmartCurrentLimit(kStallLimit);
     motor.setInverted(invert);
