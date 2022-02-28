@@ -6,9 +6,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import static frc.robot.Constants.VisionConstants.*;
 import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Drivetrain;
+import static frc.robot.Constants.VisionConstants.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -37,7 +37,7 @@ public class VisionAlign extends PIDCommand {
            */
           if (vision.isTargetDetected()) {
             //drivetrain.tankDrive(output, -output, false);
-            drivetrain.arcadeDrive(0, output, false);
+            drivetrain.arcadeDrive(0, -output, false);
           }
           else {
             drivetrain.tankDrive(1, -1, false);
@@ -46,7 +46,7 @@ public class VisionAlign extends PIDCommand {
 
         m_drivetrain = drivetrain;
         m_vision = vision;
-    // Use addRequirements() here to declare subsystem dependencies.
+
     addRequirements(m_drivetrain, m_vision);
   }
 

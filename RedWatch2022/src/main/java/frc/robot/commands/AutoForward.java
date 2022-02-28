@@ -12,7 +12,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.Constants;
+import static frc.robot.Constants.DrivetrainConstants.*;
 import frc.robot.subsystems.Drivetrain;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -26,7 +26,7 @@ public class AutoForward extends PIDCommand {
     super(
         // The controller that the command will use
         // experimentrally determined values
-        new PIDController(Constants.DrivetrainConstants.AutoForwardP, Constants.DrivetrainConstants.AutoForwardI, Constants.DrivetrainConstants.AutoForwardD),
+        new PIDController(kAutoForwardP, kAutoForwardI, kAutoForwardD),
         // This should return the measurement
         () -> drivetrain.getAverageDistance(),
         // This should return the setpoint (can also be a constant)
@@ -36,16 +36,13 @@ public class AutoForward extends PIDCommand {
           // Use the output here
           // drive forward
           drivetrain.tankDrive(-output, -output, false);
-          
         });
 
         m_drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_drivetrain);
     // Configure additional PID options by calling `getController` here.
-    getController().setTolerance(Constants.DrivetrainConstants.PositionTolerace, Constants.DrivetrainConstants.VelocityTolerance);
-
-
+    getController().setTolerance(kPositionTolerace, kVelocityTolerance);
   }
 
   // Called when the command is initially scheduled.

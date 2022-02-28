@@ -9,47 +9,60 @@ command to drive at a certain power for left and right motors
 package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
+
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Climber;
 
-public class differentialDrive extends CommandBase {
+public class hangerRunMotors extends CommandBase {
 
-  private final Drivetrain m_drivetrain;
+  private final Climber m_climber;
   private final DoubleSupplier m_leftSpeed;
   private final DoubleSupplier m_rightSpeed;
+  private final CANSparkMax m_leftMotor;
+  private final CANSparkMax m_rightMotor;
 
-  /** Controls the robot's drivetrain or movement subsystem
+  /** Controls specific motors of the Hanger subsystem
    * @param leftSpeed Left thumbstick Y axis
    * @param rightSpeed Right thumbstick Y axis
-   * @param subsystem Drivetrain subsystem
+   * @param leftMotor Left Spark Max motor
+   * @param rightMotor Right Spark Max motor
+   * @param subsystem Hanger subsystem
    */
-  public differentialDrive(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, Drivetrain subsystem) {
+  public hangerRunMotors(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, CANSparkMax leftMotor, CANSparkMax rightMotor, Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_drivetrain = subsystem;
+    m_climber = subsystem;
     m_leftSpeed = leftSpeed;
     m_rightSpeed = rightSpeed;
+    m_leftMotor = leftMotor;
+    m_rightMotor = rightMotor;
 
-    addRequirements(m_drivetrain);
+    addRequirements(m_climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_drivetrain.stopDrive();
+    m_leftMotor.stopMotor();
+    m_rightMotor.stopMotor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // drive with speeds of the parameter
-    m_drivetrain.tankDrive(m_leftSpeed.getAsDouble(), m_rightSpeed.getAsDouble(), true);
+    // move motors of hanger and pivot
+    m_leftMotor.set(m_leftSpeed.getAsDouble());
+    m_rightMotor.set(m_rightSpeed.getAsDouble());
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // stop drive
-    m_drivetrain.stopDrive();
+    // stop hanger and pivot
+    m_leftMotor.stopMotor();
+    m_rightMotor.stopMotor();
   }
 
   // Returns true when the command should end.
