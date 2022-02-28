@@ -8,9 +8,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import static frc.robot.Constants.LightConstants.*;
 
@@ -18,17 +15,11 @@ public class Lights extends SubsystemBase {
  
   private static final double kDisabled = 0;
   private final Spark m_ledDriver;
-  private final NetworkTable m_lightTable;
-  private final Timer m_timeToSpeed = new Timer();
 
   /** Creates a new Lights. */
   public Lights() {
-    m_lightTable = NetworkTableInstance.getDefault().getTable("Light Statuses");
-
     m_ledDriver = new Spark(kBlinkinDriverPort);
     resetLights();
-
-    // m_lightValues.addNumber("Light Output", () -> getCurrentLights());
   }
 
   /* TODO: When robot takes in ball of each color

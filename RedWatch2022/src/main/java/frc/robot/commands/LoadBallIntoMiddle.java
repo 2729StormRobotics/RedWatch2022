@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
 
-
-
 public class LoadBallIntoMiddle extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;
@@ -24,15 +22,12 @@ public class LoadBallIntoMiddle extends CommandBase {
   public LoadBallIntoMiddle(Indexer indexer) {
     m_indexer = indexer;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements();
-
+    addRequirements(m_indexer);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

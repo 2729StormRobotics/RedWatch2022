@@ -12,11 +12,10 @@ public class rotateBot extends CommandBase {
   private final Climber m_climber;
 
   /** Creates a new rotateBot. */
-  public rotateBot(Climber subsystem) {
+  public rotateBot(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_climber = subsystem;
+    m_climber = climber;
     addRequirements(m_climber);
-
   }
 
   // Called when the command is initially scheduled.

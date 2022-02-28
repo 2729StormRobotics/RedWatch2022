@@ -36,7 +36,6 @@ public class AutoForward extends PIDCommand {
           // Use the output here
           // drive forward
           drivetrain.tankDrive(-output, -output, false);
-          
         });
 
         m_drivetrain = drivetrain;
@@ -44,8 +43,6 @@ public class AutoForward extends PIDCommand {
     addRequirements(m_drivetrain);
     // Configure additional PID options by calling `getController` here.
     getController().setTolerance(kPositionTolerace, kVelocityTolerance);
-
-
   }
 
   // Called when the command is initially scheduled.
