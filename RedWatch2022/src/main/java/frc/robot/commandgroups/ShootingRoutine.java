@@ -34,11 +34,11 @@ public class ShootingRoutine extends SequentialCommandGroup {
 
 
   /** Creates a new LoadThenShoot. */
-  public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain, double rpm) {
+  public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain) {
     super(
       new VisionAlign(drivetrain, vision),
       new TurnAngle(Indexer.getOffset(), drivetrain),
-      new RevToSpeed(rpm, shooter, lights),
+      new RevToSpeed(vision.getRPM(), shooter, lights),
       new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights)
       
