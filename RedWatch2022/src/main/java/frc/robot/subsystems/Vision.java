@@ -51,6 +51,8 @@ private final NetworkTableEntry m_tv;
     m_tx = m_limelightTable.getEntry("tx");
     m_ty = m_limelightTable.getEntry("ty");
     m_tv = m_limelightTable.getEntry("tv");
+    
+    CameraServer.getInstance().startAutomaticCapture();
   }
 
   // Sets the limelight to off
