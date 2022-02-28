@@ -176,7 +176,10 @@ public class ControlPanel extends SubsystemBase {
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
   }
 
-  @Override
+  public ControlPanel(Shooter m_shooter, Indexer m_indexer, Lights m_lights) {
+}
+
+@Override
   public void periodic() {
     // This method will be called once per scheduler run
     if (isBallRed.getAsBoolean()) {
