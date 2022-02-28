@@ -15,11 +15,11 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
-import edu.wpi.first.wpilibj.shuffleboard.SuppliedValueWidget;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
+import frc.robot.commands.changeAlliance;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
 import frc.robot.commands.hangerRunMotors;
@@ -48,6 +48,10 @@ public class ControlPanel extends SubsystemBase {
   private final SimpleWidget ballColorWidget;
   private final BooleanSupplier isBallRed;
   private final BooleanSupplier isBallBlue;
+
+  private final SimpleWidget m_allianceStatus;
+  private final BooleanSupplier isRedTeam;
+  private final BooleanSupplier isBlueTeam;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
    * Contains all shuffleboard related code. Close out of the shuffleboard window and reopen to 
@@ -172,6 +176,16 @@ public class ControlPanel extends SubsystemBase {
 
     m_indexerstatus.addNumber("Indexer Set Speed", () -> m_indexer.m_bottomMotor.getMotorOutputPercent());
     
+    m_allianceStatus = m_controlpanelTab.add("Alliance Status", true)
+      .withProperties(Map.of("Color When True", "Red"))
+      .withPosition(6, 4)
+      .withSize(2, 1);
+    m_controlpanelTab.add("Change Alliance", new changeAlliance(m_shooter))
+      .withPosition(8, 4)
+      .withSize(2, 1);
+    isRedTeam = () -> m_shooter.isRedTeam();
+    isBlueTeam = () -> m_shooter.isBlueTeam();
+
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
   }
@@ -185,6 +199,12 @@ public class ControlPanel extends SubsystemBase {
       ballColorWidget.withProperties(Map.of("Color When True", "Blue"));
     } else {
       ballColorWidget.withProperties(Map.of("Color When True", "Black"));
+    }
+
+    if (isRedTeam.getAsBoolean()) {
+      m_allianceStatus.withProperties(Map.of("Color When True", "Red"));
+    } else if (isBlueTeam.getAsBoolean()) {
+      m_allianceStatus.withProperties(Map.of("Color When True", "Blue"));
     }
   }
 }

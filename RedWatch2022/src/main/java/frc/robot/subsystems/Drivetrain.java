@@ -129,8 +129,12 @@ public class Drivetrain extends SubsystemBase {
     return m_ahrs.getPitch();
   }
 
-  public void resetGyroAngle(){
+  public void resetGyroAngle() {
     m_ahrs.reset();
+  }
+
+  public boolean isTriggerPressed(double trigger) {
+    return trigger > 0.95;
   }
 
   /** The Tank Drive mode is used to control each side of the drivetrain
