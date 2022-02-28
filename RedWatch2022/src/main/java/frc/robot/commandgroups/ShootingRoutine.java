@@ -5,6 +5,7 @@
 package frc.robot.commandgroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.RobotContainer;
 import frc.robot.commands.LoadBallIntoFlyWheel;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.RevToSpeed;
@@ -47,4 +48,9 @@ public class ShootingRoutine extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();
   }
+   // command manually added
+   @Override
+   public boolean isFinished() {
+     return(RobotContainer.m_weapons.getYButtonPressed());
+   }
 }
