@@ -42,20 +42,20 @@ public final class Constants {
 
   public static final class IndexerConstants {
     public static final int kIndexMotorPort = 6;
-    public static final int kBeamBreakPort = 1;
+    public static final int kBeamBreakPort = 0;
     public static final int kDriveAmperagePeakDuration = 100;
     public static final int kCanTimeoutSetup = 500;
     public static final int kDriveAmperageLimitPeak = 50;
     public static final int kDriveAmperageLimitContinuous = 35;
-    public static final double kIndexerSpeed = 0.250;
+    public static final double kIndexerSpeed = 0.9;
   }
 
 	public static final class IntakeConstants {
     public static final int kIntakeMotorPort = 8;
     public static final int kIntakePiston1 = 4;
     public static final int kIntakePiston2 = 6;
-    public static final double kIntakeMotorSpeed = 0.35;
-    public static final double kEjectMotorSpeed = -0.45;
+    public static final double kIntakeMotorSpeed = 0.5;
+    public static final double kEjectMotorSpeed = -0.5;
     public static final Value kIntakeRaiseValue = Value.kForward;
     public static final Value kIntakeLowerValue = Value.kReverse;
     public static final int kDriveAmperagePeakDuration = 100;

@@ -38,7 +38,7 @@ public class curvatureDrive extends CommandBase {
   @Override
   public void execute() {
     // drive with speeds of the parameter
-    m_drivetrain.curvatureDrive(m_stickY.getAsDouble(), m_stickX.getAsDouble(), m_driver.getLeftBumper());
+    m_drivetrain.curvatureDrive(m_stickY.getAsDouble(), m_stickX.getAsDouble(), m_driver.getAButton());
   }
 
 
