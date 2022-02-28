@@ -4,7 +4,9 @@
 
 package frc.robot.commandgroups;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.LoadBallIntoFlyWheel;
 import frc.robot.commands.LoadBallIntoMiddle;
@@ -33,6 +35,8 @@ public class ShootingRoutine extends SequentialCommandGroup {
    * @param rpm wanted rpm of flywheel
    */
 
+  public final XboxController m_weapons = new XboxController(Constants.IOPorts.kWeaponsController);
+
 
   /** Creates a new LoadThenShoot. */
   public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain) {
@@ -44,6 +48,7 @@ public class ShootingRoutine extends SequentialCommandGroup {
       new LoadBallIntoFlyWheel(indexer, shooter, lights)
       
     );
+    
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();
@@ -51,6 +56,6 @@ public class ShootingRoutine extends SequentialCommandGroup {
    // command manually added
    @Override
    public boolean isFinished() {
-     return(RobotContainer.m_weapons.getYButtonPressed());
+     return(m_weapons.getYButtonPressed());
    }
 }
