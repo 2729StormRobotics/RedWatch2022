@@ -8,14 +8,17 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.LoadBallIntoFlyWheel;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.RevToSpeed;
+import frc.robot.commands.VisionAlign;
+import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Vision;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class IndexThenShoot extends SequentialCommandGroup {
+public class ShootingRoutine extends SequentialCommandGroup {
 
   /**
    * Runs the whole shooting process, starting with ball after intake
@@ -29,8 +32,9 @@ public class IndexThenShoot extends SequentialCommandGroup {
    */
 
   /** Creates a new LoadThenShoot. */
-  public IndexThenShoot(Indexer indexer, Shooter shooter, Lights lights, double rpm) {
+  public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain, double rpm) {
     super(
+      new VisionAlign(drivetrain, vision),
       new RevToSpeed(rpm, shooter, lights),
       new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights)

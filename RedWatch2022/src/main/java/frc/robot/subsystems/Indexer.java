@@ -42,6 +42,14 @@ public class Indexer extends SubsystemBase {
     return !m_ballDector.get();
   }
 
+  public char getBottomBall () {
+    return ballPositions[0];
+  }
+
+  public char getMiddleBall () {
+    return ballPositions[1];
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

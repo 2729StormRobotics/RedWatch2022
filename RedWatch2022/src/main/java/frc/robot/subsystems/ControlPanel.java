@@ -113,6 +113,10 @@ public class ControlPanel extends SubsystemBase {
     m_climbStatus.add(new rotateForward(m_climber)); // Rotates the bot forward
     m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
 
+    // Indexer
+    m_indexerstatus.addString("Bottom Ball", () -> m_indexer.getBottomBall() + "");
+    m_indexerstatus.addString("Middle Ball", () -> m_indexer.getMiddleBall() + "");
+
     // // DEBUGGING values
     // m_climbStatus.addNumber("right extend get", () -> m_climber.m_climbRightExtend.get());
     // m_climbStatus.addNumber("right pivot get", () -> m_climber.m_climbRightPivot.get());
@@ -174,6 +178,7 @@ public class ControlPanel extends SubsystemBase {
     
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
+    
   }
 
   @Override
