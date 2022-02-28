@@ -11,17 +11,15 @@ public class toggleAuto extends CommandBase {
   private final Climber m_climber;
 
   /** Creates a new toggleAuto. */
-  public toggleAuto(Climber subsystem) {
+  public toggleAuto(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_climber = subsystem;
+    m_climber = climber;
     addRequirements(m_climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

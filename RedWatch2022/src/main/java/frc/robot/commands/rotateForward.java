@@ -13,13 +13,12 @@ public class rotateForward extends CommandBase {
 
   /**
    * Pivots or rotates the bot forward
-   * @param subsystem Hanger subsystem
+   * @param climber Hanger subsystem
    */
-  public rotateForward(Climber subsystem) {
+  public rotateForward(Climber climber) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_climber = subsystem;
+    m_climber = climber;
     addRequirements(m_climber);
-
   }
 
   // Called when the command is initially scheduled.
