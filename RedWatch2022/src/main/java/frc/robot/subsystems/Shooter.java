@@ -22,6 +22,8 @@ public class Shooter extends SubsystemBase {
   public double increment = 0;
   public double motorPower = 0;
 
+  public String teamColor = "Red";
+
   /**
    * Shooter subsystem controls flywheel
    */
@@ -76,6 +78,26 @@ public class Shooter extends SubsystemBase {
 
   public double getFlyWheelSpeedAfterRev() {
     return flyWheelSpeedAfterRev;
+  }
+
+  public void changeAlliance() {
+    if (teamColor == "Red") {
+      teamColor = "Blue";
+    } else if (teamColor == "Blue") {
+      teamColor = "Red";
+    }
+  }
+
+  private String getAlliance() {
+    return teamColor;
+  }
+
+  public boolean isRedTeam() {
+    return getAlliance() == "Red";
+  }
+
+  public boolean isBlueTeam() {
+    return getAlliance() == "Blue";
   }
 
   @Override
