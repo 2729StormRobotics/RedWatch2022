@@ -98,11 +98,11 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public double getLeftDistance() {
-    return -m_leftEncoder.getPosition();
+    return m_leftEncoder.getPosition();
   }
 
   public double getRightDistance() {
-    return -m_rightEncoder.getPosition();
+    return m_rightEncoder.getPosition();
   }
 
   public double getLeftSpeed() {

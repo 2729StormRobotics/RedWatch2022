@@ -15,6 +15,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AutoForward;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.IntakeStop;
@@ -83,6 +84,7 @@ public class RobotContainer {
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
+    new JoystickButton(m_driver, Button.kA.value).whenPressed(new AutoForward(30, m_drivetrain));
     
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 2000));
