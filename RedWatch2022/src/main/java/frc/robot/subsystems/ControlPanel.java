@@ -127,6 +127,8 @@ public class ControlPanel extends SubsystemBase {
     // m_climbStatus.addBoolean("left bumper", () -> m_weapons.getLeftBumper());
     // m_climbStatus.addBoolean("right bumper", () -> m_weapons.getRightBumper());
 
+
+
     // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)

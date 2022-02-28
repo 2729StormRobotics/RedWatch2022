@@ -9,6 +9,7 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.LoadBallIntoFlyWheel;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.RevToSpeed;
+import frc.robot.commands.TurnAngle;
 import frc.robot.commands.VisionAlign;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
@@ -32,10 +33,12 @@ public class ShootingRoutine extends SequentialCommandGroup {
    * @param rpm wanted rpm of flywheel
    */
 
+
   /** Creates a new LoadThenShoot. */
   public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain, double rpm) {
     super(
       new VisionAlign(drivetrain, vision),
+      new TurnAngle(Indexer.getOffset(), drivetrain),
       new RevToSpeed(rpm, shooter, lights),
       new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights)
