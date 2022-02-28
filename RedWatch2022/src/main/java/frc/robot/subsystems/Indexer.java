@@ -50,6 +50,13 @@ public class Indexer extends SubsystemBase {
     return ballPositions[1];
   }
 
+  public static double getOffset () {
+    if (ballPositions[0] == 'R') {
+      return 45;
+    }
+    return 0;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
