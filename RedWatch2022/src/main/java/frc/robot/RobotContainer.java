@@ -64,7 +64,7 @@ public class RobotContainer {
       new hangerControl(() -> m_weapons.getLeftY(), () -> m_weapons.getRightY(), () -> m_weapons.getLeftBumper(), () -> m_weapons.getRightBumper(), m_climber));
 
     m_drivetrain.setDefaultCommand(
-      new curvatureDrive(() -> m_driver.getLeftY() / 2.0, () -> m_driver.getRightX() / 2.0, m_driver, m_drivetrain));
+      new curvatureDrive(() -> m_driver.getLeftY() / 1.5, () -> m_driver.getRightX() / 1.5, m_driver, m_drivetrain));
 
     // Set up Control Panel
     new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_indexer, m_shooter, m_lights);
