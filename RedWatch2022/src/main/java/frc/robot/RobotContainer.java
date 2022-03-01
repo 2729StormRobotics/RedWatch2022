@@ -106,7 +106,7 @@ public class RobotContainer {
      * Button mappings for the weapons controller. Currently set to:
      * X (while held) runs the intake motors
      * B (when pressed) runs the index motor until the beambreak is broken
-     * Y (when pressed) runs the index then shoot command (index -> rev launcher -> shoot ball)
+     * Y (when pressed) runs the index then shoot command (index -> rev launcher based on distance -> shoot ball)
      * A (while held) reverses the index motor to eject the ball
      */
     new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
