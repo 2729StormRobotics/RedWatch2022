@@ -37,23 +37,31 @@ public class ShootingRoutine extends SequentialCommandGroup {
 
   public final XboxController m_weapons = new XboxController(Constants.IOPorts.kWeaponsController);
 
-
   /** Creates a new LoadThenShoot. */
   public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain) {
 
-    
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+      // aligns robot to vision target
       new VisionAlign(drivetrain, vision),
-      new TurnAngle(Indexer.getOffset(), drivetrain),
+
+      // unsure 
+      // new TurnAngle(Indexer.getOffset(), drivetrain),
+
+      // revs flywheel
       new RevToSpeed(vision.getRPM(), shooter, lights),
+
+      // runs indexer until beam is broken
       new LoadBallIntoMiddle(indexer),
+
+      // indexer runs until ball is launched
       new LoadBallIntoFlyWheel(indexer, shooter, lights));
   }
-   // command manually added
+   // if the same button is pressed, command will end
    @Override
    public boolean isFinished() {
-     return(m_weapons.getYButtonPressed());
+     return (m_weapons.getYButtonPressed());
    }
 }
