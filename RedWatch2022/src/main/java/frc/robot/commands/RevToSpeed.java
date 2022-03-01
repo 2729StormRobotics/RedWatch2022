@@ -33,7 +33,7 @@ public class RevToSpeed extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_shooter.topMotor.set(0);
+    // m_shooter.topMotor.set(0);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
     m_motorPower = 0;
     currentRPM = 0;
