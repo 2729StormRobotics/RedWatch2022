@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
@@ -60,6 +62,11 @@ public class Drivetrain extends SubsystemBase {
 
     // initialize DifferentialDrive
     m_drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
+
+    // initalize odometry
+    m_odometry = new DifferentialDriveOdometry(
+      getGyroHeading(), new Pose2d(new Rotation2d())
+    )
 
     // initialize NavX if detected
     try {
