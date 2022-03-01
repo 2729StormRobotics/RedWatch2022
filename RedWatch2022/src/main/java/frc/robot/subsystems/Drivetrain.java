@@ -14,21 +14,28 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
+  // Declare motor objects
   public final com.revrobotics.CANSparkMax leftMotor;
   public final com.revrobotics.CANSparkMax leftMotor2;
   public final com.revrobotics.CANSparkMax rightMotor;
   public final com.revrobotics.CANSparkMax rightMotor2;
 
+  // Declare encoders
   public final RelativeEncoder m_leftEncoder;
   public final RelativeEncoder m_rightEncoder;
 
+  // Declare DifferentialDrive & DifferentialDrive Odometry
   private final DifferentialDrive m_drive;
+  private final DifferentialDriveOdometry m_odometry;
 
+  // Declare navX
   AHRS m_ahrs;
 
   public Drivetrain() {
@@ -44,16 +51,18 @@ public class Drivetrain extends SubsystemBase {
     motorInit(rightMotor, kRightReversedDefault);
     motorInit(rightMotor2, kRightReversedDefault);
 
-    // leftMotor2.follow(leftMotor);
-    // rightMotor2.follow(rightMotor);
+    // create MotorControllerGroups to link left and right side motors
     final MotorControllerGroup rightControllerGroup = new MotorControllerGroup(rightMotor, rightMotor2);
     final MotorControllerGroup leftControllerGroup = new MotorControllerGroup(leftMotor, leftMotor2);
 
+    // set encoderes
     m_leftEncoder = leftMotor.getEncoder();
     m_rightEncoder = rightMotor.getEncoder();
 
+    // initialize DifferentialDrive
     m_drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
+    // initialize NavX if detected
     try {
       m_ahrs = new AHRS(SPI.Port.kMXP);
     } catch (RuntimeException ex){
