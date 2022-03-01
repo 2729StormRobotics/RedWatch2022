@@ -7,13 +7,17 @@
 - LEFT_FRONT_MOTOR = 12
 - RIGHT_REAR_MOTOR = 1 
 - LEFT_REAR_MOTOR = 14
-  - Gearbox Ratio =    
+  - Gearbox Ratio = 1:12
+
+- *note that negative power = forward movement; invert fwd/rev but not left/right*
 
 ### Climbing:
 - RIGHT_PIVOT_MOTOR = 10
 - LEFT_PIVOT_MOTOR = 9 
+  - Pivot Gearbox Ratio = 1:125
 - RIGHT_EXTEND_MOTOR = 2
 - LEFT_EXTEND_MOTOR =  13
+  - Telescoping Gearbox Ratio = 1:12
 
 ### Shooting:
 - FLYWHEEL_MOTOR = 3
