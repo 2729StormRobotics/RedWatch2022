@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Constants.IndexerConstants;
 import frc.robot.subsystems.Indexer;
 
 public class LoadBallIntoMiddle extends CommandBase {
@@ -40,6 +41,8 @@ public class LoadBallIntoMiddle extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_indexer.load(0.0);
+    Indexer.ballPositions[1] = Indexer.ballPositions[0];
+    Indexer.ballPositions[0] = ' ';
   }
 
   // Returns true when the command should end.

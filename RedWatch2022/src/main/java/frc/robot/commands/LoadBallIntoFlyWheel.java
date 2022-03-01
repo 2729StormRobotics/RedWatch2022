@@ -57,6 +57,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
     m_indexer.load(0.0);
     m_lights.resetLights();
     m_shooter.topMotor.set(0.0);
+    Indexer.ballPositions[1] = ' ';
   }
 
   // Returns true when the command should end.

@@ -23,7 +23,7 @@ import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.VisionAlign;
-import frc.robot.commandgroups.IndexThenShoot;
+import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.hangerControl;
 import frc.robot.subsystems.Drivetrain;
@@ -49,7 +49,7 @@ public class RobotContainer {
   private final Drivetrain m_drivetrain;
 
   private final XboxController m_driver = new XboxController(kDriverController);
-  private final XboxController m_weapons = new XboxController(kWeaponsController);
+  public final XboxController m_weapons = new XboxController(kWeaponsController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -106,12 +106,12 @@ public class RobotContainer {
      * Button mappings for the weapons controller. Currently set to:
      * X (while held) runs the intake motors
      * B (when pressed) runs the index motor until the beambreak is broken
-     * Y (when pressed) runs the index then shoot command (index -> rev launcher -> shoot ball)
+     * Y (when pressed) runs the index then shoot command (index -> rev launcher based on distance -> shoot ball)
      * A (while held) reverses the index motor to eject the ball
      */
     new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IndexThenShoot(m_indexer, m_shooter, m_lights, 2000));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
     new JoystickButton(m_weapons, Button.kA.value).whileHeld(new IndexEject(m_indexer));
 
     

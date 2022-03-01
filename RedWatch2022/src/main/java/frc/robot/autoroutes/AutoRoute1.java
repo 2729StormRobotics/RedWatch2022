@@ -7,7 +7,7 @@ package frc.robot.autoroutes;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import static frc.robot.Constants.AutoRouteConstants.*;
 
-import frc.robot.commandgroups.IndexThenShoot;
+import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.IntakeStop;
@@ -30,7 +30,7 @@ public class AutoRoute1 extends SequentialCommandGroup {
       new IntakeRun(intake),
       new AutoForward(40.695 + kRobotLength/2.0, drivetrain),
       new VisionAlign(drivetrain, vision),
-      new IndexThenShoot(indexer, shooter, lights, rpm),
+      new ShootingRoutine(indexer, shooter, lights, vision, drivetrain),
       //intake
       //vision turn
       //shoot
@@ -38,7 +38,7 @@ public class AutoRoute1 extends SequentialCommandGroup {
       new TurnAngle(-drivetrain.getGyroAngle() + 90 + 32.25, drivetrain),
       new AutoForward(117.101, drivetrain),
       new VisionAlign(drivetrain, vision),
-      new IndexThenShoot(indexer, shooter, lights, rpm),
+      new ShootingRoutine(indexer, shooter, lights, vision, drivetrain),
       //intake
       //vision turn
       //shoot
