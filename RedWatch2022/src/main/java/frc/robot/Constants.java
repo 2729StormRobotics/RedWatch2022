@@ -110,15 +110,18 @@ public final class Constants {
     public static final double kClimbSuccess = 0.97; // Rainbow party
     public static final int kBlinkinDriverPort = 0;
   }
-    
+   
   public static final class ClimberConstants {
 		public static final int kClimberLeftFollowerExtendPort = 13;
 		public static final int kClimberRightExtendPort = 2;
 		public static final int kClimberLeftPivotFollowerPort = 9;
 		public static final int kClimberRightPivotPort = 10;
-    public static final double kGearRatio = 1.0 / 16.0;
-		// 150 to 24.5 
-    public static final double kDistancePerRevolution = kGearRatio * (3.0 / 4.0) * 3.14; //TODO: put in gear ratio for the climbers!!!
+    // pivoting gearbox = 1:125 
+    public static final double kTelescopingGearRatio = 1.0 / 16.0;
+    public static final double kPivotingGearRatio = 1.0 / 125.0;
+
+    public static final double kAnglePerRevolution = kPivotingGearRatio * 3.14;
+    public static final double kDistancePerRevolution = kTelescopingGearRatio * (7.0 / 8.0) * 3.14; //TODO: put in gear ratio for the climbers!!!
 		public static final double kClimberRightSize = 12.0;
 	}
 }
