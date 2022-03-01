@@ -13,32 +13,48 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class Indexer extends SubsystemBase {
 
   // Talon used for index motor
-  public final TalonSRX m_bottomMotor;
+  public static TalonSRX m_bottomMotor = new TalonSRX(kIndexMotorPort);
   private final DigitalInput m_ballDector;
+  public static char[] ballPositions = new char[2];
 
   /** Creates a new Indexer. */
   public Indexer() {
     m_ballDector = new DigitalInput(kBeamBreakPort);
-    m_bottomMotor = new TalonSRX(kIndexMotorPort);
-
-    motorInit(m_bottomMotor);
+    motorInit();
+    ballPositions[0] = ' ';
+    ballPositions[1] = ' ';
   }
 
-  private void motorInit(TalonSRX m_motor){
-    m_motor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
-    m_motor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
-    m_motor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
-    m_motor.enableCurrentLimit(true);
+  private void motorInit(){
+    m_bottomMotor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
+    m_bottomMotor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
+    m_bottomMotor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
+    m_bottomMotor.enableCurrentLimit(true);
   }
 
-  public void load(double speed){
-    // speed in percent
+  public void load (double speed){
+    //speed in percent
     m_bottomMotor.set(ControlMode.PercentOutput, speed);
   }
 
   public boolean isBallPresent(){
-    // checks for ball
+    //checks for ball
     return !m_ballDector.get();
+  }
+
+  public char getBottomBall () {
+    return ballPositions[0];
+  }
+
+  public char getMiddleBall () {
+    return ballPositions[1];
+  }
+
+  public static double getOffset () {
+    if (ballPositions[0] == 'R') {
+      return 45;
+    }
+    return 0;
   }
 
   @Override
