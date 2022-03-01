@@ -79,7 +79,7 @@ public class RobotContainer {
      * Holding down left trigger allows turning in place
      */ 
     m_drivetrain.setDefaultCommand(
-      new curvatureDrive(() -> m_driver.getLeftY() / 1.5, () -> m_driver.getRightX() / 1.5, m_drivetrain.isTriggerPressed(m_driver.getLeftTriggerAxis()), m_drivetrain));
+      new curvatureDrive(() -> m_driver.getLeftY() / 1.5, () -> m_driver.getRightX() / 1.5, () -> m_drivetrain.isTriggerPressed(m_driver.getLeftTriggerAxis()), m_drivetrain));
 
     // Configure the button bindings
     configureButtonBindings();
