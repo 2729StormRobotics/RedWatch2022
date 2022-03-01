@@ -52,7 +52,8 @@ private final NetworkTableEntry m_tv;
     m_ty = m_limelightTable.getEntry("ty");
     m_tv = m_limelightTable.getEntry("tv");
     
-    CameraServer.getInstance().startAutomaticCapture();
+    // Start the camera server for the driver camera
+    CameraServer.startAutomaticCapture("Driver Camera", 0);
   }
 
   // Sets the limelight to off
