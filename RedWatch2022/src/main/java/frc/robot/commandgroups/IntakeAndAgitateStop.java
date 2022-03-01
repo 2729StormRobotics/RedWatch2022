@@ -16,7 +16,7 @@ public class IntakeAndAgitateStop extends ParallelCommandGroup {
   public IntakeAndAgitateStop(Intake intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    // addCommands();
-    super(new IntakeStop(intake));
+    addCommands(new IntakeStop(intake));
+    
   }
 }
