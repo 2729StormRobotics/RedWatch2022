@@ -33,7 +33,6 @@ public class Drivetrain extends SubsystemBase {
 
   // Declare DifferentialDrive & DifferentialDrive Odometry
   private final DifferentialDrive m_drive;
-  private final DifferentialDriveOdometry m_odometry;
 
   // Declare navX
   AHRS m_ahrs;
