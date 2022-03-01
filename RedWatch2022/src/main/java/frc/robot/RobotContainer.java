@@ -48,7 +48,7 @@ public class RobotContainer {
   private final Drivetrain m_drivetrain;
 
   private final XboxController m_driver = new XboxController(kDriverController);
-  public static final XboxController m_weapons = new XboxController(kWeaponsController);
+  public final XboxController m_weapons = new XboxController(kWeaponsController);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -84,7 +84,8 @@ public class RobotContainer {
     new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
     
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain, 2000));
+    new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
     new JoystickButton(m_weapons, Button.kA.value).whileHeld(new IndexEject(m_indexer));
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));

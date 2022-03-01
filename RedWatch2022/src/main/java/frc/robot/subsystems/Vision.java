@@ -145,6 +145,15 @@ private final NetworkTableEntry m_tv;
     m_targetOffset.setDouble(getXOffset());
   }
 
+  // gets needed rpm for shooter
+  public double getRPM() {
+    double x = getTargetDistance();
+    double theta = Math.toRadians(getTargetAngle());
+    return Math.sqrt( (16.087 * Math.pow(x, 2)) /
+      ( Math.pow(Math.cos(theta), 2) * 
+      (-8.67 + (x * Math.tan(theta)))) );
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
