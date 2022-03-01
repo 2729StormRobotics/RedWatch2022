@@ -24,6 +24,9 @@ public class Climber extends SubsystemBase {
   public final RelativeEncoder m_climbLeftEncoder;
   public final RelativeEncoder m_climbRightEncoder;
 
+  public final RelativeEncoder m_pivotLeftEncoder;
+  public final RelativeEncoder m_pivotRightEncoder;
+
   private static AHRS m_ahrs;
 
   /**
@@ -51,8 +54,13 @@ public class Climber extends SubsystemBase {
     m_climbRightEncoder = m_climbRightExtend.getEncoder();
     m_climbLeftEncoder = m_climbLeftExtend.getEncoder();
 
-    encoderInit(m_climbRightEncoder);
-    encoderInit(m_climbLeftEncoder);
+    m_pivotRightEncoder = m_climbRightPivot.getEncoder();
+    m_pivotLeftEncoder = m_climbLeftPivot.getEncoder();
+
+    positionEncoderInit(m_climbRightEncoder);
+    positionEncoderInit(m_climbLeftEncoder);
+    pivotEncoderInit(m_pivotRightEncoder);
+    pivotEncoderInit(m_pivotLeftEncoder);
 
     try {
       m_ahrs = new AHRS(SPI.Port.kMXP);
@@ -75,10 +83,14 @@ public class Climber extends SubsystemBase {
     }
   }
 
-  private void encoderInit(RelativeEncoder encoder) {
+  private void positionEncoderInit(RelativeEncoder encoder) {
     encoder.setPositionConversionFactor(kDistancePerRevolution);
 
     encoderReset(encoder);
+  }
+
+  private void pivotEncoderInit(RelativeEncoder encoder) {
+    encoder.setPositionConversionFactor(kAnglePerRevolution);
   }
 
   public void encoderReset(RelativeEncoder encoder) {
@@ -91,6 +103,14 @@ public class Climber extends SubsystemBase {
 
   public double getRightDistance() {
     return -m_climbRightEncoder.getPosition();
+  }
+
+  public double getLeftPivot() {
+    return -m_pivotLeftEncoder.getPosition();
+  }
+
+  public double getRightPivot() {
+    return -m_pivotRightEncoder.getPosition();
   }
 
   public void setMotor(CANSparkMax motor, boolean inverse) {
