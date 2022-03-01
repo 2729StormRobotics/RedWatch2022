@@ -55,15 +55,15 @@ public class hangerControl extends CommandBase {
   @Override
   public void execute() {
     if (m_leftBumper.getAsBoolean()) { // controls each hanger separately
-      m_climber.m_climbLeftExtend.set(m_leftSpeed.getAsDouble() / 2);
-      m_climber.m_climbRightExtend.set(m_rightSpeed.getAsDouble() / 2);
+      m_climber.m_climbLeftExtend.set(m_leftSpeed.getAsDouble() / 1.25);
+      m_climber.m_climbRightExtend.set(m_rightSpeed.getAsDouble() / 1.25);
     } else if (m_rightBumper.getAsBoolean()) { // controls each pivot separately
       m_climber.m_climbLeftPivot.set(m_leftSpeed.getAsDouble() / 4);
       m_climber.m_climbRightPivot.set(m_rightSpeed.getAsDouble() / 4);
     } else { // controls hanger and pivot
       // Hanger motors
-      m_climber.m_climbRightExtend.set(m_leftSpeed.getAsDouble() / 2);
-      m_climber.m_climbLeftExtend.set(m_leftSpeed.getAsDouble() / 2);
+      m_climber.m_climbRightExtend.set(m_leftSpeed.getAsDouble() / 1.25);
+      m_climber.m_climbLeftExtend.set(m_leftSpeed.getAsDouble() / 1.25);
       
       // Pivot motors
       m_climber.m_climbRightPivot.set(m_rightSpeed.getAsDouble() / 4);

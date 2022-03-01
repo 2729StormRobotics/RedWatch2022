@@ -98,11 +98,11 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public double getLeftDistance() {
-    return -m_leftEncoder.getPosition();
+    return m_leftEncoder.getPosition();
   }
 
   public double getRightDistance() {
-    return -m_rightEncoder.getPosition();
+    return m_rightEncoder.getPosition();
   }
 
   public double getLeftSpeed() {
@@ -129,8 +129,12 @@ public class Drivetrain extends SubsystemBase {
     return m_ahrs.getPitch();
   }
 
-  public void resetGyroAngle(){
+  public void resetGyroAngle() {
     m_ahrs.reset();
+  }
+
+  public boolean isTriggerPressed(double trigger) {
+    return trigger > 0.95;
   }
 
   /** The Tank Drive mode is used to control each side of the drivetrain
