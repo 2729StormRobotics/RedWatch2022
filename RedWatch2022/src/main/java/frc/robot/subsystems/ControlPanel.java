@@ -110,6 +110,9 @@ public class ControlPanel extends SubsystemBase {
     // Hanger
     m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance()); // How far the hangers are
     m_climbStatus.addNumber("Right Distance", () -> m_climber.getRightDistance());
+    m_climbStatus.addNumber("Left Pivot", () -> m_climber.getLeftPivot());
+    m_climbStatus.addNumber("Right Pivot", () -> m_climber.getRightPivot());
+
     m_climbStatus.add(new extendUp(m_climber)); // Moves the hanger up
     m_climbStatus.add(new extendDown(m_climber)); // Moves the hanger down
 
