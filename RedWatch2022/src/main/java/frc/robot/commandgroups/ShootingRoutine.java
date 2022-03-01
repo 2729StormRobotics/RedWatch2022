@@ -59,6 +59,22 @@ public class ShootingRoutine extends SequentialCommandGroup {
       // indexer runs until ball is launched
       new LoadBallIntoFlyWheel(indexer, shooter, lights));
   }
+
+    /**
+     * Alternative method to shoot if limelight is not present. Uses a preset RPM
+     * @param indexer indexer subystem
+     * @param shooter shooter subsystem
+     * @param lights lights subsystem
+     * @param drivetrain drive subsystem
+     * @param rpm rpm of the flywheel
+     */
+  public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Drivetrain drivetrain, double rpm)  {
+
+    addCommands(
+      new RevToSpeed(rpm, shooter, lights),
+      new LoadBallIntoMiddle(indexer),
+      new LoadBallIntoFlyWheel(indexer, shooter, lights));
+  }
    // if the same button is pressed, command will end
    @Override
    public boolean isFinished() {
