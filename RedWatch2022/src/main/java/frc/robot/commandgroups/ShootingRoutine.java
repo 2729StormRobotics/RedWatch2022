@@ -68,7 +68,7 @@ public class ShootingRoutine extends SequentialCommandGroup {
      * @param drivetrain drive subsystem
      * @param rpm rpm of the flywheel
      */
-  public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Drivetrain drivetrain, double rpm)  {
+  public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, double rpm)  {
 
     addCommands(
       new RevToSpeed(rpm, shooter, lights),
