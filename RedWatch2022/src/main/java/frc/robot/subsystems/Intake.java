@@ -115,6 +115,7 @@ public class Intake extends SubsystemBase {
     boolean yes = false;
     if (m_detectedColor.red > m_detectedColor.blue && m_detectedColor.red >= 0.3) {
       yes = true;
+      Indexer.ballPositions[0] = 'R';
     }
     return yes;
   }
@@ -123,6 +124,7 @@ public class Intake extends SubsystemBase {
     boolean yes = false;
     if (m_detectedColor.blue > m_detectedColor.red && m_detectedColor.blue >= 0.3) {
       yes = true;
+      Indexer.ballPositions[0] = 'B';
     }
     return yes;
   }

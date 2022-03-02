@@ -19,13 +19,15 @@ public class Traverse extends SequentialCommandGroup {
   public Traverse(Climber climber) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    super(
-      new extendUp(climber),
-      new extendDown(climber),
-      new rotateForward(climber),
-      new rotateBackward(climber)
-    );
     
-    addCommands();
+    addCommands(
+      // extends climber arms to max distance
+      new extendUp(climber),
+      // retracts climbers to original position
+      new extendDown(climber),
+      // pivots the arms until desired angle is reached
+      new rotateForward(climber),
+      // returns arms to original position
+      new rotateBackward(climber));
   }
 }

@@ -42,20 +42,20 @@ public final class Constants {
 
   public static final class IndexerConstants {
     public static final int kIndexMotorPort = 6;
-    public static final int kBeamBreakPort = 1;
+    public static final int kBeamBreakPort = 0;
     public static final int kDriveAmperagePeakDuration = 100;
     public static final int kCanTimeoutSetup = 500;
     public static final int kDriveAmperageLimitPeak = 50;
     public static final int kDriveAmperageLimitContinuous = 35;
-    public static final double kIndexerSpeed = 0.250;
+    public static final double kIndexerSpeed = 0.9;
   }
 
 	public static final class IntakeConstants {
     public static final int kIntakeMotorPort = 8;
     public static final int kIntakePiston1 = 4;
     public static final int kIntakePiston2 = 6;
-    public static final double kIntakeMotorSpeed = 0.35;
-    public static final double kEjectMotorSpeed = -0.45;
+    public static final double kIntakeMotorSpeed = 0.5;
+    public static final double kEjectMotorSpeed = -0.5;
     public static final Value kIntakeRaiseValue = Value.kForward;
     public static final Value kIntakeLowerValue = Value.kReverse;
     public static final int kDriveAmperagePeakDuration = 100;
@@ -78,8 +78,8 @@ public final class Constants {
 
     // since the encoder is build into the motor we need to account for gearing
     public static final double kWheelDiameter = 6.0;
-    public static final double kGearRatio = 1.0 / 13.0;
-    public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio;
+    public static final double kGearRatio = 1.0 / 12.0;
+    public static final double kDistancePerRevolution = kWheelDiameter * kGearRatio * 3.14;
     public static final double kSpeedPerRevolution = kDistancePerRevolution / 60.0;
 
     public static final int kCurrentLimit = 60;
@@ -93,7 +93,7 @@ public final class Constants {
     public static final double kTurnAngleTolerace = 5.0;
     public static final double kTurnSpeedTolerance = 5.0;
     public static final double kAutoForwardI = 0.0;
-    public static final double kAutoForwardP = 0.0;
+    public static final double kAutoForwardP = 0.0029;
     public static final double kAutoForwardD = 0.0;
     public static final double kVelocityTolerance = 5.0;
     public static final double kPositionTolerace = 5.0;
@@ -110,14 +110,18 @@ public final class Constants {
     public static final double kClimbSuccess = 0.97; // Rainbow party
     public static final int kBlinkinDriverPort = 0;
   }
-
+   
   public static final class ClimberConstants {
 		public static final int kClimberLeftFollowerExtendPort = 13;
 		public static final int kClimberRightExtendPort = 2;
 		public static final int kClimberLeftPivotFollowerPort = 9;
 		public static final int kClimberRightPivotPort = 10;
-		
-    public static final double kDistancePerRevolution = 0; //TODO: put in gear ratio for the climbers
+    // pivoting gearbox = 1:125 
+    public static final double kTelescopingGearRatio = 1.0 / 16.0;
+    public static final double kPivotingGearRatio = 1.0 / 125.0;
+
+    public static final double kAnglePerRevolution = kPivotingGearRatio * 3.14;
+    public static final double kDistancePerRevolution = kTelescopingGearRatio * (7.0 / 8.0) * 3.14; //TODO: put in gear ratio for the climbers!!!
 		public static final double kClimberRightSize = 12.0;
 	}
 }

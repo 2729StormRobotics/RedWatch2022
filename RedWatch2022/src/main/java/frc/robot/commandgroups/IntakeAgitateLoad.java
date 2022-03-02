@@ -17,6 +17,6 @@ public class IntakeAgitateLoad extends SequentialCommandGroup {
   public IntakeAgitateLoad(Intake intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    super(new IntakeLower(intake), new IntakeRun(intake));
+    addCommands(new IntakeLower(intake), new IntakeRun(intake));
   }
 }

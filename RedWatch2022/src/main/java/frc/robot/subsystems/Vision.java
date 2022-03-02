@@ -8,6 +8,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.cameraserver.CameraServer;
 import static frc.robot.Constants.VisionConstants.*;
 
 public class Vision extends SubsystemBase {
@@ -50,6 +51,9 @@ private final NetworkTableEntry m_tv;
     m_tx = m_limelightTable.getEntry("tx");
     m_ty = m_limelightTable.getEntry("ty");
     m_tv = m_limelightTable.getEntry("tv");
+    
+    // Start the camera server for the driver camera
+    CameraServer.startAutomaticCapture("Driver Camera", 0);
   }
 
   // Sets the limelight to off
@@ -142,6 +146,15 @@ private final NetworkTableEntry m_tv;
     m_targetDistance.setDouble(getTargetDistance());
     m_targetDetection.setBoolean(isTargetDetected());
     m_targetOffset.setDouble(getXOffset());
+  }
+
+  // gets needed rpm for shooter
+  public double getRPM() {
+    double x = getTargetDistance();
+    double theta = Math.toRadians(getTargetAngle());
+    return Math.sqrt( (16.087 * Math.pow(x, 2)) /
+      ( Math.pow(Math.cos(theta), 2) * 
+      (-8.67 + (x * Math.tan(theta)))) );
   }
 
   @Override

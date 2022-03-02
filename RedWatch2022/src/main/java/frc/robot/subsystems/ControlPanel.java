@@ -15,11 +15,11 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
-import edu.wpi.first.wpilibj.shuffleboard.SuppliedValueWidget;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
+import frc.robot.commands.changeAlliance;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
 import frc.robot.commands.hangerRunMotors;
@@ -48,6 +48,10 @@ public class ControlPanel extends SubsystemBase {
   private final SimpleWidget ballColorWidget;
   private final BooleanSupplier isBallRed;
   private final BooleanSupplier isBallBlue;
+
+  private final SimpleWidget m_allianceStatus;
+  private final BooleanSupplier isRedTeam;
+  private final BooleanSupplier isBlueTeam;
 
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
    * Contains all shuffleboard related code. Close out of the shuffleboard window and reopen to 
@@ -106,12 +110,19 @@ public class ControlPanel extends SubsystemBase {
     // Hanger
     m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance()); // How far the hangers are
     m_climbStatus.addNumber("Right Distance", () -> m_climber.getRightDistance());
+    m_climbStatus.addNumber("Left Pivot", () -> m_climber.getLeftPivot());
+    m_climbStatus.addNumber("Right Pivot", () -> m_climber.getRightPivot());
+
     m_climbStatus.add(new extendUp(m_climber)); // Moves the hanger up
     m_climbStatus.add(new extendDown(m_climber)); // Moves the hanger down
 
     m_climbStatus.addNumber("Gyro Angle", () -> m_climber.getGyroAngle()); // Shows what angle the robot is tilted [To be tested]
     m_climbStatus.add(new rotateForward(m_climber)); // Rotates the bot forward
     m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
+
+    // Indexer
+    m_indexerstatus.addString("Bottom Ball", () -> m_indexer.getBottomBall() + "");
+    m_indexerstatus.addString("Middle Ball", () -> m_indexer.getMiddleBall() + "");
 
     // // DEBUGGING values
     // m_climbStatus.addNumber("right extend get", () -> m_climber.m_climbRightExtend.get());
@@ -122,6 +133,8 @@ public class ControlPanel extends SubsystemBase {
 
     // m_climbStatus.addBoolean("left bumper", () -> m_weapons.getLeftBumper());
     // m_climbStatus.addBoolean("right bumper", () -> m_weapons.getRightBumper());
+
+
 
     // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
@@ -172,11 +185,22 @@ public class ControlPanel extends SubsystemBase {
 
     m_indexerstatus.addNumber("Indexer Set Speed", () -> m_indexer.m_bottomMotor.getMotorOutputPercent());
     
+    m_allianceStatus = m_controlpanelTab.add("Alliance Status", true)
+      .withProperties(Map.of("Color When True", "Red"))
+      .withPosition(6, 4)
+      .withSize(2, 1);
+    m_controlpanelTab.add("Change Alliance", new changeAlliance(m_shooter))
+      .withPosition(8, 4)
+      .withSize(2, 1);
+    isRedTeam = () -> m_shooter.isRedTeam();
+    isBlueTeam = () -> m_shooter.isBlueTeam();
+
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(Constants.kShuffleboardTab);
+    
   }
 
-  @Override
+@Override
   public void periodic() {
     // This method will be called once per scheduler run
     if (isBallRed.getAsBoolean()) {
@@ -185,6 +209,12 @@ public class ControlPanel extends SubsystemBase {
       ballColorWidget.withProperties(Map.of("Color When True", "Blue"));
     } else {
       ballColorWidget.withProperties(Map.of("Color When True", "Black"));
+    }
+
+    if (isRedTeam.getAsBoolean()) {
+      m_allianceStatus.withProperties(Map.of("Color When True", "Red"));
+    } else if (isBlueTeam.getAsBoolean()) {
+      m_allianceStatus.withProperties(Map.of("Color When True", "Blue"));
     }
   }
 }
