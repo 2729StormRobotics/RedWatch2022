@@ -29,8 +29,9 @@ public class AutoRoute4 extends SequentialCommandGroup {
 
     super(
       new IntakeRun(intake),
-      new AutoForward(40.695 + kRobotLength/2.0, drivetrain),
+      new AutoForward(40.695 + 5, drivetrain),
       new VisionAlign(drivetrain, vision),
+      new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
 
     );

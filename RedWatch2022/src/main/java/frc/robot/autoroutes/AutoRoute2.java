@@ -27,8 +27,9 @@ public class AutoRoute2 extends SequentialCommandGroup {
   public AutoRoute2(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
       new IntakeRun(intake),
-      new AutoForward(40.695 + kRobotLength/2.0, drivetrain),
+      new AutoForward(40.695 + 5, drivetrain),
       new VisionAlign(drivetrain, vision),
+      new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
 
       new TurnAngle(-drivetrain.getGyroAngle() + 46.12 - 10.792, drivetrain),

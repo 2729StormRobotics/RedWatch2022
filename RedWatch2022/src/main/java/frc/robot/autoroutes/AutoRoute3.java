@@ -30,8 +30,9 @@ public class AutoRoute3 extends SequentialCommandGroup {
     super(
       new IntakeRun(intake),
       new TurnAngle(-48.786, drivetrain), // can change to not turn later by positioning robot at start
-      new AutoForward(79.190 + kRobotLength/2.0, drivetrain),
+      new AutoForward(79.190 + 5, drivetrain),
       new VisionAlign(drivetrain, vision),
+      new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
 
       new TurnAngle(-drivetrain.getGyroAngle() + 22.5 + 48.786 - 10.792, drivetrain),

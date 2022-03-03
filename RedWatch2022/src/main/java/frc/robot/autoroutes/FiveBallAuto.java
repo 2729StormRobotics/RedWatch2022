@@ -9,6 +9,7 @@ package frc.robot.autoroutes;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import static frc.robot.Constants.AutoRouteConstants.*;
 
+import frc.robot.commandgroups.IndexWhileMoving;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IntakeRun;
@@ -25,9 +26,9 @@ import frc.robot.subsystems.Vision;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoRoute1 extends SequentialCommandGroup {
+public class FiveBallAuto extends SequentialCommandGroup {
   /** Creates a new AutoRoute1. */
-  public AutoRoute1(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
+  public FiveBallAuto(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
       
       new IntakeRun(intake),
@@ -43,8 +44,14 @@ public class AutoRoute1 extends SequentialCommandGroup {
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
 
       new TurnAngle(-drivetrain.getGyroAngle() + -32.25 - 10.792, drivetrain),
-      new AutoForward(159.865, drivetrain)
+      new IndexWhileMoving(drivetrain, indexer, 159.865),
 
+      new TurnAngle(171, drivetrain),
+      new AutoForward(191.602, drivetrain),
+      new VisionAlign(drivetrain, vision),
+      new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
+      new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
+      
     );
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
