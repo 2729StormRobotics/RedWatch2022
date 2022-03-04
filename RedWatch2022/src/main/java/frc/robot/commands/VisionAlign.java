@@ -47,8 +47,12 @@ public class VisionAlign extends PIDCommand {
         m_drivetrain = drivetrain;
         m_vision = vision;
 
+        getController().setTolerance(1.5);
+
     addRequirements(m_drivetrain, m_vision);
   }
+
+
 
   @Override
   public void initialize() {
