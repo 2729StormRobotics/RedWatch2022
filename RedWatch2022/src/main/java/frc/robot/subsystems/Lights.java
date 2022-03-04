@@ -9,16 +9,23 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Indexer;
 import static frc.robot.Constants.LightConstants.*;
 
 public class Lights extends SubsystemBase {
  
   private static final double kDisabled = 0;
   private final Spark m_ledDriver;
+  private final Intake m_intake;
+  private final Indexer m_indexer;
+  private char m_currentColor = ' ';
 
   /** Creates a new Lights. */
   public Lights() {
     m_ledDriver = new Spark(kBlinkinDriverPort);
+    m_intake = new Intake();  
+    m_indexer = new Indexer();
     resetLights();
   }
 
@@ -75,5 +82,15 @@ public class Lights extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    m_currentColor = Indexer.ballPositions[1];
+    if (m_currentColor == 'R') {
+      intakeRed();
+    }
+    else if (m_currentColor == 'B') {
+      intakeBlue();
+    }
+    else {
+      resetLights();
+    }
   }
 }
