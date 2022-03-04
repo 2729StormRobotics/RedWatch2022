@@ -52,6 +52,8 @@ public final class Constants {
     public static final int kDriveAmperageLimitPeak = 50;
     public static final int kDriveAmperageLimitContinuous = 35;
     public static final double kIndexerSpeed = 0.9;
+    public static final int kStallLimit = 45;
+    public static final int kCurrentLimit = 60;
   }
 
 	public static final class IntakeConstants {

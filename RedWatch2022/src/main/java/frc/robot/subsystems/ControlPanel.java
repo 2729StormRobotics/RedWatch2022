@@ -193,7 +193,7 @@ public class ControlPanel extends SubsystemBase {
 
     m_shooterstatus.addNumber("Flywheel Speed", () -> m_shooter.getEncoderVelocity(m_shooter.m_topEncoder));
 
-    m_indexerstatus.addNumber("Indexer Set Speed", () -> m_indexer.m_bottomMotor.getMotorOutputPercent());
+    // m_indexerstatus.addNumber("Indexer Set Speed", () -> m_indexer.m_bottomMotor.getEncoder()); //TODO: add encoder RPM
     
     m_allianceStatus = m_controlpanelTab.add("Alliance Status", true)
       .withProperties(Map.of("Color When True", "Red"))

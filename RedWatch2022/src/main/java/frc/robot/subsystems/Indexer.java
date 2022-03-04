@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.Constants;
+import static frc.robot.Constants.IndexerConstants.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -15,17 +15,17 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Indexer extends SubsystemBase {
 
-  public final com.revrobotics.CANSparkMax bottomMotor;
+  public final CANSparkMax m_bottomMotor;
   // Talon used for index motor
-  public static TalonSRX m_bottomMotor = new TalonSRX(Constants.IndexerConstants.kIndexMotorPort);
+  // public static TalonSRX m_bottomMotor = new TalonSRX(Constants.IndexerConstants.kIndexMotorPort);
   private final DigitalInput m_ballDector;
   public static char[] ballPositions = new char[2];
 
   /** Creates a new Indexer. */
   public Indexer() {
-    m_ballDector = new DigitalInput(Constants.IndexerConstants.kBeamBreakPort);
-    bottomMotor = new com.revrobotics.CANSparkMax(Constants.ShooterConstants.kTopMotorPort, MotorType.kBrushless);
-    motorInit(bottomMotor, Constants.ShooterConstants.kTopReversedDefault);
+    m_ballDector = new DigitalInput(kBeamBreakPort);
+    m_bottomMotor = new com.revrobotics.CANSparkMax(kIndexMotorPort, MotorType.kBrushless);
+    motorInit(m_bottomMotor, false);
     ballPositions[0] = ' ';
     ballPositions[1] = ' ';
   }
@@ -33,14 +33,14 @@ public class Indexer extends SubsystemBase {
   public void motorInit(CANSparkMax motor, boolean invert){
     motor.restoreFactoryDefaults();
     motor.setIdleMode(IdleMode.kCoast);
-    motor.setSmartCurrentLimit(Constants.ShooterConstants.kCurrentLimit);
+    motor.setSmartCurrentLimit(kCurrentLimit);
     motor.setInverted(invert);
-    motor.setSmartCurrentLimit(Constants.ShooterConstants.kStallLimit);
+    motor.setSmartCurrentLimit(kStallLimit);
   }
 
   public void load (double speed){
     //speed in percent
-    m_bottomMotor.set(ControlMode.PercentOutput, speed);
+    m_bottomMotor.set(speed);
   }
 
   public boolean isBallPresent(){
