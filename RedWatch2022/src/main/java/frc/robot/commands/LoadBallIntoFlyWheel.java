@@ -10,9 +10,6 @@ import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 
-
-
-
 public class LoadBallIntoFlyWheel extends CommandBase {
   /** Creates a new LoadBall. */
   private final Indexer m_indexer;

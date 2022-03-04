@@ -9,9 +9,7 @@ command to drive at a certain power for left and right motors
 package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
-
 import com.revrobotics.CANSparkMax;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 

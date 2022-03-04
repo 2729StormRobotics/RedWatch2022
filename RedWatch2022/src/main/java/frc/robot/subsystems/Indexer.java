@@ -9,32 +9,38 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Indexer extends SubsystemBase {
 
+  public final CANSparkMax m_bottomMotor;
   // Talon used for index motor
-  public static TalonSRX m_bottomMotor = new TalonSRX(kIndexMotorPort);
+  // public static TalonSRX m_bottomMotor = new TalonSRX(Constants.IndexerConstants.kIndexMotorPort);
   private final DigitalInput m_ballDector;
   public static char[] ballPositions = new char[2];
 
   /** Creates a new Indexer. */
   public Indexer() {
     m_ballDector = new DigitalInput(kBeamBreakPort);
-    motorInit();
+    m_bottomMotor = new com.revrobotics.CANSparkMax(kIndexMotorPort, MotorType.kBrushless);
+    motorInit(m_bottomMotor, false);
     ballPositions[0] = ' ';
     ballPositions[1] = ' ';
   }
 
-  private void motorInit(){
-    m_bottomMotor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
-    m_bottomMotor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
-    m_bottomMotor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
-    m_bottomMotor.enableCurrentLimit(true);
+  public void motorInit(CANSparkMax motor, boolean invert){
+    motor.restoreFactoryDefaults();
+    motor.setIdleMode(IdleMode.kCoast);
+    motor.setSmartCurrentLimit(kCurrentLimit);
+    motor.setInverted(invert);
+    motor.setSmartCurrentLimit(kStallLimit);
   }
 
   public void load (double speed){
     //speed in percent
-    m_bottomMotor.set(ControlMode.PercentOutput, speed);
+    m_bottomMotor.set(speed);
   }
 
   public boolean isBallPresent(){

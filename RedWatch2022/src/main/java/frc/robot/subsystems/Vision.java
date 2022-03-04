@@ -108,6 +108,8 @@ private final NetworkTableEntry m_tv;
    * Return the distance from the limelight to the target in inches (floor distance)
    */
   public double getTargetDistance() {
+    //TODO: Get variable distance first then use this return statement
+    //return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle())) - kLimelightToShooter;
     return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle()));
   }
 
@@ -148,13 +150,16 @@ private final NetworkTableEntry m_tv;
     m_targetOffset.setDouble(getXOffset());
   }
 
+  // TODO: Test conversion factor
   // gets needed rpm for shooter
   public double getRPM() {
-    double x = getTargetDistance();
-    double theta = Math.toRadians(getTargetAngle());
-    return Math.sqrt( (16.087 * Math.pow(x, 2)) /
-      ( Math.pow(Math.cos(theta), 2) * 
-      (-8.67 + (x * Math.tan(theta)))) );
+    double distance = getTargetDistance();
+    double angle = Math.toRadians(getTargetAngle());
+    double velocity = Math.sqrt( (16.087 * Math.pow(distance, 2)) /
+      ( Math.pow(Math.cos(angle), 2) * 
+      (-8.67 + (distance * Math.tan(angle)))) );
+    double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
+    return rpm;
   }
 
   @Override

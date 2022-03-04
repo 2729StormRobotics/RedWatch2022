@@ -16,9 +16,7 @@ public class IntakeLower extends InstantCommand {
   public IntakeLower(Intake subsystem) {
     m_intake = subsystem;
     
-    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_intake);
-
   }
 
   // Called when the command is initially scheduled.

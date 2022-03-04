@@ -19,7 +19,6 @@ public class extendDown extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
     addRequirements(m_climber);
-
   }
 
   // Called when the command is initially scheduled.

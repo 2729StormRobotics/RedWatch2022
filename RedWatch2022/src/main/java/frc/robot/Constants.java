@@ -17,7 +17,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public final class Constants {
 	public static final class VisionConstants {
     public static final double kLimelightHeight = 32.0; //TODO: Rough estimate... get more exact distance
-    public static final double kLimelightAngle = 0.0; //TODO: Once limelight is mounted measure angle of limelight from horizontal to limelight
+    public static final double kLimelightAngle = 35.0; //TODO: Rough estimate... get more exact
+    public static final double kLimelightToShooter = 0.0;  // TODO: Distance from limelight to shooter
     public static final double kHubHeight = 104.0;
 
     public static final int kDefaultPipeline = 0;
@@ -25,6 +26,9 @@ public final class Constants {
 		public static final double kAutoAlignP = 0.03; //TODO: Testing to find this value
 		public static final double kAutoAlignI = 0.09; //TODO: Testing to find this value
 		public static final double kAutoAlignD = 0.0; //TODO: Testing to find this value
+
+    public static final double kFlywheelRadius = 0.25; // flywheel radius in feet
+    public static final double kRadsToRPM = 30 / Math.PI;  // Conversion factor from rad/s to RPM
     }
 
   public static final String kShuffleboardTab = "Control Panel";
@@ -48,6 +52,8 @@ public final class Constants {
     public static final int kDriveAmperageLimitPeak = 50;
     public static final int kDriveAmperageLimitContinuous = 35;
     public static final double kIndexerSpeed = 0.9;
+    public static final int kStallLimit = 45;
+    public static final int kCurrentLimit = 60;
   }
 
 	public static final class IntakeConstants {
