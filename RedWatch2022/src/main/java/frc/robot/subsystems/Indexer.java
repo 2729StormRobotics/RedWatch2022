@@ -7,17 +7,20 @@ package frc.robot.subsystems;
 import static frc.robot.Constants.IndexerConstants.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax.IdleMode;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Indexer extends SubsystemBase {
 
+  // Spark used for index motor
   public final CANSparkMax m_bottomMotor;
+
   // Talon used for index motor
   // public static TalonSRX m_bottomMotor = new TalonSRX(Constants.IndexerConstants.kIndexMotorPort);
+
   private final DigitalInput m_ballDector;
   public static char[] ballPositions = new char[2];
 
