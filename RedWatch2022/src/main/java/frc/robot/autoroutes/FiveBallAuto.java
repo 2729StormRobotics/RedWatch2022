@@ -4,7 +4,10 @@
 
 package frc.robot.autoroutes;
 
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import static frc.robot.Constants.AutoRouteConstants.*;
 
 import frc.robot.commandgroups.IndexWhileMoving;
@@ -30,7 +33,6 @@ public class FiveBallAuto extends SequentialCommandGroup {
   /** Creates a new AutoRoute1. */
   public FiveBallAuto(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
-     
       new IntakeRun(intake),
       
       //tarmac to ball 2
@@ -52,7 +54,7 @@ public class FiveBallAuto extends SequentialCommandGroup {
       new TurnAngle(-drivetrain.getGyroAngle() + -32.25 - 10.792, drivetrain),
       //allows robot to index ball while moving forward
       new IndexWhileMoving(drivetrain, indexer, 159.865),
-      addSequential(new WaitCommand(0.75)), //waits for human player. Not sure if this works, coded on github
+      new WaitCommand(0.75), //waits for human player. Not sure if this works, coded on github
 
       //balls 4 & 5 to tarmac
       new TurnAngle(171, drivetrain),
@@ -61,7 +63,6 @@ public class FiveBallAuto extends SequentialCommandGroup {
       new VisionAlign(drivetrain, vision),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
-      
     );
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
