@@ -156,7 +156,7 @@ private final NetworkTableEntry m_tv;
     double velocity = Math.sqrt( (16.087 * Math.pow(distance, 2)) /
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
-    double rpm = (velocity / flywheelRadius) * radsToRPM;
+    double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
     return rpm;
   }
 

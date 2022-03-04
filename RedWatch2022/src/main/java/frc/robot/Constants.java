@@ -26,8 +26,8 @@ public final class Constants {
 		public static final double kAutoAlignI = 0.09; //TODO: Testing to find this value
 		public static final double kAutoAlignD = 0.0; //TODO: Testing to find this value
 
-    public static final double flywheelRadius = 0.25; // flywheel radius in feet
-    public static final double radsToRPM = 30 / Math.PI;  // Conversion factor from rad/s to RPM
+    public static final double kFlywheelRadius = 0.25; // flywheel radius in feet
+    public static final double kRadsToRPM = 30 / Math.PI;  // Conversion factor from rad/s to RPM
     }
 
   public static final String kShuffleboardTab = "Control Panel";
