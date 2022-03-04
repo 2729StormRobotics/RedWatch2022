@@ -38,12 +38,15 @@ public class ControlPanel extends SubsystemBase {
   private final ShuffleboardLayout m_lightstatus;
   private final ShuffleboardLayout m_shooterstatus;
   private final ShuffleboardLayout m_indexerstatus;
+  private final ShuffleboardLayout m_alliancestatus;
 
   private final NetworkTableEntry LeftExtendMotor;
   private final NetworkTableEntry RightExtendMotor;
   private final NetworkTableEntry LeftPivotMotor;
   private final NetworkTableEntry RightPivotMotor;
   private final NetworkTableEntry setLightColor;
+
+  private final NetworkTableEntry alliance;
 
   private final SimpleWidget ballColorWidget;
   private final BooleanSupplier isBallRed;
@@ -96,6 +99,10 @@ public class ControlPanel extends SubsystemBase {
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 4)
       .withSize(2, 1);
+    m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
+      .withProperties(Map.of("Label position", "TOP"))
+      .withPosition(8, 4)
+      .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
@@ -134,7 +141,10 @@ public class ControlPanel extends SubsystemBase {
     // m_climbStatus.addBoolean("left bumper", () -> m_weapons.getLeftBumper());
     // m_climbStatus.addBoolean("right bumper", () -> m_weapons.getRightBumper());
 
-
+    // Alliance control
+    alliance = m_alliancestatus.add("Alliance", false)
+    .withWidget(BuiltInWidgets.kToggleSwitch)
+    .getEntry();
 
     // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
