@@ -108,6 +108,8 @@ private final NetworkTableEntry m_tv;
    * Return the distance from the limelight to the target in inches (floor distance)
    */
   public double getTargetDistance() {
+    //TODO: Get variable distance first then use this return statement
+    //return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle())) - kLimelightToShooter;
     return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle()));
   }
 
