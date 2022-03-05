@@ -53,10 +53,10 @@ public class AutoForward extends PIDCommand {
   }
 
   // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return getController().atSetpoint();
-  }
+  // @Override
+  // public boolean isFinished() {
+  //   return getController().atSetpoint();
+  // }
 
   // manually added end function
   @Override

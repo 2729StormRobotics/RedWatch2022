@@ -33,7 +33,7 @@ public class LoadBallIntoMiddle extends CommandBase {
   @Override
   public void execute() {
     // Run the motor continuously
-    m_indexer.load(kIndexerSpeed);
+    m_indexer.load(-kIndexerSpeed);
   }
 
   // Called once the command ends or is interrupted.

@@ -45,7 +45,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
   @Override
   public void execute() {
     // Run the motor continuously
-    m_indexer.load(Constants.IndexerConstants.kIndexerSpeed);
+    m_indexer.load(-Constants.IndexerConstants.kIndexerSpeed);
   }
 
   // Called once the command ends or is interrupted.
@@ -54,7 +54,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
     m_indexer.load(0.0);
     m_lights.resetLights();
     m_shooter.topMotor.set(0.0);
-    Indexer.ballPositions[1] = ' ';
+    // Indexer.ballPositions[1] = ' ';
   }
 
   // Returns true when the command should end.

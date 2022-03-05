@@ -24,6 +24,9 @@ import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.VisionAlign;
+import frc.robot.autoroutes.AutoRoute4;
+import frc.robot.commandgroups.IntakeDrive;
+import frc.robot.commandgroups.IntakeDriveReal;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.hangerControl;
@@ -46,7 +49,7 @@ public class RobotContainer {
   private final Shooter m_shooter;
   private final Lights m_lights;
   private final Vision m_vision;
-  private final Camera m_camera;
+  // private final Camera m_camera;
 
   private final Drivetrain m_drivetrain;
 
@@ -55,13 +58,13 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_camera = new Camera();
+    // m_camera = new Camera();
     m_lights = new Lights();
     m_intake = new Intake();
     m_indexer = new Indexer();
     m_shooter = new Shooter();
     m_climber = new Climber();
-    
+
     m_drivetrain = new Drivetrain();
     m_vision = new Vision();
 
@@ -83,7 +86,7 @@ public class RobotContainer {
      * Holding down left trigger allows turning in place
      */ 
     m_drivetrain.setDefaultCommand(
-      new curvatureDrive(() -> m_driver.getLeftY() / 1.5, () -> m_driver.getRightX() / 1.5, () -> m_drivetrain.isTriggerPressed(m_driver.getLeftTriggerAxis()), m_drivetrain));
+      new curvatureDrive(() -> m_driver.getLeftY() / 1.5, () -> m_driver.getRightX() / 1.75, () -> m_drivetrain.isTriggerPressed(m_driver.getLeftTriggerAxis()), m_drivetrain));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -102,9 +105,9 @@ public class RobotContainer {
      * Y (while held) aligns the robot to a vision target
      * A (when pressed) drives the robot forward a set distance
      */
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
+    // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new AutoForward(30, m_drivetrain));
+    // new JoystickButton(m_driver, Button.kA.value).whenPressed(new AutoForward(30, m_drivetrain));
     
     /**
      * Button mappings for the weapons controller. Currently set to:
@@ -113,9 +116,12 @@ public class RobotContainer {
      * Y (when pressed) runs the index then shoot command (index -> rev launcher based on distance -> shoot ball)
      * A (while held) reverses the index motor to eject the ball
      */
-    new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
-    new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
+    new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
+    // new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
+    // new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
+    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
+    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2000));
+    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new AutoForward(40, m_drivetrain));
     new JoystickButton(m_weapons, Button.kA.value).whileHeld(new IndexEject(m_indexer));
 
     
@@ -135,6 +141,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return null;
+    return new IntakeDriveReal(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision);
   }
 }
