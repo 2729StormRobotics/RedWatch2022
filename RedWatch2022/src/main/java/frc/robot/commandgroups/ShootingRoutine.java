@@ -34,30 +34,28 @@ public class ShootingRoutine extends SequentialCommandGroup {
    * @param rpm wanted rpm of flywheel
    */
 
-  public final XboxController m_weapons = new XboxController(kWeaponsController);
-
   /** Creates a new LoadThenShoot. */
-  public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain) {
+  // public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, Vision vision, Drivetrain drivetrain) {
 
 
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    addCommands(
-      // aligns robot to vision target
-      new VisionAlign(drivetrain, vision),
+  //   // Add your commands in the addCommands() call, e.g.
+  //   // addCommands(new FooCommand(), new BarCommand());
+  //   addCommands(
+  //     // aligns robot to vision target
+  //     new VisionAlign(drivetrain, vision),
 
-      // unsure 
-      // new TurnAngle(Indexer.getOffset(), drivetrain),
+  //     // unsure 
+  //     // new TurnAngle(Indexer.getOffset(), drivetrain),
 
-      // revs flywheel
-      new RevToSpeed(vision.getRPM(), shooter, lights),
+  //     // revs flywheel
+  //     new RevToSpeed(vision.getRPM(), shooter, lights),
 
-      // runs indexer until beam is broken
-      new LoadBallIntoMiddle(indexer),
+  //     // runs indexer until beam is broken
+  //     new LoadBallIntoMiddle(indexer),
 
-      // indexer runs until ball is launched
-      new LoadBallIntoFlyWheel(indexer, shooter, lights));
-  }
+  //     // indexer runs until ball is launched
+  //     new LoadBallIntoFlyWheel(indexer, shooter, lights));
+  // }
 
     /**
      * Alternative method to shoot if limelight is not present. Uses a preset RPM
@@ -68,15 +66,14 @@ public class ShootingRoutine extends SequentialCommandGroup {
      * @param rpm rpm of the flywheel
      */
   public ShootingRoutine(Indexer indexer, Shooter shooter, Lights lights, double rpm)  {
-
     addCommands(
       new RevToSpeed(rpm, shooter, lights),
       new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights));
   }
    // if the same button is pressed, command will end
-   @Override
-   public boolean isFinished() {
-     return false;
-   }
+  //  @Override
+  //  public boolean isFinished() {
+  //    return false;
+  //  }
 }

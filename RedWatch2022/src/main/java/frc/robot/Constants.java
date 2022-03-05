@@ -60,8 +60,8 @@ public final class Constants {
     public static final int kIntakeMotorPort = 8;
     public static final int kIntakePiston1 = 4;
     public static final int kIntakePiston2 = 6;
-    public static final double kIntakeMotorSpeed = 0.50;
-    public static final double kEjectMotorSpeed = -0.50;
+    public static final double kIntakeMotorSpeed = 0.60;
+    public static final double kEjectMotorSpeed = -0.60;
     public static final Value kIntakeRaiseValue = Value.kForward;
     public static final Value kIntakeLowerValue = Value.kReverse;
     public static final int kDriveAmperagePeakDuration = 100;
@@ -99,9 +99,9 @@ public final class Constants {
     public static final double kTurnAngleTolerace = 5.0;
     public static final double kTurnSpeedTolerance = 5.0;
     public static final double kAutoForwardI = 0.0;
-    public static final double kAutoForwardP = 0.019;
+    public static final double kAutoForwardP = 0.007;
     public static final double kAutoForwardD = 0.0;
-    public static final double kVelocityTolerance = 5.0;
+    public static final double kVelocityTolerance = 2.0;
     public static final double kPositionTolerace = 5.0;
   }
    

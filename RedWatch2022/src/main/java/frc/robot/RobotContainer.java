@@ -107,7 +107,7 @@ public class RobotContainer {
      */
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
-    // new JoystickButton(m_driver, Button.kA.value).whenPressed(new AutoForward(30, m_drivetrain));
+    new JoystickButton(m_driver, Button.kA.value).whenPressed(new AutoForward(65, m_drivetrain));
     
     /**
      * Button mappings for the weapons controller. Currently set to:
@@ -117,11 +117,11 @@ public class RobotContainer {
      * A (while held) reverses the index motor to eject the ball
      */
     new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
-    // new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
-    // new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
+    new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
+    new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
-    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2000));
-    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new AutoForward(40, m_drivetrain));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2000));
+    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new AutoRoute4(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision));
     new JoystickButton(m_weapons, Button.kA.value).whileHeld(new IndexEject(m_indexer));
 
     

@@ -27,16 +27,16 @@ public class AutoRoute4 extends SequentialCommandGroup {
   /** Creates a new AutoRoute4. */
   public AutoRoute4(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
 
-    
-    super(
-      new AutoForward(60 + 5, drivetrain)
+  
+
       // new VisionAlign(drivetrain, vision),
-      // new AutoForward(50 + 5, drivetrain),
-      // new ShootingRoutine(indexer, shooter, lights, 2700),
+      // new AutoForward(50 + 5, drivetrain),)
       // new ShootingRoutine(indexer, shooter, lights, 2700)
-    );
+      
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands();
+    addCommands(new ShootingRoutine(indexer, shooter, lights, 2000),
+                new AutoForward(-90, drivetrain)
+                );
   }
 }
