@@ -75,7 +75,7 @@ public class hangerControl extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_climber.m_climbLeftExtend.stopMotor();
-    m_climber.m_climbRightExtend.stopMotor();
+    m_climber.m_climbLeftExtend.stopMotor();
     m_climber.m_climbRightExtend.stopMotor();
     m_climber.m_climbRightPivot.stopMotor();
   }

@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanel;
 import frc.robot.subsystems.Intake;
@@ -45,6 +46,7 @@ public class RobotContainer {
   private final Shooter m_shooter;
   private final Lights m_lights;
   private final Vision m_vision;
+  private final Camera m_camera;
 
   private final Drivetrain m_drivetrain;
 
@@ -53,11 +55,13 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_camera = new Camera();
     m_lights = new Lights();
     m_intake = new Intake();
     m_indexer = new Indexer();
     m_shooter = new Shooter();
     m_climber = new Climber();
+    
     m_drivetrain = new Drivetrain();
     m_vision = new Vision();
 

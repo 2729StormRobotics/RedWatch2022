@@ -17,15 +17,15 @@ public class Lights extends SubsystemBase {
  
   private static final double kDisabled = 0;
   private final Spark m_ledDriver;
-  private final Intake m_intake;
-  private final Indexer m_indexer;
+  // private final Intake m_intake;
+  // private final Indexer m_indexer;
   private char m_currentColor = ' ';
 
   /** Creates a new Lights. */
   public Lights() {
     m_ledDriver = new Spark(kBlinkinDriverPort);
-    m_intake = new Intake();  
-    m_indexer = new Indexer();
+    // m_intake = new Intake();  
+    // m_indexer = new Indexer();
     resetLights();
   }
 
