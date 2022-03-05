@@ -72,6 +72,7 @@ public class hangerControl extends CommandBase {
   }
 
   // Called once the command ends or is interrupted.
+  // TODO: Check if m_climbRightExtend needs to be switched to m_climbLeftPivot
   @Override
   public void end(boolean interrupted) {
     m_climber.m_climbLeftExtend.stopMotor();
