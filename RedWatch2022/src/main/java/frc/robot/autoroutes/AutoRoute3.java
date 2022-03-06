@@ -28,6 +28,7 @@ public class AutoRoute3 extends SequentialCommandGroup {
   public AutoRoute3(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
 
     super(
+      new IntakeRun(intake),
       new TurnAngle(-48.786, drivetrain), // can change to not turn later by positioning robot at start
       new AutoForward(79.190 + 5, drivetrain),
       new VisionAlign(drivetrain, vision),
