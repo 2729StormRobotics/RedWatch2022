@@ -29,8 +29,6 @@ public class AutoRoute1 extends SequentialCommandGroup {
   /** Creates a new AutoRoute1. */
   public AutoRoute1(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
-      
-      new IntakeRun(intake),
       new AutoForward(40.695 + 5, drivetrain),
       new VisionAlign(drivetrain, vision),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
