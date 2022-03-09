@@ -189,7 +189,7 @@ public class ControlPanel extends SubsystemBase {
     
     m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
     setLightColor = m_lightstatus.add("Light color code", kDefaultColor).getEntry();
-    m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(kDefaultColor)));
+    // m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(kDefaultColor)));
 
     m_shooterstatus.addNumber("Flywheel Speed", () -> m_shooter.getEncoderVelocity(m_shooter.m_topEncoder));
 

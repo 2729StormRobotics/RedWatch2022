@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Climber;
@@ -23,17 +24,22 @@ import frc.robot.commands.IntakeStop;
 import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.LoadBallIntoMiddle;
+import frc.robot.commands.TurnAngle;
 import frc.robot.commands.VisionAlign;
 import frc.robot.autoroutes.AutoRoute4;
+import frc.robot.autoroutes.TwoBallAuto;
+import frc.robot.commandgroups.EjectCargo;
 import frc.robot.commandgroups.IntakeDrive;
 import frc.robot.commandgroups.IntakeDriveReal;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.hangerControl;
+import frc.robot.commands.setLights;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.commands.curvatureDrive;
 import static frc.robot.Constants.IOPorts.*;
+import static frc.robot.Constants.LightConstants.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -107,8 +113,8 @@ public class RobotContainer {
      */
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new AutoForward(65, m_drivetrain));
-    
+    new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(-30, m_drivetrain));
+    new JoystickButton(m_driver, Button.kStart.value).whenPressed(new setLights(m_lights, kClimbSuccess));
     /**
      * Button mappings for the weapons controller. Currently set to:
      * X (while held) runs the intake motors
@@ -118,13 +124,14 @@ public class RobotContainer {
      */
     new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
+    new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2000));
-    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new AutoRoute4(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision));
-    new JoystickButton(m_weapons, Button.kA.value).whileHeld(new IndexEject(m_indexer));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000));
+    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2000));
 
-    
+
+    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new AutoRoute4(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision));
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new LoadBall(m_indexer));
     // new JoystickButton(m_driver, Button.kX.value).whileHeld(new EjectBall(m_indexer));
     // new JoystickButton(m_driver, Button.kB.value).whileHeld(new ShootCargo(Constants.kHighShootSpeed, m_shooter));
@@ -141,6 +148,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new IntakeDriveReal(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision);
+    return new IntakeDriveReal(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision); // one ball auto off tarmac
   }
 }

@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 /**
@@ -60,8 +62,8 @@ public final class Constants {
     public static final int kIntakeMotorPort = 8;
     public static final int kIntakePiston1 = 4;
     public static final int kIntakePiston2 = 6;
-    public static final double kIntakeMotorSpeed = 0.60;
-    public static final double kEjectMotorSpeed = -0.60;
+    public static final double kIntakeMotorSpeed = 0.65;
+    public static final double kEjectMotorSpeed = -0.65;
     public static final Value kIntakeRaiseValue = Value.kForward;
     public static final Value kIntakeLowerValue = Value.kReverse;
     public static final int kDriveAmperagePeakDuration = 100;
@@ -95,7 +97,7 @@ public final class Constants {
     public static final int kStallLimit = 45;
     public static final double kTurnAngleD = 0.0;
     public static final double kTurnAngleI = 0.0;
-    public static final double kTurnAngleP = 0.0;
+    public static final double kTurnAngleP = 0.008;
     public static final double kTurnAngleTolerace = 5.0;
     public static final double kTurnSpeedTolerance = 5.0;
     public static final double kAutoForwardI = 0.0;
@@ -115,7 +117,7 @@ public final class Constants {
     public static final double kBad = 0.61; // Used for a bad orientation - color red
     public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
     public static final double kCorrect = 0.75; // Defines Dark Green
-    public static final double kClimbSuccess = 0.97; // Rainbow party
+    public static final Double kClimbSuccess = 0.97; // Rainbow party
     public static final int kBlinkinDriverPort = 0;
   }
    
