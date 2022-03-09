@@ -23,16 +23,16 @@ public class TwoBallAuto extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      // shoot ball 1
-      // new ShootingRoutine(indexer, shooter, lights, 2000),
+      //shoot ball 1
+      new ShootingRoutine(indexer, shooter, lights, 2000),
 
-      // // ball 2
-      // new TurnAngle(159, drivetrain)
-      // new AutoForward(75, drivetrain)
+      //ball 2
+      new TurnAngle(159, drivetrain),
+      new AutoForward(67.5, drivetrain),
 
-      // // hub 
-      // new AutoForward(-70.5, drivetrain)
-      new TurnAngle(-150, drivetrain),
+      //hub
+      new AutoForward(-67.5, drivetrain),
+      new TurnAngle(-159, drivetrain),
       new ShootingRoutine(indexer, shooter, lights, 2000)
     );
   }
