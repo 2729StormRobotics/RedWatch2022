@@ -97,14 +97,14 @@ public final class Constants {
     public static final int kStallLimit = 45;
     public static final double kTurnAngleD = 0.0;
     public static final double kTurnAngleI = 0.0;
-    public static final double kTurnAngleP = 0.008;
-    public static final double kTurnAngleTolerace = 5.0;
+    public static final double kTurnAngleP = 0.019;
+    public static final double kTurnAngleTolerace = 2.0;
     public static final double kTurnSpeedTolerance = 5.0;
     public static final double kAutoForwardI = 0.0;
-    public static final double kAutoForwardP = 0.007;
+    public static final double kAutoForwardP = 0.008;
     public static final double kAutoForwardD = 0.0;
-    public static final double kVelocityTolerance = 2.0;
-    public static final double kPositionTolerace = 5.0;
+    public static final double kVelocityTolerance = 3.0;
+    public static final double kPositionTolerace = 2.0;
   }
    
   public static class LightConstants {

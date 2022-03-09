@@ -54,7 +54,7 @@ public class RobotContainer {
   private final Shooter m_shooter;
   private final Lights m_lights;
   private final Vision m_vision;
-  // private final Camera m_camera;
+  private final Camera m_camera;
 
   private final Drivetrain m_drivetrain;
 
@@ -63,7 +63,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // m_camera = new Camera();
+    m_camera = new Camera();
     m_lights = new Lights();
     m_intake = new Intake();
     m_indexer = new Indexer();
@@ -112,7 +112,8 @@ public class RobotContainer {
      */
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(-30, m_drivetrain));
+    new JoystickButton(m_driver, Button.kB.value).whenPressed(new AutoForward(50, m_drivetrain));
+    new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(180, m_drivetrain));
     new JoystickButton(m_driver, Button.kStart.value).whenPressed(new setLights(m_lights, kClimbSuccess));
     /**
      * Button mappings for the weapons controller. Currently set to:
@@ -126,8 +127,8 @@ public class RobotContainer {
     new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000));
-    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2000));
+    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000)); // low shot
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2000)); // high shot
 
 
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new AutoRoute4(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision));
