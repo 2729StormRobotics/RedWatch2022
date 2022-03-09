@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
+import frc.robot.commands.Meltdown;
 import frc.robot.commands.changeAlliance;
 import frc.robot.commands.extendDown;
 import frc.robot.commands.extendUp;
@@ -113,6 +114,8 @@ public class ControlPanel extends SubsystemBase {
     m_drivetrainStatus.addNumber("Right Position", () -> m_drivetrain.getRightDistance());
     m_drivetrainStatus.addNumber("Angle", () -> m_drivetrain.getGyroAngle()); // What direction the robot is facing
     m_drivetrainStatus.addNumber("Pitch", () -> m_drivetrain.getGyroPitch()); // How high the robot is [To be tested]
+
+    m_drivetrainStatus.add("Kill All Commands", new Meltdown(m_climber, m_drivetrain, m_indexer, m_intake, m_lights, m_shooter));
     
     // Hanger
     m_climbStatus.addNumber("Left Distance", () -> m_climber.getLeftDistance()); // How far the hangers are
