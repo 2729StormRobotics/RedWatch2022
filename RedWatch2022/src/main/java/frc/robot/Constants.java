@@ -100,10 +100,10 @@ public final class Constants {
     public static final double kTurnAngleP = 0.019;
     public static final double kTurnAngleTolerace = 2.0;
     public static final double kTurnSpeedTolerance = 5.0;
-    public static final double kAutoForwardI = 0.0;
-    public static final double kAutoForwardP = 0.008;
-    public static final double kAutoForwardD = 0.0;
-    public static final double kVelocityTolerance = 3.0;
+    public static final double kAutoForwardI = 0.00001;
+    public static final double kAutoForwardP = 0.009;
+    public static final double kAutoForwardD = 0.002;
+    public static final double kVelocityTolerance = 10.0;
     public static final double kPositionTolerace = 2.0;
   }
    
