@@ -22,7 +22,7 @@ public final class Constants {
     public static final double kLimelightAngle = 45.0; //TODO: Rough estimate... get more exact
     public static final double kLimelightToShooter = 4.5;  // TODO: Distance from limelight to shooter
     public static final double kHubHeight = 104.0;
-    public static final double kShooterAngle = 81;
+    public static final double kShooterAngle = 80.5;
 
     public static final int kDefaultPipeline = 0;
 
