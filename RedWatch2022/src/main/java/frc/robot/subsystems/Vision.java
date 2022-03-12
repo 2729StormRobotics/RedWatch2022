@@ -155,7 +155,7 @@ private final NetworkTableEntry m_tv;
   public double getRPM() {
     double distance = getTargetDistance();
     double angle = Math.toRadians(getTargetAngle());
-    double velocity = Math.sqrt( (16.087 * Math.pow(distance, 2)) /
+    double velocity = Math.sqrt((16.087 * Math.pow(distance, 2)) /
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
     double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
