@@ -141,7 +141,11 @@ public class Drivetrain extends SubsystemBase {
     m_ahrs.reset();
   }
 
-  public boolean isTriggerPressed(double trigger) {
+  public static double sqaureInput(double input) {
+    return Math.copySign(input * input, input);
+  }
+
+  public static boolean isTriggerPressed(double trigger) {
     return trigger > 0.95;
   }
 
