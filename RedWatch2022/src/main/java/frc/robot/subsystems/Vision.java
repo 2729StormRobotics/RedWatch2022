@@ -159,7 +159,16 @@ private final NetworkTableEntry m_tv;
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
     double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
-    return rpm;
+
+    if (rpm > 2800) {
+      return 2800;
+    }
+    else if (rpm < 1000) {
+      return 1000;
+    }
+    else {
+      return rpm;
+    }
   }
 
   @Override
