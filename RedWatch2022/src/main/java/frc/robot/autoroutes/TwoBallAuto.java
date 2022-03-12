@@ -31,8 +31,9 @@ public class TwoBallAuto extends SequentialCommandGroup {
       new AutoForward(67.5, drivetrain),
 
       //hub
-      new AutoForward(-67.5, drivetrain),
-      new TurnAngle(-159, drivetrain),
+      // new AutoForward(-67.5, drivetrain),
+      new TurnAngle(237, drivetrain),
+      new AutoForward(74, drivetrain),
       new ShootingRoutine(indexer, shooter, lights, 2000)
     );
   }

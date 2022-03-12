@@ -194,7 +194,7 @@ public class ControlPanel extends SubsystemBase {
     setLightColor = m_lightstatus.add("Light color code", kDefaultColor).getEntry();
     // m_lightstatus.add("Change light color", new setLights(m_lights, () -> setLightColor.getDouble(kDefaultColor)));
 
-    m_shooterstatus.addNumber("Flywheel Speed", () -> m_shooter.getEncoderVelocity(m_shooter.m_topEncoder));
+    m_shooterstatus.addNumber("Flywheel Speed", () -> m_shooter.getEncoderVelocity(m_shooter.m_topEncoder) / 2.0);
 
     // m_indexerstatus.addNumber("Indexer Set Speed", () -> m_indexer.m_bottomMotor.getEncoder()); //TODO: add encoder RPM
     
