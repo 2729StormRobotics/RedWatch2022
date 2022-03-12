@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 //import com.analog.adis16470.frc.ADIS16470_IMU;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
 import static frc.robot.Constants.DrivetrainConstants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -146,7 +148,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public static double inputDeadzone(double input) {
-    if (input < 0.05) {
+    if (input < Constants.kControllerDeadzone) {
       return 0.0;
     }
     return input;

@@ -34,6 +34,7 @@ public final class Constants {
     }
 
   public static final String kShuffleboardTab = "Control Panel";
+  public static final double kControllerDeadzone = 0.05;
 
   public static final class AutoRouteConstants {
     public static double kRobotLength = 67.0; //TODO: check later
