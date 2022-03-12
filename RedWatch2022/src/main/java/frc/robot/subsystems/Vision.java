@@ -101,7 +101,7 @@ private final NetworkTableEntry m_tv;
    * offset angle of the limelight in degrees
    */
   public double getTargetAngle() {
-    return (kLimelightAngle + m_yOffset);
+    return (kLimelightAngle - m_yOffset);
   }
 
   /**
@@ -110,7 +110,7 @@ private final NetworkTableEntry m_tv;
   public double getTargetDistance() {
     //TODO: Get variable distance first then use this return statement
     //return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle())) - kLimelightToShooter;
-    return 20 + (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle()));
+    return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle()));
   }
 
   /**
