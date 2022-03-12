@@ -17,23 +17,29 @@ import frc.robot.subsystems.Shooter;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class TwoBallAuto extends SequentialCommandGroup {
-  /** Creates a new TwoBallAuto. */
-  public TwoBallAuto(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights) {
+public class ThreeBallAuto extends SequentialCommandGroup {
+  /** Creates a new ThreeBallAuto. */
+  public ThreeBallAuto(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      //shoot ball 1
+      //shoot high from hub
       new ShootingRoutine(indexer, shooter, lights, 2000),
-
+      
       //ball 2
       new TurnAngle(159, drivetrain),
       new AutoForward(67.5, drivetrain),
+      new AutoForward(-15, drivetrain),
 
-      //hub
-      // new AutoForward(-67.5, drivetrain),
-      new TurnAngle(237, drivetrain),
-      new AutoForward(74, drivetrain),
+      //ball 3
+      new TurnAngle(107, drivetrain),
+      new AutoForward(85, drivetrain),
+
+      //back to hub
+      new TurnAngle(146, drivetrain),
+      new AutoForward(86, drivetrain),
+      new TurnAngle(-50, drivetrain),
+      new ShootingRoutine(indexer, shooter, lights, 2000),
       new ShootingRoutine(indexer, shooter, lights, 2000)
     );
   }

@@ -5,8 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Indexer;
+import static frc.robot.Constants.IndexerConstants.*;
 
 public class IndexEject extends CommandBase {
   /** Creates a new LoadBall. */
@@ -33,7 +33,7 @@ public class IndexEject extends CommandBase {
   @Override
   public void execute() {
     // Run the motor continuously
-    m_indexer.load(Constants.IndexerConstants.kIndexerSpeed);
+    m_indexer.load(kIndexerSpeed);
   }
 
   // Called once the command ends or is interrupted.

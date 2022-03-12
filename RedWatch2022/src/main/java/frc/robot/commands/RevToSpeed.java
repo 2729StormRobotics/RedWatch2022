@@ -12,7 +12,7 @@ public class RevToSpeed extends CommandBase {
   Lights m_lights;
   Shooter m_shooter;
   double m_motorPower = 0;
-  double currentRPM = 0;
+  double m_currentRPM = 0;
   double m_TargetRPM;
   double m_increment = 0;
   double m_error = 0;
@@ -36,7 +36,7 @@ public class RevToSpeed extends CommandBase {
     // m_shooter.topMotor.set(0);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
     m_motorPower = 0;
-    currentRPM = 0;
+    m_currentRPM = 0;
     m_increment = 0;
     m_error = 0;
     m_finished = false;
@@ -47,17 +47,19 @@ public class RevToSpeed extends CommandBase {
   public void execute() {
     // Find the difference between target rpm and current rpm, and increment motor speed based on difference
     // If difference is lower, increment will be lower. If difference is negative, increment is negative
-    currentRPM = m_shooter.getEncoderVelocity(m_shooter.m_topEncoder);
-    m_error = m_TargetRPM - currentRPM;
+    m_currentRPM = m_shooter.getEncoderVelocity(m_shooter.m_topEncoder);
+    m_error = m_TargetRPM - m_currentRPM;
 
-    m_increment = m_error / 190000.0;
+    m_increment = m_error / 170000.0;
     m_shooter.increment = m_increment;
     m_motorPower += m_increment;
     m_shooter.motorPower = m_motorPower;
 
     m_shooter.topMotor.set(m_motorPower);
 
-    m_finished = Math.abs(m_error) <= 20;
+    if (Math.abs(m_error) <= 20) {
+      m_finished = true;
+    }
     
   }
 

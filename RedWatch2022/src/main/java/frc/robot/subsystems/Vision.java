@@ -101,7 +101,7 @@ private final NetworkTableEntry m_tv;
    * offset angle of the limelight in degrees
    */
   public double getTargetAngle() {
-    return (kLimelightAngle + m_yOffset);
+    return (kLimelightAngle - m_yOffset);
   }
 
   /**
@@ -155,11 +155,20 @@ private final NetworkTableEntry m_tv;
   public double getRPM() {
     double distance = getTargetDistance();
     double angle = Math.toRadians(getTargetAngle());
-    double velocity = Math.sqrt( (16.087 * Math.pow(distance, 2)) /
+    double velocity = Math.sqrt((16.087 * Math.pow(distance, 2)) /
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
     double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
-    return rpm;
+
+    if (rpm > 2800.0) {
+      return 2800.0;
+    }
+    else if (rpm < 1000.0) {
+      return 1000.0;
+    }
+    else {
+      return rpm;
+    }
   }
 
   @Override

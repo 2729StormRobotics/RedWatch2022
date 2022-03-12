@@ -12,6 +12,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Drivetrain;
 
 public class hangerControl extends CommandBase {
 
@@ -34,8 +35,8 @@ public class hangerControl extends CommandBase {
   public hangerControl(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, BooleanSupplier leftBumper, BooleanSupplier rightBumper, Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
-    m_leftSpeed = leftSpeed;
-    m_rightSpeed = rightSpeed;
+    m_leftSpeed = () -> Drivetrain.inputDeadzone(leftSpeed.getAsDouble());
+    m_rightSpeed = () -> Drivetrain.inputDeadzone(rightSpeed.getAsDouble());
     m_leftBumper = leftBumper;
     m_rightBumper = rightBumper;
 
@@ -47,19 +48,19 @@ public class hangerControl extends CommandBase {
   public void initialize() {
     m_climber.m_climbLeftExtend.stopMotor();
     m_climber.m_climbRightExtend.stopMotor();
-    m_climber.m_climbRightExtend.stopMotor();
+    m_climber.m_climbLeftPivot.stopMotor();
     m_climber.m_climbRightPivot.stopMotor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_leftBumper.getAsBoolean()) { // controls each hanger separately
+    if (m_leftBumper.getAsBoolean()) { // controls left side
       m_climber.m_climbLeftExtend.set(m_leftSpeed.getAsDouble() / 1.25);
+      // m_climber.m_climbLeftPivot.set(m_leftSpeed.getAsDouble() / 4);
+    } else if (m_rightBumper.getAsBoolean()) { // controls right side
       m_climber.m_climbRightExtend.set(m_rightSpeed.getAsDouble() / 1.25);
-    } else if (m_rightBumper.getAsBoolean()) { // controls each pivot separately
-      m_climber.m_climbLeftPivot.set(m_leftSpeed.getAsDouble() / 4);
-      m_climber.m_climbRightPivot.set(m_rightSpeed.getAsDouble() / 4);
+      // m_climber.m_climbRightPivot.set(m_rightSpeed.getAsDouble() / 4);
     } else { // controls hanger and pivot
       // Hanger motors
       m_climber.m_climbRightExtend.set(m_leftSpeed.getAsDouble() / 1.25);
@@ -76,7 +77,7 @@ public class hangerControl extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_climber.m_climbLeftExtend.stopMotor();
-    m_climber.m_climbLeftExtend.stopMotor();
+    m_climber.m_climbLeftPivot.stopMotor();
     m_climber.m_climbRightExtend.stopMotor();
     m_climber.m_climbRightPivot.stopMotor();
   }

@@ -18,25 +18,28 @@ public class Camera extends SubsystemBase {
   /** Creates a new Camera. */
 
   public Camera() {
-    new Thread(() -> {
-      UsbCamera camera = CameraServer.startAutomaticCapture();
-      camera.setResolution(320, 240);
-      camera.setFPS(60);  
+    // new Thread(() -> {
+    //   UsbCamera camera = CameraServer.startAutomaticCapture();
+    //   camera.setResolution(320, 240);
+    //   camera.setFPS(60);  
 
-      CvSink cvsink = CameraServer.getVideo();
-      CvSource outputstream = CameraServer.putVideo("Robot Camera", 320, 240);
+    //   CvSink cvsink = CameraServer.getVideo();
+    //   CvSource outputstream = CameraServer.putVideo("Robot Camera", 320, 240);
 
-      Mat source = new Mat();
-      Mat output = new Mat();
+    //   Mat source = new Mat();
+    //   Mat output = new Mat();
 
-      while(!Thread.interrupted()) {
-        if (cvsink.grabFrame(source) == 0) {
-          continue;
-        }
-        Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-        outputstream.putFrame(output);
-      }
-    }).start();
+    //   while(!Thread.interrupted()) {
+    //     if (cvsink.grabFrame(source) == 0) {
+    //       continue;
+    //     }
+    //     Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+    //     outputstream.putFrame(output);
+    //   }
+    // }).start();
+
+    CameraServer.getInstance().startAutomaticCapture();
+
   }
 }
 

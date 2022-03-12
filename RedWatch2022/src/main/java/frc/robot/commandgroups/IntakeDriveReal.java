@@ -14,6 +14,7 @@ import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import frc.robot.autoroutes.AutoRoute4;
+import frc.robot.autoroutes.TwoBallAuto;
 import frc.robot.commands.AutoForward;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -24,7 +25,9 @@ public class IntakeDriveReal extends ParallelCommandGroup {
   public IntakeDriveReal(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(//new IntakeRun(intake),
-                new AutoRoute4(drivetrain, shooter, intake, indexer, lights, vision));
+    addCommands(new IntakeRun(intake),
+                // new AutoRoute4(drivetrain, shooter, intake, indexer, lights, vision)
+                new TwoBallAuto(drivetrain, shooter, intake, indexer, lights)
+                );
   }
 }

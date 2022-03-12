@@ -2,6 +2,7 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Camera": "Subsystem",
       "/LiveWindow/Climber": "Subsystem",
       "/LiveWindow/ControlPanel": "Subsystem",
       "/LiveWindow/Drivetrain": "Subsystem",
@@ -25,6 +26,7 @@
       "/Shuffleboard/Control Panel/Climb Status/extendUp": "Command",
       "/Shuffleboard/Control Panel/Climb Status/rotateBackward": "Command",
       "/Shuffleboard/Control Panel/Climb Status/rotateForward": "Command",
+      "/Shuffleboard/Control Panel/Drivetrain Status/Kill All Commands": "Command",
       "/Shuffleboard/Control Panel/Extend Status/Run Extender": "Command",
       "/Shuffleboard/Control Panel/Light Status/Change light color": "Command",
       "/Shuffleboard/Control Panel/Pivot Status/Run Pivot": "Command",
@@ -45,11 +47,23 @@
     }
   },
   "NetworkTables": {
+    "CameraPublisher": {
+      "Driver Camera": {
+        "open": true
+      },
+      "Robot Camera": {
+        "open": true
+      },
+      "open": true
+    },
     "Shuffleboard": {
       "Control Panel": {
         "open": true
       },
       "open": true
     }
+  },
+  "NetworkTables View": {
+    "visible": false
   }
 }

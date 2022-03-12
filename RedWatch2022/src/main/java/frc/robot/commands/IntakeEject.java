@@ -23,5 +23,4 @@ public class IntakeEject extends InstantCommand {
   public void initialize() {
     m_intake.eject();
   }
-
 }
