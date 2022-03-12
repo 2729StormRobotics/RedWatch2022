@@ -5,8 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.ClimberConstants;
 import frc.robot.subsystems.Climber;
+import static frc.robot.Constants.ClimberConstants.*;
 
 public class extendDown extends CommandBase {
   private final Climber m_climber;
@@ -45,7 +45,7 @@ public class extendDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_climber.getRightDistance() > ClimberConstants.kClimberRightSize) {
+    if (m_climber.getRightDistance() > kClimberRightSize) {
       return true;
     } else {
       return false;
