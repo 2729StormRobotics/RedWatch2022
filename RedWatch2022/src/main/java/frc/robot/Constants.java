@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
  */
 public final class Constants {
 	public static final class VisionConstants {
-    public static final double kLimelightHeight = 33; //TODO: Rough estimate... get more exact distance
-    public static final double kLimelightAngle = 45; //TODO: Rough estimate... get more exact
+    public static final double kLimelightHeight = 33.0; //TODO: Rough estimate... get more exact distance
+    public static final double kLimelightAngle = 45.0; //TODO: Rough estimate... get more exact
     public static final double kLimelightToShooter = 4.5;  // TODO: Distance from limelight to shooter
     public static final double kHubHeight = 104.0;
 
