@@ -160,11 +160,11 @@ private final NetworkTableEntry m_tv;
       (-8.67 + (distance * Math.tan(angle)))) );
     double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
 
-    if (rpm > 2800) {
-      return 2800;
+    if (rpm > 2800.0) {
+      return 2800.0;
     }
-    else if (rpm < 1000) {
-      return 1000;
+    else if (rpm < 1000.0) {
+      return 1000.0;
     }
     else {
       return rpm;
