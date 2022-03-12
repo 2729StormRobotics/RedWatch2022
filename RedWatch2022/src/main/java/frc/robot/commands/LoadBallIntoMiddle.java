@@ -5,8 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import static frc.robot.Constants.IndexerConstants.*;
 import frc.robot.subsystems.Indexer;
+import static frc.robot.Constants.IndexerConstants.*;
 
 public class LoadBallIntoMiddle extends CommandBase {
   /** Creates a new LoadBall. */
