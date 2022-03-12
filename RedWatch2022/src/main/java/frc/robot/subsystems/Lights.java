@@ -9,8 +9,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Indexer;
 import static frc.robot.Constants.LightConstants.*;
 
 public class Lights extends SubsystemBase {
@@ -22,7 +20,7 @@ public class Lights extends SubsystemBase {
   private char m_currentColor = ' ';
 
   /** Creates a new Lights. */
-  public Lights() {
+  public Lights(Climber m_climber, Intake m_intake, Indexer m_indexer, Shooter m_shooter, Vision m_vision) {
     m_ledDriver = new Spark(kBlinkinDriverPort);
     // m_intake = new Intake();  
     // m_indexer = new Indexer();

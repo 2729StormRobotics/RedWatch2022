@@ -64,7 +64,6 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_camera = new Camera();
-    m_lights = new Lights();
     m_intake = new Intake();
     m_indexer = new Indexer();
     m_shooter = new Shooter();
@@ -72,6 +71,8 @@ public class RobotContainer {
 
     m_drivetrain = new Drivetrain();
     m_vision = new Vision();
+
+    m_lights = new Lights(m_climber, m_intake, m_indexer, m_shooter, m_vision);
 
     // Set up Control Panel
     new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_indexer, m_shooter, m_lights);
