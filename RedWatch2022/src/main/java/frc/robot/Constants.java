@@ -22,11 +22,12 @@ public final class Constants {
     public static final double kLimelightAngle = 45.0; //TODO: Rough estimate... get more exact
     public static final double kLimelightToShooter = 4.5;  // TODO: Distance from limelight to shooter
     public static final double kHubHeight = 104.0;
+    public static final double kShooterAngle = 81;
 
     public static final int kDefaultPipeline = 0;
 
-		public static final double kAutoAlignP = 0.03; //TODO: Testing to find this value
-		public static final double kAutoAlignI = 0.09; //TODO: Testing to find this value
+		public static final double kAutoAlignP = 0.025; //TODO: Testing to find this value
+		public static final double kAutoAlignI = 0.0; //TODO: Testing to find this value
 		public static final double kAutoAlignD = 0.0; //TODO: Testing to find this value
 
     public static final double kFlywheelRadius = 0.25; // flywheel radius in feet

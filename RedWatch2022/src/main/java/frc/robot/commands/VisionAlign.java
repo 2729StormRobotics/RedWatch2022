@@ -10,6 +10,8 @@ import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Drivetrain;
 import static frc.robot.Constants.VisionConstants.*;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
@@ -40,14 +42,14 @@ public class VisionAlign extends PIDCommand {
             drivetrain.arcadeDrive(0, -output, false);
           }
           else {
-            drivetrain.arcadeDrive(0, -0.75, false);
+            drivetrain.arcadeDrive(0, -0.4, false);
           }
         });
 
         m_drivetrain = drivetrain;
         m_vision = vision;
 
-        getController().setTolerance(1.5);
+        getController().setTolerance(2);
 
     addRequirements(m_drivetrain, m_vision);
   }
@@ -58,16 +60,32 @@ public class VisionAlign extends PIDCommand {
   public void initialize() {
     // reset gyro angle
      m_drivetrain.resetGyroAngle();
+     m_drivetrain.leftMotor.setIdleMode(IdleMode.kBrake);
+     m_drivetrain.leftMotor2.setIdleMode(IdleMode.kBrake);
+     m_drivetrain.rightMotor.setIdleMode(IdleMode.kBrake);
+     m_drivetrain.rightMotor2.setIdleMode(IdleMode.kBrake);  
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_vision.isTargetCentered();
+
+    //return false;
   }
 
   @Override
   public void end(boolean interrupted) {
+    m_drivetrain.leftMotor.setIdleMode(IdleMode.kCoast);
+    m_drivetrain.leftMotor2.setIdleMode(IdleMode.kCoast);
+    m_drivetrain.rightMotor.setIdleMode(IdleMode.kCoast);
+    m_drivetrain.rightMotor2.setIdleMode(IdleMode.kCoast);
+
+    m_drivetrain.leftMotor.set(0);
+    m_drivetrain.leftMotor2.set(0);
+    m_drivetrain.rightMotor.set(0);
+    m_drivetrain.rightMotor2.set(0);
+
     super.end(interrupted);
   }
 }

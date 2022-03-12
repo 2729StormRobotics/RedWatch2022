@@ -93,7 +93,7 @@ private final NetworkTableEntry m_tv;
    * Returns true if the target is within a range of the center crosshair of the camera
    */
   public boolean isTargetCentered() {
-    return (isTargetDetected() && (m_xOffset > -1.5) && (m_xOffset < 1.5));
+    return (isTargetDetected() && (m_xOffset > -1) && (m_xOffset < 1));
   }
 
   /**
@@ -101,7 +101,7 @@ private final NetworkTableEntry m_tv;
    * offset angle of the limelight in degrees
    */
   public double getTargetAngle() {
-    return (kLimelightAngle - m_yOffset);
+    return (kLimelightAngle + m_yOffset);
   }
 
   /**
@@ -154,11 +154,11 @@ private final NetworkTableEntry m_tv;
   // gets needed rpm for shooter
   public double getRPM() {
     double distance = getTargetDistance();
-    double angle = Math.toRadians(getTargetAngle());
+    double angle = Math.toRadians(kShooterAngle);
     double velocity = Math.sqrt((16.087 * Math.pow(distance, 2)) /
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
-    double rpm = 1.1 * (velocity / kFlywheelRadius) * kRadsToRPM;
+    double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
 
     if (rpm > 2800.0) {
       return 2800.0;

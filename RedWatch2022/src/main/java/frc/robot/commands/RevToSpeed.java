@@ -25,7 +25,6 @@ public class RevToSpeed extends CommandBase {
     m_shooter = shooter;
     m_lights = lights;
 
-    double m_motorPower = 0;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_shooter, m_lights);
   }
