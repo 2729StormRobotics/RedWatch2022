@@ -110,7 +110,7 @@ private final NetworkTableEntry m_tv;
   public double getTargetDistance() {
     //TODO: Get variable distance first then use this return statement
     //return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle())) - kLimelightToShooter;
-    return (kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle()));
+    return ((kHubHeight - kLimelightHeight) / Math.tan(Math.toRadians(getTargetAngle())));
   }
 
   /**
@@ -158,7 +158,7 @@ private final NetworkTableEntry m_tv;
     double velocity = Math.sqrt((16.087 * Math.pow(distance, 2)) /
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
-    double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
+    double rpm = 1.1 * (velocity / kFlywheelRadius) * kRadsToRPM;
 
     if (rpm > 2800.0) {
       return 2800.0;
