@@ -145,6 +145,12 @@ public class Drivetrain extends SubsystemBase {
     return Math.copySign(input * input, input);
   }
 
+  public static double inputDeadzone(double input) {
+    if (input < 0.05) {
+      return 0.0;
+    }
+    return input;
+  }
   public static boolean isTriggerPressed(double trigger) {
     return trigger > 0.95;
   }

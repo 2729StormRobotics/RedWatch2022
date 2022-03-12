@@ -12,6 +12,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Drivetrain;
 
 public class hangerControl extends CommandBase {
 
@@ -34,8 +35,8 @@ public class hangerControl extends CommandBase {
   public hangerControl(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, BooleanSupplier leftBumper, BooleanSupplier rightBumper, Climber subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_climber = subsystem;
-    m_leftSpeed = leftSpeed;
-    m_rightSpeed = rightSpeed;
+    m_leftSpeed = () -> Drivetrain.inputDeadzone(leftSpeed.getAsDouble());
+    m_rightSpeed = () -> Drivetrain.inputDeadzone(rightSpeed.getAsDouble());
     m_leftBumper = leftBumper;
     m_rightBumper = rightBumper;
 
@@ -47,7 +48,7 @@ public class hangerControl extends CommandBase {
   public void initialize() {
     m_climber.m_climbLeftExtend.stopMotor();
     m_climber.m_climbRightExtend.stopMotor();
-    m_climber.m_climbRightExtend.stopMotor();
+    m_climber.m_climbLeftPivot.stopMotor();
     m_climber.m_climbRightPivot.stopMotor();
   }
 
@@ -76,7 +77,7 @@ public class hangerControl extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_climber.m_climbLeftExtend.stopMotor();
-    m_climber.m_climbLeftExtend.stopMotor();
+    m_climber.m_climbLeftPivot.stopMotor();
     m_climber.m_climbRightExtend.stopMotor();
     m_climber.m_climbRightPivot.stopMotor();
   }
