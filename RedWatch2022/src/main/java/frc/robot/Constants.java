@@ -81,6 +81,8 @@ public final class Constants {
   }
 
   public static class DrivetrainConstants {
+    public static final double kControllerDeadzone = 0.05;
+
     // based off PDP ports and the REV Spark Client. 0 is reassigned as 15.
     public static final int kLeftMotorPort = 12;
     public static final int kRightMotorPort = 15;
