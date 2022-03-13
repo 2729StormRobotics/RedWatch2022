@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.ShuffleboardConstants.*;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
 import frc.robot.commands.Meltdown;
@@ -65,7 +65,7 @@ public class ControlPanel extends SubsystemBase {
    */
   public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber, Intake m_intake, Indexer m_indexer, Shooter m_shooter, Lights m_lights) {
     // Create Control Panel tab in Shuffleboard
-    m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
+    m_controlpanelTab = Shuffleboard.getTab(kShuffleboardTab);
 
     // Creates layouts for each subsystem
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
@@ -209,7 +209,7 @@ public class ControlPanel extends SubsystemBase {
     isBlueTeam = () -> m_shooter.isBlueTeam();
 
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
-    Shuffleboard.selectTab(Constants.kShuffleboardTab);
+    Shuffleboard.selectTab(kShuffleboardTab);
     
   }
 

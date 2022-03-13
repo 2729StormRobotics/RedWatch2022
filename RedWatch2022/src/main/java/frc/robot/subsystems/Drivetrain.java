@@ -148,7 +148,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public static double inputDeadzone(double input) {
-    if (input < Constants.kControllerDeadzone) {
+    if (input < kControllerDeadzone) {
       return 0.0;
     }
     return input;

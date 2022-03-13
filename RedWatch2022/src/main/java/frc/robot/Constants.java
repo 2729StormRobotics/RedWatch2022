@@ -34,8 +34,9 @@ public final class Constants {
     public static final double kRadsToRPM = 30 / Math.PI;  // Conversion factor from rad/s to RPM
     }
 
-  public static final String kShuffleboardTab = "Control Panel";
-  public static final double kControllerDeadzone = 0.05;
+  public static final class ShuffleboardConstants {
+    public static final String kShuffleboardTab = "Control Panel";
+  }
 
   public static final class AutoRouteConstants {
     public static double kRobotLength = 67.0; //TODO: check later
