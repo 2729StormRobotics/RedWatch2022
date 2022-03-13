@@ -15,15 +15,24 @@ public class Lights extends SubsystemBase {
  
   private static final double kDisabled = 0;
   private final Spark m_ledDriver;
-  // private final Intake m_intake;
-  // private final Indexer m_indexer;
   private char m_currentColor = ' ';
 
+  private final Climber m_climber;
+  private final Intake m_intake;
+  private final Indexer m_indexer;
+  private final Shooter m_shooter;
+  private final Vision m_vision;
+
   /** Creates a new Lights. */
-  public Lights(Climber m_climber, Intake m_intake, Indexer m_indexer, Shooter m_shooter, Vision m_vision) {
+  public Lights(Climber climber, Intake intake, Indexer indexer, Shooter shooter, Vision vision) {
     m_ledDriver = new Spark(kBlinkinDriverPort);
-    // m_intake = new Intake();  
-    // m_indexer = new Indexer();
+
+    m_climber = climber;
+    m_intake = intake;
+    m_indexer = indexer;
+    m_shooter = shooter;
+    m_vision = vision;
+
     resetLights();
   }
 
