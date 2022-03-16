@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import static frc.robot.Constants.ShuffleboardConstants.*;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
@@ -47,7 +49,7 @@ public class ControlPanel extends SubsystemBase {
   private final NetworkTableEntry RightPivotMotor;
   private final NetworkTableEntry setLightColor;
 
-  private final NetworkTableEntry alliance;
+  // private final NetworkTableEntry alliance;
 
   private final SimpleWidget ballColorWidget;
   private final BooleanSupplier isBallRed;
@@ -163,9 +165,9 @@ public class ControlPanel extends SubsystemBase {
     // m_climbStatus.addBoolean("right bumper", () -> m_weapons.getRightBumper());
 
     // Alliance control
-    alliance = m_alliancestatus.add("Alliance", false)
-    .withWidget(BuiltInWidgets.kToggleSwitch)
-    .getEntry();
+    // alliance = m_alliancestatus.add("Alliance", false)
+    // .withWidget(BuiltInWidgets.kToggleSwitch)
+    // .getEntry();
 
     // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
