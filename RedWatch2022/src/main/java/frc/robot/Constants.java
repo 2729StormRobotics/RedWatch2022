@@ -46,6 +46,9 @@ public final class Constants {
     public static final boolean kTopReversedDefault = false;
     public static final int kStallLimit = 45;
     public static final int kCurrentLimit = 60;
+    public static final double kLauncherP = 0.02;
+    public static final double kLauncherI = 0.0;
+    public static final double kLauncherD = 0.0;
   }
 
   public static final class IndexerConstants {

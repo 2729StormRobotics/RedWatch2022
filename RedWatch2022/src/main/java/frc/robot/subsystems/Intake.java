@@ -111,6 +111,10 @@ public class Intake extends SubsystemBase {
     }
   }
 
+  public static boolean isTriggerPressed(double trigger) {
+    return trigger > 0.25;
+  }
+
   public boolean isRedBall() {
     boolean yes = false;
     if (m_detectedColor.red > m_detectedColor.blue && m_detectedColor.red >= 0.3) {
