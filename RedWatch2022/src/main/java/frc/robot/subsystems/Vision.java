@@ -8,6 +8,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import edu.wpi.first.cameraserver.CameraServer;
 import static frc.robot.Constants.VisionConstants.*;
 
@@ -35,6 +36,10 @@ private final NetworkTableEntry m_tx;
 private final NetworkTableEntry m_ty;
 private final NetworkTableEntry m_tv;
 
+// parallel arrays to approximate distance from rpm
+private final int[] rpmList;
+private final int[] distanceList;
+
   /** Creates a new Vision. */
   public Vision() {
     // Gets the network table for the limelight
@@ -54,6 +59,10 @@ private final NetworkTableEntry m_tv;
     
     // Start the camera server for the driver camera
     CameraServer.startAutomaticCapture("Driver Camera", 0);
+
+    // initialize parallel arrays
+    rpmList = Constants.VisionConstants.kRPMList;
+    distanceList = Constants.VisionConstants.kdistanceList;
   }
 
   // Sets the limelight to off
@@ -168,6 +177,17 @@ private final NetworkTableEntry m_tv;
     else {
       return rpm;
     }
+  }
+
+  public double getApproxRPM(double distance) {
+    double rpm = rpmList[rpmList.length - 1];
+    for (int i = 0; i < rpmList.length; i++) {
+        if (distance <= distanceList[i]) {
+          rpm = rpmList[i];
+          return rpm;
+        }
+    }
+    return rpm;
   }
 
   @Override

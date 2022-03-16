@@ -32,6 +32,8 @@ public final class Constants {
 
     public static final double kFlywheelRadius = 0.25; // flywheel radius in feet
     public static final double kRadsToRPM = 30 / Math.PI;  // Conversion factor from rad/s to RPM
+    public static final int[] kRPMList = {};
+    public static final int[] kdistanceList = {};
     }
 
   public static final class ShuffleboardConstants {
@@ -139,4 +141,6 @@ public final class Constants {
     public static final double kDistancePerRevolution = kTelescopingGearRatio * (7.0 / 8.0) * 3.14; //TODO: put in gear ratio for the climbers!!!
 		public static final double kClimberRightSize = 12.0;
 	}
+
+
 }
