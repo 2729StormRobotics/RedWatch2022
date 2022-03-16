@@ -95,7 +95,7 @@ public class ControlPanel extends SubsystemBase {
     m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 0)
-      .withSize(2, 4);
+      .withSize(2, 1);
     m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(4, 0)
@@ -118,8 +118,8 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 1);
     m_indexerstatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(2, 4)
-      .withSize(2, 1);
+      .withPosition(2, 1)
+      .withSize(2, 3);
     m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(8, 4)
@@ -151,6 +151,7 @@ public class ControlPanel extends SubsystemBase {
     m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
 
     // Indexer
+    m_indexerstatus.addBoolean("Is Ball Present?", () -> m_indexer.isBallPresent());
     m_indexerstatus.addString("Bottom Ball", () -> m_indexer.getBottomBall() + "");
     m_indexerstatus.addString("Middle Ball", () -> m_indexer.getMiddleBall() + "");
 
@@ -193,7 +194,7 @@ public class ControlPanel extends SubsystemBase {
 
     // // Proximity to ball
     // m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.m_proximity);
-
+    
     m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
 
     m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
