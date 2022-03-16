@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import static frc.robot.Constants.ShuffleboardConstants.*;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
 import frc.robot.commands.Meltdown;
@@ -57,15 +57,33 @@ public class ControlPanel extends SubsystemBase {
   private final BooleanSupplier isRedTeam;
   private final BooleanSupplier isBlueTeam;
 
+  private final XboxController m_driver;
+  private final XboxController m_weapons;
+  private final Drivetrain m_drivetrain;
+  private final Climber m_climber;
+  private final Intake m_intake;
+  private final Indexer m_indexer;
+  private final Shooter m_shooter;
+  private final Lights m_lights;
+
   /** Creates a control panel in Shuffleboard that displays all important information and controls.
    * Contains all shuffleboard related code. Close out of the shuffleboard window and reopen to 
    * reset all shuffleboard tabs and layouts.
    * @param m_drivetrain Drivetrain subsystem
    * @param m_climber Hanger subsystem
    */
-  public ControlPanel(XboxController m_driver, XboxController m_weapons, Drivetrain m_drivetrain, Climber m_climber, Intake m_intake, Indexer m_indexer, Shooter m_shooter, Lights m_lights) {
+  public ControlPanel(XboxController driver, XboxController weapons, Drivetrain drivetrain, Climber climber, Intake intake, Indexer indexer, Shooter shooter, Lights lights) {
+    m_driver = driver;
+    m_weapons = weapons;
+    m_drivetrain = drivetrain;
+    m_climber = climber;
+    m_intake = intake;
+    m_indexer = indexer;
+    m_shooter = shooter;
+    m_lights = lights;
+    
     // Create Control Panel tab in Shuffleboard
-    m_controlpanelTab = Shuffleboard.getTab(Constants.kShuffleboardTab);
+    m_controlpanelTab = Shuffleboard.getTab(kShuffleboardTab);
 
     // Creates layouts for each subsystem
     m_drivetrainStatus = m_controlpanelTab.getLayout("Drivetrain Status", BuiltInLayouts.kList)
@@ -209,7 +227,7 @@ public class ControlPanel extends SubsystemBase {
     isBlueTeam = () -> m_shooter.isBlueTeam();
 
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
-    Shuffleboard.selectTab(Constants.kShuffleboardTab);
+    Shuffleboard.selectTab(kShuffleboardTab);
     
   }
 

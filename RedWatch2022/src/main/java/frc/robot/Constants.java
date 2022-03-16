@@ -22,7 +22,7 @@ public final class Constants {
     public static final double kLimelightAngle = 45.0; //TODO: Rough estimate... get more exact
     public static final double kLimelightToShooter = 4.5;  // TODO: Distance from limelight to shooter
     public static final double kHubHeight = 104.0;
-    public static final double kShooterAngle = 81;
+    public static final double kShooterAngle = 80.5;
 
     public static final int kDefaultPipeline = 0;
 
@@ -34,8 +34,9 @@ public final class Constants {
     public static final double kRadsToRPM = 30 / Math.PI;  // Conversion factor from rad/s to RPM
     }
 
-  public static final String kShuffleboardTab = "Control Panel";
-  public static final double kControllerDeadzone = 0.05;
+  public static final class ShuffleboardConstants {
+    public static final String kShuffleboardTab = "Control Panel";
+  }
 
   public static final class AutoRouteConstants {
     public static double kRobotLength = 67.0; //TODO: check later
@@ -83,6 +84,8 @@ public final class Constants {
   }
 
   public static class DrivetrainConstants {
+    public static final double kControllerDeadzone = 0.05;
+
     // based off PDP ports and the REV Spark Client. 0 is reassigned as 15.
     public static final int kLeftMotorPort = 12;
     public static final int kRightMotorPort = 15;
