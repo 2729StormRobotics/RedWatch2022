@@ -41,7 +41,7 @@ public class ControlPanel extends SubsystemBase {
   private final ShuffleboardLayout m_lightstatus;
   private final ShuffleboardLayout m_shooterstatus;
   private final ShuffleboardLayout m_indexerstatus;
-  private final ShuffleboardLayout m_alliancestatus;
+  // private final ShuffleboardLayout m_alliancestatus;
 
   private final NetworkTableEntry LeftExtendMotor;
   private final NetworkTableEntry RightExtendMotor;
@@ -120,10 +120,10 @@ public class ControlPanel extends SubsystemBase {
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 1)
       .withSize(2, 3);
-    m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(8, 4)
-      .withSize(2, 1);
+    // m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
+    //   .withProperties(Map.of("Label position", "TOP"))
+    //   .withPosition(8, 4)
+    //   .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
