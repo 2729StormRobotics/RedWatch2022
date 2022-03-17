@@ -42,14 +42,14 @@ public class VisionAlign extends PIDCommand {
             drivetrain.arcadeDrive(0, -output, false);
           }
           else {
-            drivetrain.arcadeDrive(0, -0.4, false);
+            drivetrain.arcadeDrive(0, -0.35, false);
           }
         });
 
         m_drivetrain = drivetrain;
         m_vision = vision;
 
-        getController().setTolerance(2);
+        getController().setTolerance(0.5);
 
     addRequirements(m_drivetrain, m_vision);
   }
@@ -59,7 +59,6 @@ public class VisionAlign extends PIDCommand {
   @Override
   public void initialize() {
     // reset gyro angle
-     m_drivetrain.resetGyroAngle();
      m_drivetrain.leftMotor.setIdleMode(IdleMode.kBrake);
      m_drivetrain.leftMotor2.setIdleMode(IdleMode.kBrake);
      m_drivetrain.rightMotor.setIdleMode(IdleMode.kBrake);

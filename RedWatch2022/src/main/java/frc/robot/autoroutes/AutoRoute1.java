@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import static frc.robot.Constants.AutoRouteConstants.*;
 
 import frc.robot.commandgroups.ShootingRoutine;
+import frc.robot.commandgroups.ShootingRoutineDouble;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.LoadBallIntoMiddle;
@@ -30,20 +31,22 @@ public class AutoRoute1 extends SequentialCommandGroup {
   public AutoRoute1(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
       //tarmac -> ball 2
-      new AutoForward(40.695, drivetrain),
+      new AutoForward(45.695, drivetrain), // 40.695
       new AutoForward(-15, drivetrain),
+      new TurnAngle(-159, drivetrain),
 
       new VisionAlign(drivetrain, vision),
-      // new ShootingRoutine(indexer, shooter, lights, 1000),
-      // new ShootingRoutine(indexer, shooter, lights, 1000),
+      new VisionAlign(drivetrain, vision),
+      new ShootingRoutine(indexer, shooter, lights, 2300),
+      new ShootingRoutine(indexer, shooter, lights, 2300),
 // 107
       //ball 2 -> ball 3
-      new TurnAngle(drivetrain.getGyroAngle() + 100, drivetrain),
+      new TurnAngle(drivetrain.getGyroAngle() + 100 - 360, drivetrain)
       // new AutoForward(90, drivetrain),
-      new VisionAlign(drivetrain, vision),
+      // new VisionAlign(drivetrain, vision),
       // new ShootingRoutine(indexer, shooter, lights, 1000)
 
-      new TurnAngle(drivetrain.getGyroAngle() + -32.25 - 10.792, drivetrain)
+      // new TurnAngle(drivetrain.getGyroAngle() + -32.25 - 10.792, drivetrain)
       // new AutoForward(159.865, drivetrain)
 
     );

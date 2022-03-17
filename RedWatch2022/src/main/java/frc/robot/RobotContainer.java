@@ -16,6 +16,7 @@ import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IndexEject;
@@ -96,7 +97,7 @@ public class RobotContainer {
       new curvatureDrive(() -> m_driver.getLeftY() / 1.5, () -> m_driver.getRightX() / 1.75, () -> Drivetrain.isTriggerPressed(m_driver.getLeftTriggerAxis()), m_drivetrain));
 
     m_intake.setDefaultCommand(
-      new IntakeAdjust(() -> Intake.isTriggerPressed(m_weapons.getLeftTriggerAxis()), () -> Intake.isTriggerPressed(m_weapons.getRightTriggerAxis()), m_intake, m_indexer));
+      new IntakeAdjust(() -> Intake.isTriggerPressed(m_weapons.getLeftTriggerAxis()), () -> Intake.isTriggerPressed(m_weapons.getRightTriggerAxis()), m_intake));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -115,7 +116,7 @@ public class RobotContainer {
      * A (when pressed) drives the robot forward a set distance
      */
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
-    new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
+    new JoystickButton(m_driver, Button.kY.value).whenPressed(new VisionAlign(m_drivetrain, m_vision));
     new JoystickButton(m_driver, Button.kB.value).whenPressed(new AutoForward(50, m_drivetrain));
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(180, m_drivetrain));
     new JoystickButton(m_driver, Button.kStart.value).whenPressed(new setLights(m_lights, kClimbSuccess));

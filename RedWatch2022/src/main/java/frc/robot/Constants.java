@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 /**
@@ -19,7 +17,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public final class Constants {
 	public static final class VisionConstants {
     public static final double kLimelightHeight = 33.0; //TODO: Rough estimate... get more exact distance
-    public static final double kLimelightAngle = 45.0; //TODO: Rough estimate... get more exact
+    public static final double kLimelightAngle = 40.0; //TODO: Rough estimate... get more exact
     public static final double kLimelightToShooter = 4.5;  // TODO: Distance from limelight to shooter
     public static final double kHubHeight = 104.0;
     public static final double kShooterAngle = 80.5;
@@ -68,8 +66,8 @@ public final class Constants {
     public static final int kIntakeMotorPort = 8;
     public static final int kIntakePiston1 = 4;
     public static final int kIntakePiston2 = 6;
-    public static final double kIntakeMotorSpeed = 0.65;
-    public static final double kEjectMotorSpeed = -0.65;
+    public static final double kIntakeMotorSpeed = 0.80;
+    public static final double kEjectMotorSpeed = -0.80;
     public static final Value kIntakeRaiseValue = Value.kForward;
     public static final Value kIntakeLowerValue = Value.kReverse;
     public static final int kDriveAmperagePeakDuration = 100;
@@ -112,7 +110,7 @@ public final class Constants {
     public static final double kAutoForwardP = 0.015;
     public static final double kAutoForwardD = 0.002;
     public static final double kVelocityTolerance = 10.0;
-    public static final double kPositionTolerace = 5.0;
+    public static final double kPositionTolerace = 3.0;
   }
    
   public static class LightConstants {
@@ -125,7 +123,7 @@ public final class Constants {
     public static final double kBlueBall = 0.87; // Solid blue for intake
     public static final double kBad = 0.61; // Used for a bad orientation - color red
     public static final double kCorrect = 0.75; // Defines Dark Green
-    public static final Double kClimbSuccess = 0.97; // Rainbow party
+    public static final double kClimbSuccess = 0.97; // Rainbow party
     public static final int kBlinkinDriverPort = 0;
   }
    

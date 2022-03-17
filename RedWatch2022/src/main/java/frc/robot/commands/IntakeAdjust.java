@@ -12,18 +12,16 @@ import frc.robot.subsystems.Intake;
 
 public class IntakeAdjust extends CommandBase {
   private final Intake m_intake;
-  private final Indexer m_indexer;
   private final BooleanSupplier leftTriggerStatus;
   private final BooleanSupplier rightTriggerStatus;
 
   /** Creates a new IntakeAdjust. */
-  public IntakeAdjust(BooleanSupplier leftTrigger, BooleanSupplier rightTrigger, Intake intake, Indexer indexer) {
+  public IntakeAdjust(BooleanSupplier leftTrigger, BooleanSupplier rightTrigger, Intake intake) {
     leftTriggerStatus = leftTrigger;
     rightTriggerStatus = rightTrigger;
     m_intake = intake;
-    m_indexer = indexer;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_intake, m_indexer);
+    addRequirements(m_intake);
   }
 
   // Called when the command is initially scheduled.
@@ -35,7 +33,6 @@ public class IntakeAdjust extends CommandBase {
   public void execute() {
     if (leftTriggerStatus.getAsBoolean()) {
       m_intake.eject();
-      m_indexer.load(0.5);
     } else if (rightTriggerStatus.getAsBoolean()) {
       m_intake.intake();
     } else if (leftTriggerStatus.getAsBoolean() && rightTriggerStatus.getAsBoolean()) {
