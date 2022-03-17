@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import static frc.robot.Constants.ShuffleboardConstants.*;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
@@ -39,7 +41,7 @@ public class ControlPanel extends SubsystemBase {
   private final ShuffleboardLayout m_lightstatus;
   private final ShuffleboardLayout m_shooterstatus;
   private final ShuffleboardLayout m_indexerstatus;
-  private final ShuffleboardLayout m_alliancestatus;
+  // private final ShuffleboardLayout m_alliancestatus;
 
   private final NetworkTableEntry LeftExtendMotor;
   private final NetworkTableEntry RightExtendMotor;
@@ -47,11 +49,11 @@ public class ControlPanel extends SubsystemBase {
   private final NetworkTableEntry RightPivotMotor;
   private final NetworkTableEntry setLightColor;
 
-  private final NetworkTableEntry alliance;
+  // private final NetworkTableEntry alliance;
 
-  private final SimpleWidget ballColorWidget;
-  private final BooleanSupplier isBallRed;
-  private final BooleanSupplier isBallBlue;
+  // private final SimpleWidget ballColorWidget;
+  // private final BooleanSupplier isBallRed;
+  // private final BooleanSupplier isBallBlue;
 
   private final SimpleWidget m_allianceStatus;
   private final BooleanSupplier isRedTeam;
@@ -93,7 +95,7 @@ public class ControlPanel extends SubsystemBase {
     m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 0)
-      .withSize(2, 4);
+      .withSize(2, 1);
     m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(4, 0)
@@ -116,12 +118,12 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 1);
     m_indexerstatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(2, 4)
-      .withSize(2, 1);
-    m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
-      .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(8, 4)
-      .withSize(2, 1);
+      .withPosition(2, 1)
+      .withSize(2, 3);
+    // m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
+    //   .withProperties(Map.of("Label position", "TOP"))
+    //   .withPosition(8, 4)
+    //   .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
@@ -149,23 +151,14 @@ public class ControlPanel extends SubsystemBase {
     m_climbStatus.add(new rotateBackward(m_climber)); // Rotates the bot backwards
 
     // Indexer
+    m_indexerstatus.addBoolean("Is Ball Present?", () -> m_indexer.isBallPresent());
     m_indexerstatus.addString("Bottom Ball", () -> m_indexer.getBottomBall() + "");
     m_indexerstatus.addString("Middle Ball", () -> m_indexer.getMiddleBall() + "");
 
-    // // DEBUGGING values
-    // m_climbStatus.addNumber("right extend get", () -> m_climber.m_climbRightExtend.get());
-    // m_climbStatus.addNumber("right pivot get", () -> m_climber.m_climbRightPivot.get());
-
-    // m_climbStatus.addNumber("left extend get", () -> m_climber.m_climbLeftExtend.get());
-    // m_climbStatus.addNumber("left pivot get", () -> m_climber.m_climbLeftPivot.get());
-
-    // m_climbStatus.addBoolean("left bumper", () -> m_weapons.getLeftBumper());
-    // m_climbStatus.addBoolean("right bumper", () -> m_weapons.getRightBumper());
-
     // Alliance control
-    alliance = m_alliancestatus.add("Alliance", false)
-    .withWidget(BuiltInWidgets.kToggleSwitch)
-    .getEntry();
+    // alliance = m_alliancestatus.add("Alliance", false)
+    // .withWidget(BuiltInWidgets.kToggleSwitch)
+    // .getEntry();
 
     // Manual control of the hangers
     LeftExtendMotor = m_extendstatus.add("Left Extend Speed", 0)
@@ -189,19 +182,19 @@ public class ControlPanel extends SubsystemBase {
     .getEntry();
     m_pivotstatus.add("Run Pivot", new hangerRunMotors(() -> LeftPivotMotor.getDouble(0), () -> RightPivotMotor.getDouble(0), m_climber.m_climbLeftPivot, m_climber.m_climbRightPivot, m_climber));
 
-    ballColorWidget = m_intakeStatus.add("Ball Color", true);
-    ballColorWidget.withProperties(Map.of("Color When True", "Black"));
-    isBallRed = () -> m_intake.isRedBall();
-    isBallBlue = () -> m_intake.isBlueBall();
+    // ballColorWidget = m_intakeStatus.add("Ball Color", true);
+    // ballColorWidget.withProperties(Map.of("Color When True", "Black"));
+    // isBallRed = () -> m_intake.isRedBall();
+    // isBallBlue = () -> m_intake.isBlueBall();
 
-    // Shows color values (RGB)
-    m_intakeStatus.addNumber("R", () -> m_intake.m_detectedColor.red);
-    m_intakeStatus.addNumber("G", () -> m_intake.m_detectedColor.green);
-    m_intakeStatus.addNumber("B", () -> m_intake.m_detectedColor.blue);
+    // // Shows color values (RGB)
+    // m_intakeStatus.addNumber("R", () -> m_intake.m_detectedColor.red);
+    // m_intakeStatus.addNumber("G", () -> m_intake.m_detectedColor.green);
+    // m_intakeStatus.addNumber("B", () -> m_intake.m_detectedColor.blue);
 
-    // Proximity to ball
-    m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.m_proximity);
-
+    // // Proximity to ball
+    // m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.m_proximity);
+    
     m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
 
     m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
@@ -234,13 +227,13 @@ public class ControlPanel extends SubsystemBase {
 @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if (isBallRed.getAsBoolean()) {
-      ballColorWidget.withProperties(Map.of("Color When True", "Red"));
-    } else if (isBallBlue.getAsBoolean()) {
-      ballColorWidget.withProperties(Map.of("Color When True", "Blue"));
-    } else {
-      ballColorWidget.withProperties(Map.of("Color When True", "Black"));
-    }
+    // if (isBallRed.getAsBoolean()) {
+    //   ballColorWidget.withProperties(Map.of("Color When True", "Red"));
+    // } else if (isBallBlue.getAsBoolean()) {
+    //   ballColorWidget.withProperties(Map.of("Color When True", "Blue"));
+    // } else {
+    //   ballColorWidget.withProperties(Map.of("Color When True", "Black"));
+    // }
 
     if (isRedTeam.getAsBoolean()) {
       m_allianceStatus.withProperties(Map.of("Color When True", "Red"));

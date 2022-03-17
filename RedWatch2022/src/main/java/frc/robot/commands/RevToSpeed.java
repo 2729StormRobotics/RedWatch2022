@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
@@ -54,7 +55,7 @@ public class RevToSpeed extends CommandBase {
     m_motorPower += m_increment;
     m_shooter.motorPower = m_motorPower;
 
-    m_shooter.topMotor.set(m_motorPower);
+    m_shooter.topMotor.set(MathUtil.clamp(m_motorPower, 0, 1));
 
     if (Math.abs(m_error) <= 20) {
       m_finished = true;
