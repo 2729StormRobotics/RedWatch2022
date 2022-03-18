@@ -12,6 +12,7 @@ import static frc.robot.Constants.AutoRouteConstants.*;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.ShootingRoutineDouble;
 import frc.robot.commands.AutoForward;
+import frc.robot.commands.IntakeMove;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.TurnAngle;
@@ -30,28 +31,29 @@ public class AutoRoute1 extends SequentialCommandGroup {
   /** Creates a new AutoRoute1. */
   public AutoRoute1(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
-      //new TurnAngle(15, drivetrain),
+      new TurnAngle(0, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
-      new TurnAngle(-drivetrain.getGyroAngle() - 180, drivetrain)
-      /*
+      new TurnAngle(143, drivetrain),
+      
 
       //tarmac -> ball 2
-      new AutoForward(45.695, drivetrain), // 40.695
+      new IntakeMove(drivetrain, intake, 46.695), // 40.695
+      new LoadBallIntoMiddle(indexer),
       new AutoForward(-15, drivetrain),
-      
+
 // 107
       //ball 2 -> ball 3
       new TurnAngle(107, drivetrain),
-      new AutoForward(90, drivetrain),
+      new IntakeMove(drivetrain, intake, 90),
       new TurnAngle(90, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       new AutoForward(50, drivetrain),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
-      */
+      
       // new VisionAlign(drivetrain, vision),
       // new ShootingRoutine(indexer, shooter, lights, 1000)
 

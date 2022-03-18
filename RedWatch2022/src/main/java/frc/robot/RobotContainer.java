@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.IntakeAdjust;
+import frc.robot.commands.IntakeMove;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.IntakeStop;
 import frc.robot.commands.IntakeToggle;
@@ -131,14 +132,16 @@ public class RobotContainer {
      * A (while held) reverses the index motor to eject the ball
      */
     new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
-    new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IntakeRun(m_intake));
+    new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IntakeRun(m_intake, 2));
     // new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RunFlywheel(m_shooter));
      new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2700)); // low shot 1000, high 2300 from fender
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RevFlywheel(m_shooter, 2300)); // low shot 1000, high 2300 from fender
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
+    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IntakeMove(m_drivetrain, m_intake, 45));
+
 
 
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new AutoRoute4(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision));
