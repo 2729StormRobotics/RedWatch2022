@@ -28,8 +28,10 @@
       "/Shuffleboard/Control Panel/Climb Status/rotateForward": "Command",
       "/Shuffleboard/Control Panel/Drivetrain Status/Kill All Commands": "Command",
       "/Shuffleboard/Control Panel/Extend Status/Run Extender": "Command",
+      "/Shuffleboard/Control Panel/Indexer Status/p": "Command",
       "/Shuffleboard/Control Panel/Light Status/Change light color": "Command",
       "/Shuffleboard/Control Panel/Pivot Status/Run Pivot": "Command",
+      "/Shuffleboard/Control Panel/Run FlywheelRPM": "Command",
       "/Shuffleboard/Control Panel/Toggle Pistons": "Command",
       "/Shuffleboard/Intake Panel/togglePistons": "Command"
     },

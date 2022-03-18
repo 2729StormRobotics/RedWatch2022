@@ -24,8 +24,7 @@ public class PartyMode extends CommandBase {
   public void initialize() {
     if (m_lights.getCurrentLights() != kParty) {
       m_lights.setGiven(kParty);
-    }
-    else {
+    } else {
       m_lights.setGiven(kDefaultColor);
     }
   }
