@@ -10,12 +10,10 @@ import static frc.robot.Constants.LightConstants.*;
 
 public class PartyMode extends CommandBase {
   private final Lights m_lights;
-  private final double m_currentColor;
 
   /** Creates a new PartyMode. */
   public PartyMode(Lights lights) {
     m_lights = lights;
-    m_currentColor = Math.round(m_lights.getCurrentLights() * 100.0) / 100.0;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_lights);
@@ -24,10 +22,9 @@ public class PartyMode extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (m_currentColor != kParty) {
+    if (m_lights.getCurrentLights() != kParty) {
       m_lights.setGiven(kParty);
-    }
-    else {
+    } else {
       m_lights.setGiven(kDefaultColor);
     }
   }
