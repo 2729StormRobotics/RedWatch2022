@@ -222,7 +222,7 @@ public class ControlPanel extends SubsystemBase {
     isRedTeam = () -> m_shooter.isRedTeam();
     isBlueTeam = () -> m_shooter.isBlueTeam();
 
-    FlywheelRPM = m_controlpanelTab.add("Flywheel RPM", 0)
+    FlywheelRPM = m_shooterstatus.add("Flywheel RPM", 0)
       .withPosition(2, 4)
       .withSize(2, 1)
       .getEntry();

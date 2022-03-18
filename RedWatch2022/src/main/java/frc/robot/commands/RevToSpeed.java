@@ -10,8 +10,8 @@ import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 
 public class RevToSpeed extends CommandBase {
-  Lights m_lights;
-  Shooter m_shooter;
+  private final Lights m_lights;
+  private final Shooter m_shooter;
   double m_motorPower = 0;
   double m_currentRPM = 0;
   double m_TargetRPM;
