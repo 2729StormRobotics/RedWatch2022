@@ -23,10 +23,10 @@ public class Intake extends SubsystemBase {
   private final DoubleSolenoid m_intakePiston1;
   private final DoubleSolenoid m_intakePiston2;
 
-  private final ColorSensorV3 m_colorSensor;
+  // private final ColorSensorV3 m_colorSensor;
 
-  public Color m_detectedColor;
-  public int m_proximity;
+  // public Color m_detectedColor;
+  // public int m_proximity;
 
   private final NetworkTable m_intakeTable;
   private final NetworkTableEntry m_intakeStatus;
@@ -52,10 +52,10 @@ public class Intake extends SubsystemBase {
     m_intakeTable = NetworkTableInstance.getDefault().getTable("Intake");
     m_intakeStatus = m_intakeTable.getEntry("Intake Running");
 
-    m_colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+    // m_colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 
-    m_detectedColor = m_colorSensor.getColor();
-    m_proximity = m_colorSensor.getProximity();
+    // m_detectedColor = m_colorSensor.getColor();
+    // m_proximity = m_colorSensor.getProximity();
   }
 
   // Runs intake
@@ -115,29 +115,29 @@ public class Intake extends SubsystemBase {
     return trigger > 0.25;
   }
 
-  public boolean isRedBall() {
-    boolean yes = false;
-    if (m_detectedColor.red > m_detectedColor.blue && m_detectedColor.red >= 0.3) {
-      yes = true;
-      Indexer.ballPositions[0] = 'R';
-    }
-    return yes;
-  }
+  // public boolean isRedBall() {
+  //   boolean yes = false;
+  //   if (m_detectedColor.red > m_detectedColor.blue && m_detectedColor.red >= 0.3) {
+  //     yes = true;
+  //     Indexer.ballPositions[0] = 'R';
+  //   }
+  //   return yes;
+  // }
 
-  public boolean isBlueBall() {
-    boolean yes = false;
-    if (m_detectedColor.blue > m_detectedColor.red && m_detectedColor.blue >= 0.3) {
-      yes = true;
-      Indexer.ballPositions[0] = 'B';
-    }
-    return yes;
-  }
+  // public boolean isBlueBall() {
+  //   boolean yes = false;
+  //   if (m_detectedColor.blue > m_detectedColor.red && m_detectedColor.blue >= 0.3) {
+  //     yes = true;
+  //     Indexer.ballPositions[0] = 'B';
+  //   }
+  //   return yes;
+  // }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     // Collects color data and proximity on repeat
-    m_detectedColor = m_colorSensor.getColor();
-    m_proximity = m_colorSensor.getProximity();
+    // m_detectedColor = m_colorSensor.getColor();
+    // m_proximity = m_colorSensor.getProximity();
   }
 }
