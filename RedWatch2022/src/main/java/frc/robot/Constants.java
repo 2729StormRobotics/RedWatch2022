@@ -45,7 +45,7 @@ public final class Constants {
     public static final boolean kTopReversedDefault = false;
     public static final int kStallLimit = 45;
     public static final int kCurrentLimit = 60;
-    public static final double kLauncherP = 0.02;
+    public static final double kLauncherP = 0.001;
     public static final double kLauncherI = 0.0;
     public static final double kLauncherD = 0.0;
   }
@@ -103,7 +103,7 @@ public final class Constants {
     public static final int kStallLimit = 45;
     public static final double kTurnAngleD = 0.0;
     public static final double kTurnAngleI = 0.0;
-    public static final double kTurnAngleP = 0.019;
+    public static final double kTurnAngleP = 0.022;
     public static final double kTurnAngleTolerace = 2.0;
     public static final double kTurnSpeedTolerance = 5.0;
     public static final double kAutoForwardI = 0.00001;
@@ -123,7 +123,7 @@ public final class Constants {
     public static final double kBlueBall = 0.87; // Solid blue for intake
     public static final double kBad = 0.61; // Used for a bad orientation - color red
     public static final double kCorrect = 0.75; // Defines Dark Green
-    public static final double kParty = 0.97; // Rainbow party
+    public static final double kParty = -0.99; // Rainbow party
     public static final int kBlinkinDriverPort = 0;
   }
    

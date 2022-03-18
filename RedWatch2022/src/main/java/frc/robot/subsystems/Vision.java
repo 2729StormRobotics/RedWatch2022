@@ -160,8 +160,8 @@ private final NetworkTableEntry m_tv;
     //TODO: Check constant 0.8 with testing
     double rpm = 0.8 * (velocity / kFlywheelRadius) * kRadsToRPM;
 
-    if (rpm > 2800.0) {
-      return 2800.0;
+    if (rpm > 2750.0) {
+      return 2750.0;
     }
     else if (rpm < 1000.0) {
       return 1000.0;

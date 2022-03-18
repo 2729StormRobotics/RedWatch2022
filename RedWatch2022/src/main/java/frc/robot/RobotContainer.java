@@ -27,6 +27,7 @@ import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.RevFlywheel;
+import frc.robot.commands.RunFlywheel;
 import frc.robot.commands.PartyMode;
 import frc.robot.commands.TurnAngle;
 import frc.robot.commands.VisionAlign;
@@ -134,8 +135,9 @@ public class RobotContainer {
     // new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
-    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000)); // low shot 1000, high 2300 from fender
-    // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RevFlywheel(m_shooter, 1000)); // low shot 1000, high 2300 from fender
+    //new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RunFlywheel(m_shooter));
+    //  new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2700)); // low shot 1000, high 2300 from fender
+    new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RevFlywheel(m_shooter, 2300)); // low shot 1000, high 2300 from fender
     new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
 
 

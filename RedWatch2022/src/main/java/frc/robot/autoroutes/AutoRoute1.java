@@ -30,10 +30,12 @@ public class AutoRoute1 extends SequentialCommandGroup {
   /** Creates a new AutoRoute1. */
   public AutoRoute1(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
+      //new TurnAngle(15, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
-      new TurnAngle(-drivetrain.getGyroAngle() + 180, drivetrain),
+      new TurnAngle(-drivetrain.getGyroAngle() - 180, drivetrain)
+      /*
 
       //tarmac -> ball 2
       new AutoForward(45.695, drivetrain), // 40.695
@@ -49,6 +51,7 @@ public class AutoRoute1 extends SequentialCommandGroup {
       new AutoForward(50, drivetrain),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
+      */
       // new VisionAlign(drivetrain, vision),
       // new ShootingRoutine(indexer, shooter, lights, 1000)
 

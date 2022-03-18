@@ -41,7 +41,7 @@ public class RevFlywheel extends PIDCommand {
         // The controller that the command will use
         new PIDController(kLauncherP, kLauncherI, kLauncherD),
         // This should return the measurement
-        () -> shooter.getEncoderVelocity(shooter.m_topEncoder) * 2.0,
+        () -> shooter.getEncoderVelocity(shooter.m_topEncoder),
         // This should return the setpoint (can also be a constant)
         () -> rpm,
         // This uses the output
@@ -52,12 +52,12 @@ public class RevFlywheel extends PIDCommand {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooter);
     // Configure additional PID options by calling `getController` here.
-    getController().setTolerance(100);
+    getController().setTolerance(50, 10);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return getController().atSetpoint();
   }
 }
