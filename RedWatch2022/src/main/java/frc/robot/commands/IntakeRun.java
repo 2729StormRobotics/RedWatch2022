@@ -39,7 +39,7 @@ public class IntakeRun extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    new WaitCommand(2);
+    new WaitCommand(3);
     return true;
   }
 }

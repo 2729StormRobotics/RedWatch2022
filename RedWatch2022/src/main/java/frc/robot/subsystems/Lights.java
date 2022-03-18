@@ -89,15 +89,15 @@ public class Lights extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    m_currentColor = Indexer.ballPositions[1];
-    if (m_currentColor == 'R') {
-      intakeRed();
-    }
-    else if (m_currentColor == 'B') {
-      intakeBlue();
-    }
-    else {
-      resetLights();
-    }
+    // m_currentColor = Indexer.ballPositions[1];
+  //   if (m_currentColor == 'R') {
+  //     intakeRed();
+  //   }
+  //   else if (m_currentColor == 'B') {
+  //     intakeBlue();
+  //   }
+  //   else {
+  //     resetLights();
+  //   }
   }
 }
