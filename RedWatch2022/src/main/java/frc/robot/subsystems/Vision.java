@@ -157,7 +157,8 @@ private final NetworkTableEntry m_tv;
     double velocity = Math.sqrt((16.087 * Math.pow(distance, 2)) /
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
-    double rpm = (velocity / kFlywheelRadius) * kRadsToRPM;
+    //TODO: Check constant 0.8 with testing
+    double rpm = 0.8 * (velocity / kFlywheelRadius) * kRadsToRPM;
 
     if (rpm > 2800.0) {
       return 2800.0;

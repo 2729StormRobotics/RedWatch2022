@@ -123,7 +123,7 @@ public final class Constants {
     public static final double kBlueBall = 0.87; // Solid blue for intake
     public static final double kBad = 0.61; // Used for a bad orientation - color red
     public static final double kCorrect = 0.75; // Defines Dark Green
-    public static final double kClimbSuccess = 0.97; // Rainbow party
+    public static final double kParty = 0.97; // Rainbow party
     public static final int kBlinkinDriverPort = 0;
   }
    

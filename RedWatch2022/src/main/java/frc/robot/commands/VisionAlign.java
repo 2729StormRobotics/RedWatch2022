@@ -75,15 +75,15 @@ public class VisionAlign extends PIDCommand {
 
   @Override
   public void end(boolean interrupted) {
-    m_drivetrain.leftMotor.setIdleMode(IdleMode.kCoast);
-    m_drivetrain.leftMotor2.setIdleMode(IdleMode.kCoast);
-    m_drivetrain.rightMotor.setIdleMode(IdleMode.kCoast);
-    m_drivetrain.rightMotor2.setIdleMode(IdleMode.kCoast);
-
     m_drivetrain.leftMotor.set(0);
     m_drivetrain.leftMotor2.set(0);
     m_drivetrain.rightMotor.set(0);
     m_drivetrain.rightMotor2.set(0);
+
+    m_drivetrain.leftMotor.setIdleMode(IdleMode.kCoast);
+    m_drivetrain.leftMotor2.setIdleMode(IdleMode.kCoast);
+    m_drivetrain.rightMotor.setIdleMode(IdleMode.kCoast);
+    m_drivetrain.rightMotor2.setIdleMode(IdleMode.kCoast);
 
     super.end(interrupted);
   }
