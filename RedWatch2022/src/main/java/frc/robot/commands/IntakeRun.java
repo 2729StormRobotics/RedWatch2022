@@ -12,10 +12,20 @@ import frc.robot.subsystems.Intake;
 public class IntakeRun extends CommandBase {
   private final Timer m_timer = new Timer();
   private final Intake m_intake;
+  private final double m_seconds;
 
   /** Creates a new IntakeRun. */
   public IntakeRun(Intake subsystem) {
     m_intake = subsystem;
+    m_seconds = 10000;
+
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_intake);
+  }
+
+  public IntakeRun(Intake subsystem, double seconds) {
+    m_intake = subsystem;
+    m_seconds = seconds;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_intake);
@@ -39,13 +49,13 @@ public class IntakeRun extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_intake.stopIntake();
-    
+
     m_timer.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_timer.hasElapsed(3);
+    return m_timer.hasElapsed(m_seconds);
   }
 }
