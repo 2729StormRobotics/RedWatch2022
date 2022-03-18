@@ -130,7 +130,7 @@ public class RobotContainer {
      * A (while held) reverses the index motor to eject the ball
      */
     new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
-    // new JoystickButton(m_weapons, Button.kX.value).whileHeld(new IntakeRun(m_intake));
+    new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IntakeRun(m_intake));
     // new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
