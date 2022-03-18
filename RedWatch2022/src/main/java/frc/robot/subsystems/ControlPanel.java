@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import static frc.robot.Constants.ShuffleboardConstants.*;
 import static frc.robot.Constants.LightConstants.*;
 import frc.robot.commands.togglePistons;
+import frc.robot.commands.FlywheelRPM;
 import frc.robot.commands.Meltdown;
 import frc.robot.commands.changeAlliance;
 import frc.robot.commands.extendDown;
@@ -29,6 +30,7 @@ import frc.robot.commands.hangerRunMotors;
 import frc.robot.commands.rotateBackward;
 import frc.robot.commands.rotateForward;
 import frc.robot.commands.setLights;
+import frc.robot.commands.RevToSpeed;
 
 public class ControlPanel extends SubsystemBase {
   /** Creates a new ControlPanel. */
@@ -48,6 +50,7 @@ public class ControlPanel extends SubsystemBase {
   private final NetworkTableEntry LeftPivotMotor;
   private final NetworkTableEntry RightPivotMotor;
   private final NetworkTableEntry setLightColor;
+  private final NetworkTableEntry FlywheelRPM;
 
   // private final NetworkTableEntry alliance;
 
@@ -218,6 +221,14 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 1);
     isRedTeam = () -> m_shooter.isRedTeam();
     isBlueTeam = () -> m_shooter.isBlueTeam();
+
+    FlywheelRPM = m_controlpanelTab.add("Flywheel RPM", 0)
+      .withPosition(2, 4)
+      .withSize(2, 1)
+      .getEntry();
+    m_controlpanelTab.add("Run FlywheelRPM", new FlywheelRPM(() -> FlywheelRPM.getDouble(0), m_shooter))
+      .withPosition(4, 4)
+      .withSize(2, 1);
 
     // Automatically sets or changes Shuffleboard's current tab to Control Panel
     Shuffleboard.selectTab(kShuffleboardTab);
