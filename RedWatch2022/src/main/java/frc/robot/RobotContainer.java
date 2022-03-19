@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.util.net.PortForwarder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
@@ -60,7 +61,7 @@ public class RobotContainer {
   private final Shooter m_shooter;
   private final Lights m_lights;
   private final Vision m_vision;
-  private final Camera m_camera;
+  // private final Camera m_camera;
 
   private final Drivetrain m_drivetrain;
 
@@ -69,7 +70,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_camera = new Camera();
+    // m_camera = new Camera();
     m_intake = new Intake();
     m_indexer = new Indexer();
     m_shooter = new Shooter();
@@ -104,6 +105,9 @@ public class RobotContainer {
       new IntakeAdjust(() -> Intake.isTriggerPressed(m_weapons.getLeftTriggerAxis()), () -> Intake.isTriggerPressed(m_weapons.getRightTriggerAxis()), m_intake));
     // Configure the button bindings
     configureButtonBindings();
+
+    // Add port for limelight during competitions
+    PortForwarder.add(5800, "limelight.local", 5800);
   }
 
   /**
@@ -120,9 +124,9 @@ public class RobotContainer {
      * A (when pressed) drives the robot forward a set distance
      */
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
-    new JoystickButton(m_driver, Button.kY.value).whenPressed(new VisionAlign(m_drivetrain, m_vision));
-    new JoystickButton(m_driver, Button.kB.value).whenPressed(new AutoForward(50, m_drivetrain));
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(180, m_drivetrain));
+    new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
+    // new JoystickButton(m_driver, Button.kB.value).whenPressed(new AutoForward(50, m_drivetrain));
+    // new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(180, m_drivetrain));
     new JoystickButton(m_driver, Button.kStart.value).whenPressed(new PartyMode(m_lights));
     /**
      * Button mappings for the weapons controller. Currently set to:
@@ -132,15 +136,15 @@ public class RobotContainer {
      * A (while held) reverses the index motor to eject the ball
      */
     new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
-    new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IntakeRun(m_intake, 2));
+    // new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IntakeRun(m_intake, 2));
     // new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RunFlywheel(m_shooter));
-     new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2700)); // low shot 1000, high 2300 from fender
+    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000)); // low shot 1000, high 2300 from fender
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RevFlywheel(m_shooter, 2300)); // low shot 1000, high 2300 from fender
-    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IntakeMove(m_drivetrain, m_intake, 45));
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
+    // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IntakeMove(m_drivetrain, m_intake, 45));
 
 
 

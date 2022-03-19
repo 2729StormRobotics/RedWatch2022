@@ -126,6 +126,7 @@ private final NetworkTableEntry m_tv;
     }
 
     m_limelightTable.getEntry("pipeline").setNumber(pipeline);
+    m_limelightTable.getEntry("stream").setNumber(2); // picture in picture for driver cam
   }
 
   /**
