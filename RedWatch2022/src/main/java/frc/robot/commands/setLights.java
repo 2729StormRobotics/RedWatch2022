@@ -4,15 +4,17 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Lights;
 
 public class setLights extends CommandBase {
   private final Lights m_lights;
-  private final double m_color;
+  private final DoubleSupplier m_color;
 
   /** Creates a new setLights. */
-  public setLights(Lights lights, double color) {
+  public setLights(Lights lights, DoubleSupplier color) {
     m_lights = lights;
     m_color = color;
 
@@ -23,7 +25,7 @@ public class setLights extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_lights.setGiven(m_color);
+    m_lights.setGiven(m_color.getAsDouble());
   }
 
   // Called every time the scheduler runs while the command is scheduled.

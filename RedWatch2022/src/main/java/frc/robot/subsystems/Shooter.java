@@ -81,11 +81,11 @@ public class Shooter extends SubsystemBase {
   }
 
   public void changeAlliance() {
-    // if (teamColor == "Red") {
-    //   teamColor = "Blue";
-    // } else if (teamColor == "Blue") {
-    //   teamColor = "Red";
-    // }
+    if (teamColor == "Red") {
+      teamColor = "Blue";
+    } else if (teamColor == "Blue") {
+      teamColor = "Red";
+    }
   }
 
   private String getAlliance() {
