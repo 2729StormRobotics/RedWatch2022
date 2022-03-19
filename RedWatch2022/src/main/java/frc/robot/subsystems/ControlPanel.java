@@ -99,7 +99,7 @@ public class ControlPanel extends SubsystemBase {
     m_intakeStatus = m_controlpanelTab.getLayout("Intake Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 0)
-      .withSize(2, 1);
+      .withSize(2, 2);
     m_climbStatus = m_controlpanelTab.getLayout("Climb Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(4, 0)
@@ -114,7 +114,7 @@ public class ControlPanel extends SubsystemBase {
       .withSize(2, 2);
     m_indexerstatus = m_controlpanelTab.getLayout("Indexer Status", BuiltInLayouts.kList)
       .withProperties(Map.of("Label position", "TOP"))
-      .withPosition(2, 1)
+      .withPosition(2, 2)
       .withSize(2, 2);
     // m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
     //   .withProperties(Map.of("Label position", "TOP"))
@@ -164,6 +164,9 @@ public class ControlPanel extends SubsystemBase {
     // m_intakeStatus.addNumber("Ball Proximity", () -> m_intake.m_proximity);
     
     m_intakeStatus.addBoolean("Piston lowered?", () -> m_intake.isIntakeLowered());
+    m_intakeStatus.add("Toggle Pistons", new togglePistons(m_intake))
+      .withPosition(6, 2)
+      .withSize(2, 1);
     
     m_lightstatus.addNumber("Light Output", () -> m_lights.getCurrentLights());
     setLightColor = m_lightstatus.add("Light Input", kDefaultColor).getEntry();
@@ -172,19 +175,15 @@ public class ControlPanel extends SubsystemBase {
     m_shooterstatus.addNumber("Flywheel Speed", () -> m_shooter.getEncoderVelocity(m_shooter.m_topEncoder) / 2.0);
 
     m_allianceStatus = m_controlpanelTab.add("Alliance Status", true)
-      .withProperties(Map.of("Color When True", "Red"))
-      .withPosition(2, 3)
-      .withSize(2, 1);
-    m_controlpanelTab.add("Change Alliance", new changeAlliance(m_shooter))
+      .withProperties(Map.of("Color When True", m_shooter.getAlliance()))
       .withPosition(4, 3)
       .withSize(2, 1);
+    // m_controlpanelTab.add("Change Alliance", new changeAlliance(m_shooter))
+    //   .withPosition(4, 3)
+    //   .withSize(2, 1);
 
     FlywheelRPM = m_shooterstatus.add("Flywheel RPM", 0).getEntry();
     m_shooterstatus.add("Run FlywheelRPM", new FlywheelRPM(() -> FlywheelRPM.getDouble(0), m_shooter));
-
-    m_controlpanelTab.add("Toggle Pistons", new togglePistons(m_intake))
-      .withPosition(6, 2)
-      .withSize(2, 1);
     
     // Create Debug Panel Tab in shuffleboard
     m_debugpanelTab = Shuffleboard.getTab("Debug Panel");

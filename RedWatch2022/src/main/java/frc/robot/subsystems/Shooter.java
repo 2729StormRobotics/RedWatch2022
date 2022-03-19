@@ -88,7 +88,7 @@ public class Shooter extends SubsystemBase {
     }
   }
 
-  private String getAlliance() {
+  public String getAlliance() {
     return teamColor;
   }
 
