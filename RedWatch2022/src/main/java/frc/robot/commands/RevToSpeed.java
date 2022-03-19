@@ -12,12 +12,12 @@ import frc.robot.subsystems.Shooter;
 public class RevToSpeed extends CommandBase {
   private final Lights m_lights;
   private final Shooter m_shooter;
-  double m_motorPower = 0;
-  double m_currentRPM = 0;
+  double m_motorPower;
+  double m_currentRPM;
   double m_TargetRPM;
-  double m_increment = 0;
-  double m_error = 0;
-  boolean m_finished = false;
+  double m_increment;
+  double m_error;
+  boolean m_finished;
 
   /** Creates a new RevToSpeed. */
   public RevToSpeed(double rpm, Shooter shooter, Lights lights) {
@@ -36,7 +36,7 @@ public class RevToSpeed extends CommandBase {
     // m_shooter.topMotor.set(0);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
     m_motorPower = 0;
-    m_currentRPM = 0;
+    m_currentRPM = 1500;
     m_increment = 0;
     m_error = 0;
     m_finished = false;
@@ -57,7 +57,7 @@ public class RevToSpeed extends CommandBase {
 
     m_shooter.topMotor.set(MathUtil.clamp(m_motorPower, 0, 1));
 
-    if (Math.abs(m_error) <= 20) {
+    if (Math.abs(m_error) <= 100) {
       m_finished = true;
     }
     

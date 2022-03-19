@@ -12,6 +12,7 @@ import static frc.robot.Constants.AutoRouteConstants.*;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.ShootingRoutineDouble;
 import frc.robot.commands.AutoForward;
+import frc.robot.commands.IntakeLower;
 import frc.robot.commands.IntakeMove;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.LoadBallIntoMiddle;
@@ -31,6 +32,7 @@ public class AutoRoute1 extends SequentialCommandGroup {
   /** Creates a new AutoRoute1. */
   public AutoRoute1(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
+      new IntakeLower(intake),
       new TurnAngle(0, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
