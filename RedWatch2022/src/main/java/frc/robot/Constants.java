@@ -24,8 +24,8 @@ public final class Constants {
 
     public static final int kDefaultPipeline = 0;
 
-		public static final double kAutoAlignP = 0.025; //TODO: Testing to find this value
-		public static final double kAutoAlignI = 0.0; //TODO: Testing to find this value
+		public static final double kAutoAlignP = 0.011; //TODO: Testing to find this value- 0.025
+		public static final double kAutoAlignI = 0.025;  //TODO: Testing to find this value- 0
 		public static final double kAutoAlignD = 0.0; //TODO: Testing to find this value
 
     public static final double kFlywheelRadius = 0.25; // flywheel radius in feet
