@@ -53,7 +53,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
   public void end(boolean interrupted) {
     m_indexer.load(0.0);
     m_lights.resetLights();
-    m_shooter.topMotor.set(0.0);
+    
     // Indexer.ballPositions[1] = ' ';
   }
 

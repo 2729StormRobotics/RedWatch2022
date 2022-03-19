@@ -7,13 +7,17 @@
 package frc.robot.autoroutes;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import static frc.robot.Constants.AutoRouteConstants.*;
 
+import frc.robot.commandgroups.IntakeIndex;
+import frc.robot.commandgroups.IntakeMove;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.ShootingRoutineDouble;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IntakeLower;
-import frc.robot.commands.IntakeMove;
+import frc.robot.commands.IntakeRaise;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.TurnAngle;
@@ -33,7 +37,9 @@ public class AutoRoute1 extends SequentialCommandGroup {
   public AutoRoute1(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     super(
       new IntakeLower(intake),
+      new WaitCommand(0.5),
       new TurnAngle(0, drivetrain),
+      new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
@@ -41,20 +47,24 @@ public class AutoRoute1 extends SequentialCommandGroup {
       
 
       //tarmac -> ball 2
-      new IntakeMove(drivetrain, intake, 46.695), // 40.695
+      new IntakeIndex(drivetrain, intake, indexer, 46.695), // 40.695
       new LoadBallIntoMiddle(indexer),
       new AutoForward(-15, drivetrain),
 
 // 107
       //ball 2 -> ball 3
-      new TurnAngle(107, drivetrain),
-      new IntakeMove(drivetrain, intake, 90),
-      new TurnAngle(90, drivetrain),
+      new TurnAngle(97, drivetrain),
+      new IntakeMove(drivetrain, intake, indexer, 90),
+      new IntakeRaise(intake),
+      new TurnAngle(110, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
-      new AutoForward(50, drivetrain),
-      new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
-      new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
+      new AutoForward(39, drivetrain),
+      new VisionAlign(drivetrain, vision),
+      new VisionAlign(drivetrain, vision),
+      new ShootingRoutineDouble(indexer, shooter, lights, vision.getRPM())
+      // new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
+      // new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
       
       // new VisionAlign(drivetrain, vision),
       // new ShootingRoutine(indexer, shooter, lights, 1000)

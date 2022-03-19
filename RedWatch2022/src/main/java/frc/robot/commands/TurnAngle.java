@@ -34,7 +34,9 @@ public class TurnAngle extends PIDCommand {
           // turns clockwise if targetvalue is positive
           // turns counterclockwise if targetvalue is negative
         
-          drivetrain.arcadeDrive(0, output, true);
+          // drivetrain.arcadeDrive(0, output, false);
+          // drivetrain.tankDrive(-output, output, true);
+          drivetrain.curvatureDrive(0, output, true);
         });
         m_drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
