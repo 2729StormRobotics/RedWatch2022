@@ -6,10 +6,13 @@ package frc.robot.commandgroups;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 import static frc.robot.Constants.IOPorts.*;
 import frc.robot.commands.LoadBallIntoFlyWheel;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.RevToSpeed;
+import frc.robot.commands.StopFlywheel;
 import frc.robot.commands.TurnAngle;
 import frc.robot.commands.VisionAlign;
 import frc.robot.subsystems.Drivetrain;
@@ -70,8 +73,10 @@ public class ShootingRoutineDouble extends SequentialCommandGroup {
       new RevToSpeed(rpm, shooter, lights),
       new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights),
+      new WaitCommand(.75),
       new LoadBallIntoMiddle(indexer),
-      new LoadBallIntoFlyWheel(indexer, shooter, lights));
+      new LoadBallIntoFlyWheel(indexer, shooter, lights),
+      new StopFlywheel(shooter));
   }
    // if the same button is pressed, command will end
   //  @Override

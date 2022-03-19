@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.IntakeAdjust;
-import frc.robot.commands.IntakeMove;
 import frc.robot.commands.IntakeRun;
 import frc.robot.commands.IntakeStop;
 import frc.robot.commands.IntakeToggle;
@@ -37,7 +36,9 @@ import frc.robot.autoroutes.AutoRoute4;
 import frc.robot.autoroutes.TwoBallAuto;
 import frc.robot.commandgroups.EjectCargo;
 import frc.robot.commandgroups.IntakeDriveReal;
+import frc.robot.commandgroups.IntakeMove;
 import frc.robot.commandgroups.ShootingRoutine;
+import frc.robot.commandgroups.ShootingRoutineDouble;
 import frc.robot.commandgroups.Traverse;
 import frc.robot.commands.hangerControl;
 import frc.robot.commands.setLights;
@@ -126,7 +127,7 @@ public class RobotContainer {
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
     // new JoystickButton(m_driver, Button.kB.value).whenPressed(new AutoForward(50, m_drivetrain));
-    new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(143, m_drivetrain));
+    new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(45, m_drivetrain));
     new JoystickButton(m_driver, Button.kStart.value).whenPressed(new PartyMode(m_lights));
     /**
      * Button mappings for the weapons controller. Currently set to:
@@ -143,7 +144,7 @@ public class RobotContainer {
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RunFlywheel(m_shooter));
     new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000)); // low shot 1000, high 2300 from fender
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RevFlywheel(m_shooter, 2300)); // low shot 1000, high 2300 from fender
-    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
+    new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutineDouble(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IntakeMove(m_drivetrain, m_intake, 45));
 
 
