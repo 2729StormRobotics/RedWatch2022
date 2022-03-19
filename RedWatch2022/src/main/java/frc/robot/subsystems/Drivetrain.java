@@ -151,6 +151,7 @@ public class Drivetrain extends SubsystemBase {
     }
     return input;
   }
+  
   public static boolean isTriggerPressed(double trigger) {
     return trigger > 0.95;
   }

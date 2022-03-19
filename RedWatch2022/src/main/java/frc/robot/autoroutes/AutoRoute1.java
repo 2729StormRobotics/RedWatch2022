@@ -54,14 +54,16 @@ public class AutoRoute1 extends SequentialCommandGroup {
 // 107
       //ball 2 -> ball 3
       new TurnAngle(97, drivetrain),
+      new WaitCommand(0.75),
       new IntakeMove(drivetrain, intake, indexer, 90),
-      new IntakeRaise(intake),
+      // new IntakeRaise(intake),
       new TurnAngle(110, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       new AutoForward(39, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
+      // new IntakeLower(intake),
       new ShootingRoutineDouble(indexer, shooter, lights, vision.getRPM())
       // new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       // new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
