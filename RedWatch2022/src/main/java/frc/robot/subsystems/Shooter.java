@@ -15,16 +15,16 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  public final com.revrobotics.CANSparkMax topMotor;
+  public final com.revrobotics.CANSparkMax m_topMotor;
   public final RelativeEncoder m_topEncoder;
 
-  public double flyWheelSpeedAfterRev = 0;
-  public double increment = 0;
-  public double motorPower = 0;
+  public double m_flyWheelSpeedAfterRev = 0;
+  public double m_increment = 0;
+  public double m_motorPower = 0;
 
   public boolean m_revving = false;
 
-  public String teamColor = "Red";
+  public String m_teamColor = "Red";
 
   /**
    * Shooter subsystem controls flywheel
@@ -32,12 +32,11 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     // initialize motor
-    topMotor = new CANSparkMax(kTopMotorPort, MotorType.kBrushless);
-    motorInit(topMotor, kTopReversedDefault);
-    
+    m_topMotor = new CANSparkMax(kTopMotorPort, MotorType.kBrushless);
+    motorInit(m_topMotor, kTopReversedDefault);
 
     // initialize encoder
-    m_topEncoder = topMotor.getEncoder();
+    m_topEncoder = m_topMotor.getEncoder();
   }
 
   // sets defaults for topMotor
@@ -70,7 +69,7 @@ public class Shooter extends SubsystemBase {
 
   // set motor speed
   public void shoot(double speed){
-    topMotor.set(speed);
+    m_topMotor.set(speed);
   }
 
   // get rpm
@@ -79,19 +78,19 @@ public class Shooter extends SubsystemBase {
   }
 
   public double getFlyWheelSpeedAfterRev() {
-    return flyWheelSpeedAfterRev;
+    return m_flyWheelSpeedAfterRev;
   }
 
   public void changeAlliance() {
-    if (teamColor == "Red") {
-      teamColor = "Blue";
-    } else if (teamColor == "Blue") {
-      teamColor = "Red";
+    if (m_teamColor == "Red") {
+      m_teamColor = "Blue";
+    } else if (m_teamColor == "Blue") {
+      m_teamColor = "Red";
     }
   }
 
   public String getAlliance() {
-    return teamColor;
+    return m_teamColor;
   }
 
   public boolean isRedTeam() {
