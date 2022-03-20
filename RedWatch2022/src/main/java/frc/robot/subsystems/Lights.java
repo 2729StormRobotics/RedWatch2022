@@ -131,11 +131,11 @@ public class Lights extends SubsystemBase {
     new WaitCommand(1.5);
     m_shooting = false;
    }
-   else if ((m_alliance == 0) && (m_drivetrain.getAverageSpeed() > 5.0)) {
+   else if ((m_alliance == 0) && (m_drivetrain.getAverageSpeed() < 5.0)) {
     setRedStopped();
    }
-   else if ((m_alliance == 1) && (m_drivetrain.getAverageSpeed() > 5.0)) {
-    setRedStopped();
+   else if ((m_alliance == 1) && (m_drivetrain.getAverageSpeed() < 5.0)) {
+    setBlueStopped();
    }
    else if (m_alliance == 0) {
      setRed();
