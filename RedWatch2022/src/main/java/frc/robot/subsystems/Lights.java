@@ -143,6 +143,9 @@ public class Lights extends SubsystemBase {
    else if (m_alliance == 1) {
      setBlue();
    }
+   else {
+     resetLights();
+   }
   }
 
 }
