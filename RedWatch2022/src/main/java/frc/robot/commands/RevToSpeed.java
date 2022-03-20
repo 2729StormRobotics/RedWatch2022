@@ -53,11 +53,11 @@ public class RevToSpeed extends CommandBase {
     m_error = m_TargetRPM - m_currentRPM;
 
     m_increment = m_error / 170000.0;
-    m_shooter.increment = m_increment;
+    m_shooter.m_increment = m_increment;
     m_motorPower += m_increment;
-    m_shooter.motorPower = m_motorPower;
+    m_shooter.m_motorPower = m_motorPower;
 
-    m_shooter.topMotor.set(MathUtil.clamp(m_motorPower, 0, 1));
+    m_shooter.m_topMotor.set(MathUtil.clamp(m_motorPower, 0, 1));
 
     if (Math.abs(m_error) <= 100) {
       m_finished = true;
@@ -68,7 +68,7 @@ public class RevToSpeed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_shooter.flyWheelSpeedAfterRev = m_motorPower;
+    m_shooter.m_flyWheelSpeedAfterRev = m_motorPower;
 
     m_shooter.setDoneRevving();
   }

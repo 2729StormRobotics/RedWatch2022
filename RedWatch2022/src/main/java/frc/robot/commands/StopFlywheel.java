@@ -18,7 +18,7 @@ public class StopFlywheel extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_shooter.topMotor.set(0.0);
+    m_shooter.m_topMotor.set(0.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
