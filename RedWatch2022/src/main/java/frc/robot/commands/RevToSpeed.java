@@ -40,6 +40,8 @@ public class RevToSpeed extends CommandBase {
     m_increment = 0;
     m_error = 0;
     m_finished = false;
+
+    m_shooter.setRevving();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -67,6 +69,8 @@ public class RevToSpeed extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_shooter.flyWheelSpeedAfterRev = m_motorPower;
+
+    m_shooter.setDoneRevving();
   }
 
   // Returns true when the command should end.

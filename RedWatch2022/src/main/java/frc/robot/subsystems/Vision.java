@@ -35,6 +35,8 @@ private final NetworkTableEntry m_tx;
 private final NetworkTableEntry m_ty;
 private final NetworkTableEntry m_tv;
 
+private boolean m_aligning = false;
+
   /** Creates a new Vision. */
   public Vision() {
     // Gets the network table for the limelight
@@ -148,6 +150,18 @@ private final NetworkTableEntry m_tv;
     m_targetDistance.setDouble(getTargetDistance());
     m_targetDetection.setBoolean(isTargetDetected());
     m_targetOffset.setDouble(getXOffset());
+  }
+
+  public void setAligning() {
+    m_aligning = true;
+  }
+
+  public void setDoneAligning() {
+    m_aligning = false;
+  }
+
+  public boolean isAligning() {
+    return m_aligning;
   }
 
   // TODO: Test conversion factor

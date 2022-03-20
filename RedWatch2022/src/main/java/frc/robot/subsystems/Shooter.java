@@ -22,6 +22,8 @@ public class Shooter extends SubsystemBase {
   public double increment = 0;
   public double motorPower = 0;
 
+  public boolean m_revving = false;
+
   public String teamColor = "Red";
 
   /**
@@ -98,6 +100,18 @@ public class Shooter extends SubsystemBase {
 
   public boolean isBlueTeam() {
     return getAlliance() == "Blue";
+  }
+
+  public void setRevving() {
+    m_revving = true;
+  }
+
+  public void setDoneRevving() {
+    m_revving = false;
+  }
+
+  public boolean isRevving() {
+    return m_revving;
   }
 
   @Override

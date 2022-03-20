@@ -63,6 +63,8 @@ public class VisionAlign extends PIDCommand {
      m_drivetrain.leftMotor2.setIdleMode(IdleMode.kBrake);
      m_drivetrain.rightMotor.setIdleMode(IdleMode.kBrake);
      m_drivetrain.rightMotor2.setIdleMode(IdleMode.kBrake);  
+
+     m_vision.setAligning();
   }
 
   // Returns true when the command should end.
@@ -84,6 +86,8 @@ public class VisionAlign extends PIDCommand {
     m_drivetrain.leftMotor2.setIdleMode(IdleMode.kCoast);
     m_drivetrain.rightMotor.setIdleMode(IdleMode.kCoast);
     m_drivetrain.rightMotor2.setIdleMode(IdleMode.kCoast);
+
+    m_vision.setDoneAligning();
 
     super.end(interrupted);
   }

@@ -117,13 +117,15 @@ public final class Constants {
     public static final double kDisabled = 0.43; // Breathing color 1 + 2
     public static final double kDefaultColor = 0.93; //TODO: Find what we want default to be (same as disabled?)
     public static final double kLightsOff = 0.99; // Black
-    //public static final double kRedBall = -0.11; // Strobe red -- intake red ball //0.61 is solid red
-    //public static final double kBlueBall = -.09; // Strobe blue -- intake blue ball //0.87 is solid blue
-    public static final double kRedBall = 0.61; // Solid red for intake
-    public static final double kBlueBall = 0.87; // Solid blue for intake
+    public static final double kRedStopped = -0.17; // Breath red -- red alliance robot stopped
+    public static final double kBlueStopped = -.15; // Breaht blue -- blue alliance robot stopped
+    public static final double kRed = 0.61; // Solid red
+    public static final double kBlue = 0.87; // Solid blue
     public static final double kBad = 0.61; // Used for a bad orientation - color red
-    public static final double kCorrect = 0.75; // Defines Dark Green
     public static final double kParty = -0.99; // Rainbow party
+    public static final double kAligning = -0.07; // Strobe gold when aligning
+    public static final double kRevving = 0.67; // Solid gold when revving
+    public static final double kShooting = 0.77; // Green for when shooting
     public static final int kBlinkinDriverPort = 0;
   }
    

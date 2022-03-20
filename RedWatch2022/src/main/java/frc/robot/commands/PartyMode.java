@@ -22,11 +22,7 @@ public class PartyMode extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (m_lights.getCurrentLights() != kParty) {
-      m_lights.setGiven(kParty);
-    } else {
-      m_lights.setGiven(kDefaultColor);
-    }
+    m_lights.togglePartyMode();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

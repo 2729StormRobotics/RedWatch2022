@@ -80,7 +80,7 @@ public class RobotContainer {
     m_drivetrain = new Drivetrain();
     m_vision = new Vision();
 
-    m_lights = new Lights(m_climber, m_intake, m_indexer, m_shooter, m_vision);
+    m_lights = new Lights(m_drivetrain, m_climber, m_intake, m_indexer, m_shooter, m_vision);
 
     // Set up Control Panel
     new ControlPanel(m_driver, m_weapons, m_drivetrain, m_climber, m_intake, m_indexer, m_shooter, m_lights);

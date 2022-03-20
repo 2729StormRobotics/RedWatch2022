@@ -37,8 +37,7 @@ public class LoadBallIntoFlyWheel extends CommandBase {
   @Override
   public void initialize() {
     m_indexer.load(0.0);
-    m_lights.MaxSpeedFlyWheel();
-
+    m_lights.maxSpeedFlyWheel();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
