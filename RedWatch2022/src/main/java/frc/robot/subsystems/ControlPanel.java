@@ -55,11 +55,7 @@ public class ControlPanel extends SubsystemBase {
   private final NetworkTableEntry setLightColor;
   private final NetworkTableEntry FlywheelRPM;
 
-  // private final NetworkTableEntry alliance;
-
   // private final SimpleWidget ballColorWidget;
-  // private final BooleanSupplier isBallRed;
-  // private final BooleanSupplier isBallBlue;
 
   private final SimpleWidget m_allianceStatus;
 
@@ -116,10 +112,6 @@ public class ControlPanel extends SubsystemBase {
       .withProperties(Map.of("Label position", "TOP"))
       .withPosition(2, 2)
       .withSize(2, 2);
-    // m_alliancestatus = m_controlpanelTab.getLayout("Alliance Status", BuiltInLayouts.kList)
-    //   .withProperties(Map.of("Label position", "TOP"))
-    //   .withPosition(8, 4)
-    //   .withSize(2, 1);
 
     // Creates the values that will be contained in each layout
 
@@ -145,15 +137,8 @@ public class ControlPanel extends SubsystemBase {
     m_indexerstatus.addString("Bottom Ball", () -> m_indexer.getBottomBall() + "");
     m_indexerstatus.addString("Middle Ball", () -> m_indexer.getMiddleBall() + "");
 
-    // Alliance control
-    // alliance = m_alliancestatus.add("Alliance", false)
-    // .withWidget(BuiltInWidgets.kToggleSwitch)
-    // .getEntry();
-
     // ballColorWidget = m_intakeStatus.add("Ball Color", true);
     // ballColorWidget.withProperties(Map.of("Color When True", "Black"));
-    // isBallRed = () -> m_intake.isRedBall();
-    // isBallBlue = () -> m_intake.isBlueBall();
 
     // // Shows color values (RGB)
     // m_intakeStatus.addNumber("R", () -> m_intake.m_detectedColor.red);
@@ -236,9 +221,9 @@ public class ControlPanel extends SubsystemBase {
 @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    // if (isBallRed.getAsBoolean()) {
+    // if (m_intake.isRedBall()) {
     //   ballColorWidget.withProperties(Map.of("Color When True", "Red"));
-    // } else if (isBallBlue.getAsBoolean()) {
+    // } else if (m_intake.isBlueBall()) {
     //   ballColorWidget.withProperties(Map.of("Color When True", "Blue"));
     // } else {
     //   ballColorWidget.withProperties(Map.of("Color When True", "Black"));
