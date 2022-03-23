@@ -41,6 +41,7 @@ private boolean m_aligning = false;
   public Vision() {
     // Gets the network table for the limelight
     m_limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(2);
 
     // Resets the default settings and pipelines to the limelight
     setPipeline(kDefaultPipeline);
@@ -128,7 +129,7 @@ private boolean m_aligning = false;
     }
 
     m_limelightTable.getEntry("pipeline").setNumber(pipeline);
-    m_limelightTable.getEntry("stream").setNumber(2); // picture in picture for driver cam
+    m_limelightTable.getEntry("stream").setNumber(1); // picture in picture for driver cam
   }
 
   /**

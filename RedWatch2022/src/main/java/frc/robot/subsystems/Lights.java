@@ -26,10 +26,11 @@ public class Lights extends SubsystemBase {
   private final Vision m_vision;
 
   //TODO: Change before each match
-  private int m_alliance = 0; // 0 = red, 1 = blue
+  private int m_alliance = 1; // 0 = red, 1 = blue
 
   private boolean m_partyMode = false;
   private boolean m_shooting = false;
+  private int m_counter = 0;
 
   /** Creates a new Lights. */
   public Lights(Drivetrain drivetrain, Climber climber, Intake intake, Indexer indexer, Shooter shooter, Vision vision) {
@@ -119,8 +120,11 @@ public class Lights extends SubsystemBase {
     }
     else if (m_shooting) {
       shooting();
-      new WaitCommand(1.5);
-      m_shooting = false;
+      m_counter += 20;
+      if (m_counter >= 1000) {
+        m_shooting = false;
+        m_counter = 0;
+      }
     }
     else if ((m_alliance == 0) && (m_drivetrain.getAverageSpeed() < 3.0)) {
       setRedStopped();

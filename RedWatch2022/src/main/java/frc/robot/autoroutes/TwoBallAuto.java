@@ -31,15 +31,15 @@ public class TwoBallAuto extends SequentialCommandGroup {
       //shoot ball 1
       new IntakeLower(intake),
       new WaitCommand(0.5),
-      new TurnAngle(-30, drivetrain),
+      new TurnAngle(-20, drivetrain),
       new ShootingRoutine(indexer, shooter, lights, 2600),
-      new TurnAngle(210, drivetrain),
+      new TurnAngle(-160, drivetrain),
 
       //ball 2
       new IntakeIndex(drivetrain, intake, indexer, 55.0),
       new IntakeRaise(intake),
-      new AutoForward(-55, drivetrain),
-      new TurnAngle(-210, drivetrain),
+      new AutoForward(-50, drivetrain),
+      new TurnAngle(160, drivetrain),
       new ShootingRoutine(indexer, shooter, lights, 2600)
 
       // //hub
