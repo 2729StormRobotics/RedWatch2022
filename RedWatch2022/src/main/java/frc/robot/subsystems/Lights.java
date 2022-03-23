@@ -45,14 +45,6 @@ public class Lights extends SubsystemBase {
     resetLights();
   }
 
-  /* TODO: When robot takes in ball of each color
-   * When robot is speeding up flywheel 
-   * When ball comes out of c-shooter
-   * When robot is hanging?
-   * When robot has completed hanging
-   * Auto?
-   */
-
   public void setDisabledColor() {
     m_ledDriver.set(kDisabled);
   }
@@ -115,37 +107,36 @@ public class Lights extends SubsystemBase {
 
   @Override
   public void periodic() {
-
-   if (m_partyMode) {
-     party();
-   }
-   //ROBOT INTAKES BALLS STROBE 2 SECONDS?
-   else if (m_vision.isAligning()) {
-     aligning();
-   }
-   else if (m_shooter.isRevving()) {
-     revving();
-   }
-   else if (m_shooting) {
-    shooting();
-    new WaitCommand(1.5);
-    m_shooting = false;
-   }
-   else if ((m_alliance == 0) && (m_drivetrain.getAverageSpeed() < 5.0)) {
-    setRedStopped();
-   }
-   else if ((m_alliance == 1) && (m_drivetrain.getAverageSpeed() < 5.0)) {
-    setBlueStopped();
-   }
-   else if (m_alliance == 0) {
-     setRed();
-   }
-   else if (m_alliance == 1) {
-     setBlue();
-   }
-   else {
-     resetLights();
-   }
+    if (m_partyMode) {
+      party();
+    }
+    //ROBOT INTAKES BALLS STROBE 2 SECONDS?
+    else if (m_vision.isAligning()) {
+      aligning();
+    }
+    else if (m_shooter.isRevving()) {
+      revving();
+    }
+    else if (m_shooting) {
+      shooting();
+      new WaitCommand(1.5);
+      m_shooting = false;
+    }
+    else if ((m_alliance == 0) && (m_drivetrain.getAverageSpeed() < 3.0)) {
+      setRedStopped();
+    }
+    else if ((m_alliance == 1) && (m_drivetrain.getAverageSpeed() < 3.0)) {
+      setBlueStopped();
+    }
+    else if (m_alliance == 0) {
+      setRed();
+    }
+    else if (m_alliance == 1) {
+      setBlue();
+    }
+    else {
+      resetLights();
+    }
   }
 
 }

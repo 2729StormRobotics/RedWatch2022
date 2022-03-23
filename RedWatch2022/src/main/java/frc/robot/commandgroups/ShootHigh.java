@@ -20,8 +20,8 @@ public class ShootHigh extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new AutoForward(-20, drivetrain)
-      new ShootingRoutine(indexer, shooter, lights, 2700)
+      new AutoForward(-20, drivetrain),
+      new ShootingRoutine(indexer, shooter, lights, 2000)
     );
   }
 }

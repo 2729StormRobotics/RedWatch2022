@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.Constants.DrivetrainConstants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -30,6 +31,10 @@ public class Drivetrain extends SubsystemBase {
   // Declare encoders
   public final RelativeEncoder m_leftEncoder;
   public final RelativeEncoder m_rightEncoder;
+
+  // TODO: use these | Declare PID controllers
+  // private final SparkMaxPIDController m_pidControllerLeft;
+  // private final SparkMaxPIDController m_pidControllerRight;
 
   // Declare DifferentialDrive & DifferentialDrive Odometry
   private final DifferentialDrive m_drive;
@@ -54,7 +59,11 @@ public class Drivetrain extends SubsystemBase {
     final MotorControllerGroup rightControllerGroup = new MotorControllerGroup(rightMotor, rightMotor2);
     final MotorControllerGroup leftControllerGroup = new MotorControllerGroup(leftMotor, leftMotor2);
 
-    // set encoderes
+      // TODO: use these PID controllers 
+    // m_pidControllerLeft = leftMotor.getPIDController();
+    // m_pidControllerRight = rightMotor.getPIDController();
+
+    // set encoders
     m_leftEncoder = leftMotor.getEncoder();
     m_rightEncoder = rightMotor.getEncoder();
 
@@ -146,7 +155,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public static double inputDeadzone(double input) {
-    if (input < kControllerDeadzone) {
+    if (Math.abs(input) < kControllerDeadzone) {
       return 0.0;
     }
     return input;

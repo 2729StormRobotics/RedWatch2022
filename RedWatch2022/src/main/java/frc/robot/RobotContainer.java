@@ -17,6 +17,7 @@ import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoForward;
@@ -32,11 +33,13 @@ import frc.robot.commands.RunFlywheel;
 import frc.robot.commands.PartyMode;
 import frc.robot.commands.TurnAngle;
 import frc.robot.commands.VisionAlign;
+import frc.robot.autoroutes.AutoRoute1;
 import frc.robot.autoroutes.AutoRoute4;
 import frc.robot.autoroutes.TwoBallAuto;
 import frc.robot.commandgroups.EjectCargo;
-import frc.robot.commandgroups.IntakeDriveReal;
 import frc.robot.commandgroups.IntakeMove;
+import frc.robot.commandgroups.ShootHigh;
+import frc.robot.commandgroups.ShootLow;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.ShootingRoutineDouble;
 import frc.robot.commandgroups.Traverse;
@@ -142,7 +145,9 @@ public class RobotContainer {
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RunFlywheel(m_shooter));
-    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000)); // low shot 1000, high 2300 from fender
+    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootLow(m_indexer, m_shooter, m_lights));
+    new JoystickButton(m_weapons, Button.kX.value).whenPressed(new ShootHigh(m_indexer, m_shooter, m_drivetrain, m_lights));
+    // new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000)); // low shot 1000, high 2300 from fender
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RevFlywheel(m_shooter, 2300)); // low shot 1000, high 2300 from fender
     new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutineDouble(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new IntakeMove(m_drivetrain, m_intake, 45));
@@ -166,6 +171,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new IntakeDriveReal(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision); // one ball auto off tarmac
+    return new AutoRoute1(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision); // one ball auto off tarmac
   }
 }

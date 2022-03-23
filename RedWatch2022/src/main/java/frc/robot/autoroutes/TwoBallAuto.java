@@ -5,6 +5,7 @@
 package frc.robot.autoroutes;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commandgroups.IntakeIndex;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commands.AutoForward;
