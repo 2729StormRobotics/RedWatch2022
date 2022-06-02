@@ -14,12 +14,16 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.I2C;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.ColorSensorV3;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import static frc.robot.Constants.IntakeConstants.*;
 
 public class Intake extends SubsystemBase {
 
-  private final TalonSRX m_intakeMotor;
+  private final CANSparkMax m_intakeMotor;
   private final DoubleSolenoid m_intakePiston1;
   private final DoubleSolenoid m_intakePiston2;
 
@@ -37,16 +41,13 @@ public class Intake extends SubsystemBase {
    */
   public Intake() {
     // Creates motor and piston variables
-    m_intakeMotor = new TalonSRX(kIntakeMotorPort);
+    m_intakeMotor = new com.revrobotics.CANSparkMax(kIntakeMotorPort, MotorType.kBrushless);
     m_intakePiston1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakePiston1, kIntakePiston1 + 1); //The type of hopper (Replace CTREPCM With correct)
     m_intakePiston2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, kIntakePiston2, kIntakePiston2 + 1);
 
     // Resets to defaults and sets to idle mode and makes inverted
-    m_intakeMotor.configPeakCurrentDuration(kDriveAmperagePeakDuration, kCanTimeoutSetup);
-    m_intakeMotor.configPeakCurrentLimit(kDriveAmperageLimitPeak, kCanTimeoutSetup);
-    m_intakeMotor.configContinuousCurrentLimit(kDriveAmperageLimitContinuous, kCanTimeoutSetup);
-    m_intakeMotor.enableCurrentLimit(true);
-    m_intakeMotor.setInverted(true);
+    
+    m_intakeMotor.setInverted(false);
 
     // Initializes network table
     m_intakeTable = NetworkTableInstance.getDefault().getTable("Intake");
@@ -58,10 +59,11 @@ public class Intake extends SubsystemBase {
     // m_proximity = m_colorSensor.getProximity();
   }
 
+
   // Runs intake
   public void runIntake(double speed) {
     m_intakeStatus.setBoolean(true);
-    m_intakeMotor.set(ControlMode.PercentOutput, speed);
+    m_intakeMotor.set(speed);
   }
 
   // Rotates motors for intake at kIntakeMotorSpeed
@@ -76,7 +78,7 @@ public class Intake extends SubsystemBase {
 
   // Stops intake
   public void stopIntake() {
-    m_intakeMotor.set(ControlMode.PercentOutput, 0);
+    m_intakeMotor.set(0);
     m_intakeStatus.setBoolean(false);
   }
 
@@ -104,10 +106,10 @@ public class Intake extends SubsystemBase {
   // Checks if intake is lowered or raised
   public boolean isIntakeLowered() {
     if (m_intakePiston1.get() == kIntakeLowerValue) {
-      return false;
+      return true;
     }
     else {
-      return true;
+      return false;
     }
   }
 

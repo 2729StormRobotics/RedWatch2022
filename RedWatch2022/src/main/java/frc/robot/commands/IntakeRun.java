@@ -37,7 +37,7 @@ public class IntakeRun extends CommandBase {
     m_timer.reset();
     m_timer.start();
 
-    m_intake.lowerIntake();
+    //m_intake.lowerIntake();
     m_intake.intake();
   }
 

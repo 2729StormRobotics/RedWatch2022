@@ -66,8 +66,8 @@ public final class Constants {
     public static final int kIntakeMotorPort = 8;
     public static final int kIntakePiston1 = 4;
     public static final int kIntakePiston2 = 6;
-    public static final double kIntakeMotorSpeed = 0.50;
-    public static final double kEjectMotorSpeed = -0.50;
+    public static final double kIntakeMotorSpeed = 0.25;
+    public static final double kEjectMotorSpeed = -0.25;
     public static final Value kIntakeRaiseValue = Value.kForward;
     public static final Value kIntakeLowerValue = Value.kReverse;
     public static final int kDriveAmperagePeakDuration = 100;
