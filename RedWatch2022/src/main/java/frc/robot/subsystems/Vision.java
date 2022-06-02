@@ -74,7 +74,7 @@ private boolean m_aligning = false;
    * Negative values mean the target is to the left of the camera
    */
   public double getXOffset() {
-    return m_xOffset;
+    return m_xOffset -0.2;
   }
 
   /**
@@ -96,7 +96,7 @@ private boolean m_aligning = false;
    * Returns true if the target is within a range of the center crosshair of the camera
    */
   public boolean isTargetCentered() {
-    return (isTargetDetected() && (m_xOffset > -1) && (m_xOffset < 1));
+    return (isTargetDetected() && (m_xOffset > -1.0) && (m_xOffset < 1.0));
   }
 
   /**
@@ -174,13 +174,13 @@ private boolean m_aligning = false;
       ( Math.pow(Math.cos(angle), 2) * 
       (-8.67 + (distance * Math.tan(angle)))) );
     //TODO: Check constant 0.8 with testing
-    double rpm = 0.71 * (velocity / kFlywheelRadius) * kRadsToRPM;
+    double rpm = 0.62 * (velocity / kFlywheelRadius) * kRadsToRPM;
 
     if (rpm > 2750.0) {
       return 2750.0;
     }
-    else if (rpm < 1000.0) {
-      return 1000.0;
+    else if (rpm < 900.0) {
+      return 900.0;
     }
     else {
       return rpm;

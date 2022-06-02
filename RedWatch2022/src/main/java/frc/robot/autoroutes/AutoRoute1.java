@@ -43,7 +43,7 @@ public class AutoRoute1 extends SequentialCommandGroup {
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
-      new TurnAngle(143, drivetrain),
+      new TurnAngle(153, drivetrain),
       
 
       //tarmac -> ball 2
@@ -65,6 +65,10 @@ public class AutoRoute1 extends SequentialCommandGroup {
       new VisionAlign(drivetrain, vision),
       // new IntakeLower(intake),
       new ShootingRoutineDouble(indexer, shooter, lights, vision.getRPM())
+
+
+
+
       // new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
       // new ShootingRoutine(indexer, shooter, lights, vision.getRPM())
       

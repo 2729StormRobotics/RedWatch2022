@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ControlPanel;
@@ -17,40 +19,27 @@ import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoForward;
-import frc.robot.commands.IndexEject;
 import frc.robot.commands.IntakeAdjust;
-import frc.robot.commands.IntakeRun;
-import frc.robot.commands.IntakeStop;
 import frc.robot.commands.IntakeToggle;
-import frc.robot.commands.IndexEject;
 import frc.robot.commands.LoadBallIntoMiddle;
 import frc.robot.commands.Meltdown;
-import frc.robot.commands.RevFlywheel;
-import frc.robot.commands.RunFlywheel;
 import frc.robot.commands.PartyMode;
+import frc.robot.commands.RunFlywheel;
 import frc.robot.commands.TurnAngle;
 import frc.robot.commands.VisionAlign;
-import frc.robot.autoroutes.AutoRoute1;
-import frc.robot.autoroutes.AutoRoute4;
-import frc.robot.autoroutes.TwoBallAuto;
-import frc.robot.commandgroups.EjectCargo;
-import frc.robot.commandgroups.IntakeMove;
+import frc.robot.commands.hangerControl;
+import frc.robot.commands.curvatureDrive;
 import frc.robot.commandgroups.ShootHigh;
 import frc.robot.commandgroups.ShootLow;
 import frc.robot.commandgroups.ShootingRoutine;
 import frc.robot.commandgroups.ShootingRoutineDouble;
-import frc.robot.commandgroups.Traverse;
-import frc.robot.commands.hangerControl;
-import frc.robot.commands.setLights;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
-import frc.robot.commands.curvatureDrive;
+import frc.robot.autoroutes.AutoRoute1;
+import frc.robot.autoroutes.TwoBallAuto;
+import frc.robot.autoroutes.TwoBallAuto2;
+
 import static frc.robot.Constants.IOPorts.*;
-import static frc.robot.Constants.LightConstants.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -104,7 +93,7 @@ public class RobotContainer {
      * Holding down left trigger allows turning in place
      */ 
     m_drivetrain.setDefaultCommand(
-      new curvatureDrive(() -> m_driver.getLeftY() / 1.25, () -> m_driver.getRightX() / 1.75, () -> Drivetrain.isTriggerPressed(m_driver.getLeftTriggerAxis()), m_drivetrain));
+      new curvatureDrive(() -> m_driver.getLeftY(), () -> m_driver.getRightX() / 1.75, () -> Drivetrain.isTriggerPressed(m_driver.getLeftTriggerAxis()), m_drivetrain));
 
     m_intake.setDefaultCommand(
       new IntakeAdjust(() -> Intake.isTriggerPressed(m_weapons.getLeftTriggerAxis()), () -> Intake.isTriggerPressed(m_weapons.getRightTriggerAxis()), m_intake));
@@ -124,9 +113,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /**
      * Button mappings for the weapons controller. Currently set to:
-     * A (when pressed) toggles the intake up/down
+     * A (when pressed) turns the robot to a set angle (45 degrees)
      * Y (while held) aligns the robot to a vision target
-     * A (when pressed) drives the robot forward a set distance
+     * B (when pressed) drives the robot forward a set distance (in inches)
+     * Start (when pressed) turns on rainbow LEDs
      */
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
@@ -135,10 +125,12 @@ public class RobotContainer {
     new JoystickButton(m_driver, Button.kStart.value).whenPressed(new PartyMode(m_lights));
     /**
      * Button mappings for the weapons controller. Currently set to:
-     * X (while held) runs the intake motors
+     * Start (when pressed) deploys/retracts the intake
+     * Back (when pressed) stops any running commands
+     * X (when pressed) performs a double shot with variable RPM
      * B (when pressed) runs the index motor until the beambreak is broken
      * Y (when pressed) runs the index then shoot command (index -> rev launcher based on distance -> shoot ball)
-     * A (while held) reverses the index motor to eject the ball
+     * A (when pressed) performs a low shot from the fender
      */
     new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_weapons, Button.kBack.value).whenPressed(new Meltdown(m_climber, m_drivetrain, m_indexer, m_intake, m_lights, m_shooter));
@@ -146,8 +138,9 @@ public class RobotContainer {
     // new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
-    // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RunFlywheel(m_shooter));
-    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootLow(m_indexer, m_shooter, m_lights));
+    new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RunFlywheel(m_shooter));
+    // new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootLow(m_indexer, m_shooter, m_lights));
+    // new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootHigh(m_indexer, m_shooter, m_drivetrain, m_lights));
     new JoystickButton(m_weapons, Button.kX.value).whenPressed(new ShootingRoutineDouble(m_indexer, m_shooter, m_lights, m_vision.getRPM()));
     // new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 1000)); // low shot 1000, high 2300 from fender
     // new JoystickButton(m_weapons, Button.kA.value).whileHeld(new RevFlywheel(m_shooter, 2300)); // low shot 1000, high 2300 from fender
@@ -174,6 +167,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // return new AutoRoute1(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision); // one ball auto off tarmac
-    return new TwoBallAuto(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision);
+    return new TwoBallAuto2(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision); // CW
+    // return new TwoBallAuto(m_drivetrain, m_shooter, m_intake, m_indexer, m_lights, m_vision); // CCW
   }
 }

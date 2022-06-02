@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public final class Constants {
 	public static final class VisionConstants {
     public static final double kLimelightHeight = 33.0; //TODO: Rough estimate... get more exact distance
-    public static final double kLimelightAngle = 40.0; //TODO: Rough estimate... get more exact
+    public static final double kLimelightAngle = 40.0; // from horizontal  // TODO: get more exact
     public static final double kLimelightToShooter = 4.5;  // TODO: Distance from limelight to shooter
     public static final double kHubHeight = 104.0;
     public static final double kShooterAngle = 80.5;
@@ -43,7 +43,7 @@ public final class Constants {
   public static final class ShooterConstants {
     public static final int kTopMotorPort = 3;
     public static final boolean kTopReversedDefault = false;
-    public static final int kStallLimit = 45;
+    public static final int kStallLimit = 80;
     public static final int kCurrentLimit = 60;
     public static final double kLauncherP = 0.001;
     public static final double kLauncherI = 0.0;
@@ -66,8 +66,8 @@ public final class Constants {
     public static final int kIntakeMotorPort = 8;
     public static final int kIntakePiston1 = 4;
     public static final int kIntakePiston2 = 6;
-    public static final double kIntakeMotorSpeed = 0.70;
-    public static final double kEjectMotorSpeed = -0.70;
+    public static final double kIntakeMotorSpeed = 0.65;
+    public static final double kEjectMotorSpeed = -0.65;
     public static final Value kIntakeRaiseValue = Value.kForward;
     public static final Value kIntakeLowerValue = Value.kReverse;
     public static final int kDriveAmperagePeakDuration = 100;
@@ -122,9 +122,9 @@ public final class Constants {
     public static final double kRed = 0.61; // Solid red
     public static final double kBlue = 0.87; // Solid blue
     public static final double kBad = 0.61; // Used for a bad orientation - color red
-    public static final double kParty = -0.99; // Rainbow party
-    public static final double kAligning = -0.07; // Strobe gold when aligning
-    public static final double kRevving = 0.67; // Solid gold when revving
+    public static final double kParty = -0.89; // Rainbow party
+    public static final double kAligning = 0.91; // Purple when aligning | -.07 for gold strobe
+    public static final double kRevving = 0.67; // Solid gold when revving 
     public static final double kShooting = 0.77; // Green for when shooting
     public static final int kBlinkinDriverPort = 0;
   }
@@ -138,7 +138,7 @@ public final class Constants {
     public static final double kTelescopingGearRatio = 1.0 / 16.0;
     public static final double kPivotingGearRatio = 1.0 / 125.0;
 
-    public static final double kAnglePerRevolution = kPivotingGearRatio * 3.14;
+    public static final double kAnglePerRevolution = 0;//kPivotingGearRatio * 3.14;
     public static final double kDistancePerRevolution = kTelescopingGearRatio * (7.0 / 8.0) * 3.14; //TODO: put in gear ratio for the climbers!!!
 		public static final double kClimberRightSize = 12.0;
 	}

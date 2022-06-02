@@ -13,19 +13,25 @@ import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 
 public class Meltdown extends CommandBase {
+  private final Shooter shooter;
   /** Creates a new Meltdown. */
   public Meltdown(Climber m_climber, Drivetrain m_drivetrain, Indexer m_indexer, Intake m_intake, Lights m_lights, Shooter m_shooter) {
     // Use addRequirements() here to declare subsystem dependencies.
+    shooter = m_shooter;
     addRequirements(m_climber, m_drivetrain, m_indexer, m_intake, m_lights, m_shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    new StopFlywheel(shooter);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    new StopFlywheel(shooter);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

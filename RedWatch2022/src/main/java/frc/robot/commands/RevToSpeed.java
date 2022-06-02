@@ -36,7 +36,7 @@ public class RevToSpeed extends CommandBase {
     // m_shooter.topMotor.set(0);
     m_shooter.encoderReset(m_shooter.m_topEncoder);
     m_motorPower = 0;
-    m_currentRPM = 1500;
+    m_currentRPM = 0;
     m_increment = 0;
     m_error = 0;
     m_finished = false;
@@ -76,6 +76,7 @@ public class RevToSpeed extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    new StopFlywheel(m_shooter);
     // finishes when rpm is within 20 rpm of target
     return m_finished;
   }

@@ -20,27 +20,29 @@ import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 
+// USED ON THE TARMAC FACING THE WALL
+
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class TwoBallAuto extends SequentialCommandGroup {
+public class TwoBallAuto2 extends SequentialCommandGroup {
   /** Creates a new TwoBallAuto. */
-  public TwoBallAuto(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
+  public TwoBallAuto2(Drivetrain drivetrain, Shooter shooter, Intake intake, Indexer indexer, Lights lights, Vision vision) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       //shoot ball 1
       new IntakeLower(intake),
       new WaitCommand(0.5),
-      new TurnAngle(-20, drivetrain),
+      new TurnAngle(20, drivetrain),
       new ShootingRoutine(indexer, shooter, lights, vision.getRPM()),
-      new TurnAngle(-160, drivetrain),
+      new TurnAngle(160, drivetrain),
 
       //ball 2
-      new IntakeIndex(drivetrain, intake, indexer, 67.0),
+      new IntakeIndex(drivetrain, intake, indexer, 47.0),
       new IntakeRaise(intake),  
-      new AutoForward(-60, drivetrain),
-      new TurnAngle(160, drivetrain),
+      new AutoForward(-40, drivetrain),
+      new TurnAngle(-160, drivetrain),
       new VisionAlign(drivetrain, vision),
       new VisionAlign(drivetrain, vision),
       // new ShootingRoutine(indexer, shooter, lights, 2600)

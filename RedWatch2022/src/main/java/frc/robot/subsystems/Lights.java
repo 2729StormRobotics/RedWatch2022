@@ -31,6 +31,8 @@ public class Lights extends SubsystemBase {
   private boolean m_partyMode = false;
   private boolean m_shooting = false;
   private int m_counter = 0;
+  private double m_currentLights = 0;
+  private double m_newLights = 0;
 
   /** Creates a new Lights. */
   public Lights(Drivetrain drivetrain, Climber climber, Intake intake, Indexer indexer, Shooter shooter, Vision vision) {
@@ -55,27 +57,32 @@ public class Lights extends SubsystemBase {
   }
 
   public void setRed() {
-    m_ledDriver.set(kRed);
+    //m_ledDriver.set(kRed);
+    m_newLights = kRed;
   }
 
   public void setRedStopped() {
-    m_ledDriver.set(kRedStopped);
+    //m_ledDriver.set(kRedStopped);
+    m_newLights = kRedStopped;
   }
 
   public void setBlue() {
-    m_ledDriver.set(kBlue);
+    //m_ledDriver.set(kBlue);
+    m_newLights = kBlue;
   }
 
   public void setBlueStopped() {
-    m_ledDriver.set(kBlueStopped);
+   //m_ledDriver.set(kBlueStopped);
+    m_newLights = kBlueStopped;
   }
 
   public void resetLights() {
-    m_ledDriver.set(kDefaultColor);
+    //m_ledDriver.set(kDefaultColor);
+    m_newLights = kDefaultColor;
   }
 
   public double getCurrentLights() {
-    return m_ledDriver.get();
+    return Math.round(m_ledDriver.get() * 100.0) / 100.0;
   }
 
   public void setGiven(double color) {
@@ -91,23 +98,33 @@ public class Lights extends SubsystemBase {
   }
 
   public void party() {
-    m_ledDriver.set(kParty);
+    //m_ledDriver.set(kParty);
+    m_newLights = kParty;
   }
 
   public void aligning() {
-    m_ledDriver.set(kAligning);
+    //m_ledDriver.set(kAligning);
+    m_newLights = kAligning;
   }
 
   public void revving() {
-    m_ledDriver.set(kRevving);
+    //m_ledDriver.set(kRevving);
+    m_newLights = kRevving;
   }
 
   public void shooting() {
-    m_ledDriver.set(kShooting);
+    //m_ledDriver.set(kShooting);
+    m_newLights = kShooting;
+  }
+
+  public void writeLights(double color) {
+    m_ledDriver.set(color);
   }
 
   @Override
   public void periodic() {
+    m_currentLights = getCurrentLights();
+    
     if (m_partyMode) {
       party();
     }
@@ -121,15 +138,15 @@ public class Lights extends SubsystemBase {
     else if (m_shooting) {
       shooting();
       m_counter += 20;
-      if (m_counter >= 1000) {
+      if (m_counter >= 1200) {
         m_shooting = false;
         m_counter = 0;
       }
     }
-    else if ((m_alliance == 0) && (m_drivetrain.getAverageSpeed() < 3.0)) {
+    else if ((m_alliance == 0) && (m_drivetrain.getAverageSpeed() < 1.5)) {
       setRedStopped();
     }
-    else if ((m_alliance == 1) && (m_drivetrain.getAverageSpeed() < 3.0)) {
+    else if ((m_alliance == 1) && (m_drivetrain.getAverageSpeed() < 1.5)) {
       setBlueStopped();
     }
     else if (m_alliance == 0) {
@@ -140,6 +157,10 @@ public class Lights extends SubsystemBase {
     }
     else {
       resetLights();
+    }
+
+    if (m_currentLights != m_newLights) {
+      writeLights(m_newLights);
     }
   }
 

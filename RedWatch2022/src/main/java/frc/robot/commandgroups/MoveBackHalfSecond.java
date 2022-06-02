@@ -4,24 +4,22 @@
 
 package frc.robot.commandgroups;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.AutoForward;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Lights;
-import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ShootHigh extends SequentialCommandGroup {
-  /** Creates a new ShootHigh. */
-  public ShootHigh(Indexer indexer, Shooter shooter, Drivetrain drivetrain, Lights lights) {
-    // Add your commands in the addCommands() call, e.g.
+public class MoveBackHalfSecond extends ParallelDeadlineGroup {
+  /** Creates a new MoveBackHalfSecond. */
+  public MoveBackHalfSecond(Drivetrain drivetrain) {
+    // Add the deadline command in the super() call. Add other commands using
+    // addCommands().
+    super(new WaitCommand(0.25));
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(
-      new MoveBackHalfSecond(drivetrain),
-      new ShootingRoutineDouble(indexer, shooter, lights, 1700)
-    );
+    addCommands(new AutoForward(-40, drivetrain));
   }
 }

@@ -90,7 +90,7 @@ public class Drivetrain extends SubsystemBase {
     motor.setSmartCurrentLimit(kCurrentLimit);
     motor.setSmartCurrentLimit(kStallLimit);
     motor.setInverted(invert);
-
+    motor.setOpenLoopRampRate(0.5);
     encoderInit(motor.getEncoder());
   }
 

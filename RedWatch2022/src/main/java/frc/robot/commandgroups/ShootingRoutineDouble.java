@@ -73,7 +73,9 @@ public class ShootingRoutineDouble extends SequentialCommandGroup {
       new RevToSpeed(rpm, shooter, lights),
       new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights),
-      new WaitCommand(.75),
+      new StopFlywheel(shooter),
+      new WaitCommand(.4),
+      new RevToSpeed(rpm, shooter, lights),
       new LoadBallIntoMiddle(indexer),
       new LoadBallIntoFlyWheel(indexer, shooter, lights),
       new StopFlywheel(shooter));
