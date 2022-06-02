@@ -104,10 +104,10 @@ public class Intake extends SubsystemBase {
   // Checks if intake is lowered or raised
   public boolean isIntakeLowered() {
     if (m_intakePiston1.get() == kIntakeLowerValue) {
-      return true;
+      return false;
     }
     else {
-      return false;
+      return true;
     }
   }
 

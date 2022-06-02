@@ -138,9 +138,9 @@ public class RobotContainer {
      * Y (when pressed) runs the index then shoot command (index -> rev launcher based on distance -> shoot ball)
      * A (while held) reverses the index motor to eject the ball
      */
-    // new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
+    new JoystickButton(m_weapons, Button.kStart.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_weapons, Button.kBack.value).whenPressed(new Meltdown(m_climber, m_drivetrain, m_indexer, m_intake, m_lights, m_shooter));
-    // new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IntakeRun(m_intake, 2));
+    new JoystickButton(m_weapons, Button.kX.value).whenPressed(new IntakeRun(m_intake, 2));
     // new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
