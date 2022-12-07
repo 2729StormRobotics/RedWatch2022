@@ -15,8 +15,10 @@ import frc.robot.subsystems.Drivetrain;
 public class ForwardThenBack extends SequentialCommandGroup {
   private final Drivetrain m_drivetrain;
   public ForwardThenBack(Drivetrain drivetrain) {
+    // moves forward 60 inches
     super(new AutoForwardPID(60, drivetrain), 
-          new AutoForwardPID(24, drivetrain));
+    // moves backward 24 inches
+          new AutoForwardPID(-24, drivetrain));
 
     m_drivetrain = drivetrain;
 
