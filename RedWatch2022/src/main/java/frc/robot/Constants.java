@@ -49,7 +49,14 @@ public final class Constants {
     public static final double kLauncherI = 0.0;
     public static final double kLauncherD = 0.0;
   }
-
+  
+  public static final class TurnDistanceGyroPID{
+		public static final double kP = 0.029;
+		public static final double kI = 0.0;
+		public static final double kD = 0.0;
+		public static final double kAngleTolerace = 4.0;
+		public static final double kTurnSpeedTolerance = 1.0;
+	}
   public static final class IndexerConstants {
     public static final int kIndexMotorPort = 6;
     public static final int kBeamBreakPort = 0;

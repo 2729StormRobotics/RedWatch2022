@@ -2,22 +2,37 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+
+// Moves robots in a square with side lengths of 60 inches
 package frc.robot.commandgroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoForward;
+import frc.robot.commands.TurnDistanceGyro;
 import frc.robot.subsystems.Drivetrain;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ForwardThenBack extends SequentialCommandGroup {
+public class RotateInASquare extends SequentialCommandGroup {
   private final Drivetrain m_drivetrain;
-  public ForwardThenBack(Drivetrain drivetrain) {
+  public RotateInASquare(Drivetrain drivetrain) {
     // moves forward 60 inches
     super(new AutoForward(60, drivetrain), 
-    // moves backward 24 inches
-          new AutoForward(-24, drivetrain));
+        // Turns 90 degrees
+        new TurnDistanceGyro(90, drivetrain),
+        // Moves Forward 60 inches
+        new AutoForward(60, drivetrain),
+        // Turns 90 degrees
+        new TurnDistanceGyro(90, drivetrain),
+        // Moves Forward 60 inches
+        new AutoForward(60, drivetrain),
+        // Turns 90 degrees
+        new TurnDistanceGyro(90, drivetrain),
+        // Moves Forward 60 inches
+        new AutoForward(60, drivetrain),
+        // Turns 90 degrees
+        new TurnDistanceGyro(90, drivetrain));
 
     m_drivetrain = drivetrain;
 

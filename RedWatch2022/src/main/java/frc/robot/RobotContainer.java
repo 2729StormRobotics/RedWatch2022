@@ -42,6 +42,7 @@ import frc.robot.commandgroups.IntakeMove;
 import frc.robot.commandgroups.ShootHigh;
 import frc.robot.commandgroups.ShootLow;
 import frc.robot.commandgroups.ShootingRoutine;
+import frc.robot.commandgroups.RotateInPlace;
 import frc.robot.commandgroups.ForwardThenBack;
 import frc.robot.commandgroups.ShootingRoutineDouble;
 import frc.robot.commandgroups.Traverse;
@@ -131,7 +132,7 @@ public class RobotContainer {
      */
     // new JoystickButton(m_driver, Button.kA.value).whenPressed(new IntakeToggle(m_intake));
     new JoystickButton(m_driver, Button.kY.value).whileHeld(new VisionAlign(m_drivetrain, m_vision));
-    new JoystickButton(m_driver, Button.kB.value).whenPressed(new ForwardThenBack(m_drivetrain));
+    new JoystickButton(m_driver, Button.kB.value).whenPressed(new RotateInPlace(m_drivetrain));
     new JoystickButton(m_driver, Button.kA.value).whenPressed(new TurnAngle(45, m_drivetrain));
     new JoystickButton(m_driver, Button.kStart.value).whenPressed(new PartyMode(m_lights));
     /**
