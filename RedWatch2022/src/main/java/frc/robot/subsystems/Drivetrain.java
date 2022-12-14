@@ -131,6 +131,14 @@ public class Drivetrain extends SubsystemBase {
     return (getRightSpeed() + getLeftSpeed())/2;
   }
   
+  // gets difference in distance travelled in encoders, used to drive straight
+  public double getEncoderError(){
+    double turn_kP = 0.01;
+    double error = getRightDistance() - getLeftDistance();
+    double turn_power = turn_kP * error; 
+    return turn_power;
+  }
+
   public double getGyroAngle() {
     return m_ahrs.getAngle();
   }
