@@ -133,7 +133,7 @@ public class Drivetrain extends SubsystemBase {
   
   // gets difference in distance travelled in encoders, used to drive straight
   public double getEncoderError(){
-    double turn_kP = 0.01;
+    double turn_kP = 0.0005;
     double error = getRightDistance() - getLeftDistance();
     double turn_power = turn_kP * error; 
     return turn_power;

@@ -35,7 +35,7 @@ public class AutoDriveStraight extends PIDCommand {
         output -> {
           // Use the output here
           // drive forward
-          drivetrain.arcadeDrive(output, drivetrain.getEncoderError(), false);
+          drivetrain.arcadeDrive(-output, -drivetrain.getEncoderError(), false);
         });
 
         m_drivetrain = drivetrain;
