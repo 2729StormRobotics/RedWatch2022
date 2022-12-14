@@ -17,6 +17,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AutoDriveStraight;
 import frc.robot.commands.AutoForward;
 import frc.robot.commands.IndexEject;
 import frc.robot.commands.IntakeRun;
@@ -128,7 +129,8 @@ public class RobotContainer {
     new JoystickButton(m_weapons, Button.kBack.value).whileHeld(new EjectCargo(m_intake, m_indexer));
     new JoystickButton(m_weapons, Button.kB.value).whenPressed(new LoadBallIntoMiddle(m_indexer));
     // new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision, m_drivetrain));
-    new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2800)); // low shot 1000
+    new JoystickButton(m_driver, Button.kA.value).whenPressed(new AutoDriveStraight(20, m_drivetrain));
+    //new JoystickButton(m_weapons, Button.kA.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, 2800)); // low shot 1000
     new JoystickButton(m_weapons, Button.kY.value).whenPressed(new ShootingRoutine(m_indexer, m_shooter, m_lights, m_vision.getRPM())); // high shot
 
 
